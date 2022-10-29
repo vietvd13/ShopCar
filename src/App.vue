@@ -5,7 +5,12 @@
 </template>
 
 <script>
+import { setPageName } from './utils/setPageName';
+
 export default {
-  name: 'App'
+  name: 'App',
+  created () {
+    setPageName();
+  },
 }
 </script>
