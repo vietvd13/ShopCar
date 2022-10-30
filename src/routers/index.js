@@ -3,8 +3,16 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
-export const constantRoutes = [
+import ShopCar from './modules/ShopCar';
 
+export const constantRoutes = [
+  {
+    path: '/',
+    redirect: {
+      name: 'HomeShopCar'
+    }
+  },
+  ShopCar
 ];
 
 export const asyncRoutes = [

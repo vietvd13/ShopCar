@@ -27,6 +27,9 @@ import bus from './bus';
 
 Vue.use(bus);
 
+// Style
+import './scss/index.scss';
+
 new Vue({
   render: h => h(App),
   router,
