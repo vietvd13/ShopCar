@@ -61,9 +61,9 @@ export default {
     align-items: center;
     justify-content: center;
 
-    font-size: 12px;
+    font-size: 13px;
   }
 
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 </style>
