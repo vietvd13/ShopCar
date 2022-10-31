@@ -15,6 +15,15 @@ export default {
         IMPORTED_CAR: 'Imported car',
         CUSTOMER_REVIEWS: 'Customer reviews',
         VEHICLE_LIST: 'Vehicle List'
+      },
+      NEW_CAR: {
+        TITLE: 'TITLE',
+      },
+      HOT_SALE: {
+        TITLE: 'TITLE',
+      },
+      CUSTOMER_FEEDBACK: {
+        TITLE: 'TITLE'
       }
     }
   }
