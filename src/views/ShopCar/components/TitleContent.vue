@@ -21,7 +21,7 @@ export default {
 
 .title-content {
   background-color: $main;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding: 10px;
   text-align: center;
   color: $white;

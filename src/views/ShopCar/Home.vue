@@ -249,7 +249,8 @@ export default {
     .content-top-new-car,
     .content-hotsale,
     .content-customer-feedback {
-      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
   }
 }
