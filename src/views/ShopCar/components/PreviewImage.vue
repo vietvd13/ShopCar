@@ -1,7 +1,7 @@
 <template>
   <div class="preview-image">
     <b-row>
-      <b-col>
+      <b-col cols="6" xs="12">
         <div class="display-image-preview">
           <b-img
             :src="imagePreview"
@@ -9,10 +9,8 @@
           />
         </div>
       </b-col>
-    </b-row>
 
-    <b-row>
-      <b-col>
+      <b-col cols="6" xs="12">
         <div class="list-image">
           <b-img
             class="item-image"
@@ -51,6 +49,9 @@ export default {
       this.handleStartPreview();
     }
   },
+  created () {
+    this.handleStartPreview();
+  },
   methods: {
     handleStartPreview() {
       if (this.images.length) {
@@ -70,20 +71,31 @@ export default {
 @import '../../../scss/variables';
 
 .preview-image {
+  margin-bottom: 10px;
+
   .display-image-preview {
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
+    height: 450px;
   }
 
   .list-image {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     overflow: auto;
+    height: 450px;
 
     .item-image {
       max-width: 120px;
       margin: 5px;
       cursor: pointer;
+
+      img {
+        width: 120px;
+        height: 120px;
+      }
     }
   }
 }

@@ -12,20 +12,11 @@
           </div>
 
           <div class="content-basic-infor">
-            <b-card>
-              <b-row>
-                <b-col cols="6">
-                  <PreviewImage :images="isCar.images" />
-                </b-col>
-                <b-col cols="6">
-                  <BasicInforCar />
-                </b-col>
-              </b-row>
-            </b-card>
+            <BasicInforCar />
           </div>
 
           <div class="content-preview-image">
-            <!-- <PreviewImage :images="isCar.images" /> -->
+            <PreviewImage :images="isCar.images" />
           </div>
         </b-col>
 
