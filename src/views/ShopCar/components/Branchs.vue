@@ -4,7 +4,7 @@
       <b-col 
         v-for="(branch, idx) in ListBranch" 
         :key="idx" 
-        cols="3" xs="3" sm="3" md="3" lg="3" xl="2"
+        cols="6" xs="3" sm="3" md="3" lg="3" xl="2"
       >
         <div class="card-branch">
           <div class="card-branch__logo">

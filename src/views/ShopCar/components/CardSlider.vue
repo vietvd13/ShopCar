@@ -1,52 +1,53 @@
 <template>
-  <b-row>
-    <!-- Button Back -->
-    <b-col cols="1">
-      <div class="icon-card-slider">
-        <i 
-          class="fas fa-chevron-left" 
-          @click="backSlider()" 
-        />
-      </div>
-    </b-col>
-
-    <!-- Slider -->
-    <b-col cols="10">
-      <b-carousel :ref="refName">
-        <b-carousel-slide v-for="(slide, idx) in items" :key="idx">
-          <template #img>
-            <b-row>
-              <template v-for="(car, idxCar) in slide">
-                <template v-if="car">
-                  <b-col cols="3" :key="idxCar">
-                    <CardCar
-                      :car-image="car.image"
-                      :car-name="car.name"
-                      :date-sale="car.date_sale"
-                      :car-price="car.price"
-                    />
-                  </b-col>
+  <b-col>
+    <b-row>
+      <!-- Button Back -->
+      <b-col cols="1">
+        <div class="icon-card-slider">
+          <i
+            class="fas fa-chevron-left"
+            @click="backSlider()"
+          />
+        </div>
+      </b-col>
+      <!-- Slider -->
+      <b-col cols="10">
+        <b-carousel :ref="refName">
+          <b-carousel-slide v-for="(slide, idx) in items" :key="idx">
+            <template #img>
+              <b-row>
+                <template v-for="(car, idxCar) in slide">
+                  <template v-if="car">
+                    <b-col cols="12" xs="12" sm="3" md="3" lg="3" xl="3" :key="idxCar">
+                      <CardCar
+                        :car-id="car._id"
+                        :car-image="car.primary_image"
+                        :car-name="car.car_name"
+                        :date-sale="car.year_manufacture"
+                        :car-price="car.price"
+                      />
+                    </b-col>
+                  </template>
+                  <template v-else>
+                    <b-col cols="12" xs="12" sm="3" md="3" lg="3" xl="3" :key="idxCar" />
+                  </template>
                 </template>
-                <template v-else>
-                  <b-col cols="3" :key="idxCar" />
-                </template>
-              </template>
-            </b-row>
-          </template>
-        </b-carousel-slide>
-      </b-carousel>
-    </b-col>
-
-    <!-- Button Next -->
-    <b-col cols="1">
-      <div class="icon-card-slider">
-        <i 
-          class="fas fa-chevron-right" 
-          @click="nextSlider()" 
-        />
-      </div>
-    </b-col>
-  </b-row>
+              </b-row>
+            </template>
+          </b-carousel-slide>
+        </b-carousel>
+      </b-col>
+      <!-- Button Next -->
+      <b-col cols="1">
+        <div class="icon-card-slider">
+          <i
+            class="fas fa-chevron-right"
+            @click="nextSlider()"
+          />
+        </div>
+      </b-col>
+    </b-row>
+  </b-col>
 </template>
 
 <script>
@@ -90,7 +91,7 @@ export default {
   height: 100%;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
+  font-size: 20px;
   color: $main;
 
   i {

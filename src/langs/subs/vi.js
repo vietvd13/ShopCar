@@ -16,6 +16,17 @@ export default {
         CUSTOMER_REVIEWS: 'Khoảnh khắc vui vẻ',
         VEHICLE_LIST: 'Danh sách xe'
       },
+      SORT_LIST_CAR: {
+        CAR_NAME: 'Tên xe',
+        PRICE: 'Giá',
+        YEAR_MANUFACTURE: 'Năm sản xuất',
+
+        TEXT_PER_PAGE_8: '8 xe/trang',
+        TEXT_PER_PAGE_16: '16 xe/trang',
+        TEXT_PER_PAGE_24: '24 xe/trang',
+        TEXT_PER_PAGE_32: '32 xe/trang',
+        TEXT_PER_PAGE_40: '40 xe/trang',
+      },
       NEW_CAR: {
         TITLE: 'Top xe mới',
       },

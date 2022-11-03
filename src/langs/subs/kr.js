@@ -16,6 +16,17 @@ export default {
         CUSTOMER_REVIEWS: 'Customer reviews',
         VEHICLE_LIST: 'Vehicle List'
       },
+      SORT_LIST_CAR: {
+        CAR_NAME: 'CAR_NAME',
+        PRICE: 'PRICE',
+        YEAR_MANUFACTURE: 'YEAR_MANUFACTURE',
+
+        TEXT_PER_PAGE_8: 'TEXT_PER_PAGE_8',
+        TEXT_PER_PAGE_16: 'TEXT_PER_PAGE_16',
+        TEXT_PER_PAGE_24: 'TEXT_PER_PAGE_24',
+        TEXT_PER_PAGE_32: 'TEXT_PER_PAGE_32',
+        TEXT_PER_PAGE_40: 'TEXT_PER_PAGE_40',
+      },
       NEW_CAR: {
         TITLE: 'TITLE',
       },

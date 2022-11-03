@@ -1,4 +1,4 @@
-import { service } from './service';
+import { service } from './request';
 
 export default {
 	async getRequest(URL, PARAMS, DATA) {

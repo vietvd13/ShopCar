@@ -1,5 +1,5 @@
 <template>
-  <div class="card-car">
+  <div class="card-car" @click="onClickCardCar(carId)">
     <div class="card-car__img">
       <b-img 
         :src="carImage" 
@@ -25,6 +25,11 @@
 export default {
   name: 'CardCarHome',
   props: {
+    carId: {
+      type: String,
+      required: true,
+      default: '',
+    },
     carImage: {
       type: String,
       required: true,
@@ -46,17 +51,26 @@ export default {
       default: '',
     }
   },
+  methods: {
+    onClickCardCar(id) {
+      if (id) {
+        this.$router.push({ name: 'DetailCar', params: { id } });
+      }
+    }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../../../scss/variables';
 
-
 .card-car {
   border-radius: 5px;
   cursor: pointer;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
 
   &__img {
     img {
@@ -78,6 +92,14 @@ export default {
       font-size: 12px;
       font-weight: bold;
       margin-bottom: 10px;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+
+      min-height: 36px;
     }
 
     .date-sale {

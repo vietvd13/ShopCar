@@ -30,6 +30,9 @@ Vue.use(bus);
 // Style
 import './scss/index.scss';
 
+// Resize
+import './utils/handleResizeScreen';
+
 new Vue({
   render: h => h(App),
   router,

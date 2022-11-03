@@ -6,7 +6,7 @@
         :key="idx" 
         cols="12" xs="12" sm="12" md="6" lg="3" xl="3"
       >
-        <div class="card-categories">
+        <div class="card-categories" @click="goToRoute(cate.route)">
           <span>{{ $t(cate.text) }}</span>
         </div>
       </b-col>
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'CategoriesHome',
   data() {
@@ -23,20 +24,35 @@ export default {
         {
           value: 'DOMESTIC_CAR',
           text: 'SHOP_CAR.HOME.CATEGORIES.DOMESTIC_CAR',
+          route: '',
         },
         {
           value: 'IMPORTED_CAR',
           text: 'SHOP_CAR.HOME.CATEGORIES.IMPORTED_CAR',
+          route: '',
         },
         {
           value: 'CUSTOMER_REVIEWS',
           text: 'SHOP_CAR.HOME.CATEGORIES.CUSTOMER_REVIEWS',
+          route: '',
         },
         {
           value: 'VEHICLE_LIST',
           text: 'SHOP_CAR.HOME.CATEGORIES.VEHICLE_LIST',
+          route: 'ListCar'
         }
       ]
+    }
+  },
+  methods: {
+    goToRoute(name) {
+      if (name) {
+        const CURRENT_NAME = this.$route.name;
+
+        if (CURRENT_NAME !== name) {
+          this.$router.push({ name });
+        }
+      }
     }
   },
 }

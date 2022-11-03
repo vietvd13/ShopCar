@@ -35,7 +35,7 @@ export default {
   overflow: hidden;
 
   .input-search {
-    border-radius: 1.5rem;
+    // border-radius: 1.5rem;
     border: none;
     box-shadow: none;
   }
