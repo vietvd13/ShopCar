@@ -1,6 +1,6 @@
 <template>
   <b-row>
-    <b-col v-for="(car, idxCar) in items" cols="6" xs="6" sm="6" md="6" lg="3" :key="idxCar">
+    <b-col v-for="car in items" cols="6" xs="6" sm="6" md="6" lg="3" :key="car._id">
       <CardCar
         :car-id="car._id"
         :car-image="car.primary_image"

@@ -69,14 +69,25 @@ export default {
   cursor: pointer;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
+  overflow: hidden;
+
   margin-top: 10px;
   margin-bottom: 10px;
 
   &__img {
+    height: 220px;
+
+    display: flex;
+    text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+
     img {
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
+      max-width: 100%;
+      max-height: 100%;
     }
+
+    overflow: hidden;
   }
 
   &__desc {
