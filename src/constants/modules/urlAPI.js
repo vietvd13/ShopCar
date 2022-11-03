@@ -1,3 +1,4 @@
 export default {
   GET_LIST_CAR: '/cars/list',
+  GET_DETAIL_CAR: '/cars/detail'
 };
