@@ -36,6 +36,13 @@ export default {
       CUSTOMER_FEEDBACK: {
         TITLE: 'TITLE'
       }
+    },
+    DETAIL_CAR: {
+      TITLE_BASIC_INFOR: 'TITLE_BASIC_INFOR',
+      YEAR: 'YEAR',
+      FUEL_TYPE: 'FUEL_TYPE',
+      COLOR: 'COLOR',
+      CAR_NUMBER: 'CAR_NUMBER',
     }
   }
 };

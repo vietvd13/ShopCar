@@ -1,16 +1,29 @@
 <template>
   <div class="preview-image">
     <b-row>
-      <b-col cols="6" xs="12">
+      <b-col
+        cols="12" 
+        xs="12" 
+        sm="12" 
+        md="12" 
+        lg="6"
+      >
         <div class="display-image-preview">
           <b-img
             :src="imagePreview"
-            thumbnail 
+            thumbnail
+            fluid
           />
         </div>
       </b-col>
 
-      <b-col cols="6" xs="12">
+      <b-col
+        cols="12" 
+        xs="12" 
+        sm="12" 
+        md="12" 
+        lg="6"      
+      >
         <div class="list-image">
           <b-img
             class="item-image"

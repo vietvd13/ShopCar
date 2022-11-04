@@ -9,7 +9,7 @@
     >
       <template #overlay>
         <div class="text-center">
-            <i class="fad fa-spinner-third fa-spin" />
+            <i class="fad fa-spinner-third fa-spin icon-loading" />
             <p class="text-loading">
               {{ $t('APP.LOADING') }}
             </p>
@@ -37,6 +37,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import './scss/variables.scss';
+
+.icon-loading {
+  color: $main;
+  font-size: 40px;
+  margin-bottom: 10px;
+
+}
+
 .text-loading {
   font-weight: bold;
 }

@@ -37,5 +37,25 @@ export default {
         TITLE: 'Khoảnh khắc vui vẻ'
       }
     },
+    DETAIL_CAR: {
+      TITLE_BASIC_INFOR: 'Thông tin cơ bản',
+      YEAR: 'Năm',
+      FUEL_TYPE: 'Nhiên liệu',
+      COLOR: 'Màu sắc',
+      CAR_NUMBER: 'Biển số xe',
+      FORECLOSURE_MORTGAGE: 'Tịch thu nhà | Thế chấp',
+      NON_PAYMENT_OF_TAX: 'Không nộp thuế',
+      ACCIDENT: 'Tai nạn',
+      FIRST_REGISTRATION_DATE: 'Ngày đăng ký đầu tiên',
+      GEARBOX: 'Hộp số',
+      DISTANCE_DRIVEN: 'Khoảng cách lái xe',
+      VEHICLE_IDENTIFICATION_NUMBER: 'Số nhận dạng xe',
+      MODEL_NAME: 'Tên mô hình',
+      PRESENTATION_NUMBER: 'Số trình bày',
+
+      SELLER_INFORMATION: 'Thông tin người bán',
+      NAME: 'Tên',
+      CONTACT: 'Liên hệ',
+    }
   }
 };

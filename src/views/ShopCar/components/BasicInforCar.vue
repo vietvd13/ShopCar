@@ -15,14 +15,6 @@
         </div>
       </b-col>
     </b-row>
-
-    <b-row>
-      <b-col>
-        <div class="car-no-number">
-          <h5>{{ noNumber }}</h5>
-        </div>
-      </b-col>
-    </b-row>
   </div>
 </template>
 
@@ -32,19 +24,14 @@ export default {
   props: {
     name: {
       type: String,
-      required: false,
-      default: '기아 카니발 R 리무진 디젤 9인승 프레지던트'
+      required: true,
+      default: ''
     },
     price: {
       type: String,
-      required: false,
-      default: '730 만원'
+      required: true,
+      default: ''
     },
-    noNumber: {
-      type: String,
-      required: false,
-      default: '730 만원'
-    }
   },
 }
 </script>
@@ -55,6 +42,8 @@ export default {
 .basic-infor-car {
   .car-price {
     color: $main;
+
+    font-weight: normal;
   }
 }
 </style>

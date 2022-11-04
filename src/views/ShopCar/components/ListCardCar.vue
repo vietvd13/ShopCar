@@ -1,6 +1,14 @@
 <template>
   <b-row>
-    <b-col v-for="car in items" cols="6" xs="6" sm="6" md="6" lg="3" :key="car._id">
+    <b-col 
+      v-for="car in items"
+      :key="car._id" 
+      cols="6" 
+      xs="6" 
+      sm="6" 
+      md="6" 
+      lg="3"
+    >
       <CardCar
         :car-id="car._id"
         :car-image="car.primary_image"
