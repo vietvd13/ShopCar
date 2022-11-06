@@ -16,7 +16,7 @@ function isExitToken() {
   return false;
 }
 
-const whiteList = ['/login', '/shop-car', '/shop-car/home', '/shop-car/list', '/shop-car/detail'];
+const whiteList = ['/', '/login', '/shop-car', '/shop-car/home', '/shop-car/list', '/shop-car/detail'];
 
 router.beforeEach((to, from, next) => {
   NProgress.start();
@@ -24,19 +24,39 @@ router.beforeEach((to, from, next) => {
   setPageName();
 
   if (isExitToken()) {
-    console.log(to);
+    if (store.getters.initApp === 0) {
+      store.dispatch('auth/setAsyncRoutes')
+        .then(() => {
+          if (to.name === 'Login') {
+            next({ name: 'Dashboard' });
+          } else {
+            console.log(router)
+            console.log('Done: ', to);
+            next({ ...to, replace: true });
+          }
 
-    if (to.name === 'Login') {
-      next({ name: 'Dashboard' });
+          store.dispatch('auth/setInitApp')
+            .then(() => {
+              if (to.name === 'Login') {
+                next({ name: 'Dashboard' });
+              } else {
+                next();
+              }
+            })
+        })
     } else {
-      next();
+      if (to.name === 'Login') {
+        next({ name: 'Dashboard' });
+      } else {
+        next();
+      }
     }
   } else {
     resetRouter();
 
     if (whiteList.indexOf(to.matched[0] ? to.matched[0].path : '') !== -1) {
       next();
-    } else{
+    } else {
       store.dispatch('auth/setToken', '')
       .then(() => {
         store.dispatch('auth/setRefreshToken', '')

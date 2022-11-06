@@ -2,12 +2,36 @@ import Cookies from 'js-cookie';
 import CONSTANTS from '@/constants';
 import router, { asyncRoutes, resetRouter } from '@/routers';
 
+function getToken() {
+  const TOKEN = Cookies.get(CONSTANTS.COOKIES.TOKEN);
+
+  if (TOKEN) {
+    return TOKEN;
+  }
+
+  return '';
+}
+
+function getRefreshToken() {
+  const REFRESH_TOKEN = Cookies.get(CONSTANTS.COOKIES.REFRESH_TOKEN);
+
+  if (REFRESH_TOKEN) {
+    return REFRESH_TOKEN;
+  }
+
+  return '';
+}
+
 const state = {
-  token: '',
-  refresh_token: '',
+  initApp: 0,
+  token: getToken(),
+  refresh_token: getRefreshToken(),
 };
 
 const mutations = {
+  SET_INIT_APP: (state) => {
+    state.initApp = 1;
+  },
   SET_TOKEN: (state, token) => {
     state.token = token;
     Cookies.set(CONSTANTS.COOKIES.TOKEN, token);
@@ -19,6 +43,9 @@ const mutations = {
 };
 
 const actions = {
+  setInitApp({ commit }) {
+    commit('SET_INIT_APP');
+  },
 	setToken({ commit }, token) {
 		commit('SET_TOKEN', token);
   },
