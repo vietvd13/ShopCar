@@ -4,7 +4,12 @@ export default {
     BUTTON_BACK: 'Trở lại',
     BUTTON_ADD: 'Thêm mới',
     BUTTON_DELETE_MANY: 'Xoá nhiều',
-    TABLE_NO_DATA: 'Không có dữ liệu'
+    TABLE_NO_DATA: 'Không có dữ liệu',
+    PLEASE_IMPORT_IMAGE: 'Lựa chọn ảnh',
+    REQUIRED_IMAGE_SIZE_4_6: 'Size 4x6',
+    DELETE: 'Xoá',
+    CANCEL: 'Huỷ bỏ',
+    SAVE: 'Lưu'
   },
   TOAST: {
     SUCCESS: 'Thành công',
@@ -87,9 +92,13 @@ export default {
         SNS_KAKAOTALK: 'KakaoTalk',
         SNS_ZALO: 'Zalo',
         SNS_MESSAGER: 'Messager',
+        DESCRIPTION: 'Mô tả',
 
         EDIT: 'Chỉnh sửa',
         DELETE: 'Xoá',
+      },
+      MODAL: {
+        TITLE: 'Quản lý cộng tác viên',
       }
     }
   }
