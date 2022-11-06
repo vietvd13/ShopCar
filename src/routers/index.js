@@ -3,7 +3,9 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
+import Login from './modules/Login';
 import ShopCar from './modules/ShopCar';
+import Dashboard from './modules/Dashboard';
 
 export const constantRoutes = [
   {
@@ -12,11 +14,12 @@ export const constantRoutes = [
       name: 'HomeShopCar'
     }
   },
+  Login,
   ShopCar
 ];
 
 export const asyncRoutes = [
-
+  Dashboard
 ];
 
 const createRouter = () => new VueRouter({

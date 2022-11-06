@@ -16,3 +16,19 @@ body {
   position: absolute;
   top: 10px;
 }
+
+.btn {
+  border: none !important;
+
+  &:focus {
+    box-shadow: none !important;
+  }
+
+  &:active {
+    box-shadow: none !important;
+  }
+}
+
+.btn-app {
+  background-color: $main !important;
+}

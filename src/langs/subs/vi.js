@@ -7,6 +7,9 @@ export default {
     WARNING: 'Cảnh báo',
     DANGER: 'Lỗi',
   },
+  TOAST_MESSAGE: {
+    VALIDATE_ACCOUNT_LOGIN: 'Định dạng tài khoản chưa chính xác. Vui lòng kiểm tra lại tài khoản',
+  },
   SHOP_CAR: {
     HOME: {
       SEARCH: 'Tìm kiếm',
@@ -56,6 +59,14 @@ export default {
       SELLER_INFORMATION: 'Thông tin người bán',
       NAME: 'Tên',
       CONTACT: 'Liên hệ',
+    }
+  },
+  DASHBOARD: {
+    LOGIN: {
+      TITLE: 'Đăng nhập',
+      EMAIL: 'Email',
+      PASSWORD: 'Mật khẩu',
+      LOGIN: 'Đăng nhập'
     }
   }
 };

@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 
 import loading from './modules/loading';
 import sizeScreen from './modules/sizeScreen';
+import auth from './modules/auth';
 
 import getters from './getters';
 
@@ -10,7 +11,8 @@ Vue.use(Vuex);
 
 const modules = {
 	loading,
-	sizeScreen
+	sizeScreen,
+	auth
 };
 
 const store = new Vuex.Store({

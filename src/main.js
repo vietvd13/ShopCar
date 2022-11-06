@@ -4,10 +4,16 @@ import 'intersection-observer'
 import Vue from 'vue'
 import App from './App.vue'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+// Permission
+import '@/permission'
 
 // Fontawesome
-import './assets/Fontawesome/css/all.min.css'
+import '@/assets/Fontawesome/css/all.min.css';
+
+// Style
+import '@/scss/index.scss';
 
 // Bootstrap Vue
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
@@ -18,20 +24,17 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
 // Package
-import router from './routers'
-import i18n from './langs'
-import store from './store'
+import router from '@/routers'
+import i18n from '@/langs'
+import store from '@/store'
 
 // Bus
-import bus from './bus';
+import bus from '@/bus';
 
 Vue.use(bus);
 
-// Style
-import './scss/index.scss';
-
 // Resize
-import './utils/handleResizeScreen';
+import '@/utils/handleResizeScreen';
 
 new Vue({
   render: h => h(App),
