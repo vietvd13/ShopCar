@@ -29,6 +29,10 @@ body {
   }
 }
 
+.btn-default {
+  min-width: 100px;
+}
+
 .btn-app {
   background-color: $main !important;
 }

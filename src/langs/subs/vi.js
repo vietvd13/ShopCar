@@ -1,6 +1,10 @@
 export default {
   APP: {
-    LOADING: 'Đang tải...'
+    LOADING: 'Đang tải...',
+    BUTTON_BACK: 'Trở lại',
+    BUTTON_ADD: 'Thêm mới',
+    BUTTON_DELETE_MANY: 'Xoá nhiều',
+    TABLE_NO_DATA: 'Không có dữ liệu'
   },
   TOAST: {
     SUCCESS: 'Thành công',
@@ -70,6 +74,23 @@ export default {
       EMAIL: 'Email',
       PASSWORD: 'Mật khẩu',
       LOGIN: 'Đăng nhập'
+    },
+    COLLABORATORS_MANAGEMENT: {
+      TABLE: {
+        NO: 'STT',
+        AVATAR: 'Ảnh đại diện',
+        FULLNAME: 'Họ và tên',
+        TELEPHONE: 'Số điện thoại',
+        CONTACT: 'Liên hệ',
+        ACTION: 'Thao tác',
+
+        SNS_KAKAOTALK: 'KakaoTalk',
+        SNS_ZALO: 'Zalo',
+        SNS_MESSAGER: 'Messager',
+
+        EDIT: 'Chỉnh sửa',
+        DELETE: 'Xoá',
+      }
     }
   }
 };

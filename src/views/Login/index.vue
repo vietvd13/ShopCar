@@ -77,7 +77,7 @@ export default {
 
         const TOKEN = await postLogin(BODY);
 
-        this.$store.dispatch('auth/setToken', TOKEN.token)
+        this.$store.dispatch('auth/setToken', TOKEN.access_token)
           .then(() => {
             this.$store.dispatch('auth/setRefreshToken', TOKEN.refresh_token)
               .then(() => {
