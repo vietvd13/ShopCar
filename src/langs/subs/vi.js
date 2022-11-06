@@ -7,6 +7,9 @@ export default {
     WARNING: 'Cảnh báo',
     DANGER: 'Lỗi',
   },
+  ROUTER: {
+    COLLABORATORS_MANAGEMENT: 'Cộng tác viên'
+  },
   TOAST_MESSAGE: {
     VALIDATE_ACCOUNT_LOGIN: 'Định dạng tài khoản chưa chính xác. Vui lòng kiểm tra lại tài khoản',
   },

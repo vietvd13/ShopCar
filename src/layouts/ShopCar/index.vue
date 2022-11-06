@@ -1,5 +1,7 @@
 <template>
-  <AppMain />
+  <div class="app-shop">
+    <AppMain />
+  </div>
 </template>
 
 <script>
@@ -12,3 +14,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.app-shop {
+  min-height: 100vh;
+}
+</style>

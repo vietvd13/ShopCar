@@ -11,8 +11,11 @@ const Dashboard = {
     {
       path: 'collaborators',
       name: 'Collaborators',
+      meta: {
+        title: 'ROUTER.COLLABORATORS_MANAGEMENT'
+      },
       component: () => import(/* webpackChunkName: "Collaborators" */ '@/views/Dashboard/Collaborators.vue')
-    }
+    },
   ]
 }
 
