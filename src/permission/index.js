@@ -25,30 +25,26 @@ router.beforeEach((to, from, next) => {
 
   if (isExitToken()) {
     if (store.getters.initApp === 0) {
-      store.dispatch('auth/setAsyncRoutes')
+      store.dispatch('auth/setInitApp')
         .then(() => {
-          if (to.name === 'Login') {
-            next({ name: 'Dashboard' });
-          } else {
-            console.log(router)
-            console.log('Done: ', to);
-            next({ ...to, replace: true });
-          }
-
-          store.dispatch('auth/setInitApp')
+          store.dispatch('auth/setAsyncRoutes')
             .then(() => {
               if (to.name === 'Login') {
                 next({ name: 'Dashboard' });
+                NProgress.done();
               } else {
-                next();
+                next({ ...to, replace: true });
+                NProgress.done();
               }
             })
         })
     } else {
       if (to.name === 'Login') {
         next({ name: 'Dashboard' });
+        NProgress.done();
       } else {
         next();
+        NProgress.done();
       }
     }
   } else {
@@ -58,14 +54,17 @@ router.beforeEach((to, from, next) => {
       next();
     } else {
       store.dispatch('auth/setToken', '')
-      .then(() => {
-        store.dispatch('auth/setRefreshToken', '')
-          .then(() => {
-            next({ name: 'HomeShopCar' });
-          })
-      })
+        .then(() => {
+          store.dispatch('auth/setRefreshToken', '')
+            .then(() => {
+              next({ name: 'HomeShopCar' });
+              NProgress.done();
+            })
+        })
     }
   }
+});
 
+router.afterEach(() => {
   NProgress.done();
-})
+});
