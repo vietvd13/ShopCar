@@ -20,11 +20,6 @@ function getToken() {
   return null;
 }
 
-// {
-//   "message": "jwt expired",
-//   "error_code": 500
-// }
-
 function getRefreshToken() {
   const REFRESH_TOKEN = Cookies.get(CONSTANTS.COOKIES.REFRESH_TOKEN);
 
@@ -78,17 +73,17 @@ service.interceptors.response.use(
 
     if (error_code === 500 && message === 'jwt expired') {
       try {
-        const REFRESH_TOKEN = await getRefreshToken();
+        const REFRESH_TOKEN = getRefreshToken();
 
         if (REFRESH_TOKEN) {
           const BODY = {
             refresh_token: REFRESH_TOKEN,
           };
 
-          const { status_code } = postRefreshToken(BODY);
+          const RES = await postRefreshToken(BODY);
 
-          if (status_code === 200) {
-            updateAccessToken();
+          if (RES.status_code === 200) {
+            updateAccessToken(RES.access_token, RES.refesh_token);
 
             return service(originalRequest);
           } else {
