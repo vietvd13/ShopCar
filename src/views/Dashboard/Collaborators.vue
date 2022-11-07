@@ -601,7 +601,7 @@ export default {
 
             await this.handleGetListCollaborators();
           } else {
-            Toast.success(this.$t('TOAST_MESSAGE.CREATE_COLLABORATORS_ERROR'));
+            Toast.warning(this.$t('TOAST_MESSAGE.CREATE_COLLABORATORS_ERROR'));
           }
         }
 
@@ -646,7 +646,7 @@ export default {
 
             await this.handleGetListCollaborators();
           } else {
-            Toast.success(this.$t('TOAST_MESSAGE.CREATE_COLLABORATORS_ERROR'));
+            Toast.warning(this.$t('TOAST_MESSAGE.CREATE_COLLABORATORS_ERROR'));
           }
         }
 
