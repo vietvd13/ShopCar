@@ -55,11 +55,19 @@ export default {
       type: String,
       required: false,
       default: 'IMPORT_IMAGE_CHANGE',
+    },
+    resetImage: {
+      type: Number,
+      required: true,
+      default: 0,
     }
   },
   watch: {
     imageImport() {
       this.importChange();
+    },
+    resetImage() {
+      this.resetImport();
     }
   },
   data() {

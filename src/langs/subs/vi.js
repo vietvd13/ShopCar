@@ -21,6 +21,9 @@ export default {
   },
   TOAST_MESSAGE: {
     VALIDATE_ACCOUNT_LOGIN: 'Định dạng tài khoản chưa chính xác. Vui lòng kiểm tra lại tài khoản',
+
+    CREATE_COLLABORATORS_SUCCESS: 'Bạn đã tạo cộng tác viên thành công',
+    CREATE_COLLABORATORS_ERROR: 'Bạn đã tạo cộng tác viên thất bại',
   },
   SHOP_CAR: {
     HOME: {

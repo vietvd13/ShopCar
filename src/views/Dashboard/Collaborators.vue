@@ -32,7 +32,12 @@
         </template>
 
         <template #cell(image)="image">
-          <b-img thumbnail fluid :src="image.item.image" />
+          <b-img 
+            thumbnail 
+            fluid 
+            :src="`${domainImage}${image.item.image}`"
+            class="avatar-collaborators"
+          />
         </template>
 
         <template #cell(contact)="contact">
@@ -120,6 +125,7 @@
           <ImportImage 
             :ref-name="constImport.refName"
             :emit-name="constImport.emitName"
+            :reset-image="isModal.resetImage"
           />
         </div>
 
@@ -226,6 +232,7 @@ import { setLoading } from '@/utils/setLoading';
 import { postImage } from '@/api/modules/Upload';
 import { getListCollaborators, postCreateCollaborators } from '@/api/modules/Dashboard';
 import ImportImage from './components/ImportImage.vue';
+import Toast from '@/toast';
 
 export default {
   name: 'CollaboratorsManagement',
@@ -249,6 +256,9 @@ export default {
     },
     isPerPage() {
       return this.pagination.per_page;
+    },
+    domainImage() {
+      return process.env.VUE_APP_URL_IMAGE;
     }
   },
   watch: {
@@ -277,7 +287,8 @@ export default {
         sns_kakaotalk: '',
         sns_zalo: '',
         sns_messenger: '',
-        description: ''
+        description: '',
+        resetImage: 0,
       },
 
       constImport: {
@@ -299,20 +310,19 @@ export default {
     },
     initEmit() {
       this.$bus.on(this.constImport.emitName, (file) => {
-        console.log(file);
         this.isModal.image = file;
       });
     },
     destroyEmit() {
       this.$bus.off(this.constImport.emitName);
     },
-    async handleGetListCollaborators() {
+    async handleGetListCollaborators(isReset) {
       try {
         setLoading(true);
 
         let BODY = {
-          limit: this.pagination.per_page,
-          page: this.pagination.current_page,
+          limit: isReset ? 10 : this.pagination.per_page,
+          page: isReset? 1 : this.pagination.current_page,
           // search: '',
         };
 
@@ -359,11 +369,16 @@ export default {
         sns_messenger: '',
         description: ''
       }
-
-      this.isModal = DATA_MODAL;
+      
+      this.isModal = {
+        ...DATA_MODAL,
+        resetImage: this.isModal.resetImage + 1,
+      };
     },
     async onClickSaveModal() {
       try {
+        setLoading(true);
+
         const IMAGE = await this.handleUploadImage(this.isModal.image);
         const BODY = {
           staff_name: this.isModal.fullname,
@@ -378,8 +393,20 @@ export default {
 
         const { status_code } = await postCreateCollaborators(BODY);
 
-        console.log(status_code);
+        if (status_code === 200) {
+          this.isModal.show = false;
+          this.onClickCloseModal();
+
+          Toast.success(this.$t('TOAST_MESSAGE.CREATE_COLLABORATORS_SUCCESS'));
+
+          await this.handleGetListCollaborators();
+        } else {
+          Toast.success(this.$t('TOAST_MESSAGE.CREATE_COLLABORATORS_ERROR'));
+        }
+
+        setLoading(false);
       } catch (err) {
+        setLoading(false);
         console.log(err);
       }
     },
@@ -447,6 +474,10 @@ export default {
 
             .item-action {
               margin: 10px 0;
+            }
+
+            .avatar-collaborators {
+              width: 4cm;
             }
           }
         }
