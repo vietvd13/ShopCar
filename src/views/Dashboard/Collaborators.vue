@@ -144,6 +144,16 @@
         </div>
 
         <div class="item-form">
+          <label for="input-email">
+            {{ $t('DASHBOARD.COLLABORATORS_MANAGEMENT.TABLE.EMAIL') }}
+          </label>
+          <b-form-input
+            id="input-email"
+            v-model="isModal.email" 
+          />
+        </div>
+
+        <div class="item-form">
           <label for="input-sns-kakaotalk">
             {{ $t('DASHBOARD.COLLABORATORS_MANAGEMENT.TABLE.SNS_KAKAOTALK') }}
           </label>
@@ -214,7 +224,7 @@
 <script>
 import { setLoading } from '@/utils/setLoading';
 import { postImage } from '@/api/modules/Upload';
-import { getListCollaborators,  } from '@/api/modules/Dashboard';
+import { getListCollaborators, postCreateCollaborators } from '@/api/modules/Dashboard';
 import ImportImage from './components/ImportImage.vue';
 
 export default {
@@ -263,6 +273,7 @@ export default {
         image: null,
         fullname: '',
         telephone: '',
+        email: '',
         sns_kakaotalk: '',
         sns_zalo: '',
         sns_messenger: '',
@@ -342,6 +353,7 @@ export default {
         image: null,
         fullname: '',
         telephone: '',
+        email: '',
         sns_kakaotalk: '',
         sns_zalo: '',
         sns_messenger: '',
@@ -351,18 +363,39 @@ export default {
       this.isModal = DATA_MODAL;
     },
     async onClickSaveModal() {
-      console.log('onClickSaveModal');
+      try {
+        const IMAGE = await this.handleUploadImage(this.isModal.image);
+        const BODY = {
+          staff_name: this.isModal.fullname,
+          staff_email: this.isModal.email,
+          staff_description: this.isModal.description,
+          image: IMAGE,
+          sns_zalo: this.isModal.sns_zalo,
+          sns_phone: this.isModal.telephone,
+          sns_kakaotalk: this.isModal.sns_kakaotalk,
+          sns_messenger: this.isModal.sns_messenger,
+        }
 
-      await this.handleUploadImage(this.isModal.image);
+        const { status_code } = await postCreateCollaborators(BODY);
+
+        console.log(status_code);
+      } catch (err) {
+        console.log(err);
+      }
     },
     async handleUploadImage(FILE) {
       try {
-        const { status_code } = await postImage(FILE);
+        const { status_code, data } = await postImage(FILE);
 
-        console.log(status_code);
+        if (status_code === 200) {
+          return data.image;
+        } 
 
+        return null;
       } catch (err) {
         console.log(err);
+
+        return null;
       }
     }
   },

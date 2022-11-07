@@ -1,5 +1,6 @@
 export default {
   LOGIN: '/auth/login',
+  REFRESH_TOKEN: '/auth/refresh-token',
 
   UPLOAD_IMAGE: '/upload/image',
   UPLOAD_IMAGES: '/upload/image-multiple',

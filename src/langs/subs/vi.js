@@ -86,6 +86,7 @@ export default {
         AVATAR: 'Ảnh đại diện',
         FULLNAME: 'Họ và tên',
         TELEPHONE: 'Số điện thoại',
+        EMAIL: 'Email',
         CONTACT: 'Liên hệ',
         ACTION: 'Thao tác',
 
