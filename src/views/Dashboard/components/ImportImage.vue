@@ -1,38 +1,45 @@
 <template>
   <div class="import-image">
-    <div 
-      class="zone-import-image"
-      @click="onClickImport"
-    >
-      <b-form-file 
-        type="file" 
-        name="Import Image" 
-        id="import-image"
-        accept="image/png, image/jpeg"
-        :ref="refName"
-        v-model="imageImport"
-      />
-
-      <div v-if="!imageImport" class="zone-import-empty">
-        <i class="fas fa-image" />
-        <div class="text-empty">
-          <span class="text-please-import">
-            {{ $t('APP.PLEASE_IMPORT_IMAGE') }}
-          </span>
-          <span class="text-suggest">
-            ({{ $t('APP.REQUIRED_IMAGE_SIZE_4_6') }})
-          </span>
+    <template v-if="!image">
+      <div
+        class="zone-import-image"
+        @click="onClickImport"
+      >
+        <b-form-file
+          type="file"
+          name="Import Image"
+          id="import-image"
+          accept="image/png, image/jpeg"
+          :ref="refName"
+          v-model="imageImport"
+        />
+        <div v-if="!imageImport" class="zone-import-empty">
+          <i class="fas fa-image" />
+          <div class="text-empty">
+            <span class="text-please-import">
+              {{ $t('APP.PLEASE_IMPORT_IMAGE') }}
+            </span>
+            <span class="text-suggest">
+              ({{ $t('APP.REQUIRED_IMAGE_SIZE_4_6') }})
+            </span>
+          </div>
         </div>
+        <b-img
+          v-if="imageImport"
+          :src="previewImage"
+        />
       </div>
+    </template>
 
+    <template v-else>
       <b-img
-        v-if="imageImport"
-        :src="previewImage" 
+        :src="`${domainImage}${image}`"
+        class="image-staff"
       />
-    </div>
+    </template>
 
     <div
-      v-if="imageImport"
+      v-if="image || imageImport"
       class="zone-reset-import"
       @click="resetImport"
     >
@@ -60,7 +67,16 @@ export default {
       type: Number,
       required: true,
       default: 0,
+    },
+    image: {
+      type: String,
+      required: false,
     }
+  },
+  computed: {
+    domainImage() {
+      return process.env.VUE_APP_URL_IMAGE;
+    },
   },
   watch: {
     imageImport() {
@@ -87,7 +103,13 @@ export default {
       }
     },
     resetImport() {
-      this.$refs[this.refName].reset();
+      if (this.image) {
+        this.$bus.emit('COLLABORATORS_DELETE_IMAGE');
+      }
+
+      if (this.imageImport) {
+        this.$refs[this.refName].reset();
+      }
     }
   },
 }
@@ -155,6 +177,10 @@ export default {
 
       object-fit: scale-down;
     }
+  }
+
+  .image-staff {
+    width: 4cm;
   }
 
   .zone-reset-import {

@@ -1,5 +1,18 @@
 <template>
   <div class="collaborators-page">
+    <div class="collaborators-page__filter">
+      <b-row>
+        <b-col cols="12" xs="12" sm="12" md="6" lg="5" xl="4">
+          <label for="input-search">{{ $t('DASHBOARD.COLLABORATORS_MANAGEMENT.SEARCH') }}</label>
+          <b-form-input
+            id="input-search"
+            v-model="searchTable"
+            @keyup.enter="handleSearch"
+          />
+        </b-col>
+      </b-row>
+    </div>
+
     <div class="collaborators-page__header">
       <b-row>
         <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12" class="text-right">
@@ -13,6 +26,7 @@
           <b-button 
             variant="danger" 
             class="btn-default"
+            @click="onClickDeleteMultiple"
           >
             {{ $t('APP.BUTTON_DELETE_MANY') }}
           </b-button>
@@ -26,7 +40,18 @@
         :fields="headerTable"
         bordered
         show-empty
+        no-local-sorting
+        no-sort-reset
+        @sort-changed="handleSort"
       >
+        <template #cell(delete_multiple)="delete_multiple">
+          <b-form-checkbox
+            :value="delete_multiple.item._id"
+            :unchecked-value="delete_multiple.item._id"
+            @change="onSelectDelete"
+          />
+        </template>
+
         <template #cell(no)="no">
           <span>{{ calNo(no) }}</span>
         </template>
@@ -100,14 +125,34 @@
     </div>
 
     <div class="collaborators-page__pagination">
-      <b-pagination
-        v-model="pagination.current_page"
-        :total-rows="pagination.total"
-        :per-page="pagination.per_page"
-        align="center"
-        pills
-        size="sm"
-      />
+      <b-row>
+        <b-col>
+          <b-form-select 
+            v-model="pagination.per_page" 
+            size="sm"
+            @change="onChangePerPage"
+            class="select-per-page"
+          >
+            <b-form-select-option
+              v-for="(option, idx) in optionsPerpage"
+              :key="idx"
+              :value="option.value"
+            >
+              {{ $t(option.text) }}
+            </b-form-select-option>
+          </b-form-select>
+        </b-col>
+        <b-col>
+          <b-pagination
+            v-model="pagination.current_page"
+            :total-rows="pagination.total"
+            :per-page="pagination.per_page"
+            align="right"
+            pills
+            size="sm"
+          />
+        </b-col>
+      </b-row>
     </div>
 
     <b-modal
@@ -126,6 +171,7 @@
             :ref-name="constImport.refName"
             :emit-name="constImport.emitName"
             :reset-image="isModal.resetImage"
+            :image="isModal.image"
           />
         </div>
 
@@ -230,7 +276,13 @@
 <script>
 import { setLoading } from '@/utils/setLoading';
 import { postImage } from '@/api/modules/Upload';
-import { getListCollaborators, postCreateCollaborators } from '@/api/modules/Dashboard';
+import {
+  getListCollaborators,
+  postCreateCollaborators,
+  postDeletecollaborators,
+  getDetailCollaborators,
+  postEditCollaborators
+} from '@/api/modules/Dashboard';
 import ImportImage from './components/ImportImage.vue';
 import Toast from '@/toast';
 
@@ -245,10 +297,34 @@ export default {
         { key: 'delete_multiple', label: '', thClass: 'text-center', tdClass: 'text-center' },
         { key: 'no', label: this.$t('DASHBOARD.COLLABORATORS_MANAGEMENT.TABLE.NO'), thClass: 'text-center', tdClass: 'text-center base-td' },
         { key: 'image', label: this.$t('DASHBOARD.COLLABORATORS_MANAGEMENT.TABLE.AVATAR'), thClass: 'text-center', tdClass: 'text-center base-td' },
-        { key: 'staff_name', label: this.$t('DASHBOARD.COLLABORATORS_MANAGEMENT.TABLE.FULLNAME'), thClass: 'text-center', tdClass: 'text-center base-td' },
+        { key: 'staff_name', label: this.$t('DASHBOARD.COLLABORATORS_MANAGEMENT.TABLE.FULLNAME'), sortable: true, thClass: 'text-center', tdClass: 'text-center base-td' },
         { key: 'sns_phone', label: this.$t('DASHBOARD.COLLABORATORS_MANAGEMENT.TABLE.TELEPHONE'), thClass: 'text-center', tdClass: 'text-center base-td' },
         { key: 'contact', label: this.$t('DASHBOARD.COLLABORATORS_MANAGEMENT.TABLE.CONTACT'), thClass: 'text-center', tdClass: 'text-center base-td' },
         { key: 'action', label: this.$t('DASHBOARD.COLLABORATORS_MANAGEMENT.TABLE.ACTION'), thClass: 'text-center', tdClass: 'text-center base-td' },
+      ]
+    },
+    optionsPerpage() {
+      return [
+        {
+          value: 10,
+          text: 'APP.TEXT_PER_PAGE_10'
+        },
+        {
+          value: 20,
+          text: 'APP.TEXT_PER_PAGE_20'
+        },
+        {
+          value: 40,
+          text: 'APP.TEXT_PER_PAGE_40'
+        },
+        {
+          value: 80,
+          text: 'APP.TEXT_PER_PAGE_80'
+        },
+        {
+          value: 100,
+          text: 'APP.TEXT_PER_PAGE_100'
+        },
       ]
     },
     isCurrentPage() {
@@ -272,15 +348,25 @@ export default {
   data() {
     return {
       items: [],
+      selectRow: [],
       pagination: {
         current_page: 1,
         per_page: 10,
         total: 0,
       },
 
+      searchTable: '',
+      isSort: {
+        field: '',
+        type: '',
+      },
+
       isModal: {
+        typeModal: '',
         show: false,
+        id: null,
         image: null,
+        image_file: null,
         fullname: '',
         telephone: '',
         email: '',
@@ -310,11 +396,25 @@ export default {
     },
     initEmit() {
       this.$bus.on(this.constImport.emitName, (file) => {
-        this.isModal.image = file;
+        this.isModal.image_file = file;
       });
+
+      this.$bus.on('COLLABORATORS_DELETE_IMAGE', () => {
+        this.isModal.image = null;
+      })
     },
     destroyEmit() {
       this.$bus.off(this.constImport.emitName);
+      this.$bus.off('COLLABORATORS_DELETE_IMAGE');
+    },
+    async handleSearch() {
+      this.handleGetListCollaborators(true);
+    },
+    async handleSort(ctx) {
+      this.isSort.field = ctx.sortBy;
+      this.isSort.type = ctx.sortDesc === false ? 1 : -1;
+
+      await this.handleGetListCollaborators();
     },
     async handleGetListCollaborators(isReset) {
       try {
@@ -323,8 +423,17 @@ export default {
         let BODY = {
           limit: isReset ? 10 : this.pagination.per_page,
           page: isReset? 1 : this.pagination.current_page,
-          // search: '',
         };
+
+        if (this.searchTable) {
+          BODY.search = this.searchTable;
+        }
+
+        if (this.isSort.field) {
+          BODY.sort = {
+            [this.isSort.field]: this.isSort.type,
+          }
+        }
 
         const { status_code, data, pagination } = await getListCollaborators(BODY);
 
@@ -345,22 +454,111 @@ export default {
         console.log(err);
       }
     },
+    onChangePerPage() {
+      this.handleGetListCollaborators();
+    },
     calNo(item) {
       return ((this.pagination.current_page - 1) * this.pagination.per_page) + (item.index + 1);
     },
     onClickCreate() {
+      this.isModal.typeModal = 'CREATE';
       this.isModal.show = true;
     },
-    onClickEdit(id) {
-      console.log(id);
+    async onClickEdit(id) {
+      try {
+        this.isModal.typeModal = 'EDIT';
+        const { status_code, data } = await getDetailCollaborators(id);
+
+        if (status_code === 200) {
+          const { _id, image, staff_name, staff_description, staff_email, sns_phone, sns_kakaotalk, sns_zalo, sns_messenger } = data;
+
+          this.isModal.id = _id;
+          this.isModal.image = image;
+          this.isModal.image_file = null;
+          this.isModal.fullname = staff_name;
+          this.isModal.description = staff_description;
+          this.isModal.email = staff_email;
+          this.isModal.telephone = sns_phone;
+          this.isModal.sns_kakaotalk = sns_kakaotalk;
+          this.isModal.sns_zalo = sns_zalo;
+          this.isModal.sns_messenger = sns_messenger;
+
+          this.isModal.show = true;
+        }
+      } catch (err) {
+        console.log(err);
+      }
     },
-    onClickDelete(id) {
-      console.log(id);
+    onSelectDelete(id) {
+      if (this.selectRow.includes(id)) {
+        const idx = this.selectRow.findIndex((row) => row === id);
+
+        if (idx >= 0) {
+          this.selectRow.splice(idx, 1);
+        }
+      } else {
+        this.selectRow.push(id);
+      }
+    },
+    async onClickDelete(id) {
+      try {
+        setLoading(true);
+        const BODY = {
+          ids: [id]
+        };
+
+        const { status_code } = await postDeletecollaborators(BODY);
+
+        if (status_code === 200) {
+          Toast.success(this.$t('TOAST_MESSAGE.DELETE_COLLABORATORS_SUCCESS'));
+
+          await this.handleGetListCollaborators();
+        } else {
+          Toast.warning(this.$t('TOAST_MESSAGE.DELETE_COLLABORATORS_ERROR'));
+        }
+
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+        Toast.warning(this.$t('TOAST_MESSAGE.DELETE_COLLABORATORS_ERROR'));
+
+        console.log(err);
+      }
+    },
+    async onClickDeleteMultiple() {
+      try {
+        setLoading(true);
+
+        const BODY = {
+          ids: this.selectRow
+        };
+
+        const { status_code } = await postDeletecollaborators(BODY);
+        this.selectRow.length = 0;
+
+        if (status_code === 200) {
+          Toast.success(this.$t('TOAST_MESSAGE.DELETE_COLLABORATORS_SUCCESS'));
+
+          await this.handleGetListCollaborators();
+        } else {
+          Toast.warning(this.$t('TOAST_MESSAGE.DELETE_COLLABORATORS_ERROR'));
+        }
+
+        setLoading(false);
+      } catch (err) {
+        this.selectRow.length = 0;
+        setLoading(false);
+        Toast.warning(this.$t('TOAST_MESSAGE.DELETE_COLLABORATORS_ERROR'));
+
+        console.log(err);
+      }
     },
     onClickCloseModal() {
       const DATA_MODAL = {
         show: false,
+        id: null,
         image: null,
+        image_file: null,
         fullname: '',
         telephone: '',
         email: '',
@@ -379,29 +577,77 @@ export default {
       try {
         setLoading(true);
 
-        const IMAGE = await this.handleUploadImage(this.isModal.image);
-        const BODY = {
-          staff_name: this.isModal.fullname,
-          staff_email: this.isModal.email,
-          staff_description: this.isModal.description,
-          image: IMAGE,
-          sns_zalo: this.isModal.sns_zalo,
-          sns_phone: this.isModal.telephone,
-          sns_kakaotalk: this.isModal.sns_kakaotalk,
-          sns_messenger: this.isModal.sns_messenger,
+        if (this.isModal.typeModal === 'CREATE') {
+          const IMAGE = await this.handleUploadImage(this.isModal.image_file);
+
+          const BODY = {
+            staff_name: this.isModal.fullname,
+            staff_email: this.isModal.email,
+            staff_description: this.isModal.description,
+            image: IMAGE,
+            sns_zalo: this.isModal.sns_zalo,
+            sns_phone: this.isModal.telephone,
+            sns_kakaotalk: this.isModal.sns_kakaotalk,
+            sns_messenger: this.isModal.sns_messenger,
+          }
+
+          const { status_code } = await postCreateCollaborators(BODY);
+
+          if (status_code === 200) {
+            this.isModal.show = false;
+            this.onClickCloseModal();
+
+            Toast.success(this.$t('TOAST_MESSAGE.CREATE_COLLABORATORS_SUCCESS'));
+
+            await this.handleGetListCollaborators();
+          } else {
+            Toast.success(this.$t('TOAST_MESSAGE.CREATE_COLLABORATORS_ERROR'));
+          }
         }
 
-        const { status_code } = await postCreateCollaborators(BODY);
+        if (this.isModal.typeModal === 'EDIT') {
+          let BODY;
 
-        if (status_code === 200) {
-          this.isModal.show = false;
-          this.onClickCloseModal();
+          if (this.isModal.image) {
+            BODY = {
+              id: this.isModal.id,
+              staff_name: this.isModal.fullname,
+              staff_email: this.isModal.email,
+              staff_description: this.isModal.description,
+              image: this.isModal.image,
+              sns_zalo: this.isModal.sns_zalo,
+              sns_phone: this.isModal.telephone,
+              sns_kakaotalk: this.isModal.sns_kakaotalk,
+              sns_messenger: this.isModal.sns_messenger,
+            }
+          } else {
+            const IMAGE = await this.handleUploadImage(this.isModal.image_file);
 
-          Toast.success(this.$t('TOAST_MESSAGE.CREATE_COLLABORATORS_SUCCESS'));
+            BODY = {
+              id: this.isModal.id,
+              staff_name: this.isModal.fullname,
+              staff_email: this.isModal.email,
+              staff_description: this.isModal.description,
+              image: IMAGE,
+              sns_zalo: this.isModal.sns_zalo,
+              sns_phone: this.isModal.telephone,
+              sns_kakaotalk: this.isModal.sns_kakaotalk,
+              sns_messenger: this.isModal.sns_messenger,
+            }
+          }
 
-          await this.handleGetListCollaborators();
-        } else {
-          Toast.success(this.$t('TOAST_MESSAGE.CREATE_COLLABORATORS_ERROR'));
+          const { status_code } = await postEditCollaborators(BODY);
+
+          if (status_code === 200) {
+            this.isModal.show = false;
+            this.onClickCloseModal();
+
+            Toast.success(this.$t('TOAST_MESSAGE.CREATE_COLLABORATORS_SUCCESS'));
+
+            await this.handleGetListCollaborators();
+          } else {
+            Toast.success(this.$t('TOAST_MESSAGE.CREATE_COLLABORATORS_ERROR'));
+          }
         }
 
         setLoading(false);
@@ -412,17 +658,19 @@ export default {
     },
     async handleUploadImage(FILE) {
       try {
-        const { status_code, data } = await postImage(FILE);
+        if (FILE) {
+          const { status_code, data } = await postImage(FILE);
 
-        if (status_code === 200) {
-          return data.image;
-        } 
+          if (status_code === 200) {
+            return data.image;
+          } 
+        }
 
-        return null;
+        return '';
       } catch (err) {
         console.log(err);
 
-        return null;
+        return '';
       }
     }
   },

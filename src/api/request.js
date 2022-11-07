@@ -71,14 +71,14 @@ service.interceptors.response.use(
   response => {
     return response.data;
   },
-  error => {
+  async (error) => {
     const originalRequest = error.config;
 
     const { error_code, message } = error.response.data;
 
     if (error_code === 500 && message === 'jwt expired') {
       try {
-        const REFRESH_TOKEN = getRefreshToken();
+        const REFRESH_TOKEN = await getRefreshToken();
 
         if (REFRESH_TOKEN) {
           const BODY = {

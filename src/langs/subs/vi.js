@@ -9,7 +9,12 @@ export default {
     REQUIRED_IMAGE_SIZE_4_6: 'Size 4x6',
     DELETE: 'Xoá',
     CANCEL: 'Huỷ bỏ',
-    SAVE: 'Lưu'
+    SAVE: 'Lưu',
+    TEXT_PER_PAGE_10: '10',
+    TEXT_PER_PAGE_20: '20',
+    TEXT_PER_PAGE_40: '40',
+    TEXT_PER_PAGE_80: '80',
+    TEXT_PER_PAGE_100: '100',
   },
   TOAST: {
     SUCCESS: 'Thành công',
@@ -24,6 +29,8 @@ export default {
 
     CREATE_COLLABORATORS_SUCCESS: 'Bạn đã tạo cộng tác viên thành công',
     CREATE_COLLABORATORS_ERROR: 'Bạn đã tạo cộng tác viên thất bại',
+    DELETE_COLLABORATORS_SUCCESS: 'Bạn đã xoá cộng tác viên thành công',
+    DELETE_COLLABORATORS_ERROR: 'Bạn đã xoá cộng tác viên thất bại',
   },
   SHOP_CAR: {
     HOME: {
@@ -84,6 +91,7 @@ export default {
       LOGIN: 'Đăng nhập'
     },
     COLLABORATORS_MANAGEMENT: {
+      SEARCH: 'Tìm kiếm',
       TABLE: {
         NO: 'STT',
         AVATAR: 'Ảnh đại diện',
