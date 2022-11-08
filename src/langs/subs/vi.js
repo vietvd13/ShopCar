@@ -22,7 +22,10 @@ export default {
     DANGER: 'Lỗi',
   },
   ROUTER: {
-    COLLABORATORS_MANAGEMENT: 'Cộng tác viên'
+    COLLABORATORS_MANAGEMENT: 'Cộng tác viên',
+    CAR_MANAGEMENT: 'Quản lý xe',
+    HAPPY_MOMENT: 'Khoảng khắc vui vẻ',
+    CUSTOMER_SUPPORT: 'Hỗ trợ khách hàng'
   },
   TOAST_MESSAGE: {
     VALIDATE_ACCOUNT_LOGIN: 'Định dạng tài khoản chưa chính xác. Vui lòng kiểm tra lại tài khoản',
