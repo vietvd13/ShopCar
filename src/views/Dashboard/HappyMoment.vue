@@ -183,6 +183,7 @@
 import {
   getListHappyMoment,
   postCreateHappyMoment,
+  postDeleteHappyMoment,
 } from '@/api/modules/Dashboard';
 import { postImages } from '@/api/modules/Upload';
 import ImportListImage from './components/ImportListImage.vue';
@@ -377,7 +378,7 @@ export default {
           if (status_code === 200) {
             Toast.success(this.$t('TOAST_MESSAGE.CREATE_HAPPY_MOMENT_SUCCESS'));
           } else {
-            Toast.success(this.$t('TOAST_MESSAGE.CREATE_HAPPY_MOMENT_ERROR'));
+            Toast.warning(this.$t('TOAST_MESSAGE.CREATE_HAPPY_MOMENT_ERROR'));
           }
         }
 
@@ -461,8 +462,30 @@ export default {
     onClickEdit(id) {
       console.log(id);
     },
-    onClickDelete(id) {
-      console.log(id);
+    async onClickDelete(id) {
+      try {
+        setLoading(true);
+
+        const BODY = {
+          review_id: id
+        }
+
+        const { status_code } = await postDeleteHappyMoment(BODY);
+
+        if (status_code === 200) {
+          Toast.success(this.$t('TOAST_MESSAGE.DELETE_HAPPY_MOMENT_SUCCESS'));
+        } else {
+          Toast.warning(this.$t('TOAST_MESSAGE.DELETE_HAPPY_MOMENT_ERROR'));
+        }
+
+        await this.handleGetListHappyMoment(true);
+
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+
+        console.log(err);
+      }
     }
   },
 }

@@ -279,7 +279,7 @@ import { postImage } from '@/api/modules/Upload';
 import {
   getListCollaborators,
   postCreateCollaborators,
-  postDeletecollaborators,
+  postDeleteCollaborators,
   getDetailCollaborators,
   postEditCollaborators
 } from '@/api/modules/Dashboard';
@@ -507,7 +507,7 @@ export default {
           ids: [id]
         };
 
-        const { status_code } = await postDeletecollaborators(BODY);
+        const { status_code } = await postDeleteCollaborators(BODY);
 
         if (status_code === 200) {
           Toast.success(this.$t('TOAST_MESSAGE.DELETE_COLLABORATORS_SUCCESS'));
@@ -533,7 +533,7 @@ export default {
           ids: this.selectRow
         };
 
-        const { status_code } = await postDeletecollaborators(BODY);
+        const { status_code } = await postDeleteCollaborators(BODY);
         this.selectRow.length = 0;
 
         if (status_code === 200) {

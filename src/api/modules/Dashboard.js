@@ -18,7 +18,7 @@ export function postEditCollaborators(BODY = null, PRARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.POST_EDIT_COLLABORATORS, BODY, PRARAMS);
 }
 
-export function postDeletecollaborators(BODY = null, PRARAMS = null) {
+export function postDeleteCollaborators(BODY = null, PRARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.POST_DELETE_COLLABORATORS, BODY, PRARAMS);
 }
 
@@ -29,4 +29,8 @@ export function getListHappyMoment(BODY = null, PRARAMS = null) {
 
 export function postCreateHappyMoment(BODY = null, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.POST_CREATE_HAPPY_MOMENT, BODY, PARAMS);
+}
+
+export function postDeleteHappyMoment(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_DELETE_HAPPY_MOMENT, BODY, PARAMS);
 }
