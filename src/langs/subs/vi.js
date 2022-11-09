@@ -129,6 +129,7 @@ export default {
     HAPPY_MOMENT: {
       SEARCH: 'Tìm kiếm',
       TABLE: {
+        NO: 'STT',
         PRIMARY_IMAGE: 'Ảnh',
         TITLE: 'Tiêu đề',
         CONTENT: 'Nội dung',

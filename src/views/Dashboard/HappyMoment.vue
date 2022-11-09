@@ -23,6 +23,13 @@
           >
             {{ $t('APP.BUTTON_ADD') }}
           </b-button>
+          <b-button 
+            variant="danger" 
+            class="btn-default"
+            @click="onClickDeleteMultiple"
+          >
+            {{ $t('APP.BUTTON_DELETE_MANY') }}
+          </b-button>
         </b-col>
       </b-row>
     </div>
@@ -38,6 +45,18 @@
         no-border-collapse
         @sort-changed="handleSort"
       >
+      <template #cell(delete_multiple)="delete_multiple">
+          <b-form-checkbox
+            :value="delete_multiple.item._id"
+            :unchecked-value="delete_multiple.item._id"
+            @change="onSelectDelete"
+          />
+        </template>
+
+        <template #cell(no)="no">
+          <span>{{ calNo(no) }}</span>
+        </template>
+
         <template #cell(primary_image)="primary_image">
           <b-img
             class="primary-image"
@@ -200,6 +219,7 @@ export default {
   },
   data() {
     return {
+      selectRow: [],
       search: '',
       isSort: {
         field: '',
@@ -227,6 +247,8 @@ export default {
   computed: {
     headerTable() {
       return [
+        { key: 'delete_multiple', label: '', thClass: 'text-center', tdClass: 'text-center' },
+        { key: 'no', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.NO'), thClass: 'text-center', tdClass: 'text-center base-td' },
         { key: 'primary_image', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.PRIMARY_IMAGE'), thClass: 'text-center', tdClass: 'text-center' },
         { key: 'title', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.TITLE'), sortable: true, thClass: 'text-center', tdClass: 'text-center' },
         { key: 'content', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.CONTENT'), sortable: true, thClass: 'text-center', tdClass: 'text-center' },
@@ -339,6 +361,17 @@ export default {
       this.isSort.type = ctx.sortDesc === false ? 1 : -1;
 
       await this.handleGetListHappyMoment();
+    },
+    onSelectDelete(id) {
+      if (this.selectRow.includes(id)) {
+        const idx = this.selectRow.findIndex((row) => row === id);
+
+        if (idx >= 0) {
+          this.selectRow.splice(idx, 1);
+        }
+      } else {
+        this.selectRow.push(id);
+      }
     },
     handleStatusModal(status = true) {
       if ([true, false].includes(status)) {
@@ -470,7 +503,7 @@ export default {
         setLoading(true);
 
         const BODY = {
-          review_id: id
+          ids: [id]
         }
 
         const { status_code } = await postDeleteHappyMoment(BODY);
@@ -489,7 +522,38 @@ export default {
 
         console.log(err);
       }
-    }
+    },
+    async onClickDeleteMultiple() {
+      try {
+        setLoading(true);
+
+        const BODY = {
+          ids: this.selectRow
+        };
+
+        const { status_code } = await postDeleteHappyMoment(BODY);
+        this.selectRow.length = 0;
+
+        if (status_code === 200) {
+          Toast.success(this.$t('TOAST_MESSAGE.DELETE_HAPPY_MOMENT_SUCCESS'));
+
+          await this.handleGetListHappyMoment(true);
+        } else {
+          Toast.warning(this.$t('TOAST_MESSAGE.DELETE_HAPPY_MOMENT_ERROR'));
+        }
+
+        setLoading(false);
+      } catch (err) {
+        this.selectRow.length = 0;
+        setLoading(false);
+        Toast.warning(this.$t('TOAST_MESSAGE.DELETE_HAPPY_MOMENT_ERROR'));
+
+        console.log(err);
+      }
+    },
+    calNo(item) {
+      return ((this.pagination.current_page - 1) * this.pagination.per_page) + (item.index + 1);
+    },
   },
 }
 </script>
@@ -501,6 +565,12 @@ export default {
   &__header,
   &__content {
     margin-bottom: 10px;
+  }
+
+  &__header {
+    button + button {
+      margin-left: 10px;
+    }
   }
 
   &__content {
