@@ -40,6 +40,8 @@
         <template #cell(primary_image)="primary_image">
           <b-img
             class="primary-image"
+            thumbnail 
+            fluid
             :src="`${domainImage}${primary_image.item.primary_image}`"
           />
         </template>
@@ -540,7 +542,7 @@ export default {
         }
 
         .primary-image {
-          width: 300px;
+          height: 150px;
         }
       }
     }
