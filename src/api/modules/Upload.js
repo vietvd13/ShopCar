@@ -16,7 +16,7 @@ export function postImages(IMAGES = [], PARAMS = null) {
   let idx = 0;
 
   while (idx < len) {
-    BODY.append('images', IMAGES[idx]);
+    BODY.append('images', IMAGES[idx].url);
 
     idx++;
   }

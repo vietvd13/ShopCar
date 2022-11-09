@@ -15,6 +15,7 @@ export default {
     TEXT_PER_PAGE_40: '40',
     TEXT_PER_PAGE_80: '80',
     TEXT_PER_PAGE_100: '100',
+    IMPORT_IMAGE: 'Lựa chọn ảnh',
   },
   TOAST: {
     SUCCESS: 'Thành công',
@@ -32,8 +33,17 @@ export default {
 
     CREATE_COLLABORATORS_SUCCESS: 'Bạn đã tạo cộng tác viên thành công',
     CREATE_COLLABORATORS_ERROR: 'Bạn đã tạo cộng tác viên thất bại',
+    EDIT_COLLABORATORS_SUCCESS: 'Bạn đã chỉnh sửa thông tin cộng tác viên thành công',
+    EDIT_COLLABORATORS_ERROR: 'Bạn đã chỉnh sửa thông tin cộng tác viên thất bại',
     DELETE_COLLABORATORS_SUCCESS: 'Bạn đã xoá cộng tác viên thành công',
     DELETE_COLLABORATORS_ERROR: 'Bạn đã xoá cộng tác viên thất bại',
+  
+    CREATE_HAPPY_MOMENT_SUCCESS: 'Bạn đã tạo khoảnh khắc vui vẻ thành công',
+    CREATE_HAPPY_MOMENT_ERROR: 'Bạn đã tạo khoảnh khắc vui vẻ thất bại',
+    EDIT_HAPPY_MOMENT_SUCCESS: 'Bạn đã chỉnh sửa khoảnh khắc vui vẻ thành công',
+    EDIT_HAPPY_MOMENT_ERROR: 'Bạn đã chỉnh sửa khoảnh khắc vui vẻ thất bại',
+    DELETE_HAPPY_MOMENT_SUCCESS: 'Bạn đã xoá khoảnh khoắc vui vẻ thành công',
+    DELETE_HAPPY_MOMENT_ERROR: 'Bạn đã xoá khoảnh khoắc vui vẻ thất bại',
   },
   SHOP_CAR: {
     HOME: {
@@ -114,6 +124,25 @@ export default {
       },
       MODAL: {
         TITLE: 'Quản lý cộng tác viên',
+      }
+    },
+    HAPPY_MOMENT: {
+      SEARCH: 'Tìm kiếm',
+      TABLE: {
+        PRIMARY_IMAGE: 'Ảnh',
+        TITLE: 'Tiêu đề',
+        CONTENT: 'Nội dung',
+        WRITER: 'Người tạo',
+        ACTIONS: 'Thao tác',
+
+        BTN_EDIT: 'Chỉnh sửa',
+        BTN_DELETE: 'Xoá'
+      },
+      MODAL: {
+        TITLE: 'Quản lý khoảnh khắc vui vẻ',
+        LABEL_TITLE: 'Tiêu đề',
+        LABEL_CONTENT: 'Nội dung',
+        LABEL_IMAGES: 'Hình ảnh',
       }
     }
   }
