@@ -42,6 +42,7 @@
         show-empty
         no-local-sorting
         no-sort-reset
+        no-border-collapse
         @sort-changed="handleSort"
       >
         <template #cell(delete_multiple)="delete_multiple">
@@ -125,7 +126,7 @@
     </div>
 
     <div class="collaborators-page__pagination">
-      <b-row>
+      <b-row align-h="center">
         <b-col>
           <b-form-select 
             v-model="pagination.per_page" 
@@ -692,9 +693,16 @@ export default {
   }
 
   &__body {
+    height: calc(100vh - 290px);
+    overflow: auto;
+    
     ::v-deep table {
       thead {
         tr {
+          position: sticky;
+          top: 0;
+          z-index: 2;
+
           th {
             text-align: center;
             vertical-align: middle;
@@ -708,6 +716,8 @@ export default {
       tbody {
         tr {
           td {
+            min-width: 100px;
+
             text-align: center;
             vertical-align: middle;
             background-color: $white;

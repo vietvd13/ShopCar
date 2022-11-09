@@ -26,7 +26,7 @@
         </b-col>
       </b-row>
     </div>
-    <div class="happ-moment-page__content">
+    <div class="happy-moment-page__content">
       <b-table
         :items="items" 
         :fields="headerTable"
@@ -35,6 +35,7 @@
         show-empty
         no-local-sorting
         no-sort-reset
+        no-border-collapse
         @sort-changed="handleSort"
       >
         <template #cell(primary_image)="primary_image">
@@ -501,6 +502,49 @@ export default {
   &__content {
     margin-bottom: 10px;
   }
+
+  &__content {
+    height: calc(100vh - 290px);
+    overflow: auto;
+
+    ::v-deep table.table-happy-moment {
+      thead {
+        tr {
+          position: sticky;
+          top: 0;
+          z-index: 2;
+
+          th {
+            text-align: center;
+            vertical-align: middle;
+
+            background-color: $main;
+            color: $white;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            min-width: 100px;
+
+            text-align: center;
+            vertical-align: middle;
+            background-color: $white;
+
+            .item-action {
+              margin: 10px 0;
+            }
+
+            .primary-image {
+              height: 150px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 ::v-deep {
@@ -514,38 +558,6 @@ export default {
 
   .modal-footer-happy-moment {
     justify-content: center;
-  }
-}
-
-::v-deep table.table-happy-moment {
-  thead {
-    tr {
-      th {
-        text-align: center;
-        vertical-align: middle;
-
-        background-color: $main;
-        color: $white;
-      }
-    }
-  }
-
-  tbody {
-    tr {
-      td {
-        text-align: center;
-        vertical-align: middle;
-        background-color: $white;
-
-        .item-action {
-          margin: 10px 0;
-        }
-
-        .primary-image {
-          height: 150px;
-        }
-      }
-    }
   }
 }
 </style>
