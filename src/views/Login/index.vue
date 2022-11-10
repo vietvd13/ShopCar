@@ -103,8 +103,11 @@ export default {
 @import '../../scss/variables.scss';
 
 .login-page {
+  height: 100vh;
+  overflow: hidden;
+
   .form-login {
-    margin-top: 10%;
+    margin-top: 15%;
 
     .title-login {
       font-size: 25px;

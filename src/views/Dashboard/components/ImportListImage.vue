@@ -31,7 +31,7 @@
             v-if="image.type_import === 'old'"
             class="display-image"
           >
-            <b-img :src="image.url" />
+            <b-img :src="`${domainImage}${image.url}`" />
           </div>
 
           <div
@@ -80,6 +80,11 @@ export default {
   data() {
     return {
       fileImport: null,
+    }
+  },
+  computed: {
+    domainImage() {
+      return process.env.VUE_APP_URL_IMAGE;
     }
   },
   watch: {

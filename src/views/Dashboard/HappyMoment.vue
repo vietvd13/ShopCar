@@ -205,12 +205,15 @@
 import {
   getListHappyMoment,
   postCreateHappyMoment,
+  postDetailHappyMoment,
+  postEditHappyMoment,
   postDeleteHappyMoment,
 } from '@/api/modules/Dashboard';
 import { postImages } from '@/api/modules/Upload';
 import ImportListImage from './components/ImportListImage.vue';
 import { setLoading } from '@/utils/setLoading';
 import Toast from '@/toast';
+import { getArrValueOfArr, replaceValueWithIndex } from '@/utils/helper';
 
 export default {
   name: 'HappyMoment',
@@ -237,6 +240,7 @@ export default {
         typeModal: null,
         refName: 'importListImage',
 
+        id: null,
         title: '',
         content: '',
         images: [],
@@ -386,6 +390,7 @@ export default {
         typeModal: null,
         refName: 'importListImage',
 
+        id: null,
         title: '',
         content: '',
         images: [],
@@ -420,16 +425,37 @@ export default {
 
         if (this.isModal.typeModal === 'EDIT') {
           const GET_UPDATE_IMAGE = this.handleGetListIdxImport(this.isModal.images);
+          let LIST_NEW_IMAGE = [];
+          if (GET_UPDATE_IMAGE.new_images.length > 0) {
+            const IMAGES = await this.handleUploadImages(GET_UPDATE_IMAGE.new_images);
+            LIST_NEW_IMAGE = replaceValueWithIndex(GET_UPDATE_IMAGE.origin_images, IMAGES, GET_UPDATE_IMAGE.new_idx_images);
+          } else {
+            LIST_NEW_IMAGE = getArrValueOfArr(this.isModal.images, 'url');
+          }
 
-          console.log(GET_UPDATE_IMAGE);
+          const BODY = {
+            review_id: this.isModal.id,
+            title: this.isModal.title,
+            images: LIST_NEW_IMAGE,
+            content: this.isModal.content,
+            primary_image: this.handleGetPrimaryImage(LIST_NEW_IMAGE)
+          };
 
-          console.log('EDIT');
+          const { status_code } = await postEditHappyMoment(BODY);
+
+          if (status_code === 200) {
+            Toast.success(this.$t('TOAST_MESSAGE.EDIT_HAPPY_MOMENT_SUCCESS'))
+          } else {
+            Toast.warning(this.$t('TOAST_MESSAGE.EDIT_HAPPY_MOMENT_ERROR'));
+          }
+
+          this.handleResetModal();
         }
 
         await this.handleGetListHappyMoment(true);
-
         setLoading(false);
       } catch (err) {
+        this.handleResetModal();
         setLoading(false);
 
         console.log(err);
@@ -445,7 +471,7 @@ export default {
       const result_idx = [];
 
       while (idx < len) {
-        if ((typeof images[idx]) === 'object') {
+        if (images[idx].type_import === 'new') {
           result.push(images[idx]);
           result_idx.push(idx);
         }
@@ -495,8 +521,29 @@ export default {
         this.isModal.images.splice(idx, 1);
       }
     },
-    onClickEdit(id) {
-      console.log(id);
+    async onClickEdit(id) {
+      this.isModal.typeModal = 'EDIT';
+
+      await this.handleGetDetailHappyMoment(id);
+    },
+    async handleGetDetailHappyMoment(id = null) {
+      try {
+        const BODY = {
+          review_id: id
+        };
+
+        const { status_code, data } = await postDetailHappyMoment(BODY);
+
+        if (status_code === 200) {
+          this.isModal.id = data._id;
+          this.isModal.title = data.title;
+          this.isModal.content = data.content;
+          this.isModal.images = this.handleAddTypeImage(data.images);
+          this.isModal.show = true;
+        }
+      } catch (err) {
+        console.log(err);
+      }
     },
     async onClickDelete(id) {
       try {
@@ -551,6 +598,14 @@ export default {
         console.log(err);
       }
     },
+    handleAddTypeImage(images) {
+      return images.map((image) => {
+        return {
+          url: image,
+          type_import: 'old'
+        }
+      });
+    },
     calNo(item) {
       return ((this.pagination.current_page - 1) * this.pagination.per_page) + (item.index + 1);
     },
@@ -597,7 +652,7 @@ export default {
       tbody {
         tr {
           td {
-            min-width: 100px;
+            min-width: 130px;
 
             text-align: center;
             vertical-align: middle;

@@ -31,6 +31,14 @@ export function postCreateHappyMoment(BODY = null, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.POST_CREATE_HAPPY_MOMENT, BODY, PARAMS);
 }
 
+export function postDetailHappyMoment(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.GET_DETAIL_HAPPY_MOMENT, BODY, PARAMS);
+}
+
+export function postEditHappyMoment(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_EDIT_HAPPY_MOMENT, BODY, PARAMS);
+}
+
 export function postDeleteHappyMoment(BODY = null, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.POST_DELETE_HAPPY_MOMENT, BODY, PARAMS);
 }
