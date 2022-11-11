@@ -30,21 +30,19 @@ function getRefreshToken() {
   return null;
 }
 
-function updateAccessToken(access_token = '', refresh_token = '') {
-  store.dispatch('auth/setToken', access_token)
-    .then(() => {
-      store.dispatch('auth/setRefreshToken', refresh_token);
-    })
-}
-
 function goToShop() {
   router.push({ name: 'HomeShopCar' });
 }
 
 function handleLogout() {
-  updateAccessToken();
-  resetRouter();
-  goToShop();
+  store.dispatch('auth/setToken', '')
+  .then(() => {
+    store.dispatch('auth/setRefreshToken', '')
+      .then(() => {
+        resetRouter();
+        goToShop();
+      })
+  }); 
 }
 
 service.interceptors.request.use(
@@ -52,7 +50,11 @@ service.interceptors.request.use(
     const TOKEN = getToken();
 
     if (TOKEN) {
-      config.headers['Authorization'] = `Bearer ${TOKEN}`;
+      config.headers = { 
+        'Authorization': `Bearer ${TOKEN}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
     }
 
     return config;
@@ -73,26 +75,27 @@ service.interceptors.response.use(
 
     if (error_code === 500 && message === 'jwt expired') {
       try {
-        const REFRESH_TOKEN = getRefreshToken();
+        const BODY = {
+          refresh_token: getRefreshToken(),
+        };
+  
+        const RES = await postRefreshToken(BODY);
+  
+        if (RES.status_code === 200) {
+          await store.dispatch('auth/setToken', RES.access_token)
+          .then(async() => {
+            await store.dispatch('auth/setRefreshToken', RES.refesh_token)
+              .then(() => {
+                console.log('[APP]: Refresh...');
+              })
+          });
 
-        if (REFRESH_TOKEN) {
-          const BODY = {
-            refresh_token: REFRESH_TOKEN,
-          };
-
-          const RES = await postRefreshToken(BODY);
-
-          if (RES.status_code === 200) {
-            updateAccessToken(RES.access_token, RES.refesh_token);
-
-            return service(originalRequest);
-          } else {
-            handleLogout();
-          }
+          return service(originalRequest);
+        } else {
+          handleLogout();
         }
       } catch (err) {
         console.log(err);
-        handleLogout();
       }
     }
 
