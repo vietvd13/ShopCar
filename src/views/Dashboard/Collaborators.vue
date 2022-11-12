@@ -342,9 +342,6 @@ export default {
     isCurrentPage() {
       this.handleGetListCollaborators();
     },
-    isPerPage() {
-      this.handleGetListCollaborators();
-    }
   },
   data() {
     return {
@@ -455,8 +452,8 @@ export default {
         console.log(err);
       }
     },
-    onChangePerPage() {
-      this.handleGetListCollaborators();
+    async onChangePerPage() {
+      await this.handleGetListCollaborators();
     },
     calNo(item) {
       return ((this.pagination.current_page - 1) * this.pagination.per_page) + (item.index + 1);
@@ -487,7 +484,7 @@ export default {
           this.isModal.show = true;
         }
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     },
     onSelectDelete(id) {

@@ -10,6 +10,8 @@ export default {
     DELETE: 'Xoá',
     CANCEL: 'Huỷ bỏ',
     SAVE: 'Lưu',
+    UPDATE_STATUS_DONE: 'Đã xử lý xong',
+    UPDATE_STATUS_IN_PROGRESS: 'Chưa xử lý',
     TEXT_PER_PAGE_10: '10',
     TEXT_PER_PAGE_20: '20',
     TEXT_PER_PAGE_40: '40',
@@ -44,6 +46,9 @@ export default {
     EDIT_HAPPY_MOMENT_ERROR: 'Bạn đã chỉnh sửa khoảnh khắc vui vẻ thất bại',
     DELETE_HAPPY_MOMENT_SUCCESS: 'Bạn đã xoá khoảnh khoắc vui vẻ thành công',
     DELETE_HAPPY_MOMENT_ERROR: 'Bạn đã xoá khoảnh khoắc vui vẻ thất bại',
+
+    EDIT_CUSTOMER_SUPPORT_SUCCESS: 'Bạn đã cập nhật trạng thái thành công',
+    EDIT_CUSTOMER_SUPPORT_ERROR: 'Bạn đã cập nhật trạng thái thất bại'
   },
   SHOP_CAR: {
     HOME: {
@@ -144,6 +149,20 @@ export default {
         LABEL_TITLE: 'Tiêu đề',
         LABEL_CONTENT: 'Nội dung',
         LABEL_IMAGES: 'Hình ảnh',
+      }
+    },
+    CUSTOMER_SUPPORT: {
+      TABLE: {
+        NO: 'STT',
+        NAME: 'Họ và tên',
+        PHONE: 'Số điện thoại',
+        QUESTION: 'Câu hỏi',
+        STATUS: 'Trạng thái xử lý',
+        ACTION: 'Thao tác',
+        DETAIL: 'Hiển thị',
+
+        IN_PROGRESS: 'Chưa xử lý',
+        DONE: 'Hoàn thành',
       }
     }
   }

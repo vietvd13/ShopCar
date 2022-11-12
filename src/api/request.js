@@ -53,7 +53,6 @@ service.interceptors.request.use(
       config.headers = { 
         'Authorization': `Bearer ${TOKEN}`,
         'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
       }
     }
 
@@ -79,12 +78,12 @@ service.interceptors.response.use(
           refresh_token: getRefreshToken(),
         };
   
-        const RES = await postRefreshToken(BODY);
+        const { status_code, access_token, refresh_token } = await postRefreshToken(BODY);
   
-        if (RES.status_code === 200) {
-          await store.dispatch('auth/setToken', RES.access_token)
+        if (status_code === 200) {
+          await store.dispatch('auth/setToken', access_token)
           .then(async() => {
-            await store.dispatch('auth/setRefreshToken', RES.refesh_token)
+            await store.dispatch('auth/setRefreshToken', refresh_token)
               .then(() => {
                 console.log('[APP]: Refresh...');
               })

@@ -24,5 +24,11 @@ export default {
   POST_CREATE_HAPPY_MOMENT: '/review/create',
   GET_DETAIL_HAPPY_MOMENT: '/review/detail',
   POST_EDIT_HAPPY_MOMENT: '/review/edit',
-  POST_DELETE_HAPPY_MOMENT: 'review/remove'
+  POST_DELETE_HAPPY_MOMENT: 'review/remove',
+
+  // Api Hỗ trợ khác hàng
+  GET_LIST_CUSTOMER_SUPPORT: '/support/get',
+  POST_CREATE_CUSTOMER_SUPPORT: '/support/create',
+  POST_DETAIL_CUSTOMER_SUPPORT: '/support/detail',
+  POST_EDIT_CUSTOMER_SUPPORT: '/support/edit',
 };

@@ -287,9 +287,6 @@ export default {
     isCurrentPage() {
       return this.pagination.current_page; 
     },
-    isPerPage() {
-      return this.pagination.per_page;
-    },
     domainImage() {
       return process.env.VUE_APP_URL_IMAGE;
     }
@@ -298,9 +295,6 @@ export default {
     isCurrentPage() {
       this.handleGetListHappyMoment();
     },
-    isPerPage() {
-      this.handleGetListHappyMoment();
-    }
   },
   created () {
     this.initData();
@@ -358,7 +352,7 @@ export default {
       this.handleGetListHappyMoment();
     },
     async handleSearch() {
-      this.handleGetListHappyMoment(true);
+      await this.handleGetListHappyMoment(true);
     },
     async handleSort(ctx) {
       this.isSort.field = ctx.sortBy;

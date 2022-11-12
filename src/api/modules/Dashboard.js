@@ -42,3 +42,12 @@ export function postEditHappyMoment(BODY = null, PARAMS = null) {
 export function postDeleteHappyMoment(BODY = null, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.POST_DELETE_HAPPY_MOMENT, BODY, PARAMS);
 }
+
+// Hỗ trợ khách hàng
+export function getListCustomerSupport(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.GET_LIST_CUSTOMER_SUPPORT, BODY, PARAMS);
+}
+
+export function postEditCustomerSupport(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_EDIT_CUSTOMER_SUPPORT, BODY, PARAMS);
+}

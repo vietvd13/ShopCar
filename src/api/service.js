@@ -5,8 +5,8 @@ export default {
 		return await service({
 			url: URL,
 			method: 'GET',
-      params: PARAMS,
-      data: DATA,
+			params: PARAMS,
+			data: DATA,
 		});
 	},
 	async postRequest(URL, DATA, PARAMS) {
