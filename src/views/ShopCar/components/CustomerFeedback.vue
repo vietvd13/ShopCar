@@ -10,7 +10,7 @@
           :key="idx"
         >
           <CardFeedBack 
-            :image="feedback.image"
+            :image="`${domainImage}${feedback.image}`"
             :feedback="feedback.feedback"
           />
         </b-col>
@@ -28,6 +28,11 @@ export default {
   components: {
     TitleContent,
     CardFeedBack
+  },
+  computed: {
+    domainImage() {
+      return process.env.VUE_APP_URL_IMAGE;
+    }
   },
   props: {
     items: {
