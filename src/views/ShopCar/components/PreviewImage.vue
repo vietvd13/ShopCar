@@ -10,7 +10,7 @@
       >
         <div class="display-image-preview">
           <b-img
-            :src="imagePreview"
+            :src="`${domainImage}${imagePreview}`"
             thumbnail
             fluid
           />
@@ -29,7 +29,7 @@
             class="item-image"
             v-for="(image, idx) in images" 
             :key="idx"
-            :src="image"
+            :src="`${domainImage}${image}`"
             thumbnail
             fluid
             @click="onClickChangeImage(image)"
@@ -51,6 +51,11 @@ export default {
         return []
       },
     },
+  },
+  computed: {
+    domainImage() {
+      return process.env.VUE_APP_URL_IMAGE;
+    }
   },
   data() {
     return {
