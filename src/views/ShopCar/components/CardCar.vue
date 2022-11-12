@@ -2,7 +2,7 @@
   <div class="card-car" @click="onClickCardCar(carId)">
     <div class="card-car__img">
       <b-img 
-        :src="carImage" 
+        :src="`${domainImage}${carImage}`" 
         fluid 
         :alt="carName" 
       />
@@ -49,6 +49,11 @@ export default {
       type: String,
       required: true,
       default: '',
+    }
+  },
+  computed: {
+    domainImage() {
+      return process.env.VUE_APP_URL_IMAGE;
     }
   },
   methods: {
