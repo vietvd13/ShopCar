@@ -48,7 +48,10 @@ export default {
     DELETE_HAPPY_MOMENT_ERROR: 'Bạn đã xoá khoảnh khoắc vui vẻ thất bại',
 
     EDIT_CUSTOMER_SUPPORT_SUCCESS: 'Bạn đã cập nhật trạng thái thành công',
-    EDIT_CUSTOMER_SUPPORT_ERROR: 'Bạn đã cập nhật trạng thái thất bại'
+    EDIT_CUSTOMER_SUPPORT_ERROR: 'Bạn đã cập nhật trạng thái thất bại',
+
+    CREATE_CUSTOMER_SUPPORT_SUCCESS: 'Bạn đã tạo liên hệ hỗ trợ thành công. Vui lòng chờ đợi phản hồi của chúng tôi',
+    CREATE_CUSTOMER_SUPPORT_ERROR: 'Bạn chưa tạo liên hệ hỗ trợ thành công, vui lòng thử lại',
   },
   SHOP_CAR: {
     HOME: {
@@ -78,6 +81,13 @@ export default {
       },
       CUSTOMER_FEEDBACK: {
         TITLE: 'Khoảnh khắc vui vẻ'
+      },
+      CONTACT_SUPPORT: {
+        TITLE: 'Liên hệ - hỏi đáp',
+        NAME: 'Tên',
+        PHONE: 'Số điện thoại',
+        CONTENT: 'Nội dung',
+        SEND: 'Gửi'
       }
     },
     DETAIL_CAR: {

@@ -1,5 +1,8 @@
 <template>
-  <div class="sticky-col">
+  <div class="zone-left-home">
+    <b-card>
+
+    </b-card>
   </div>
 </template>
 
@@ -10,13 +13,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/variables';
+@import '@/scss/variables';
 
-.filter-home {
-  padding: 5px;
-  width: 100%;
-  background-color: $white;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+.zone-left-home {
+  position: fixed;
+  width: 250px;
+  height: 100px;
+  overflow: auto;
+
+  top: 380px;
+  left: 15px;
 }
 
 </style>

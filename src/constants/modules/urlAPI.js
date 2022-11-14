@@ -11,6 +11,7 @@ export default {
   // Api Home
   GET_LIST_CAR: '/cars/list',
   GET_DETAIL_CAR: '/cars/detail',
+  GET_ALL_COLLABORATORS: '/staff/list',
 
   // Api Cộng tác viên
   GET_LIST_COLLABORATORS: '/staff/list',
