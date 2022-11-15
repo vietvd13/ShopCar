@@ -1,18 +1,10 @@
 <template>
-  <!-- <div class="home-search">
-    <b-row align-h="center">
-      <b-col cols="6" xs="6" sm="6" md="6" lg="4" xl="4">
-        <b-form-input 
-          v-model="keyword"
-          :placeholder="$t('SHOP_CAR.HOME.SEARCH')" 
-          trim
-          class="input-search"
-        />
-      </b-col>
-    </b-row>
-  </div> -->
   <b-navbar toggleable="lg">
-    <b-navbar-toggle target="nav-collapse" />
+    <b-navbar-toggle target="nav-collapse">
+      <template #default>
+        <i class="custom-icon-toggle fas fa-bars" />
+      </template>
+    </b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
@@ -23,6 +15,21 @@
         >
           {{ $t(route.text) }}
         </router-link>
+      </b-navbar-nav>
+
+      <b-navbar-nav class="ml-auto">
+        <b-form-input 
+          size="sm"
+          class="mr-sm-2 mb-sm-2 mb-lg-0" 
+          :placeholder="$t('SHOP_CAR.HOME.SEARCH')"
+        />
+
+        <b-button 
+          size="sm" 
+          class="my-2 my-sm-0 btn-default btn-app" 
+        >
+          {{ $t('SHOP_CAR.HOME.SEARCH') }}
+        </b-button>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -77,6 +84,12 @@ export default {
 
 .navbar {
   background-color: $main;
+  padding: 0.5rem;
+
+  .custom-icon-toggle {
+    color: $sub-main;
+    font-size: 25px;
+  }
 
   a {
     padding: 10px;

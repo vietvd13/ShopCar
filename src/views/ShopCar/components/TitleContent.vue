@@ -1,15 +1,11 @@
 <template>
-  <b-col>
-    <b-row align-h="center">
-      <b-col cols="12" xs="12" sm="12" md="5" lg="5" xl="3">
-        <div class="title-content">
-          <slot>
-            Title
-          </slot>
-        </div>
-      </b-col>
-    </b-row>
-  </b-col>
+  <div class="shop-car-title">
+    <div class="shop-car-title__text">
+      <slot>
+        Title
+      </slot>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -21,13 +17,14 @@ export default {
 <style lang="scss" scoped>
 @import '../../../scss/variables';
 
-.title-content {
-  background-color: $main;
+.shop-car-title {
+  display: flex;
+  background-color: $white;
   margin-bottom: 10px;
-  padding: 10px;
-  text-align: center;
-  color: $white;
-  font-weight: bold;
-  border-radius: 5px;
+
+  &__text {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
 }
 </style>
