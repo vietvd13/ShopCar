@@ -1,6 +1,6 @@
 <template>
   <b-img 
-    src="https://www.grandons.ie/uploads/images/headers/8174_Toyota_DR_Facebook_header_F.jpg"
+    src="https://sulcdn.azureedge.net/biz-live/img/highway-car-fashion-11014173-cf52a698.jpeg"
     fluid
     center
     class="banner-home"

@@ -1,31 +1,10 @@
 <template>
   <div class="home-shop-car">
-    <b-row>
-      <b-col cols="2" class="text-right">
-        <FilterHome />
-      </b-col>
-
-      <b-col cols="8" />
-
-      <b-col cols="2">
-        <Collaborators 
-          :items="listCollaborators"
-        />
-      </b-col>
-    </b-row>
-
     <div class="home-shop-car__content">
-      <b-row align-h="center">
-        <b-col cols="2" />
-
-        <b-col cols="8">
-          <div class="content-carousel">
+      <b-container>
+        <div class="content-carousel">
             <BannerHome />
             <SearchHome />
-          </div>
-
-          <div class="content-categories">
-            <CategoriesHome />
           </div>
 
           <div class="content-hotsale">
@@ -35,10 +14,7 @@
           <div class="content-customer-feedback">
             <CustomerFeedbackHome :items="listFeedback" />
           </div>
-        </b-col>
-        
-        <b-col cols="2" />
-      </b-row>
+      </b-container>
     </div>
   </div>
 </template>
@@ -48,9 +24,6 @@ import { setLoading } from '@/utils/setLoading';
 import { getListCollaborators } from '@/api/modules/Home';
 import SearchHome from './components/Search.vue';
 import BannerHome from './components/Banner.vue';
-import FilterHome from './components/FilterHome.vue';
-import Collaborators from './components/Collaborators.vue';
-import CategoriesHome from './components/Categories.vue';
 import HotSaleHome from './components/HotSale.vue';
 import CustomerFeedbackHome from './components/CustomerFeedback.vue';
 
@@ -59,9 +32,6 @@ export default {
   components: {
     SearchHome,
     BannerHome,
-    FilterHome,
-    Collaborators,
-    CategoriesHome,
     HotSaleHome,
     CustomerFeedbackHome
   },
@@ -210,7 +180,10 @@ export default {
   &__content {
     margin-bottom: 10px;
 
-    .content-categories,
+    .content-hotsale {
+      margin-top: 10px;
+    }
+
     .content-hotsale,
     .content-customer-feedback {
       margin-bottom: 10px;

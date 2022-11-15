@@ -1,9 +1,7 @@
 <template>
-  <b-col>
-    <div class="app-shop">
-      <AppMain />
-    </div>
-  </b-col>
+  <div class="app-shop">
+    <AppMain />
+  </div>
 </template>
 
 <script>

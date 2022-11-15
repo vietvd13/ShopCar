@@ -1,46 +1,35 @@
 <template>
   <div class="list-car">
     <div class="list-car__content">
-      <b-row align-h="center">
-        <b-col cols="2">
+      <b-container>
+        <div class="content-carousel">
+          <BannerHome />
+          <SearchHome />
+        </div>
 
-        </b-col>
+        <div class="content-categories">
+          <CategoriesHome />
+        </div>
 
-        <b-col cols="8">
-          <div class="content-carousel">
-            <BannerHome />
-            <SearchHome />
-          </div>
+        <div class="content-sort">
+          <SortListCar />
+        </div>
 
-          <div class="content-categories">
-            <CategoriesHome />
-          </div>
+        <div class="content-list-car">
+          <ListCardCar :items="items" />
+        </div>
 
-          <div class="content-sort">
-            <SortListCar />
-          </div>
-
-          <div class="content-list-car">
-            <ListCardCar :items="items" />
-          </div>
-
-          <div class="content-pagination">
-            <b-pagination
-              v-model="pagination.current_page"
-              :total-rows="pagination.total"
-              :per-page="pagination.per_page"
-              align="center"
-              pills
-              size="sm"
-            />
-          </div>
-
-        </b-col>
-
-        <b-col cols="2">
-
-        </b-col>
-      </b-row>
+        <div class="content-pagination">
+          <b-pagination
+            v-model="pagination.current_page"
+            :total-rows="pagination.total"
+            :per-page="pagination.per_page"
+            align="center"
+            pills
+            size="sm"
+          />
+        </div>
+      </b-container>
     </div>
   </div>
 </template>
