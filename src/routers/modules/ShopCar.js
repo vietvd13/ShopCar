@@ -22,6 +22,21 @@ const ShopCar = {
       path: 'detail/:id',
       name: 'DetailCar',
       component: () => import(/* webpackChunkName: "DetailCar" */ '@/views/ShopCar/DetailCar.vue'),
+    },
+    {
+      path: 'car-buying-policy',
+      name: 'CarBuyingPolicy',
+      component: () => import(/* webpackChunkName: "CarBuyingPolict" */ '@/views/ShopCar/CarBuyingPolicy.vue')
+    },
+    {
+      path: 'insurance',
+      name: 'Insurance',
+      component: () => import(/* webpackChunkName: "Insurance" */ '@/views/ShopCar/Insurance.vue')
+    },
+    {
+      path: 'contact',
+      name: 'Contact',
+      component: () => import(/* webpackChunkName: "Contact" */ '@/views/ShopCar/Contact.vue')
     }
   ]
 };

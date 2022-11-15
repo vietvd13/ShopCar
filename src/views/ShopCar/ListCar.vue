@@ -7,10 +7,6 @@
           <SearchHome />
         </div>
 
-        <div class="content-categories">
-          <CategoriesHome />
-        </div>
-
         <div class="content-sort">
           <SortListCar />
         </div>
@@ -37,7 +33,6 @@
 <script>
 import SearchHome from './components/Search.vue';
 import BannerHome from './components/Banner.vue';
-import CategoriesHome from './components/Categories.vue';
 import SortListCar from './components/SortListCar.vue';
 import ListCardCar from './components/ListCardCar.vue';
 
@@ -49,7 +44,6 @@ export default {
   components: {
     SearchHome,
     BannerHome,
-    CategoriesHome,
     SortListCar,
     ListCardCar
   },
@@ -161,8 +155,7 @@ export default {
 
   &__content {
     margin-bottom: 10px;
-
-    .content-categories,
+    .content-carousel,
     .content-customer-feedback {
       margin-bottom: 10px;
     }

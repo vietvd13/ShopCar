@@ -57,10 +57,10 @@ export default {
     HOME: {
       SEARCH: 'Tìm kiếm',
       CATEGORIES: {
-        DOMESTIC_CAR: 'Xe trong nước',
-        IMPORTED_CAR: 'Xe nhập ngoại',
-        CUSTOMER_REVIEWS: 'Khoảnh khắc vui vẻ',
-        VEHICLE_LIST: 'Danh sách xe'
+        VEHICLE_LIST: 'Danh sách xe',
+        CAR_BUYING_POLICY: 'Chính sách mua xe',
+        INSURANCE: 'Bảo hiểm',
+        CONTACT: 'Liên lạc',
       },
       SORT_LIST_CAR: {
         CAR_NAME: 'Tên xe',

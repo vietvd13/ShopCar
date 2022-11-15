@@ -1,6 +1,6 @@
 <template>
   <b-img 
-    src="https://sulcdn.azureedge.net/biz-live/img/highway-car-fashion-11014173-cf52a698.jpeg"
+    src="http://images.atonmobility.com/myshop3/admin/images/banner/222/1649901395.jpg"
     fluid
     center
     class="banner-home"
