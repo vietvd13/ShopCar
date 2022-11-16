@@ -4,6 +4,7 @@ export default {
     BUTTON_BACK: 'Trở lại',
     BUTTON_ADD: 'Thêm mới',
     BUTTON_DELETE_MANY: 'Xoá nhiều',
+    BUTTON_FILTER: 'Áp dụng',
     TABLE_NO_DATA: 'Không có dữ liệu',
     PLEASE_IMPORT_IMAGE: 'Lựa chọn ảnh',
     REQUIRED_IMAGE_SIZE_4_6: 'Size 4x6',

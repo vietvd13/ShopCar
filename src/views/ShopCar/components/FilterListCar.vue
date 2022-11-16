@@ -125,6 +125,17 @@
                     </b-row>
                 </b-col>
             </b-row>
+
+            <b-row>
+                <b-col>
+                    <b-button 
+                        class="mt-4 btn-app btn-default" 
+                        block
+                    >
+                        {{ $t('APP.BUTTON_FILTER') }}
+                    </b-button>
+                </b-col>
+            </b-row>
         </div>
     </b-card>
 </template>
