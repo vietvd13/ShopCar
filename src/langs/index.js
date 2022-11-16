@@ -5,7 +5,7 @@ import viLocale from './subs/vi';
 import enLocale from './subs/en';
 import krLocale from './subs/kr';
 
-import { getLanguage } from '../utils/getLang';
+import { getLanguage } from '@/utils/getLang';
 
 Vue.use(VueI18n);
 

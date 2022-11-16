@@ -1,4 +1,5 @@
 const getters = {
+  language: state => state.app.language,
   loading: state => state.loading.loading,
   sizeScreen: state => state.sizeScreen.size,
   initApp: state => state.auth.initApp,

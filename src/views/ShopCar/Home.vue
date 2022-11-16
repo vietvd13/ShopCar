@@ -1,28 +1,25 @@
 <template>
   <div class="home-shop-car">
     <div class="home-shop-car__content">
-      <b-container>
-        <div class="content-carousel">
-          <BannerHome />
-          <SearchHome />
-        </div>
+      <div class="content-carousel">
+        <SearchHome />
+      </div>
 
-        <div class="content-filter">
-          <FilterListCar />
-        </div>
+      <div class="content-filter">
+        <FilterListCar />
+      </div>
 
-        <div class="content-hotsale">
-          <HotSaleHome :items="listHotSale" />
-        </div>
-        
-        <div class="content-customer-feedback">
-          <CustomerFeedbackHome :items="listFeedback" />
-        </div>
+      <div class="content-hotsale">
+        <HotSaleHome :items="listHotSale" />
+      </div>
+      
+      <div class="content-customer-feedback">
+        <CustomerFeedbackHome :items="listFeedback" />
+      </div>
 
-        <div class="content-staff">
-          <ListCollaborators :items="listCollaborators" />
-        </div>
-      </b-container>
+      <div class="content-staff">
+        <ListCollaborators :items="listCollaborators" />
+      </div>
     </div>
   </div>
 </template>
@@ -33,21 +30,19 @@ import {
   getListHappyMoment
 } from '@/api/modules/Home';
 import SearchHome from './components/Search.vue';
-import BannerHome from './components/Banner.vue';
 import FilterListCar from './components/FilterListCar.vue'
 import HotSaleHome from './components/HotSale.vue';
 import CustomerFeedbackHome from './components/CustomerFeedback.vue';
-import ListCollaborators from './components/ListCollaborators.vue'
+import ListCollaborators from './components/ListCollaborators.vue';
 
 export default {
   name: 'HomeShopCar',
   components: {
     SearchHome,
-    BannerHome,
     FilterListCar,
     HotSaleHome,
     CustomerFeedbackHome,
-    ListCollaborators
+    ListCollaborators,
   },
   data() {
     return {
@@ -163,11 +158,8 @@ export default {
 
 .home-shop-car {
   overflow: hidden;
-  background-color: $seashell;
 
   &__content {
-    margin-bottom: 10px;
-
     .content-filter {
       margin-top: 10px;
     }

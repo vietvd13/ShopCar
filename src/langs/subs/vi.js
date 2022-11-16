@@ -28,6 +28,12 @@ export default {
     WARNING: 'Cảnh báo',
     DANGER: 'Lỗi',
   },
+  LANGUAGES: {
+    LANGUAGES: 'Ngôn ngữ',
+    VIETNAMESE: 'Tiêng Việt',
+    ENGLISH: 'English',
+    KOREAN: 'Korean'
+  },
   ROUTER: {
     COLLABORATORS_MANAGEMENT: 'Cộng tác viên',
     CAR_MANAGEMENT: 'Quản lý xe',
@@ -35,6 +41,9 @@ export default {
     CUSTOMER_SUPPORT: 'Hỗ trợ khách hàng'
   },
   TOAST_MESSAGE: {
+    CHANGE_LANGUAGE_SUCCESS: 'Bạn đã thay đổi ngôn ngữ thành công',
+    CHANGE_LANGUAGE_ERROR: 'Bạn đã thay đổi ngôn ngữ thất bại',
+
     VALIDATE_ACCOUNT_LOGIN: 'Định dạng tài khoản chưa chính xác. Vui lòng kiểm tra lại tài khoản',
 
     CREATE_COLLABORATORS_SUCCESS: 'Bạn đã tạo cộng tác viên thành công',

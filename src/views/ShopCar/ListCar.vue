@@ -1,38 +1,34 @@
 <template>
   <div class="list-car">
     <div class="list-car__content">
-      <b-container>
-        <div class="content-carousel">
-          <BannerHome />
-          <SearchHome />
-        </div>
+      <div class="content-carousel">
+        <SearchHome />
+      </div>
 
-        <div class="content-sort">
-          <SortListCar />
-        </div>
+      <div class="content-sort">
+        <SortListCar />
+      </div>
 
-        <div class="content-list-car">
-          <ListCardCar :items="items" />
-        </div>
+      <div class="content-list-car">
+        <ListCardCar :items="items" />
+      </div>
 
-        <div class="content-pagination">
-          <b-pagination
-            v-model="pagination.current_page"
-            :total-rows="pagination.total"
-            :per-page="pagination.per_page"
-            align="center"
-            pills
-            size="sm"
-          />
-        </div>
-      </b-container>
+      <div class="content-pagination">
+        <b-pagination
+          v-model="pagination.current_page"
+          :total-rows="pagination.total"
+          :per-page="pagination.per_page"
+          align="center"
+          pills
+          size="sm"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import SearchHome from './components/Search.vue';
-import BannerHome from './components/Banner.vue';
 import SortListCar from './components/SortListCar.vue';
 import ListCardCar from './components/ListCardCar.vue';
 
@@ -43,7 +39,6 @@ export default {
   name: 'ListCar',
   components: {
     SearchHome,
-    BannerHome,
     SortListCar,
     ListCardCar
   },
