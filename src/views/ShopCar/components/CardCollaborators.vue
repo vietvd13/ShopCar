@@ -52,11 +52,6 @@ export default {
       default: '',
       required: true,
     },
-    description: {
-      type: String,
-      default: '',
-      required: true,
-    },
     phone: {
       type: String,
       default: '',
@@ -102,8 +97,10 @@ export default {
   margin-bottom: 10px;
   border: 1px solid $silver-chalice;
   border-radius: 5px;
+  overflow: hidden;
 
   &__img {
+    text-align: center;
     img {
       width: 155px;
       border-radius: 5px;

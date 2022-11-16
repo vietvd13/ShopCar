@@ -18,13 +18,16 @@
         <div class="content-customer-feedback">
           <CustomerFeedbackHome :items="listFeedback" />
         </div>
+
+        <div class="content-staff">
+          <ListCollaborators :items="listCollaborators" />
+        </div>
       </b-container>
     </div>
   </div>
 </template>
 
 <script>
-// import { setLoading } from '@/utils/setLoading';
 import { 
   getListCollaborators,
   getListHappyMoment
@@ -34,6 +37,7 @@ import BannerHome from './components/Banner.vue';
 import FilterListCar from './components/FilterListCar.vue'
 import HotSaleHome from './components/HotSale.vue';
 import CustomerFeedbackHome from './components/CustomerFeedback.vue';
+import ListCollaborators from './components/ListCollaborators.vue'
 
 export default {
   name: 'HomeShopCar',
@@ -42,7 +46,8 @@ export default {
     BannerHome,
     FilterListCar,
     HotSaleHome,
-    CustomerFeedbackHome
+    CustomerFeedbackHome,
+    ListCollaborators
   },
   data() {
     return {
@@ -104,48 +109,7 @@ export default {
           price: '2,680'
         },
       ],
-      listFeedback: [
-        {
-          _id: '1',
-          image: '/assets/images/noimage.png',
-          feedback: 'Xe đẹp quá má ơi!!',    
-        },
-        {
-          _id: '2',
-          image: '/assets/images/noimage.png',
-          feedback: 'Xe đẹp quá má ơi!!',    
-        },
-        {
-          _id: '3',
-          image: '/assets/images/noimage.png',
-          feedback: 'Xe đẹp quá má ơi!!',    
-        },
-        {
-          _id: '4',
-          image: '/assets/images/noimage.png',
-          feedback: 'Xe đẹp quá má ơi!!',    
-        },
-        {
-          _id: '5',
-          image: '/assets/images/noimage.png',
-          feedback: 'Xe đẹp quá má ơi!!',    
-        },
-        {
-          _id: '6',
-          image: '/assets/images/noimage.png',
-          feedback: 'Xe đẹp quá má ơi!!',    
-        },
-        {
-          _id: '7',
-          image: '/assets/images/noimage.png',
-          feedback: 'Xe đẹp quá má ơi!!',    
-        },
-        {
-          _id: '8',
-          image: '/assets/images/noimage.png',
-          feedback: 'Xe đẹp quá má ơi!!',    
-        },
-      ],
+      listFeedback: [],
       listCollaborators: [],
     }
   },
@@ -160,7 +124,8 @@ export default {
     async handleGetAllCollaborators() {
       try {
         const BODY = {
-
+          limit: 8,
+          page: 1,
         };
 
         const { status_code, data } = await getListCollaborators(BODY);

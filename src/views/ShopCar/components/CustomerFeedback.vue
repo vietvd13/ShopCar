@@ -16,6 +16,10 @@
         </b-col>
       </b-row>
     </div>
+
+    <div class="show-more text-right">
+      {{ $t('APP.TEXT_VIEW_MORE') }}
+    </div>
   </div>
 </template>
 
@@ -46,5 +50,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/variables';
 
+.customer-feedback-home {
+  .show-more {
+    margin-bottom: 5px;
+    color: $main;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
 </style>

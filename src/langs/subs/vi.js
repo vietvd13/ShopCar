@@ -20,7 +20,8 @@ export default {
     TEXT_PER_PAGE_100: '100',
     IMPORT_IMAGE: 'Lựa chọn ảnh',
     PLEASE_INPUT: 'Vui lòng nhập',
-    PLEASE_SELECT: 'Vui lòng lựa chọn'
+    PLEASE_SELECT: 'Vui lòng lựa chọn',
+    TEXT_VIEW_MORE: 'Hiển thị thêm...'
   },
   TOAST: {
     SUCCESS: 'Thành công',
@@ -93,6 +94,9 @@ export default {
       },
       CUSTOMER_FEEDBACK: {
         TITLE: 'Khoảnh khắc vui vẻ'
+      },
+      COLLABORATORS: {
+        TITLE: 'Cộng tác viên'
       },
       CONTACT_SUPPORT: {
         TITLE: 'Liên hệ - hỏi đáp',
