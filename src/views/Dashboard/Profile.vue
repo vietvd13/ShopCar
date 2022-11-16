@@ -1,103 +1,172 @@
 <template>
   <div class="profile container">
     <div class="mx-3">
-      <div class="profile card">
-        <div class="card-body font-normal">
-          <div>
-            <b-row class="mb-3 d-block align-items-center d-sm-flex">
-              <b-col cols="4" md="2">
-                <h6>Họ và tên</h6>
-              </b-col>
-              <b-col>
-                <b-input placeholder="Vui lòng nhập họ và tên"></b-input>
-              </b-col>
-            </b-row>
+      <b-tabs content-class="mt-3">
+        <b-tab :title="$t('DASHBOARD.PROFILE.INFOR')">
+          <div class="profile card">
+            <div class="card-body font-normal">
+              <div>
+                <b-row class="mb-3 d-block align-items-center d-sm-flex">
+                  <b-col cols="4" md="2">
+                    <h6>{{ $t('DASHBOARD.PROFILE.FULLNAME') }}</h6>
+                  </b-col>
+                  <b-col>
+                    <b-input :disabled="!is_edit" v-model="fullname" :placeholder="$t('DASHBOARD.PROFILE.FULLNAME')">
+                    </b-input>
+                  </b-col>
+                </b-row>
 
-            <b-row class="mb-3 d-block align-items-center d-sm-flex">
-              <b-col cols="4" md="2">
-                <h6>Ngày sinh</h6>
-              </b-col>
-              <b-col>
-                <b-form-datepicker id="example-datepicker"></b-form-datepicker>
-              </b-col>
-            </b-row>
+                <b-row class="mb-3 d-block align-items-center d-sm-flex">
+                  <b-col cols="4" md="2">
+                    <h6>{{ $t('DASHBOARD.PROFILE.DOB') }}</h6>
+                  </b-col>
+                  <b-col>
+                    <b-form-datepicker :disabled="!is_edit" v-model="dob" :value="dob"></b-form-datepicker>
+                  </b-col>
+                </b-row>
 
 
-            <b-row class="mb-3 d-block align-items-center d-sm-flex">
-              <b-col cols="4" md="2">
-                <h6>Địa chỉ email</h6>
-              </b-col>
-              <b-col>
-                <b-input readonly placeholder="Vui lòng nhập địa chỉ email"></b-input>
-              </b-col>
-            </b-row>
+                <b-row class="mb-3 d-block align-items-center d-sm-flex">
+                  <b-col cols="4" md="2">
+                    <h6>{{ $t('DASHBOARD.PROFILE.EMAIL') }}</h6>
+                  </b-col>
+                  <b-col>
+                    <b-input :disabled="!is_edit" v-model="email" readonly :placeholder="$t('DASHBOARD.PROFILE.EMAIL')">
+                    </b-input>
+                  </b-col>
+                </b-row>
 
-            <b-row class="mb-3 d-block align-items-center d-sm-flex">
-              <b-col cols="4" md="2">
-                <h6>Số điện thoại</h6>
-              </b-col>
-              <b-col>
-                <b-input placeholder="Vui lòng nhập số điện thoại"></b-input>
-              </b-col>
-            </b-row>
+                <b-row class="mb-3 d-block align-items-center d-sm-flex">
+                  <b-col cols="4" md="2">
+                    <h6>{{ $t('DASHBOARD.PROFILE.PHONE') }}</h6>
+                  </b-col>
+                  <b-col>
+                    <b-input :disabled="!is_edit" v-model="phone" :placeholder="$t('DASHBOARD.PROFILE.PHONE')">
+                    </b-input>
+                  </b-col>
+                </b-row>
 
-            <b-row class="mb-3 d-block align-items-center d-sm-flex">
-              <b-col cols="4" md="2">
-                <h6>Địa chỉ</h6>
-              </b-col>
-              <b-col>
-                <b-input placeholder="Vui lòng nhập địa chỉ"></b-input>
-              </b-col>
-            </b-row>
+                <b-row class="mb-3 d-block align-items-center d-sm-flex">
+                  <b-col cols="4" md="2">
+                    <h6>{{ $t('DASHBOARD.PROFILE.ADDRESS') }}</h6>
+                  </b-col>
+                  <b-col>
+                    <b-input :disabled="!is_edit" v-model="address" :placeholder="$t('DASHBOARD.PROFILE.ADDRESS')">
+                    </b-input>
+                  </b-col>
+                </b-row>
 
-            <b-row class="mb-3 d-block align-items-center d-sm-flex">
-              <b-col cols="4" md="2">
-                <h6>Giới tính</h6>
-              </b-col>
-              <b-col>
-                <b-form-select value="male">
-                  <option value="male">Nam</option>
-                  <option value="female">Nữ</option>
-                </b-form-select>
-              </b-col>
-            </b-row>
+                <b-row class="mb-3 d-block align-items-center d-sm-flex">
+                  <b-col cols="4" md="2">
+                    <h6>{{ $t('DASHBOARD.PROFILE.GENDER.LABEL') }}</h6>
+                  </b-col>
+                  <b-col>
+                    <b-form-select :disabled="!is_edit" value="male" v-model="gender">
+                      <option value="male">{{ $t('DASHBOARD.PROFILE.GENDER.MALE') }}</option>
+                      <option value="female">{{ $t('DASHBOARD.PROFILE.GENDER.FEMALE') }}</option>
+                    </b-form-select>
+                  </b-col>
+                </b-row>
 
-          </div>
-        </div>
+                <b-row class="mb-3 d-block align-items-center d-sm-flex">
+                  <b-col cols="4" md="2">
+                    <h6>{{ $t('DASHBOARD.PROFILE.ADDRESS_MAIL_NOTI') }}</h6>
+                  </b-col>
+                  <b-col>
+                    <b-input :disabled="!is_edit" v-model="email_noti"
+                      :placeholder="$t('DASHBOARD.PROFILE.ADDRESS_MAIL_NOTI')"></b-input>
+                  </b-col>
+                </b-row>
 
-        <div class="my-3 border-top"></div>
-
-        <div class="card-header header-elements-sm-inline">
-          <h6 class="card-title font-normal font-superBold">Cài đặt khác</h6>
-        </div>
-        <div class="card-body font-normal">
-          <div>
-            <div>
-              <div class="row d-block align-items-center d-sm-flex mb-2">
-                <div class="col-4 col-md-2 py-2">
-                  <h6>Ngôn ngữ</h6>
-                </div>
-                <b-col>
-                  <b-form-select value="vi">
-                    <option value="vi">Tiếng Việt</option>
-                    <option value="en">Tiếng Anh</option>
-                    <option value="kr">Tiến Hàn</option>
-                  </b-form-select>
-                </b-col>
               </div>
             </div>
-            <div class="d-flex justify-content-end mt-4">
-              <b-button variant="outlined" class=" mr-2 border" id="btn-cancel">
-                Huỷ
-              </b-button>
-              <b-button class="btn-app">
-                Lưu
-              </b-button>
-            </div>
-          </div>
-        </div>
 
-      </div>
+
+            <div class="card-header header-elements-sm-inline">
+              <h6 class="card-title font-normal font-superBold">{{ $t('DASHBOARD.PROFILE.SETTINGS.OTHER') }}</h6>
+            </div>
+            <div class="card-body font-normal">
+              <div>
+                <div>
+                  <div class="row d-block align-items-center d-sm-flex mb-2">
+                    <div class="col-4 col-md-2 py-2">
+                      <h6>{{ $t('LANGUAGES.LANGUAGES') }}</h6>
+                    </div>
+                    <b-col>
+                      <b-form-select :disabled="is_edit" v-model="language">
+                        <option value="vi">{{ $t('LANGUAGES.VIETNAMESE') }}</option>
+                        <option value="en">{{ $t('LANGUAGES.ENGLISH') }}</option>
+                        <option value="kr">{{ $t('LANGUAGES.KOREAN') }}</option>
+                      </b-form-select>
+                    </b-col>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end mt-4">
+                  <b-button variant="outlined" class=" mr-2 border" id="btn-cancel" @click="handleCancelChange">
+                    {{ $t('DASHBOARD.PROFILE.SETTINGS.CANCEL') }}
+                  </b-button>
+                  <b-button v-if="is_edit" :disabled="is_process" class="btn-app" @click="handleSave">
+                    {{ $t('DASHBOARD.PROFILE.SETTINGS.SAVE') }}
+                  </b-button>
+                  <b-button v-else class="btn-app" @click="handleChange">
+                    {{ $t('DASHBOARD.PROFILE.SETTINGS.CHANGE') }}
+                  </b-button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </b-tab>
+        <b-tab :title="$t('DASHBOARD.PROFILE.CHANGEPASSWORD')">
+          <b-row class="mb-3 d-block align-items-center d-sm-flex">
+            <b-col cols="4" md="2">
+              <h6>{{ $t('DASHBOARD.PROFILE.OLDPASSWORDS') }}</h6>
+            </b-col>
+            <b-col>
+              <b-input-group class="mt-3">
+                <template #append>
+                  <b-input-group-text @click="handleShowOldPassword" class="password-handle">
+                    <i v-if="is_show_old" class="fal fa-eye "></i>
+                    <i v-else class="far fa-eye-slash "></i>
+                  </b-input-group-text>
+                </template>
+                <b-input v-model="old_password" :type="is_show_old ? 'text' : 'password'"
+                  :placeholder="$t('DASHBOARD.PROFILE.OLDPASSWORDS')">
+                </b-input>
+              </b-input-group>
+            </b-col>
+          </b-row>
+
+          <b-row class="mb-3 d-block align-items-center d-sm-flex">
+            <b-col cols="4" md="2">
+              <h6>{{ $t('DASHBOARD.PROFILE.NEWPASSWORDS') }}</h6>
+            </b-col>
+            <b-col>
+              <b-input-group class="mt-3">
+                <template #append>
+                  <b-input-group-text @click="handleShowNewPassword" class="password-handle">
+                    <i v-if="is_show_new" class="fal fa-eye "></i>
+                    <i v-else class="far fa-eye-slash "></i>
+                  </b-input-group-text>
+                </template>
+                <b-input v-model="new_password" :type="is_show_new ? 'text' : 'password'"
+                  :placeholder="$t('DASHBOARD.PROFILE.NEWPASSWORDS')">
+                </b-input>
+              </b-input-group>
+            </b-col>
+          </b-row>
+
+          <b-row class="mb-3  justify-content-end mt-4">
+            <b-button variant="outlined" class=" mr-2 border" id="btn-cancel">
+              {{ $t('DASHBOARD.PROFILE.SETTINGS.CANCEL') }}
+            </b-button>
+            <b-button :disabled="is_process" class="btn-app" @click="handleChangePassword">
+              {{ $t('DASHBOARD.PROFILE.SETTINGS.SAVE') }}
+            </b-button>
+          </b-row>
+        </b-tab>
+      </b-tabs>
+
     </div>
 
 
@@ -105,8 +174,138 @@
 </template>
 
 <script>
+import toast from '@/toast';
+import CONSTANTS from '@/constants';
+import { postChangePassword, postChangeUserInfor, postUserInfor } from '@/api/modules/Auth';
+import Cookies from 'js-cookie';
 export default {
   name: "ProfilePage",
+  data() {
+    return {
+      dob: new Date(),
+      CONSTANTS,
+      language: this.$store.getters.language,
+      is_show_old: false,
+      is_show_new: false,
+      old_password: '',
+      new_password: '',
+      fullname: "",
+      email: "",
+      email_noti: "",
+      phone: "",
+      address: "",
+      gender: "male",
+      is_process: false,
+      is_edit: false,
+
+    };
+  },
+
+  created() {
+    this.getProfile();
+  },
+
+  methods: {
+    setLanguage(language = language) {
+      if (this.lang !== language) {
+        this.$store.dispatch('app/setLanguage', language)
+          .then(() => {
+            this.$i18n.locale = language;
+
+            toast.success(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_SUCCESS'));
+          })
+          .catch(() => {
+            toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
+          })
+      }
+    },
+
+    async handleSave() {
+      this.is_process = true;
+      if (this.language !== this.$store.getters.language) {
+        this.setLanguage(this.language);
+      }
+
+      try {
+        const BODY = {
+          phone: this.phone,
+          address: this.address,
+          fullname: this.fullname,
+          dob: this.dob,
+          gender: this.gender,
+          email_noti: this.email_noti
+        }
+        const response = await postChangeUserInfor(BODY);
+        if (response.status) {
+          toast.success(this.$t('TOAST_MESSAGE.CHANGE_PROFILE_SUCCESS'));
+        } else {
+          toast.warning(response.message);
+        }
+      } catch (error) {
+        toast.warning(this.$t('TOAST_MESSAGE.CHANGE_PROFILE_ERROR'));
+      }
+      this.is_process = false;
+      this.is_edit = false;
+    },
+
+    handleShowOldPassword() {
+      this.is_show_old = !this.is_show_old;
+    },
+
+    handleShowNewPassword() {
+      this.is_show_new = !this.is_show_new;
+    },
+
+    handleChange() {
+      this.is_edit = true;
+    },
+
+    handleCancelChange() {
+      this.is_edit = false;
+      this.getProfile();
+    },
+
+    async handleChangePassword() {
+      this.is_process = true;
+      try {
+        const BODY = {
+          old_password: this.old_password,
+          new_password: this.new_password,
+        };
+        const response = await postChangePassword(BODY);
+        if (response.status) {
+          toast.success(this.$t('TOAST_MESSAGE.CHANGE_PASSWORD_SUCCESS'));
+          Cookies.remove(CONSTANTS.COOKIES.REFRESH_TOKEN);
+          Cookies.remove(CONSTANTS.COOKIES.TOKEN);
+          this.$router.push({ name: 'HomeShopCar' });
+        } else {
+          toast.warning(response.message);
+        }
+      } catch (error) {
+        toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
+      }
+      this.is_process = false;
+    },
+
+    async getProfile() {
+      try {
+        const response = await postUserInfor();
+        if (response.status) {
+          this.fullname = response.data.name;
+          this.email = response.data.email;
+          this.email_noti = response.data.email_notification;
+          this.phone = response.data.phone;
+          this.address = response.data.address;
+          this.gender = response.data.gender;
+          this.dob = new Date(response.data.dob);
+        } else {
+          toast.warning(this.$t('TOAST_MESSAGE.GET_PROFILE_ERROR'));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
 }
 </script>
 

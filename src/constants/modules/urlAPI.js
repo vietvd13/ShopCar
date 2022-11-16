@@ -2,6 +2,9 @@ export default {
   // Api Auth
   LOGIN: '/auth/login',
   REFRESH_TOKEN: '/auth/relogin',
+  CHANGE_PASSWORD: '/auth/change-password',
+  USER_INFOR: '/auth/infor',
+  CHANGE_USER_INFOR: "/auth/change-infor",
 
   // Api Upload
   UPLOAD_IMAGE: '/upload/image',

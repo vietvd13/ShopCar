@@ -12,21 +12,23 @@
     <b-navbar-nav class="navbar-user">
       <b-nav-item-dropdown text="Lê Đình Thắng" right>
         <b-dropdown-item href="/dashboard/profile">Trang cá nhân</b-dropdown-item>
-        <b-dropdown-item href="#">Logout</b-dropdown-item>
+        <b-dropdown-item href="#" @click="handleLogout">Logout</b-dropdown-item>
       </b-nav-item-dropdown>
     </b-navbar-nav>
   </b-navbar>
 </template>
 
 <script>
+import CONSTANTS from '@/constants';
 import { asyncRoutes } from '@/routers';
-
+import Cookies from 'js-cookie';
 export default {
   name: 'NavbarDashboard',
   data() {
     return {
       asyncRoutes,
       routes: [],
+      CONSTANTS
     }
   },
   created() {
@@ -36,6 +38,13 @@ export default {
       this.routes = DASHBORAD;
     } else {
       this.routes.length = 0;
+    }
+  },
+  methods: {
+    handleLogout() {
+      Cookies.remove(CONSTANTS.COOKIES.REFRESH_TOKEN);
+      Cookies.remove(CONSTANTS.COOKIES.TOKEN);
+      this.$router.push({ name: 'HomeShopCar' });
     }
   },
 }
