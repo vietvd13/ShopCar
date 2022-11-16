@@ -59,7 +59,7 @@ export default {
   methods: {
     onClickCardCar(id) {
       if (id) {
-        let route = this.$router.resolve({ name: 'DetailCar', params: { id } });
+        let route = this.$router.resolve({ name: 'DetailCar', params: { id }});
 
         window.open(route.href);
       }

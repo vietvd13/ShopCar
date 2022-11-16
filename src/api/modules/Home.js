@@ -41,3 +41,7 @@ export function getListHappyMoment() {
 
   return request.postRequest(CONSTANTS.URL_API.GET_LIST_HAPPY_MOMENT, BODY, null);
 }
+
+export function postCreatSupport(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_CREATE_CUSTOMER_SUPPORT, BODY, PARAMS);
+}
