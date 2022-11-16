@@ -4,15 +4,17 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <router-link
-          v-for="route in routes.children"
-          :key="route.name"
-          :to="route.path"
-        >
+        <router-link v-for="route in routes.children" :key="route.name" :to="route.path">
           {{ $t(route.meta.title) }}
         </router-link>
       </b-navbar-nav>
     </b-collapse>
+    <b-navbar-nav class="navbar-user">
+      <b-nav-item-dropdown text="Lê Đình Thắng" right>
+        <b-dropdown-item href="/dashboard/profile">Trang cá nhân</b-dropdown-item>
+        <b-dropdown-item href="#">Logout</b-dropdown-item>
+      </b-nav-item-dropdown>
+    </b-navbar-nav>
   </b-navbar>
 </template>
 
@@ -56,5 +58,17 @@ export default {
     font-weight: bold;
     opacity: 1;
   }
+
+}
+
+.navbar-user {
+  ::v-deep .dropdown-toggle::after {
+    color: $white;
+  }
+
+  ::v-deep span {
+    color: $white;
+  }
+
 }
 </style>

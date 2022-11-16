@@ -40,6 +40,15 @@ const Dashboard = {
       },
       component: () => import(/* webpackChunkName: "Collaborators" */ '@/views/Dashboard/Collaborators.vue')
     },
+    {
+      path: 'profile',
+      name: 'ProfilePage',
+      meta: {
+        title: 'ROUTER.PROFILE'
+      },
+      hidden: true, 
+      component: () => import(/* webpackChunkName: "Profile" */ '@/views/Dashboard/Profile.vue')
+    }
   ]
 }
 

@@ -32,7 +32,8 @@ export default {
     COLLABORATORS_MANAGEMENT: 'Cộng tác viên',
     CAR_MANAGEMENT: 'Quản lý xe',
     HAPPY_MOMENT: 'Khoảng khắc vui vẻ',
-    CUSTOMER_SUPPORT: 'Hỗ trợ khách hàng'
+    CUSTOMER_SUPPORT: 'Hỗ trợ khách hàng',
+    PROFILE: "Thông tin cá nhân",
   },
   TOAST_MESSAGE: {
     VALIDATE_ACCOUNT_LOGIN: 'Định dạng tài khoản chưa chính xác. Vui lòng kiểm tra lại tài khoản',
