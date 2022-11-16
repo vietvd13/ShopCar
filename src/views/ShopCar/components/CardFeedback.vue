@@ -9,7 +9,9 @@
     </div>
 
     <div class="card-feedback__desc">
-      {{ feedback }}
+      <div class="desc-text">
+        {{ feedback }}
+      </div>
     </div>
   </div>
 </template>
@@ -49,8 +51,7 @@ export default {
 
   &__desc {
     width: 100%;
-    min-height: 30px;
-    padding: 10px;
+    padding: 0 10px;
     overflow: hidden;
     background-color: $white;
 
@@ -62,7 +63,14 @@ export default {
     justify-content: center;
     text-align: center;
 
-    font-size: 13px;
+    .desc-text {
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      margin: 5px 0;
+    }
   }
 
   margin-bottom: 20px;

@@ -24,8 +24,11 @@
 </template>
 
 <script>
-import { setLoading } from '@/utils/setLoading';
-import { getListCollaborators } from '@/api/modules/Home';
+// import { setLoading } from '@/utils/setLoading';
+import { 
+  getListCollaborators,
+  getListHappyMoment
+} from '@/api/modules/Home';
 import SearchHome from './components/Search.vue';
 import BannerHome from './components/Banner.vue';
 import FilterListCar from './components/FilterListCar.vue'
@@ -151,11 +154,8 @@ export default {
   },
   methods: {
     async handleInit() {
-      setLoading(true);
-
-      await this.handleGetAllCollaborators();
-      
-      setLoading(false);
+      this.handleGetAllCollaborators();
+      this.handleGetListHappyMoment();
     },
     async handleGetAllCollaborators() {
       try {
@@ -174,14 +174,31 @@ export default {
         this.listCollaborators = [];
         console.log(err);
       }
+    },
+    async handleGetListHappyMoment() {
+      try {
+        const { status_code, data } = await getListHappyMoment();
+
+        if (status_code === 200) {
+          this.listFeedback = data;
+        } else {
+          this.listFeedback = [];
+        }
+      } catch (err) {
+        this.listFeedback = [];
+        console.log(err);
+      }
     }
   },
 }
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/variables';
+
 .home-shop-car {
   overflow: hidden;
+  background-color: $seashell;
 
   &__content {
     margin-bottom: 10px;

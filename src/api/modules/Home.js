@@ -32,3 +32,12 @@ export function getListFuleType(BODY = null, PARAMS = null) {
 export function getListGearBox(BODY = null, PARAMS = null) {
   return request.getRequest(CONSTANTS.URL_API.GET_LIST_GEAR_BOX, BODY, PARAMS);
 }
+
+export function getListHappyMoment() {
+  const BODY = {
+    limit: 8,
+    page: 1
+  };
+
+  return request.postRequest(CONSTANTS.URL_API.GET_LIST_HAPPY_MOMENT, BODY, null);
+}

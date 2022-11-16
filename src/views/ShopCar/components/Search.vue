@@ -95,6 +95,8 @@ export default {
     padding: 10px;
     text-decoration: none;
     color: $white;
+    text-transform: capitalize;
+    font-weight: bold;
   }
 
   .router-link-active {

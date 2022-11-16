@@ -9,20 +9,20 @@ const Dashboard = {
   },
   children: [
     {
-      path: 'collaborators',
-      name: 'Collaborators',
-      meta: {
-        title: 'ROUTER.COLLABORATORS_MANAGEMENT'
-      },
-      component: () => import(/* webpackChunkName: "Collaborators" */ '@/views/Dashboard/Collaborators.vue')
-    },
-    {
       path: 'car-management',
       name: 'CarManagement',
       meta: {
         title: 'ROUTER.CAR_MANAGEMENT'
       },
       component: () => import(/* webpackChunkName: "CarManagement" */ '@/views/Dashboard/CarManagement.vue')
+    },
+    {
+      path: 'customer-support',
+      name: 'CustomerSupport',
+      meta: {
+        title: 'ROUTER.CUSTOMER_SUPPORT'
+      },
+      component: () => import(/* webpackChunkName: "CustomerSupport" */ '@/views/Dashboard/CustomerSupport.vue')
     },
     {
       path: 'happy-moment',
@@ -33,13 +33,13 @@ const Dashboard = {
       component: () => import(/* webpackChunkName: "HappyMoment" */ '@/views/Dashboard/HappyMoment.vue')
     },
     {
-      path: 'customer-support',
-      name: 'CustomerSupport',
+      path: 'collaborators',
+      name: 'Collaborators',
       meta: {
-        title: 'ROUTER.CUSTOMER_SUPPORT'
+        title: 'ROUTER.COLLABORATORS_MANAGEMENT'
       },
-      component: () => import(/* webpackChunkName: "CustomerSupport" */ '@/views/Dashboard/CustomerSupport.vue')
-    }
+      component: () => import(/* webpackChunkName: "Collaborators" */ '@/views/Dashboard/Collaborators.vue')
+    },
   ]
 }
 

@@ -10,8 +10,8 @@
           :key="idx"
         >
           <CardFeedBack 
-            :image="`${domainImage}${feedback.image}`"
-            :feedback="feedback.feedback"
+            :image="`${domainImage}${feedback.primary_image}`"
+            :feedback="feedback.content"
           />
         </b-col>
       </b-row>
