@@ -18,6 +18,8 @@ export default {
     TEXT_PER_PAGE_80: '80',
     TEXT_PER_PAGE_100: '100',
     IMPORT_IMAGE: 'Lựa chọn ảnh',
+    PLEASE_INPUT: 'Vui lòng nhập',
+    PLEASE_SELECT: 'Vui lòng lựa chọn'
   },
   TOAST: {
     SUCCESS: 'Thành công',
@@ -61,6 +63,15 @@ export default {
         CAR_BUYING_POLICY: 'Chính sách mua xe',
         INSURANCE: 'Bảo hiểm',
         CONTACT: 'Liên lạc',
+      },
+      FILTER: {
+        YEAR: 'Năm sản xuất',
+        CATEGORIES: 'Hãng xe',
+        COLOR: 'Màu sắc',
+        FUEL_TYPE: 'Loại nhiên liệu',
+        GEAR_BOX: 'Động cơ',
+        DISTANCE: 'Khoảng cách',
+        PRICE: 'Giá tiền'
       },
       SORT_LIST_CAR: {
         CAR_NAME: 'Tên xe',

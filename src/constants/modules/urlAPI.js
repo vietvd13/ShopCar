@@ -32,4 +32,10 @@ export default {
   POST_CREATE_CUSTOMER_SUPPORT: '/support/create',
   POST_DETAIL_CUSTOMER_SUPPORT: '/support/detail',
   POST_EDIT_CUSTOMER_SUPPORT: '/support/edit',
+
+  // Api Filter
+  GET_LIST_CATEGORIES: '/category/list',
+  GET_LIST_COLOR: '/filter/color',
+  GET_LIST_FUEL_TYPE: '/filter/fuel-type',
+  GET_LIST_GEAR_BOX: '/filter/gearbox',
 };

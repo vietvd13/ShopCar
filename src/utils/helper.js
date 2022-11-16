@@ -23,7 +23,33 @@ function replaceValueWithIndex(oldArr = [], newArr = [], listIndex = []) {
     })
 }
 
+function generateSelect(arr = [], generateNewArr = false, value_key = 'id', text_key = 'name') {
+    const len = arr.length;
+    let idx = 0;
+
+    const result = [];
+
+    while (idx < len) {
+        if (generateNewArr) {
+            result.push({
+                value: arr[idx],
+                text: arr[idx],
+            })
+        } else {
+            result.push({
+                value: arr[idx][value_key],
+                text: arr[idx][text_key],
+            })
+        }
+
+        idx++;
+    }
+
+    return result;
+}
+
 export {
     getArrValueOfArr,
-    replaceValueWithIndex
+    replaceValueWithIndex,
+    generateSelect
 }

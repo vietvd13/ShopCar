@@ -3,17 +3,21 @@
     <div class="home-shop-car__content">
       <b-container>
         <div class="content-carousel">
-            <BannerHome />
-            <SearchHome />
-          </div>
+          <BannerHome />
+          <SearchHome />
+        </div>
 
-          <div class="content-hotsale">
-            <HotSaleHome :items="listHotSale" />
-          </div>
-          
-          <div class="content-customer-feedback">
-            <CustomerFeedbackHome :items="listFeedback" />
-          </div>
+        <div class="content-filter">
+          <FilterListCar />
+        </div>
+
+        <div class="content-hotsale">
+          <HotSaleHome :items="listHotSale" />
+        </div>
+        
+        <div class="content-customer-feedback">
+          <CustomerFeedbackHome :items="listFeedback" />
+        </div>
       </b-container>
     </div>
   </div>
@@ -24,6 +28,7 @@ import { setLoading } from '@/utils/setLoading';
 import { getListCollaborators } from '@/api/modules/Home';
 import SearchHome from './components/Search.vue';
 import BannerHome from './components/Banner.vue';
+import FilterListCar from './components/FilterListCar.vue'
 import HotSaleHome from './components/HotSale.vue';
 import CustomerFeedbackHome from './components/CustomerFeedback.vue';
 
@@ -32,6 +37,7 @@ export default {
   components: {
     SearchHome,
     BannerHome,
+    FilterListCar,
     HotSaleHome,
     CustomerFeedbackHome
   },
@@ -180,10 +186,11 @@ export default {
   &__content {
     margin-bottom: 10px;
 
-    .content-hotsale {
+    .content-filter {
       margin-top: 10px;
     }
 
+    .content-filter,
     .content-hotsale,
     .content-customer-feedback {
       margin-bottom: 10px;
