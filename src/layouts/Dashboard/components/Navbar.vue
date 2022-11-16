@@ -4,17 +4,19 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <router-link v-for="route in routes.children" :key="route.name" :to="route.path">
+        <router-link v-for="route in routes" :key="route.name" :to="route.path">
           {{ $t(route.meta.title) }}
         </router-link>
       </b-navbar-nav>
     </b-collapse>
+
     <b-navbar-nav class="navbar-user">
       <b-nav-item-dropdown text="Lê Đình Thắng" right>
         <b-dropdown-item href="/dashboard/profile">Trang cá nhân</b-dropdown-item>
         <b-dropdown-item href="#" @click="handleLogout">Logout</b-dropdown-item>
       </b-nav-item-dropdown>
     </b-navbar-nav>
+    
   </b-navbar>
 </template>
 
@@ -22,6 +24,7 @@
 import CONSTANTS from '@/constants';
 import { asyncRoutes } from '@/routers';
 import Cookies from 'js-cookie';
+
 export default {
   name: 'NavbarDashboard',
   data() {
@@ -35,7 +38,7 @@ export default {
     const DASHBORAD = this.asyncRoutes.find((route) => route.name === 'Dashboard');
 
     if (DASHBORAD) {
-      this.routes = DASHBORAD;
+      this.routes = (DASHBORAD.children).filter((route) => route.hidden !== true);
     } else {
       this.routes.length = 0;
     }
