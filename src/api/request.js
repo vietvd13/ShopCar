@@ -70,9 +70,9 @@ service.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    const { error_code, message } = error.response.data;
+    const { status_code, message } = error.response.data;
 
-    if (error_code === 500 && message === 'jwt expired') {
+    if (status_code === 500 && message === 'jwt expired') {
       try {
         const BODY = {
           refresh_token: getRefreshToken(),

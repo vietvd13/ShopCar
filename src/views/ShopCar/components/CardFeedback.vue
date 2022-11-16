@@ -46,6 +46,8 @@ export default {
     img {
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
+      height: 190px;
+      object-fit: scale-down;
     }
   }
 
