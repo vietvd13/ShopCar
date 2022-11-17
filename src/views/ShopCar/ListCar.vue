@@ -1,8 +1,8 @@
 <template>
   <div class="list-car">
     <div class="list-car__content">
-      <div class="content-carousel">
-        <SearchHome />
+      <div class="content-filter">
+        <FilterListCar />
       </div>
 
       <div class="content-sort">
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import SearchHome from './components/Search.vue';
+import FilterListCar from './components/FilterListCar.vue';
 import SortListCar from './components/SortListCar.vue';
 import ListCardCar from './components/ListCardCar.vue';
 
@@ -38,7 +38,7 @@ import { getListCar } from '../../api/modules/Home';
 export default {
   name: 'ListCar',
   components: {
-    SearchHome,
+    FilterListCar,
     SortListCar,
     ListCardCar
   },
@@ -150,7 +150,12 @@ export default {
 
   &__content {
     margin-bottom: 10px;
-    .content-carousel,
+
+    .content-filter {
+      margin-top: 10px;
+    }
+
+    .content-filter,
     .content-customer-feedback {
       margin-bottom: 10px;
     }
