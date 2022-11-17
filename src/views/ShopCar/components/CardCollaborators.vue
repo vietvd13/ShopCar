@@ -43,9 +43,9 @@ export default {
   name: 'CardCollaborators',
   props: {
     avatar: {
-      type: String,
+      type: [String],
       default: '',
-      required: true,
+      required: false,
     },
     fullname: {
       type: String,
@@ -87,7 +87,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/variables';
+@import '@/scss/variables';
 
 .card-collaborators {
   width: 100%;
@@ -101,6 +101,8 @@ export default {
 
   &__img {
     text-align: center;
+    min-height: 189px;
+
     img {
       width: 155px;
       border-radius: 5px;

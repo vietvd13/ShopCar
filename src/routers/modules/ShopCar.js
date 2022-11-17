@@ -37,6 +37,11 @@ const ShopCar = {
       path: 'contact',
       name: 'Contact',
       component: () => import(/* webpackChunkName: "Contact" */ '@/views/ShopCar/Contact.vue')
+    },
+    {
+      path: 'all-collaborators',
+      name: 'AllCollaborators',
+      component: () => import(/* webpackChunkName: "AllCollaborators" */ '@/views/ShopCar/AllCollaborators')
     }
   ]
 };

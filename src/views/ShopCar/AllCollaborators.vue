@@ -20,42 +20,49 @@
                 </b-col>
             </b-row>
         </div>
-
-        <div class="show-more text-right" @click="goToViewAll()">
-            {{ $t('APP.TEXT_VIEW_MORE') }}
-        </div>
     </div>
 </template>
 
 <script>
-import TitleContent from './TitleContent.vue';
-import CardCollaborators from '../components/CardCollaborators.vue';
+import { setLoading } from '@/utils/setLoading';
+import { getAllCollaborators } from '@/api/modules/Home';
+import TitleContent from './components/TitleContent.vue';
+import CardCollaborators from './components/CardCollaborators.vue';
 
 export default {
-    name: 'ListCollaboratorsHome',
+    name: 'AllCollaborators',
     components: {
         TitleContent,
-        CardCollaborators
+        CardCollaborators,
     },
-    props: {
-        items: {
-            type: Array,
-            default: () => {
-                return [];
-            }
-        },
-    },
-    computed: {
-        domainImage() {
-            return process.env.VUE_APP_URL_IMAGE;
+    data() {
+        return {
+            items: [],
         }
     },
+    created () {
+        this.initData();
+    },
     methods: {
-        goToViewAll() {
-            const ROUTER_NAME = this.$router.currentRoute.name;
+        async initData() {
+            setLoading(true);
 
-            if (ROUTER_NAME !== 'AllCollaborators') {
-                this.$router.push({ name: 'AllCollaborators' });
+            await this.handleGetAllCollaborators();
+
+            setLoading(false);
+        },
+        async handleGetAllCollaborators() {
+            try {
+                const { status_code, data } = await getAllCollaborators();
+
+                if (status_code === 200) {
+                    this.items = data;
+                } else {
+                    this.items = [];
+                }
+            } catch (err) {
+                this.items = [];
+                console.log(err);
             }
         }
     },
@@ -66,11 +73,6 @@ export default {
 @import '@/scss/variables';
 
 .list-collaborators-home {
-    .show-more {
-        margin-bottom: 5px;
-        color: $main;
-        font-weight: 600;
-        cursor: pointer;
-    }
+    margin-top: 10px;
 }
 </style>

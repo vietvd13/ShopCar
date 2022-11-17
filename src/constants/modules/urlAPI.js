@@ -22,6 +22,7 @@ export default {
   GET_DETAIL_COLLABORATORS: '/staff',
   POST_EDIT_COLLABORATORS: '/staff/edit',
   POST_DELETE_COLLABORATORS: '/staff/remove',
+  GET_LIST_COLLABORATORS_PUBLIC: '/staff/list-public',
 
   // Api Khoảnh khắc vui vẻ
   GET_LIST_HAPPY_MOMENT: '/review/list',

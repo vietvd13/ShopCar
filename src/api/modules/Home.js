@@ -49,3 +49,7 @@ export function postCreatSupport(BODY = null, PARAMS = null) {
 export function getBanner(BODY = null, PARAMS = null) {
   return request.getRequest(CONSTANTS.URL_API.GET_BANNER, BODY, PARAMS);
 }
+
+export function getAllCollaborators(BODY = null, PARAMS = null) {
+  return request.getRequest(CONSTANTS.URL_API.GET_LIST_COLLABORATORS_PUBLIC, BODY, PARAMS);
+}
