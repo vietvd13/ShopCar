@@ -45,3 +45,7 @@ export function getListHappyMoment() {
 export function postCreatSupport(BODY = null, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.POST_CREATE_CUSTOMER_SUPPORT, BODY, PARAMS);
 }
+
+export function getBanner(BODY = null, PARAMS = null) {
+  return request.getRequest(CONSTANTS.URL_API.GET_BANNER, BODY, PARAMS);
+}

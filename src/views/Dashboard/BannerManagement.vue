@@ -3,7 +3,7 @@
         <div class="banner-management__preview text-center">
             <div class="show-image">
                 <b-img 
-                    :src="`${domainImage}${urlBanner}`"
+                    :src="handlePreviewBanner()"
                     fluid
                     thumbnail 
                 />
@@ -22,7 +22,7 @@
                 <b-col>
                     <b-button
                         class="btn-app"
-                        @click="previewImage()"
+                        @click="onClickUploadImage()"
                     >
                         {{ $t('APP.PREVIEW') }}
                     </b-button>
@@ -31,7 +31,7 @@
                 <b-col>
                     <b-button
                         class="btn-app"
-                        @click="uploadBanner()"
+                        @click="handleEditBanner()"
                     >
                         {{ $t('APP.UPDATE_BANNER') }}
                     </b-button>
@@ -42,16 +42,19 @@
 </template>
 
 <script>
-import { 
-    getBanner
-} from '@/api/modules/Dashboard';
+import { setLoading } from '@/utils/setLoading';
+import { getBanner, postEditBanner } from '@/api/modules/Dashboard';
+import { postImage } from '@/api/modules/Upload';
+import Toast from '@/toast';
 
 export default {
     name: 'BannerManagement',
     data() {
         return {
+            type: 'API',
             urlBanner: '',
-            fileBanner: null
+            fileBanner: null,
+            previewImage: null,
         }
     },
     computed: {
@@ -59,13 +62,29 @@ export default {
             return process.env.VUE_APP_URL_IMAGE; 
         }
     },
+    watch: {
+        fileBanner() {
+            if (this.fileBanner) {
+                this.previewImage = URL.createObjectURL(this.fileBanner);
+                this.type = 'UPLOAD';
+            }
+        }
+    },
     created () {
-        this.handleGetBanner();
+        this.initData();
     },
     methods: {
+        async initData() {
+            setLoading(true);
+
+            await this.handleGetBanner();
+
+            setLoading(false);
+        },
         async handleGetBanner() {
             try {
                 const { status_code, data } = await getBanner();
+                this.type = 'API';
 
                 if (status_code === 200) {
                     this.urlBanner = data;
@@ -77,11 +96,75 @@ export default {
                 console.log(err);
             }
         },
-        previewImage() {
+        onClickUploadImage() {
             this.$refs.banner.$el.click();
         },
-        async uploadBanner() {
+        handlePreviewBanner() {
+            if (this.type === 'API') {
+                return `${this.domainImage}${this.urlBanner}`;
+            }
 
+            if (this.type === 'UPLOAD') {
+                return this.previewImage;
+            }
+
+            return '';
+        },
+        async uploadBanner() {
+            try {
+                const BANNER = this.fileBanner;
+
+                const { status_code, data } = await postImage(BANNER);
+
+                if (status_code === 200) {
+                    return data.image;
+                }
+
+                return null;
+            } catch (err) {
+                console.log(err);
+
+                return null;
+            }
+        },
+        async handleEditBanner() {
+            try {
+                setLoading(true);
+
+                let BANNER = null;
+
+                if (this.type === 'API') {
+                    BANNER = this.urlBanner;
+                }
+
+                if (this.type === 'UPLOAD') {
+                    BANNER = await this.uploadBanner();
+                }
+
+                const BODY = {
+                    image: BANNER
+                }
+
+                const { status_code } = await postEditBanner(BODY);
+
+                
+                if (status_code === 200) { 
+                    Toast.success(this.$t('TOAST_MESSAGE.UPDATE_BANNER_SUCCESS'));
+                } else {
+                    Toast.warning(this.$t('TOAST_MESSAGE.UPDATE_BANNER_ERROR'));
+                }
+                
+                await this.handleGetBanner();
+
+                setLoading(false);
+            } catch (err) {
+                await this.handleGetBanner();
+
+                Toast.warning(this.$t('TOAST_MESSAGE.UPDATE_BANNER_ERROR'));
+
+                setLoading(false);
+                console.log(err);
+            }
         }
     },
 }
@@ -94,8 +177,17 @@ export default {
     &__preview {
         margin-bottom: 10px;
 
-        #import-banner {
-            display: none;
+        .show-image {
+            height: 370px;
+
+            img {
+                object-fit: scale-down;
+                height: 370px;
+            }
+
+            #import-banner {
+                display: none;
+            }
         }
     }
 

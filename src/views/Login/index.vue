@@ -53,8 +53,8 @@ export default {
   data() {
     return {
       Account: {
-        email: 'thangld2407@gmail.com',
-        password: 'admin',
+        email: 'vuducviet0131@gmail.com',
+        password: '123456',
       }
     }
   },

@@ -72,6 +72,9 @@ export default {
 
     CREATE_CUSTOMER_SUPPORT_SUCCESS: "Bạn đã tạo liên hệ hỗ trợ thành công. Vui lòng chờ đợi phản hồi của chúng tôi",
     CREATE_CUSTOMER_SUPPORT_ERROR: "Bạn chưa tạo liên hệ hỗ trợ thành công, vui lòng thử lại",
+
+    UPDATE_BANNER_SUCCESS: 'Bạn đã cập nhật banner thành công',
+    UPDATE_BANNER_ERROR: 'Bạn đã cập nhật banner thất bại',
   },
   SHOP_CAR: {
     HOME: {

@@ -1,21 +1,63 @@
 <template>
-  <b-img 
-    src="http://images.atonmobility.com/myshop3/admin/images/banner/222/1649901395.jpg"
-    fluid
-    center
-    class="banner-home"
-  />
+  <div v-if="urlBanner">
+    <b-img 
+      :src="`${domainImage}${urlBanner}`"
+      fluid
+      center
+      class="banner-home"
+    />
+  </div>
+
+  <div v-else>
+    
+  </div>
 </template>
 
 <script>
+import { getBanner } from '@/api/modules/Home';
+
 export default {
-  name: 'CarouselHome'
+  name: 'CarouselHome',
+  computed: {
+    domainImage() {
+      return process.env.VUE_APP_URL_IMAGE; 
+    }
+  },
+  data() {
+    return {
+      urlBanner: ''
+    }
+  },
+  created () {
+    this.initData();
+  },
+  methods: {
+    async initData() {
+      await this.handleGetBanner();
+    },
+    async handleGetBanner() {
+      try {
+        const { status_code, data } = await getBanner();
+
+        if (status_code === 200) {
+          this.urlBanner = data;
+        } else {
+          this.urlBanner = '';
+        }
+      } catch (err) {
+        this.urlBanner = '';
+        console.log(err);
+      }
+    }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .banner-home {
   width: 100%;
-  height: auto;
+  height: 370px;
+
+  object-fit: cover;
 }
 </style>
