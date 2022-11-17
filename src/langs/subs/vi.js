@@ -43,6 +43,7 @@ export default {
     CUSTOMER_SUPPORT: "Hỗ trợ khách hàng",
     BANNER_MANAGEMENT: 'Quản lý banner',
     PROFILE: "Thông tin cá nhân",
+    POLICY_MANAGEMENT: "Quản lý chính sách"
   },
   TOAST_MESSAGE: {
     CHANGE_LANGUAGE_SUCCESS: "Bạn đã thay đổi ngôn ngữ thành công",
