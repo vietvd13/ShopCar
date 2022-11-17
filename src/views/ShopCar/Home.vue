@@ -1,10 +1,6 @@
 <template>
   <div class="home-shop-car">
     <div class="home-shop-car__content">
-      <div class="content-carousel">
-        <SearchHome />
-      </div>
-
       <div class="content-filter">
         <FilterListCar />
       </div>
@@ -17,14 +13,12 @@
 </template>
 
 <script>
-import SearchHome from './components/Search.vue';
-import FilterListCar from './components/FilterListCar.vue'
+import FilterListCar from './components/FilterListCar.vue';
 import HotSaleHome from './components/HotSale.vue';
 
 export default {
   name: 'HomeShopCar',
   components: {
-    SearchHome,
     FilterListCar,
     HotSaleHome,
   },

@@ -2,6 +2,7 @@
   <div class="app-shop" :style="handleOverflow">
     <b-container>
       <Banner />
+      <Search />
       <AppMain />
       <div class="app-shope__happy-moment">
         <CustomerFeedback :items="listFeedback" />
@@ -24,6 +25,7 @@ import {
 } from '@/api/modules/Home';
 
 import Banner from '@/views/ShopCar/components/Banner.vue';
+import Search from '@/views/ShopCar/components/Search.vue';
 import AppMain from './components/AppMain.vue';
 import CustomerFeedback from '@/views/ShopCar/components/CustomerFeedback.vue';
 import ListCollaborators from '@/views/ShopCar/components/ListCollaborators.vue';
@@ -34,6 +36,7 @@ export default {
   name: 'LayoutShopCar',
   components: {
     Banner,
+    Search,
     AppMain,
     CustomerFeedback,
     ListCollaborators,

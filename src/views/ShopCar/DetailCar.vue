@@ -1,10 +1,6 @@
 <template>
   <div class="detail-car">
     <div class="detail-car__content">
-      <div class="content-search">
-        <SearchHome />
-      </div>
-
       <div class="content-basic-infor">
         <BasicInforCar 
           :name="isCar.car_name"
@@ -122,7 +118,6 @@
 </template>
 
 <script>
-import SearchHome from './components/Search.vue';
 import BasicInforCar from './components/BasicInforCar.vue';
 import PreviewImage from './components/PreviewImage.vue';
 
@@ -131,7 +126,6 @@ import { getDetailCar } from '../../api/modules/Home';
 export default {
   name: 'DetailCar',
   components: {
-    SearchHome,
     BasicInforCar,
     PreviewImage
   },
