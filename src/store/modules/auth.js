@@ -22,10 +22,30 @@ function getRefreshToken() {
   return '';
 }
 
+function getProfile() {
+  const PROFILE = Cookies.get(CONSTANTS.COOKIES.PROFILE);
+
+  if (PROFILE) {
+    return JSON.parse(PROFILE);
+  }
+
+  return {
+    email: '',
+    name: '',
+    dob: '',
+    address: '',
+    phone_number: '',
+    root_user: '',
+    gender: '',
+    email_notification: '',
+  }
+}
+
 const state = {
   initApp: 0,
   token: getToken(),
   refresh_token: getRefreshToken(),
+  profile: getProfile()
 };
 
 const mutations = {
@@ -39,6 +59,28 @@ const mutations = {
   SET_REFRESH_TOKEN: (state, refresh_token) => {
     state.refresh_token = refresh_token;
     Cookies.set(CONSTANTS.COOKIES.REFRESH_TOKEN, refresh_token);
+  },
+  SET_PROFILE: (state, profile) => {
+    state.profile = profile;
+    Cookies.set(CONSTANTS.COOKIES.PROFILE, JSON.stringify (profile));
+  },
+  LOGOUT: (state) => {
+    Cookies.remove(CONSTANTS.COOKIES.TOKEN);
+    Cookies.remove(CONSTANTS.COOKIES.REFRESH_TOKEN);
+    Cookies.remove(CONSTANTS.COOKIES.PROFILE);
+
+    state.token = '';
+    state.refresh_token = '';
+    state.profile = {
+      email: '',
+      name: '',
+      dob: '',
+      address: '',
+      phone_number: '',
+      root_user: '',
+      gender: '',
+      email_notification: ''
+    };
   }
 };
 
@@ -65,6 +107,12 @@ const actions = {
   removeAsyncRoutes() {
     resetRouter();
     router.push({ name: 'ShopCar' });
+  },
+  setProfile({ commit }, profile) {
+    commit('SET_PROFILE', profile);
+  },
+  logout({ commit }) {
+    commit('LOGOUT');
   }
 };
 

@@ -11,9 +11,17 @@
     </b-collapse>
 
     <b-navbar-nav class="navbar-user">
-      <b-nav-item-dropdown text="Lê Đình Thắng" right>
-        <b-dropdown-item href="/dashboard/profile">Trang cá nhân</b-dropdown-item>
-        <b-dropdown-item href="#" @click="handleLogout">Logout</b-dropdown-item>
+      <b-nav-item-dropdown :text="fullname" right>
+        <b-dropdown-item 
+          @click="onClickProfile()"
+        >
+          {{ $t('SHOP_CAR.HOME.PROFILE.TITLE') }}
+        </b-dropdown-item>
+        <b-dropdown-item 
+          @click="handleLogout"
+        >
+          {{ $t('SHOP_CAR.HOME.LOGOUT.TITLE') }}
+        </b-dropdown-item>
       </b-nav-item-dropdown>
     </b-navbar-nav>
     
@@ -23,7 +31,7 @@
 <script>
 import CONSTANTS from '@/constants';
 import { asyncRoutes } from '@/routers';
-import Cookies from 'js-cookie';
+import Toast from '@/toast';
 
 export default {
   name: 'NavbarDashboard',
@@ -43,11 +51,25 @@ export default {
       this.routes.length = 0;
     }
   },
+  computed: {
+    fullname() {
+      return this.$store.getters.profile.name || ''; 
+    }
+  },
   methods: {
+    onClickProfile() {
+      if (this.$router.currentRoute.name !== 'ProfilePage') {
+        this.$router.push({ name: 'ProfilePage' });
+      }
+    },
     handleLogout() {
-      Cookies.remove(CONSTANTS.COOKIES.REFRESH_TOKEN);
-      Cookies.remove(CONSTANTS.COOKIES.TOKEN);
-      this.$router.push({ name: 'HomeShopCar' });
+      this.$store.dispatch('auth/logout')
+        .then(() => {
+          this.$router.push({ name: 'HomeShopCar' });
+        })
+        .catch(() => {
+          Toast.warning(this.$t('TOAST_MESSAGE.LOGOUT_ERROR'))
+        })
     }
   },
 }
@@ -63,12 +85,14 @@ export default {
     padding: 10px;
     text-decoration: none;
     color: $white;
-    opacity: 0.8;
+    font-weight: 600;
+    text-transform: capitalize;
   }
 
   .router-link-active {
-    font-weight: bold;
+    font-weight: 600;
     opacity: 1;
+    color: $sub-main;
   }
 
 }
@@ -80,6 +104,8 @@ export default {
 
   ::v-deep span {
     color: $white;
+    margin-right: 10px;
+    text-transform: capitalize;
   }
 
 }

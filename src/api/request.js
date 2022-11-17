@@ -35,14 +35,11 @@ function goToShop() {
 }
 
 function handleLogout() {
-  store.dispatch('auth/setToken', '')
-  .then(() => {
-    store.dispatch('auth/setRefreshToken', '')
-      .then(() => {
-        resetRouter();
-        goToShop();
-      })
-  }); 
+  store.dispatch('auth/logout')
+    .then(() => {
+      resetRouter();
+      goToShop();
+    });
 }
 
 service.interceptors.request.use(

@@ -75,22 +75,32 @@ export default {
           password: this.Account.password
         };
 
-        const TOKEN = await postLogin(BODY);
+        const { status_code, access_token, refresh_token, user } = await postLogin(BODY);
 
-        this.$store.dispatch('auth/setToken', TOKEN.access_token)
+        if (status_code === 200) {
+          this.$store.dispatch('auth/setToken', access_token)
           .then(() => {
-            this.$store.dispatch('auth/setRefreshToken', TOKEN.refresh_token)
+            this.$store.dispatch('auth/setRefreshToken', refresh_token)
               .then(() => {
                 this.$store.dispatch('auth/setAsyncRoutes')
                   .then(() => {
-                    this.$router.push({ name: 'Dashboard' })
+                    this.$store.dispatch('auth/setProfile', user)
+                      .then(() => {
+                        this.$router.push({ name: 'Dashboard' });
+                      })
                   })
               })
+          }).catch(() => {
+            Toast.warning(this.$t('TOAST_MESSAGE.LOGIN_ERROR'));
           })
+        } else {
+          Toast.warning(this.$t('TOAST_MESSAGE.LOGIN_ERROR'));
+        }
 
         setLoading(false);
       } catch (err) {
-        this.$store.dispatch('auth/setAsyncRoutes');
+        Toast.warning(this.$t('TOAST_MESSAGE.LOGIN_ERROR'));
+        
         setLoading(false);
         console.log(err);
       }

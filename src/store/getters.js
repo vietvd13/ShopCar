@@ -5,6 +5,7 @@ const getters = {
   initApp: state => state.auth.initApp,
   token: state => state.auth.token,
   refresh_token: state => state.auth.refresh_token,
+  profile: state => state.auth.profile,
 };
 
 export default getters;

@@ -45,15 +45,15 @@ export default {
     CHANGE_LANGUAGE_SUCCESS: "Bạn đã thay đổi ngôn ngữ thành công",
     CHANGE_LANGUAGE_ERROR: "Bạn đã thay đổi ngôn ngữ thất bại",
 
-    VALIDATE_ACCOUNT_LOGIN:
-      "Định dạng tài khoản chưa chính xác. Vui lòng kiểm tra lại tài khoản",
+    VALIDATE_ACCOUNT_LOGIN: "Định dạng tài khoản chưa chính xác. Vui lòng kiểm tra lại tài khoản",
+    LOGIN_ERROR: 'Đăng nhập thất bại, vui lòng kiểm tra lại tài khoản',
+
+    LOGOUT_ERROR: 'Đăng xuất thất bại',
 
     CREATE_COLLABORATORS_SUCCESS: "Bạn đã tạo cộng tác viên thành công",
     CREATE_COLLABORATORS_ERROR: "Bạn đã tạo cộng tác viên thất bại",
-    EDIT_COLLABORATORS_SUCCESS:
-      "Bạn đã chỉnh sửa thông tin cộng tác viên thành công",
-    EDIT_COLLABORATORS_ERROR:
-      "Bạn đã chỉnh sửa thông tin cộng tác viên thất bại",
+    EDIT_COLLABORATORS_SUCCESS: "Bạn đã chỉnh sửa thông tin cộng tác viên thành công",
+    EDIT_COLLABORATORS_ERROR: "Bạn đã chỉnh sửa thông tin cộng tác viên thất bại",
     DELETE_COLLABORATORS_SUCCESS: "Bạn đã xoá cộng tác viên thành công",
     DELETE_COLLABORATORS_ERROR: "Bạn đã xoá cộng tác viên thất bại",
 
@@ -67,10 +67,8 @@ export default {
     EDIT_CUSTOMER_SUPPORT_SUCCESS: "Bạn đã cập nhật trạng thái thành công",
     EDIT_CUSTOMER_SUPPORT_ERROR: "Bạn đã cập nhật trạng thái thất bại",
 
-    CREATE_CUSTOMER_SUPPORT_SUCCESS:
-      "Bạn đã tạo liên hệ hỗ trợ thành công. Vui lòng chờ đợi phản hồi của chúng tôi",
-    CREATE_CUSTOMER_SUPPORT_ERROR:
-      "Bạn chưa tạo liên hệ hỗ trợ thành công, vui lòng thử lại",
+    CREATE_CUSTOMER_SUPPORT_SUCCESS: "Bạn đã tạo liên hệ hỗ trợ thành công. Vui lòng chờ đợi phản hồi của chúng tôi",
+    CREATE_CUSTOMER_SUPPORT_ERROR: "Bạn chưa tạo liên hệ hỗ trợ thành công, vui lòng thử lại",
   },
   SHOP_CAR: {
     HOME: {
@@ -120,6 +118,12 @@ export default {
         CONTENT: "Nội dung",
         SEND: "Gửi",
       },
+      PROFILE: {
+        TITLE: 'Trang cá nhân',
+      },
+      LOGOUT: {
+        TITLE: 'Đăng xuất'
+      }
     },
     DETAIL_CAR: {
       TITLE_BASIC_INFOR: "Thông tin cơ bản",
