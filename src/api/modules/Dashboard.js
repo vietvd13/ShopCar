@@ -51,3 +51,12 @@ export function getListCustomerSupport(BODY = null, PARAMS = null) {
 export function postEditCustomerSupport(BODY = null, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.POST_EDIT_CUSTOMER_SUPPORT, BODY, PARAMS);
 }
+
+// Banner
+export function getBanner(BODY = null, PARAMS = null) {
+  return request.getRequest(CONSTANTS.URL_API.GET_BANNER, BODY, PARAMS);
+}
+
+export function postEditBanner(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_EDIT_BANNER, BODY, PARAMS);
+}

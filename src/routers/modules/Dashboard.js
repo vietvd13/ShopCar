@@ -41,6 +41,14 @@ const Dashboard = {
       component: () => import(/* webpackChunkName: "Collaborators" */ '@/views/Dashboard/Collaborators.vue')
     },
     {
+      path: 'banner',
+      name: 'Banner',
+      meta: {
+        title: 'ROUTER.BANNER_MANAGEMENT',
+      },
+      component: () => import(/* webpackChunkName: "BannerManagement" */ '@/views/Dashboard/BannerManagement.vue')
+    },
+    {
       path: 'profile',
       name: 'ProfilePage',
       meta: {

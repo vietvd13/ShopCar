@@ -41,4 +41,8 @@ export default {
   GET_LIST_COLOR: '/filter/color',
   GET_LIST_FUEL_TYPE: '/filter/fuel-type',
   GET_LIST_GEAR_BOX: '/filter/gearbox',
+
+  // Api Banner
+  GET_BANNER: '/home/banner/get',
+  POST_EDIT_BANNER: '/home/banner/update',
 };

@@ -22,6 +22,8 @@ export default {
     PLEASE_INPUT: "Vui lòng nhập",
     PLEASE_SELECT: "Vui lòng lựa chọn",
     TEXT_VIEW_MORE: "Xem toàn bộ...",
+    PREVIEW: 'Preview',
+    UPDATE_BANNER: 'Cập nhật banner',
   },
   TOAST: {
     SUCCESS: "Thành công",
@@ -39,6 +41,7 @@ export default {
     CAR_MANAGEMENT: "Quản lý xe",
     HAPPY_MOMENT: "Khoảng khắc vui vẻ",
     CUSTOMER_SUPPORT: "Hỗ trợ khách hàng",
+    BANNER_MANAGEMENT: 'Quản lý banner',
     PROFILE: "Thông tin cá nhân",
   },
   TOAST_MESSAGE: {
