@@ -21,7 +21,7 @@ export default {
     IMPORT_IMAGE: "Lựa chọn ảnh",
     PLEASE_INPUT: "Vui lòng nhập",
     PLEASE_SELECT: "Vui lòng lựa chọn",
-    TEXT_VIEW_MORE: "Hiển thị thêm...",
+    TEXT_VIEW_MORE: "Xem toàn bộ...",
   },
   TOAST: {
     SUCCESS: "Thành công",
