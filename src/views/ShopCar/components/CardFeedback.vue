@@ -43,6 +43,8 @@ export default {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
   &__img {
+    text-align: center;
+    
     img {
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
