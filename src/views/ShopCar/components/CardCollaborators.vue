@@ -1,7 +1,11 @@
 <template>
   <div class="card-collaborators">
     <div class="card-collaborators__img">
-      <b-img :src="`${domainImage}${avatar}`" />
+      <b-img-lazy 
+        :src="`${domainImage}${avatar}`"
+        :blank-src="require('@/assets/images/noimage.webp')"
+        alt="Image Collaborators"
+      />
     </div>
 
     <div class="card-collaborators__fullname">

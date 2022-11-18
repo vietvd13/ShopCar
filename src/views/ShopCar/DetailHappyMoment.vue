@@ -27,8 +27,9 @@
                     v-for="image in HappyMoment.images"
                     :key="image"
                 >
-                    <b-img 
+                    <b-img-lazy  
                         :src="`${domainImage}${image}`"
+                        :blank-src="require('@/assets/images/noimage.webp')"
                         fluid
                         thumbnail
                     />

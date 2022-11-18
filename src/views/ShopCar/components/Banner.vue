@@ -1,16 +1,12 @@
 <template>
-  <div v-if="urlBanner">
-    <b-img 
-      :src="`${domainImage}${urlBanner}`"
-      fluid
-      center
-      class="banner-home"
-    />
-  </div>
-
-  <div v-else>
-    
-  </div>
+  <b-img-lazy
+    :src="`${domainImage}${urlBanner}`"
+    :blank-src="require('@/assets/images/noimage.webp')"
+    fluid
+    center
+    class="banner-home"
+    alt="Banner Home"
+  />
 </template>
 
 <script>

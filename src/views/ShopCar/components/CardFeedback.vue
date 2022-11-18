@@ -4,10 +4,11 @@
     @click="goToDetail()"
   >
     <div class="card-feedback__img">
-      <b-img 
-        :src="`${domainImage}${image}`" 
+      <b-img-lazy 
+        :src="`${domainImage}${image}`"
+        :blank-src="require('@/assets/images/noimage.webp')" 
         fluid 
-        alt="Customer Feedback Image" 
+        alt="Customer Feedback Image"
       />
     </div>
 

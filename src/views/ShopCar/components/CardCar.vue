@@ -1,10 +1,11 @@
 <template>
   <div class="card-car" @click="onClickCardCar(carId)">
     <div class="card-car__img">
-      <b-img 
-        :src="`${domainImage}${carImage}`" 
+      <b-img-lazy 
+        :src="`${domainImage}${carImage}`"
+        :blank-src="require('@/assets/images/noimage.webp')"
         fluid 
-        :alt="carName" 
+        :alt="carName"
       />
     </div>
     <div class="card-car__desc">
