@@ -69,7 +69,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/variables';
+@import '@/scss/variables';
 
 .card-car {
   border-radius: 5px;

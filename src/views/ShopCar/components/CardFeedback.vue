@@ -59,6 +59,7 @@ export default {
   border-radius: 5px;
   cursor: pointer;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: $white;
 
   &__img {
     text-align: center;
@@ -67,7 +68,7 @@ export default {
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
       height: 190px;
-      object-fit: scale-down;
+      object-fit: cover;
     }
   }
 
@@ -86,10 +87,11 @@ export default {
     text-align: center;
 
     .desc-text {
-      width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
 
       margin: 5px 0;
     }
