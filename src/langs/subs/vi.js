@@ -133,11 +133,14 @@ export default {
       }
     },
     DETAIL_CAR: {
+      TITLE: 'Thông tin xe chi tiết',
+
+      LICENSE_PLATE : "Biển số xe",
+      PRICE: 'Giá bán',
       TITLE_BASIC_INFOR: "Thông tin cơ bản",
       YEAR: "Năm",
       FUEL_TYPE: "Nhiên liệu",
       COLOR: "Màu sắc",
-      CAR_NUMBER: "Biển số xe",
       FORECLOSURE_MORTGAGE: "Tịch thu nhà | Thế chấp",
       NON_PAYMENT_OF_TAX: "Không nộp thuế",
       ACCIDENT: "Tai nạn",

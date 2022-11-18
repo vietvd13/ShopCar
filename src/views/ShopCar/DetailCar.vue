@@ -1,5 +1,11 @@
 <template>
   <div class="detail-car">
+    <div class="detail-car__header">
+      <TitleContent>
+        {{ $t('SHOP_CAR.DETAIL_CAR.TITLE') }}
+      </TitleContent>
+    </div>
+
     <div class="detail-car__content">
       <div class="content-basic-infor">
         <BasicInforCar 
@@ -52,7 +58,7 @@
                   </tr>
 
                   <tr>
-                    <td>{{ $t('SHOP_CAR.DETAIL_CAR.CAR_NUMBER') }}</td>
+                    <td>{{ $t('SHOP_CAR.DETAIL_CAR.LICENSE_PLATE') }}</td>
                     <td>{{ isCar.license_plate }}</td>
 
                     <td>{{ $t('SHOP_CAR.DETAIL_CAR.VEHICLE_IDENTIFICATION_NUMBER') }}</td>
@@ -113,21 +119,31 @@
           </b-col>
         </b-row>
       </div>
+
+      <div>
+        <ListImage 
+          :items="isCar.images"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import TitleContent from './components/TitleContent.vue';
 import BasicInforCar from './components/BasicInforCar.vue';
 import PreviewImage from './components/PreviewImage.vue';
+import ListImage from './components/ListImage.vue';
 
 import { getDetailCar } from '../../api/modules/Home';
 
 export default {
   name: 'DetailCar',
   components: {
+    TitleContent,
     BasicInforCar,
-    PreviewImage
+    PreviewImage,
+    ListImage
   },
   data() {
     return {
@@ -165,11 +181,14 @@ export default {
 .detail-car {
   overflow: hidden;
 
+  &__header,
   &__content {
     margin-bottom: 10px;
+  }
 
-    .content-search,
-    .content-basic-infor {
+  &__content {
+    .content-basic-infor,
+    .content-preview-image {
       margin-bottom: 10px;
     }
   }
