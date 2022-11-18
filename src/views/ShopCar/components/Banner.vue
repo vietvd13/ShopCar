@@ -57,5 +57,7 @@ export default {
 .banner-home {
   width: 100%;
   object-fit: cover;
+
+  height: 370px;
 }
 </style>
