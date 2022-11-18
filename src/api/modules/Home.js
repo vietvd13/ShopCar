@@ -33,16 +33,11 @@ export function getListGearBox(BODY = null, PARAMS = null) {
   return request.getRequest(CONSTANTS.URL_API.GET_LIST_GEAR_BOX, BODY, PARAMS);
 }
 
-export function getListHappyMoment() {
-  const BODY = {
-    limit: 8,
-    page: 1
-  };
-
-  return request.postRequest(CONSTANTS.URL_API.GET_LIST_HAPPY_MOMENT, BODY, null);
+export function getListHappyMoment(BODY = { limit: 8, page: 1 }, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.GET_LIST_HAPPY_MOMENT, BODY, PARAMS);
 }
 
-export function postCreatSupport(BODY = null, PARAMS = null) {
+export function postCreateSupport(BODY = null, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.POST_CREATE_CUSTOMER_SUPPORT, BODY, PARAMS);
 }
 

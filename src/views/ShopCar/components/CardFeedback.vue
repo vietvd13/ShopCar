@@ -2,7 +2,7 @@
   <div class="card-feedback">
     <div class="card-feedback__img">
       <b-img 
-        :src="image" 
+        :src="`${domainImage}${image}`" 
         fluid 
         alt="Customer Feedback Image" 
       />
@@ -29,6 +29,11 @@ export default {
       type: String,
       required: true,
       default: '',
+    }
+  },
+  computed: {
+    domainImage() {
+      return process.env.VUE_APP_URL_IMAGE;
     }
   },
 }
