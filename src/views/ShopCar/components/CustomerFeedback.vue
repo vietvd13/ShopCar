@@ -17,7 +17,7 @@
       </b-row>
     </div>
 
-    <div class="show-more text-right">
+    <div class="show-more text-right" @click="goToViewAll()">
       {{ $t('APP.TEXT_VIEW_MORE') }}
     </div>
   </div>
@@ -46,6 +46,15 @@ export default {
       }
     },
   },
+  methods: {
+        goToViewAll() {
+            const ROUTER_NAME = this.$router.currentRoute.name;
+
+            if (ROUTER_NAME !== 'AllHappyMoment') {
+                this.$router.push({ name: 'AllHappyMoment' });
+            }
+        }
+    },
 }
 </script>
 
