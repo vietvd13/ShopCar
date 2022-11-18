@@ -7,7 +7,10 @@
       <div class="app-shope__happy-moment">
         <CustomerFeedback :items="listFeedback" />
       </div>
-      <div class="app-shop__collaborators">
+      <div 
+        class="app-shop__collaborators"
+        v-if="routerName !== 'AllCollaborators'"
+      >
         <ListCollaborators  :items="listCollaborators" />
       </div>
       <div class="app-shop__contact-support">
@@ -52,6 +55,9 @@ export default {
   computed: {
     handleOverflow() {
       return `overflow: ${this.$store.getters.loading.show ? 'hidden' : 'auto' } !important;`;
+    },
+    routerName() {
+      return this.$router.currentRoute.name;
     }
   },
   created() {
