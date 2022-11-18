@@ -6,7 +6,7 @@
       </div>
 
       <div class="content-hotsale">
-        <HotSaleHome :items="listHotSale" />
+        <HotSaleHome />
       </div>
     </div>
   </div>
@@ -21,68 +21,6 @@ export default {
   components: {
     FilterListCar,
     HotSaleHome,
-  },
-  data() {
-    return {
-      listHotSale: [
-        {
-          _id: '1',
-          primary_image: '/assets/images/noimage.png',
-          car_name: '재규어 New XF (11년~15년)',
-          year_manufacture: '2022',
-          price: '1,180'
-        },
-        {
-          _id: '2',
-          primary_image: '/assets/images/noimage.png',
-          car_name: '재규어 New XF (11년~15년)',
-          year_manufacture: '2022',
-          price: '2,680'
-        },
-        {
-          _id: '3',
-          primary_image: '/assets/images/noimage.png',
-          car_name: '재규어 New XF (11년~15년)',
-          year_manufacture: '2022',
-          price: '1,520'
-        },
-        {
-          _id: '4',
-          primary_image: '/assets/images/noimage.png',
-          car_name: '재규어 New XF (11년~15년)',
-          year_manufacture: '2022',
-          price: '3,680'
-        },
-        {
-          _id: '5',
-          primary_image: '/assets/images/noimage.png',
-          car_name: '재규어 New XF (11년~15년)',
-          year_manufacture: '2022',
-          price: '4,540'
-        },
-        {
-          _id: '6',
-          primary_image: '/assets/images/noimage.png',
-          car_name: '재규어 New XF (11년~15년)',
-          year_manufacture: '2022',
-          price: '1,510'
-        },
-        {
-          _id: '7',
-          primary_image: '/assets/images/noimage.png',
-          car_name: '재규어 New XF (11년~15년)',
-          year_manufacture: '2022',
-          price: '3,680'
-        },
-        {
-          _id: '8',
-          primary_image: '/assets/images/noimage.png',
-          car_name: '재규어 New XF (11년~15년)',
-          year_manufacture: '2022',
-          price: '2,680'
-        },
-      ],
-    }
   },
 }
 </script>

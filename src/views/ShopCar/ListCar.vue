@@ -32,8 +32,8 @@ import FilterListCar from './components/FilterListCar.vue';
 import SortListCar from './components/SortListCar.vue';
 import ListCardCar from './components/ListCardCar.vue';
 
-import { setLoading } from '../../utils/setLoading';
-import { getListCar } from '../../api/modules/Home';
+import { setLoading } from '@/utils/setLoading';
+import { getListCar } from '@/api/modules/Home';
 
 export default {
   name: 'ListCar',

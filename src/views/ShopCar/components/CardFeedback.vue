@@ -91,6 +91,7 @@ export default {
     
     img {
       height: 190px;
+      width: 100%;
       object-fit: cover;
       transition: 0.3s all ease-in-out 0s;
     }

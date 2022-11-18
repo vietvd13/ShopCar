@@ -52,3 +52,7 @@ export function getAllCollaborators(BODY = null, PARAMS = null) {
 export function getDetailHappyMoment(BODY = null, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.GET_DETAIL_HAPPY_MOMENT, BODY, PARAMS);
 }
+
+export function getListHotSale(BODY = null, PARAMS = null) {
+  return request.getRequest(CONSTANTS.URL_API.GET_LIST_HOT_SALE, BODY, PARAMS);
+}

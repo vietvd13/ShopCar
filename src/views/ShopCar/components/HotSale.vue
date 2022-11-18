@@ -17,7 +17,8 @@ import TitleContent from './TitleContent.vue';
 import CardSlider from './CardSlider.vue';
 import ListCardCar from './ListCardCar.vue';
 
-import { handleDataSliderAndList } from '../../../utils/handleDataSliderAndList';
+import { handleDataSliderAndList } from '@/utils/handleDataSliderAndList';
+import { getListHotSale } from '@/api/modules/Home';
 
 export default {
   name: 'HotSaleHome',
@@ -26,22 +27,40 @@ export default {
     CardSlider,
     ListCardCar
   },
-  props: {
-    items: {
-      type: Array,
-      required: true,
-      default: () => {
-        return [];
-      }
-    },
-  },
   computed: {
     typeScreen() {
       return this.$store.getters.sizeScreen.type;
     }
   },
+  data() {
+    return {
+      items: []
+    }
+  },
+  created () {
+    this.initData();
+  },
   methods: {
-    handleDataSliderAndList
+    handleDataSliderAndList,
+    async initData() {
+      await this.handleGetListHotsale();
+    },
+    async handleGetListHotsale() {
+      try {
+        const { status_code, data } = await getListHotSale();
+
+        if (status_code === 200) {
+          this.items = data;
+        } else {
+          this.items = [];
+        }
+
+      } catch (err) {
+        this.items = [];
+
+        console.log(err);
+      }
+    }
   },
 }
 </script>
