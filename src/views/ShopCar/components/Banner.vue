@@ -6,6 +6,10 @@
     center
     class="banner-home"
     alt="Banner Home"
+    v-bind="{ 
+      height: 370,
+      width: '100%'
+    }"
   />
 </template>
 
@@ -52,8 +56,6 @@ export default {
 <style lang="scss" scoped>
 .banner-home {
   width: 100%;
-  height: 370px;
-
   object-fit: cover;
 }
 </style>

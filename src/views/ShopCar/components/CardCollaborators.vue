@@ -5,6 +5,10 @@
         :src="`${domainImage}${avatar}`"
         :blank-src="require('@/assets/images/noimage.webp')"
         alt="Image Collaborators"
+        v-bind="{
+          width: 155,
+          height: 189
+        }"
       />
     </div>
 
@@ -103,12 +107,7 @@ export default {
 
   &__img {
     text-align: center;
-    min-height: 189px;
     margin-bottom: 10px;
-
-    img {
-      width: 155px;
-    }
 
     overflow: hidden;
   }

@@ -6,6 +6,10 @@
         :blank-src="require('@/assets/images/noimage.webp')"
         fluid 
         :alt="carName"
+        v-bind="{
+          height: 200,
+          width: '100%'
+        }"
       />
     </div>
     <div class="card-car__desc">
@@ -97,7 +101,6 @@ export default {
     justify-content: center;
 
     img {
-      height: 200px;
       width: 100%;
       object-fit: cover;
       transition: 0.3s all ease-in-out 0s;
