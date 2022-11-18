@@ -1,5 +1,8 @@
 <template>
-  <div class="card-feedback">
+  <div 
+    class="card-feedback"
+    @click="goToDetail()"
+  >
     <div class="card-feedback__img">
       <b-img 
         :src="`${domainImage}${image}`" 
@@ -20,6 +23,11 @@
 export default {
   name: 'CardFeedback',
   props: {
+    id: {
+      type: String,
+      required: true,
+      default: '',
+    },
     image: {
       type: String,
       required: true,
@@ -36,11 +44,16 @@ export default {
       return process.env.VUE_APP_URL_IMAGE;
     }
   },
+  methods: {
+    goToDetail() {
+      this.$router.push({ name: 'DetailHappyMoment', params: { id: this.id }});
+    }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/variables';
+@import '@/scss/variables';
 
 .card-feedback {
   border-radius: 5px;

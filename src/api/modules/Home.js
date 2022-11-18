@@ -48,3 +48,7 @@ export function getBanner(BODY = null, PARAMS = null) {
 export function getAllCollaborators(BODY = null, PARAMS = null) {
   return request.getRequest(CONSTANTS.URL_API.GET_LIST_COLLABORATORS_PUBLIC, BODY, PARAMS);
 }
+
+export function getDetailHappyMoment(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.GET_DETAIL_HAPPY_MOMENT, BODY, PARAMS);
+}

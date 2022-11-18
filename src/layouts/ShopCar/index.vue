@@ -128,7 +128,7 @@ export default {
     handleHiddenContent() {
       const ROUTER_NAME = this.$router.currentRoute.name;
 
-      this.showHappyMoment = (ROUTER_NAME !== 'AllHappyMoment');
+      this.showHappyMoment = !(['AllHappyMoment', 'DetailHappyMoment'].includes(ROUTER_NAME));
       this.showCollaborators = (ROUTER_NAME !== 'AllCollaborators');
     }
   },

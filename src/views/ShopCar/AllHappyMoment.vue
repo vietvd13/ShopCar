@@ -9,7 +9,8 @@
                     v-for="feedback in items" 
                     :key="feedback._id"
                 >
-                    <CardFeedBack 
+                    <CardFeedBack
+                        :id="feedback._id"
                         :image="feedback.primary_image"
                         :feedback="feedback.content"
                     />

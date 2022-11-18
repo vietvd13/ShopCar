@@ -19,7 +19,7 @@ function replaceValueWithIndex(oldArr = [], newArr = [], listIndex = []) {
             return newArr.shift();
         }
 
-        return item;
+        return item.url;
     })
 }
 

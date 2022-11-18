@@ -6,11 +6,12 @@
       <b-row>
         <b-col 
           cols="6" xs="6" sm="6" md="6" lg="3" xl="3" 
-          v-for="(feedback, idx) in items" 
-          :key="idx"
+          v-for="feedback in items" 
+          :key="feedback._id"
         >
-          <CardFeedBack 
-            :image="`${feedback.primary_image}`"
+          <CardFeedBack
+            :id="feedback._id"
+            :image="feedback.primary_image"
             :feedback="feedback.content"
           />
         </b-col>

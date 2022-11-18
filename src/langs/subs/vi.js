@@ -113,6 +113,7 @@ export default {
       },
       CUSTOMER_FEEDBACK: {
         TITLE: "Khoảnh khắc vui vẻ",
+        DETAIL_TITLE: "Chi tiết khoảnh khắc vui vẻ"
       },
       COLLABORATORS: {
         TITLE: "Cộng tác viên",
