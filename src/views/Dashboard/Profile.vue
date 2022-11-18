@@ -174,10 +174,10 @@
 </template>
 
 <script>
-import toast from '@/toast';
+import Toast from '@/toast';
 import CONSTANTS from '@/constants';
 import { postChangePassword, postChangeUserInfor, postUserInfor } from '@/api/modules/Auth';
-import Cookies from 'js-cookie';
+
 export default {
   name: "ProfilePage",
   data() {
@@ -212,10 +212,10 @@ export default {
           .then(() => {
             this.$i18n.locale = language;
 
-            toast.success(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_SUCCESS'));
+            Toast.success(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_SUCCESS'));
           })
           .catch(() => {
-            toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
+            Toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
           })
       }
     },
@@ -237,12 +237,12 @@ export default {
         }
         const response = await postChangeUserInfor(BODY);
         if (response.status) {
-          toast.success(this.$t('TOAST_MESSAGE.CHANGE_PROFILE_SUCCESS'));
+          Toast.success(this.$t('TOAST_MESSAGE.CHANGE_PROFILE_SUCCESS'));
         } else {
-          toast.warning(response.message);
+          Toast.warning(response.message);
         }
       } catch (error) {
-        toast.warning(this.$t('TOAST_MESSAGE.CHANGE_PROFILE_ERROR'));
+        Toast.warning(this.$t('TOAST_MESSAGE.CHANGE_PROFILE_ERROR'));
       }
       this.is_process = false;
       this.is_edit = false;
@@ -274,15 +274,14 @@ export default {
         };
         const response = await postChangePassword(BODY);
         if (response.status) {
-          toast.success(this.$t('TOAST_MESSAGE.CHANGE_PASSWORD_SUCCESS'));
-          Cookies.remove(CONSTANTS.COOKIES.REFRESH_TOKEN);
-          Cookies.remove(CONSTANTS.COOKIES.TOKEN);
+          Toast.success(this.$t('TOAST_MESSAGE.CHANGE_PASSWORD_SUCCESS'));
+
           this.$router.push({ name: 'HomeShopCar' });
         } else {
-          toast.warning(response.message);
+          Toast.warning(response.message);
         }
       } catch (error) {
-        toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
+        Toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
       }
       this.is_process = false;
     },
@@ -299,7 +298,7 @@ export default {
           this.gender = response.data.gender;
           this.dob = new Date(response.data.dob);
         } else {
-          toast.warning(this.$t('TOAST_MESSAGE.GET_PROFILE_ERROR'));
+          Toast.warning(this.$t('TOAST_MESSAGE.GET_PROFILE_ERROR'));
         }
       } catch (error) {
         console.log(error);

@@ -12,6 +12,7 @@
                     <CardFeedBack
                         :id="feedback._id"
                         :image="feedback.primary_image"
+                        :writer="feedback.writer"
                         :feedback="feedback.content"
                     />
                 </b-col>

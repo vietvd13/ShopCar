@@ -72,26 +72,30 @@ export default {
 @import '@/scss/variables';
 
 .card-car {
-  border-radius: 5px;
   cursor: pointer;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
   overflow: hidden;
-
   margin-top: 10px;
   margin-bottom: 10px;
+  border: 1px solid $iron;
+
+  &:hover {
+    img {
+      transform: scale(1.2);
+    }
+
+    border: 1px solid $main;
+  }
 
   &__img {
-    height: 220px;
-
     display: flex;
     text-align: center;
     vertical-align: middle;
     justify-content: center;
 
     img {
-      max-width: 100%;
-      max-height: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: 0.3s all ease-in-out 0s;
     }
 
     overflow: hidden;
@@ -105,19 +109,18 @@ export default {
     background-color: $white;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
 
     .car-name {
-      font-size: 12px;
-      font-weight: bold;
+      font-weight: 500;
       margin-bottom: 10px;
 
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
-
-      min-height: 36px;
     }
 
     .date-sale {
@@ -128,8 +131,8 @@ export default {
 
     .car-price {
       font-size: 18px;
-      font-weight: bold;
-      color: $main;
+      font-weight: 500;
+      color: $alizarin-crimson;
     }
   }
 }

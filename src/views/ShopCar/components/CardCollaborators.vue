@@ -92,11 +92,9 @@ export default {
 .card-collaborators {
   width: 100%;
   background-color: $white;
-
+  border: 1px solid $iron;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid $silver-chalice;
-  border-radius: 5px;
   overflow: hidden;
 
   &__img {
@@ -106,8 +104,9 @@ export default {
 
     img {
       width: 155px;
-      border-radius: 5px;
     }
+
+    overflow: hidden;
   }
 
   &__fullname {
