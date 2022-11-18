@@ -66,6 +66,12 @@
           />
         </template>
 
+        <template #cell(content)="content">
+          <span>
+            {{ content.item.content }}
+          </span>
+        </template>
+
         <template #cell(actions)="actions">
           <div class="item-action">
             <b-button 
@@ -251,11 +257,11 @@ export default {
   computed: {
     headerTable() {
       return [
-        { key: 'delete_multiple', label: '', thClass: 'text-center', tdClass: 'text-center' },
-        { key: 'no', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.NO'), thClass: 'text-center', tdClass: 'text-center base-td' },
-        { key: 'primary_image', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.PRIMARY_IMAGE'), thClass: 'text-center', tdClass: 'text-center' },
+        { key: 'delete_multiple', label: '', thClass: 'text-center', tdClass: 'text-center td-delete-multiple' },
+        { key: 'no', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.NO'), thClass: 'text-center', tdClass: 'text-center base-td td-no' },
+        { key: 'primary_image', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.PRIMARY_IMAGE'), thClass: 'text-center', tdClass: 'text-center td-primary-image' },
         { key: 'title', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.TITLE'), sortable: true, thClass: 'text-center', tdClass: 'text-center' },
-        { key: 'content', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.CONTENT'), sortable: true, thClass: 'text-center', tdClass: 'text-center' },
+        { key: 'content', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.CONTENT'), sortable: true, thClass: 'text-center', tdClass: 'text-center td-content' },
         { key: 'writer', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.WRITER'), sortable: true, thClass: 'text-center', tdClass: 'text-center' },
         { key: 'actions', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.ACTIONS'), thClass: 'text-center', tdClass: 'text-center' },
       ];
@@ -657,7 +663,21 @@ export default {
             }
 
             .primary-image {
-              height: 150px;
+              width: 250px;
+            }
+          }
+
+          .td-primary-image {
+            width: 250px;
+          }
+
+          .td-content {
+            span {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 3;
             }
           }
         }
