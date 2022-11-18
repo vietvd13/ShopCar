@@ -25,7 +25,11 @@
       <div class="item-social">
         <b-img
           @click="goToLink(kakaotalk)"
-          :src="require('@/assets/images/kakaotalk.png')" 
+          :src="require('@/assets/images/kakaotalk.png')"
+          v-bind="{
+            width: '80%',
+            height: 'auto'
+          }" 
         />
       </div>
 
@@ -33,13 +37,21 @@
         <b-img
           @click="goToLink(zalo)"
           :src="require('@/assets/images/zalo.png')" 
+          v-bind="{
+            width: '80%',
+            height: 'auto'
+          }" 
         />
       </div>
 
       <div class="item-social">
         <b-img
           @click="goToLink(messager)"
-          :src="require('@/assets/images/messager.png')" 
+          :src="require('@/assets/images/messager.png')"
+          v-bind="{
+            width: '80%',
+            height: 'auto'
+          }" 
         />
       </div>
     </div>
