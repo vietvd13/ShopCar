@@ -1,16 +1,31 @@
 <template>
     <b-card>
-        <b-img-lazy
-            fluid
-            v-for="image in items"
-            :key="image"
-            :src="`${domainImage}${image}`"
-            :blank-src="require('@/assets/images/noimage.webp')"
-            v-bind="{
-                height: 300,
-                width: 'auto'
-            }"
-        />
+        <p class="title-content">
+            {{ $t('SHOP_CAR.DETAIL_CAR.TITLE_IMAGE') }}
+        </p>
+
+        <b-row>
+            <b-col 
+                cols="12" 
+                xs="12" 
+                sm="12" 
+                md="6" 
+                lg="6"
+                v-for="image in items"
+                :key="image"
+            >
+                <b-img-lazy
+                    fluid
+                    :src="`${domainImage}${image}`"
+                    :blank-src="require('@/assets/images/noimage.webp')"
+                    v-bind="{
+                        height: 300,
+                        width: 'auto'
+                    }"
+                    class="mb-4"
+                />
+            </b-col>
+        </b-row>
     </b-card>
 </template>
 
@@ -36,11 +51,12 @@ export default {
 <style lang="scss" scoped>
 @import '@/scss/variables';
 
-img {
-    &:not(:last-child) {
-        margin-bottom: 10px;
-    }
+.title-content {
+    font-size: 22px;
+    font-weight: 600;
+}
 
+img {
     height: auto;
     width: 100%;
 }

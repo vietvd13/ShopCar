@@ -18,7 +18,7 @@
         <PreviewImage :images="isCar.images" />
       </div>
 
-      <div class="content-basic-infor">
+      <!-- <div class="content-basic-infor">
         <b-row>
           <b-col
             cols="12" 
@@ -118,9 +118,25 @@
             </div>
           </b-col>
         </b-row>
+      </div> -->
+
+      <div class="content-car-basic">
+        <b-row>
+          <b-col cols="12" xs="12" sm="12" md="6" lg="6">
+            <CarInfor />
+          </b-col>
+
+          <b-col cols="12" xs="12" sm="12" md="6" lg="6">
+            <SallerInfor />
+          </b-col>
+        </b-row>
       </div>
 
-      <div>
+      <div class="content-car-options">
+        <CarOptions />
+      </div>
+
+      <div class="content-car-images">
         <ListImage 
           :items="isCar.images"
         />
@@ -133,9 +149,12 @@
 import TitleContent from './components/TitleContent.vue';
 import BasicInforCar from './components/BasicInforCar.vue';
 import PreviewImage from './components/PreviewImage.vue';
+import CarInfor from './components/CarInfor.vue';
+import SallerInfor from './components/SallerInfor.vue';
+import CarOptions from './components/CarOptions.vue';
 import ListImage from './components/ListImage.vue';
 
-import { getDetailCar } from '../../api/modules/Home';
+import { getDetailCar } from '@/api/modules/Home';
 
 export default {
   name: 'DetailCar',
@@ -143,6 +162,9 @@ export default {
     TitleContent,
     BasicInforCar,
     PreviewImage,
+    CarInfor,
+    SallerInfor,
+    CarOptions,
     ListImage
   },
   data() {
@@ -188,7 +210,9 @@ export default {
 
   &__content {
     .content-basic-infor,
-    .content-preview-image {
+    .content-preview-image,
+    .content-car-options,
+    .content-car-images {
       margin-bottom: 10px;
     }
   }

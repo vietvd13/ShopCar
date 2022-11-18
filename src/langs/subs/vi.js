@@ -134,10 +134,13 @@ export default {
     },
     DETAIL_CAR: {
       TITLE: 'Thông tin xe chi tiết',
+      TITLE_IMAGE: 'Thông tin hình ảnh',
+      TITLE_BASIC_INFOR: 'Thông tin cơ bản',
+      TITLE_SALLER_INFOR: 'Thông tin người bán',
+      TITLE_VEHICLE_OPTIONS_AND_DETAILS: 'Tùy chọn xe và chi tiết',
 
       LICENSE_PLATE : "Biển số xe",
       PRICE: 'Giá bán',
-      TITLE_BASIC_INFOR: "Thông tin cơ bản",
       YEAR: "Năm",
       FUEL_TYPE: "Nhiên liệu",
       COLOR: "Màu sắc",
@@ -151,7 +154,6 @@ export default {
       MODEL_NAME: "Tên mô hình",
       PRESENTATION_NUMBER: "Số trình bày",
 
-      SELLER_INFORMATION: "Thông tin người bán",
       NAME: "Tên",
       CONTACT: "Liên hệ",
     },
