@@ -15,7 +15,7 @@
         {{ dateSale }}
       </div>
       <div class="car-price">
-        {{ carPrice }}
+        {{ carPrice }} 만원
       </div>
     </div>
   </div>
@@ -46,9 +46,9 @@ export default {
       default: '',
     },
     carPrice: {
-      type: String,
+      type: Number,
       required: true,
-      default: '',
+      default: 0,
     }
   },
   computed: {

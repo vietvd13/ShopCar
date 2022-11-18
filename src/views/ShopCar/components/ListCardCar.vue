@@ -14,7 +14,7 @@
         :car-image="car.primary_image"
         :car-name="car.car_name"
         :date-sale="car.year_manufacture"
-        :car-price="car.price"
+        :car-price="car.price_display"
       />
     </b-col>
   </b-row>
