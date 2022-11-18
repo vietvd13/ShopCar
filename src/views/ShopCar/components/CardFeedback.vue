@@ -11,7 +11,7 @@
         alt="Customer Feedback Image"
         v-bind="{
           height: 190,
-          width: '100%'
+          width: 'auto'
         }"
       />
     </div>
@@ -95,6 +95,7 @@ export default {
     text-align: center;
     
     img {
+      height: 190px;
       width: 100%;
       object-fit: cover;
       transition: 0.3s all ease-in-out 0s;

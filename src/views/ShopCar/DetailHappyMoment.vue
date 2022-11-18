@@ -32,6 +32,10 @@
                         :blank-src="require('@/assets/images/noimage.webp')"
                         fluid
                         thumbnail
+                        v-bind="{
+                            height: 350,
+                            width: 'auto'
+                        }"
                     />
                 </div>
             </div>
@@ -149,7 +153,8 @@ export default {
             text-align: center;
 
             img {
-                max-height: 350px;
+                height: 350px !important;
+                width: auto;
             }
         }
     }

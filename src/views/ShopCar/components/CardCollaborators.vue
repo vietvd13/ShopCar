@@ -107,7 +107,12 @@ export default {
 
   &__img {
     text-align: center;
+    min-height: 189px;
     margin-bottom: 10px;
+
+    img {
+      width: 155px;
+    }
 
     overflow: hidden;
   }

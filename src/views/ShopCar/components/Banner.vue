@@ -8,7 +8,7 @@
     alt="Banner Home"
     v-bind="{ 
       height: 370,
-      width: '100%'
+      width: 'auto'
     }"
   />
 </template>

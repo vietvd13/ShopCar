@@ -8,7 +8,7 @@
         :alt="carName"
         v-bind="{
           height: 200,
-          width: '100%'
+          width: 'auto'
         }"
       />
     </div>
@@ -101,6 +101,7 @@ export default {
     justify-content: center;
 
     img {
+      height: 200px !important;
       width: 100%;
       object-fit: cover;
       transition: 0.3s all ease-in-out 0s;
