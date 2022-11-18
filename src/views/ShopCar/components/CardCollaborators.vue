@@ -27,8 +27,8 @@
           @click="goToLink(kakaotalk)"
           :src="require('@/assets/images/kakaotalk.png')"
           v-bind="{
-            width: '80%',
-            height: 'auto'
+            width: 38,
+            height: 38
           }" 
         />
       </div>
@@ -38,8 +38,8 @@
           @click="goToLink(zalo)"
           :src="require('@/assets/images/zalo.png')" 
           v-bind="{
-            width: '80%',
-            height: 'auto'
+            width: 38,
+            height: 38
           }" 
         />
       </div>
@@ -49,8 +49,8 @@
           @click="goToLink(messager)"
           :src="require('@/assets/images/messager.png')"
           v-bind="{
-            width: '80%',
-            height: 'auto'
+            width: 38,
+            height: 38
           }" 
         />
       </div>
@@ -166,7 +166,7 @@ export default {
     .item-social {
       text-align: center;
       img {
-        width: 80%;
+        width: 38px;
         cursor: pointer;
 
         border-radius: 5px;
