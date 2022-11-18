@@ -15,7 +15,7 @@
         {{ dateSale }}
       </div>
       <div class="car-price">
-        {{ formatPrice(carPrice) }} 만원
+        {{ formatPrice(carPrice) }} <span>만원</span>
       </div>
     </div>
   </div>
@@ -117,7 +117,7 @@ export default {
 
     .car-name {
       font-weight: 500;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
 
       overflow: hidden;
       text-overflow: ellipsis;
@@ -128,14 +128,19 @@ export default {
 
     .date-sale {
       font-size: 12px;
-      color: $silver-chalice;
-      margin-bottom: 10px;
+      color: $xanadu;
+      margin-bottom: 5px;
     }
 
     .car-price {
       font-size: 18px;
       font-weight: 500;
       color: $alizarin-crimson;
+
+      span {
+        font-size: 12px;
+        color: $xanadu;
+      }
     }
   }
 }
