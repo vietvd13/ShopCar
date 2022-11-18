@@ -4,7 +4,10 @@
       <Banner />
       <Search />
       <AppMain />
-      <div class="app-shope__happy-moment">
+      <div 
+        class="app-shope__happy-moment"
+        v-if="routerName !== 'AllHappyMoment'"
+      >
         <CustomerFeedback :items="listFeedback" />
       </div>
       <div 
