@@ -151,10 +151,6 @@ export default {
   &__content {
     margin-bottom: 10px;
 
-    .content-filter {
-      margin-top: 10px;
-    }
-
     .content-filter,
     .content-customer-feedback {
       margin-bottom: 10px;

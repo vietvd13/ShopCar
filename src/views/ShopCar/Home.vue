@@ -94,10 +94,6 @@ export default {
   overflow: hidden;
 
   &__content {
-    .content-filter {
-      margin-top: 10px;
-    }
-
     .content-filter,
     .content-hotsale,
     .content-customer-feedback {

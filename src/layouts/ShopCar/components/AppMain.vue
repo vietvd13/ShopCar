@@ -1,5 +1,5 @@
 <template>
-  <router-view :key="key" />
+  <router-view class="view-app-main" :key="key" />
 </template>
 
 <script>
@@ -12,3 +12,9 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.view-app-main {
+	margin-top: 10px;
+}
+</style>
