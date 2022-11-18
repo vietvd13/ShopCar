@@ -15,13 +15,15 @@
         {{ dateSale }}
       </div>
       <div class="car-price">
-        {{ carPrice }} 만원
+        {{ formatPrice(carPrice) }} 만원
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { formatPrice } from '@/utils/helper';
+
 export default {
   name: 'CardCarHome',
   props: {
@@ -46,7 +48,7 @@ export default {
       default: '',
     },
     carPrice: {
-      type: Number,
+      type: [Number, String],
       required: true,
       default: 0,
     }
@@ -57,6 +59,7 @@ export default {
     }
   },
   methods: {
+    formatPrice,
     onClickCardCar(id) {
       if (id) {
         let route = this.$router.resolve({ name: 'DetailCar', params: { id }});
