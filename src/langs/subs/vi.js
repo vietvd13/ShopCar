@@ -159,6 +159,9 @@ export default {
       CONTACT: "Liên hệ",
       EMPLOYEE_ID: 'ID nhân viên'
     },
+    CAR_BUYING_POLICY: {
+      TITLE: 'Chính sách mua xe'
+    }
   },
   DASHBOARD: {
     LOGIN: {
