@@ -1,21 +1,22 @@
 <template>
-  <div class="basic-infor-car">
-    <b-row>
-      <b-col>
-        <div class="car-name">
-          <h4>{{ name }}</h4>  
-        </div>
-      </b-col>
-    </b-row>
-
-    <b-row>
-      <b-col>
-        <div class="car-price">
-          <h4>{{ price }}</h4>
-        </div>
-      </b-col>
-    </b-row>
-  </div>
+  <b-card>
+    <div class="basic-infor-car">
+      <b-row>
+        <b-col>
+          <div class="car-name text-left">
+            {{ name }}
+          </div>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
+          <div class="car-price text-left">
+            {{ $t('SHOP_CAR.DETAIL_CAR.PRICE') }}: <span>{{ price }}</span> 만원
+          </div>
+        </b-col>
+      </b-row>
+    </div>
+  </b-card>
 </template>
 
 <script>
@@ -28,22 +29,30 @@ export default {
       default: ''
     },
     price: {
-      type: String,
+      type: [String, Number],
       required: true,
-      default: ''
+      default: 0
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/variables';
+@import '@/scss/variables';
 
 .basic-infor-car {
-  .car-price {
-    color: $main;
+  .car-name {
+    font-weight: bold;
+    font-size: 25px;
+  }
 
-    font-weight: normal;
+  .car-price {
+    font-weight: bold;
+    font-size: 20px;
+
+    span {
+      color: $alizarin-crimson;
+    }
   }
 }
 </style>

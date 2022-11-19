@@ -1,16 +1,16 @@
 <template>
-  <div v-if="urlBanner">
-    <b-img 
-      :src="`${domainImage}${urlBanner}`"
-      fluid
-      center
-      class="banner-home"
-    />
-  </div>
-
-  <div v-else>
-    
-  </div>
+  <b-img-lazy
+    :src="`${domainImage}${urlBanner}`"
+    :blank-src="require('@/assets/images/noimage.webp')"
+    fluid
+    center
+    class="banner-home"
+    alt="Banner Home"
+    v-bind="{ 
+      height: 370,
+      width: 'auto'
+    }"
+  />
 </template>
 
 <script>
@@ -56,8 +56,8 @@ export default {
 <style lang="scss" scoped>
 .banner-home {
   width: 100%;
-  height: 370px;
-
   object-fit: cover;
+
+  height: 370px;
 }
 </style>

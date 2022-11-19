@@ -19,7 +19,7 @@ function replaceValueWithIndex(oldArr = [], newArr = [], listIndex = []) {
             return newArr.shift();
         }
 
-        return item;
+        return item.url;
     })
 }
 
@@ -48,8 +48,19 @@ function generateSelect(arr = [], generateNewArr = false, value_key = 'id', text
     return result;
 }
 
+function formatPrice(price) {
+    if (price) {
+        let locale = Intl.NumberFormat('ko-KR');
+
+        return locale.format(price);
+    }
+
+    return '0';
+}
+
 export {
     getArrValueOfArr,
     replaceValueWithIndex,
-    generateSelect
+    generateSelect,
+    formatPrice
 }

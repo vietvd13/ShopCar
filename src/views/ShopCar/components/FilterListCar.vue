@@ -127,10 +127,9 @@
             </b-row>
 
             <b-row>
-                <b-col>
+                <b-col class="text-center">
                     <b-button 
-                        class="mt-4 btn-app btn-default" 
-                        block
+                        class="mt-4 btn-app btn-default btn-filter" 
                     >
                         {{ $t('APP.BUTTON_FILTER') }}
                     </b-button>
@@ -289,5 +288,9 @@ export default {
 
 .item-form {
     margin-bottom: 5px;
+}
+
+.btn-filter {
+    min-width: 150px;
 }
 </style>

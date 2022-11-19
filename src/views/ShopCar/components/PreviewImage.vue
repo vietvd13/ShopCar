@@ -1,43 +1,61 @@
 <template>
-  <div class="preview-image">
-    <b-row>
-      <b-col
-        cols="12" 
-        xs="12" 
-        sm="12" 
-        md="12" 
-        lg="6"
-      >
-        <div class="display-image-preview">
-          <b-img
-            :src="`${domainImage}${imagePreview}`"
-            thumbnail
-            fluid
-          />
-        </div>
-      </b-col>
-
-      <b-col
-        cols="12" 
-        xs="12" 
-        sm="12" 
-        md="12" 
-        lg="6"      
-      >
-        <div class="list-image">
-          <b-img
-            class="item-image"
-            v-for="(image, idx) in images" 
-            :key="idx"
-            :src="`${domainImage}${image}`"
-            thumbnail
-            fluid
-            @click="onClickChangeImage(image)"
-          />
-        </div>
-      </b-col>
-    </b-row>
-  </div>
+  <b-card>
+    <div class="preview-image">
+      <b-row>
+        <b-col
+          cols="12"
+          xs="12"
+          sm="12"
+          md="12"
+          lg="6"
+        >
+          <div
+            class="display-image-preview mb-xs-2 mb-sm-2 mb-lg-0"
+            :style="`height: ${handleSizePreview()}px;`"
+          >
+            <b-img-lazy
+              :src="`${domainImage}${imagePreview}`"
+              :blank-src="require('@/assets/images/noimage.webp')"
+              fluid
+              :alt="imagePreview"
+              v-bind="{
+                height: 400,
+                width: 'auto'
+              }"
+            />
+          </div>
+        </b-col>
+        <b-col
+          cols="12"
+          xs="12"
+          sm="12"
+          md="12"
+          lg="6"
+        >
+          <div class="card-list-image">
+            <div class="list-image">
+              <div
+                class="item-image"
+                v-for="image in images"
+                :key="image"
+                @click="onClickChangeImage(image)"
+              >
+                <b-img-lazy
+                  fluid
+                  :src="`${domainImage}${image}`"
+                  :blank-src="require('@/assets/images/noimage.webp')"
+                  v-bind="{
+                    height: 120,
+                    width: 'auto'
+                  }"
+                />
+              </div>
+            </div>
+          </div>
+        </b-col>
+      </b-row>
+    </div>
+  </b-card>
 </template>
 
 <script>
@@ -80,39 +98,51 @@ export default {
       if (image) {
         this.imagePreview = image;
       }
+    },
+    handleSizePreview() {
+      const SIZE = this.$store.getters.sizeScreen.type;
+      const MAP_SIZE = {
+        xl: 400,
+        lg: 400,
+        md: 400,
+        sm: 400,
+        xs: 280,
+      };
+
+      return MAP_SIZE[SIZE];
     }
   },
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/variables';
+@import '@/scss/variables';
 
 .preview-image {
-  margin-bottom: 10px;
-
   .display-image-preview {
     display: flex;
     justify-content: center;
-    height: 450px;
   }
 
-  .list-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    overflow: auto;
-    height: 450px;
+  .card-list-image {
+    .list-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      overflow-y: scroll;
+      height: 400px;
+      width: 100%;
 
-    .item-image {
-      max-width: 120px;
-      margin: 5px;
-      cursor: pointer;
+      .item-image {
+        width: 110px;
+        margin: 5px;
+        cursor: pointer;
 
-      img {
-        width: 120px;
-        height: 120px;
+        img {
+          height: auto;
+          width: 110px;
+        }
       }
     }
   }

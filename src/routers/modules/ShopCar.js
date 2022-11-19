@@ -42,6 +42,16 @@ const ShopCar = {
       path: 'all-collaborators',
       name: 'AllCollaborators',
       component: () => import(/* webpackChunkName: "AllCollaborators" */ '@/views/ShopCar/AllCollaborators')
+    },
+    {
+      path: 'all-happy-moment',
+      name: 'AllHappyMoment',
+      component: () => import(/* webpackChunkName: "AllHappyMoment" */ '@/views/ShopCar/AllHappyMoment')
+    },
+    {
+      path: 'detail-happy-moment/:id',
+      name: 'DetailHappyMoment',
+      component: () => import(/* webpackChunkName: "DetailHappyMoment" */ '@/views/ShopCar/DetailHappyMoment')
     }
   ]
 };

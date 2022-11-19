@@ -1,14 +1,34 @@
 <template>
-  <div class="card-feedback">
+  <div 
+    class="card-feedback"
+    @click="goToDetail()"
+  >
     <div class="card-feedback__img">
-      <b-img 
-        :src="image" 
+      <b-img-lazy 
+        :src="`${domainImage}${image}`"
+        :blank-src="require('@/assets/images/noimage.webp')" 
         fluid 
-        alt="Customer Feedback Image" 
+        alt="Customer Feedback Image"
+        v-bind="{
+          height: 190,
+          width: 'auto'
+        }"
       />
     </div>
 
     <div class="card-feedback__desc">
+      <div class="desc-writer">
+        {{ writer }}
+      </div>
+
+      <div class="desc-rate">
+        <i class="fas fa-star" />
+        <i class="fas fa-star" />
+        <i class="fas fa-star" />
+        <i class="fas fa-star" />
+        <i class="fas fa-star" />
+      </div>
+
       <div class="desc-text">
         {{ feedback }}
       </div>
@@ -20,7 +40,17 @@
 export default {
   name: 'CardFeedback',
   props: {
+    id: {
+      type: String,
+      required: true,
+      default: '',
+    },
     image: {
+      type: String,
+      required: true,
+      default: '',
+    },
+    writer: {
       type: String,
       required: true,
       default: '',
@@ -31,49 +61,78 @@ export default {
       default: '',
     }
   },
+  computed: {
+    domainImage() {
+      return process.env.VUE_APP_URL_IMAGE;
+    }
+  },
+  methods: {
+    goToDetail() {
+      this.$router.push({ name: 'DetailHappyMoment', params: { id: this.id }});
+    }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/variables';
+@import '@/scss/variables';
 
 .card-feedback {
-  border-radius: 5px;
   cursor: pointer;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: $white;
+  border: 1px solid $iron;
+  overflow: hidden;
+
+  &:hover {
+    img {
+      transform: scale(1.2);
+    }
+
+    border: 1px solid $main;
+  }
 
   &__img {
     text-align: center;
     
     img {
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
       height: 190px;
-      object-fit: scale-down;
+      width: 100%;
+      object-fit: cover;
+      transition: 0.3s all ease-in-out 0s;
     }
+
+    overflow: hidden;
   }
 
   &__desc {
     width: 100%;
     padding: 0 10px;
-    overflow: hidden;
     background-color: $white;
 
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    .desc-writer {
+      text-align: left;
+      margin-top: 5px;
+      font-weight: 600;
+    }
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    .desc-rate {
+      white-space: 3px;
+
+      i {
+        font-size: 0.7rem;
+        color: $sunglow;
+      }
+    }
 
     .desc-text {
-      width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      font-size: 0.9rem;
 
-      margin: 5px 0;
+      margin: 7px 0;
     }
   }
 

@@ -48,7 +48,7 @@
 
 <script>
 import Toast from '@/toast';
-import { postCreatSupport } from '@/api/modules/Home';
+import { postCreateSupport } from '@/api/modules/Home';
 import { setLoading } from '@/utils/setLoading';
 import TitleContent from './TitleContent.vue';
 
@@ -78,7 +78,7 @@ export default {
                     content: this.isForm.content,
                 };
 
-                const { status_code } = await postCreatSupport(BODY);
+                const { status_code } = await postCreateSupport(BODY);
 
                 if (status_code === 200) {
                     this.handleResetForm();

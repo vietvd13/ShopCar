@@ -16,9 +16,9 @@
           <b-carousel-slide v-for="(slide, idx) in items" :key="idx">
             <template #img>
               <b-row>
-                <template v-for="(car, idxCar) in slide">
+                <template v-for="car in slide">
                   <template v-if="car">
-                    <b-col cols="12" xs="12" sm="3" md="3" lg="3" xl="3" :key="idxCar">
+                    <b-col cols="12" xs="12" sm="3" md="3" lg="3" xl="3" :key="car._id">
                       <CardCar
                         :car-id="car._id"
                         :car-image="car.primary_image"
@@ -29,7 +29,7 @@
                     </b-col>
                   </template>
                   <template v-else>
-                    <b-col cols="12" xs="12" sm="3" md="3" lg="3" xl="3" :key="idxCar" />
+                    <b-col cols="12" xs="12" sm="3" md="3" lg="3" xl="3" :key="car._id" />
                   </template>
                 </template>
               </b-row>

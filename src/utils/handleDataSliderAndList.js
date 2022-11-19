@@ -11,20 +11,22 @@ function paginateList(arr, size) {
 }
 
 function handleDataSliderAndList(items, type = 'list') {
-  if (type === 'list') {
-    return items;
-  }
-
-  if (type === 'slider') {
-    const result = paginateList(items, 4);
-
-    if (result[result.length - 1].length < 4) {
-      for (let i = 0; i < (4 - result[result.length - 1].length); i++) {
-        (result[result.length - 1]).push(null);
-      }
+  if (items.length) {
+    if (type === 'list') {
+      return items;
     }
-
-    return result;
+  
+    if (type === 'slider') {
+      const result = paginateList(items, 4);
+  
+      if (result[result.length - 1].length < 4) {
+        for (let i = 0; i < (4 - result[result.length - 1].length); i++) {
+          (result[result.length - 1]).push(null);
+        }
+      }
+  
+      return result;
+    }
   }
 
   return items;

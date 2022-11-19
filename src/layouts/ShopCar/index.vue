@@ -1,18 +1,37 @@
 <template>
   <div class="app-shop" :style="handleOverflow">
     <b-container>
+      <!-- Banner -->
       <Banner />
+
+      <!-- Navbar -->
       <Search />
+
+      <!-- App View -->
       <AppMain />
-      <div class="app-shope__happy-moment">
+
+      <!-- Happy Moment -->
+      <div 
+        class="app-shope__happy-moment"
+        v-if="showHappyMoment"
+      >
         <CustomerFeedback :items="listFeedback" />
       </div>
-      <div class="app-shop__collaborators">
+
+      <!-- Collaborators -->
+      <div 
+        class="app-shop__collaborators"
+        v-if="showCollaborators"
+      >
         <ListCollaborators  :items="listCollaborators" />
       </div>
+
+      <!-- Contact Support -->
       <div class="app-shop__contact-support">
         <ContactSupport />
       </div>
+
+      <!-- Footer -->
       <FooterHome />
     </b-container>
   </div>
@@ -47,11 +66,21 @@ export default {
     return {
       listFeedback: [],
       listCollaborators: [],
+      showHappyMoment: false,
+      showCollaborators: false,
     }
   },
   computed: {
     handleOverflow() {
       return `overflow: ${this.$store.getters.loading.show ? 'hidden' : 'auto' } !important;`;
+    },
+		pathURL() {
+			return this.$route.fullPath;
+		},
+  },
+  watch: {
+    pathURL() {
+      this.handleHiddenContent();
     }
   },
   created() {
@@ -59,6 +88,7 @@ export default {
   },
   methods: {
     async handleInit() {
+      this.handleHiddenContent();
       this.handleGetAllCollaborators();
       this.handleGetListHappyMoment();
     },
@@ -94,6 +124,12 @@ export default {
         this.listFeedback = [];
         console.log(err);
       }
+    },
+    handleHiddenContent() {
+      const ROUTER_NAME = this.$router.currentRoute.name;
+
+      this.showHappyMoment = !(['AllHappyMoment', 'DetailHappyMoment'].includes(ROUTER_NAME));
+      this.showCollaborators = (ROUTER_NAME !== 'AllCollaborators');
     }
   },
 }

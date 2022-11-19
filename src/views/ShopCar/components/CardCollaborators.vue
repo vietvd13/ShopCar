@@ -1,7 +1,15 @@
 <template>
   <div class="card-collaborators">
     <div class="card-collaborators__img">
-      <b-img :src="`${domainImage}${avatar}`" />
+      <b-img-lazy 
+        :src="`${domainImage}${avatar}`"
+        :blank-src="require('@/assets/images/noimage.webp')"
+        alt="Image Collaborators"
+        v-bind="{
+          width: 155,
+          height: 189
+        }"
+      />
     </div>
 
     <div class="card-collaborators__fullname">
@@ -17,7 +25,11 @@
       <div class="item-social">
         <b-img
           @click="goToLink(kakaotalk)"
-          :src="require('@/assets/images/kakaotalk.png')" 
+          :src="require('@/assets/images/kakaotalk.png')"
+          v-bind="{
+            width: 38,
+            height: 38
+          }" 
         />
       </div>
 
@@ -25,13 +37,21 @@
         <b-img
           @click="goToLink(zalo)"
           :src="require('@/assets/images/zalo.png')" 
+          v-bind="{
+            width: 38,
+            height: 38
+          }" 
         />
       </div>
 
       <div class="item-social">
         <b-img
           @click="goToLink(messager)"
-          :src="require('@/assets/images/messager.png')" 
+          :src="require('@/assets/images/messager.png')"
+          v-bind="{
+            width: 38,
+            height: 38
+          }" 
         />
       </div>
     </div>
@@ -92,21 +112,21 @@ export default {
 .card-collaborators {
   width: 100%;
   background-color: $white;
-
+  border: 1px solid $iron;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid $silver-chalice;
-  border-radius: 5px;
   overflow: hidden;
 
   &__img {
     text-align: center;
     min-height: 189px;
+    margin-bottom: 10px;
 
     img {
       width: 155px;
-      border-radius: 5px;
     }
+
+    overflow: hidden;
   }
 
   &__fullname {
@@ -146,7 +166,7 @@ export default {
     .item-social {
       text-align: center;
       img {
-        width: 80%;
+        width: 38px;
         cursor: pointer;
 
         border-radius: 5px;

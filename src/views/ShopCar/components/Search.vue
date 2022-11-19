@@ -1,5 +1,12 @@
 <template>
   <b-navbar toggleable="lg">
+    <b-navbar-brand
+      href="#"
+      @click="goToRoute('HomeShopCar')"
+    >
+      <i class="fas fa-home-lg-alt" />
+    </b-navbar-brand>
+
     <b-navbar-toggle target="nav-collapse">
       <template #default>
         <i class="custom-icon-toggle fas fa-bars" />
@@ -80,11 +87,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/variables';
+@import '@/scss/variables';
 
 .navbar {
   background-color: $main;
   padding: 0.5rem;
+
+  .navbar-brand {
+    margin-right: 0;
+
+    &:hover {
+      color: $white;
+    }
+
+    &:focus {
+      color: $white;
+    }
+  }
 
   .custom-icon-toggle {
     color: $sub-main;

@@ -1,10 +1,15 @@
 <template>
   <div class="card-car" @click="onClickCardCar(carId)">
     <div class="card-car__img">
-      <b-img 
-        :src="`${domainImage}${carImage}`" 
+      <b-img-lazy 
+        :src="`${domainImage}${carImage}`"
+        :blank-src="require('@/assets/images/noimage.webp')"
         fluid 
-        :alt="carName" 
+        :alt="carName"
+        v-bind="{
+          height: 200,
+          width: 'auto'
+        }"
       />
     </div>
     <div class="card-car__desc">
@@ -15,13 +20,15 @@
         {{ dateSale }}
       </div>
       <div class="car-price">
-        {{ carPrice }}
+        {{ formatPrice(carPrice) }} <span>만원</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { formatPrice } from '@/utils/helper';
+
 export default {
   name: 'CardCarHome',
   props: {
@@ -46,9 +53,9 @@ export default {
       default: '',
     },
     carPrice: {
-      type: String,
+      type: [Number, String],
       required: true,
-      default: '',
+      default: 0,
     }
   },
   computed: {
@@ -57,6 +64,7 @@ export default {
     }
   },
   methods: {
+    formatPrice,
     onClickCardCar(id) {
       if (id) {
         let route = this.$router.resolve({ name: 'DetailCar', params: { id }});
@@ -69,29 +77,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/variables';
+@import '@/scss/variables';
 
 .card-car {
-  border-radius: 5px;
   cursor: pointer;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
   overflow: hidden;
-
   margin-top: 10px;
   margin-bottom: 10px;
+  border: 1px solid $iron;
+
+  &:hover {
+    img {
+      transform: scale(1.2);
+    }
+
+    border: 1px solid $main;
+  }
 
   &__img {
-    height: 220px;
-
     display: flex;
     text-align: center;
     vertical-align: middle;
     justify-content: center;
 
     img {
-      max-width: 100%;
-      max-height: 100%;
+      height: 200px !important;
+      width: 100%;
+      object-fit: fill;
+      transition: 0.3s all ease-in-out 0s;
     }
 
     overflow: hidden;
@@ -105,31 +118,35 @@ export default {
     background-color: $white;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
 
     .car-name {
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 10px;
+      font-weight: 500;
+      margin-bottom: 5px;
 
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
-
-      min-height: 36px;
     }
 
     .date-sale {
       font-size: 12px;
-      color: $silver-chalice;
-      margin-bottom: 10px;
+      color: $xanadu;
+      margin-bottom: 5px;
     }
 
     .car-price {
       font-size: 18px;
-      font-weight: bold;
-      color: $main;
+      font-weight: 500;
+      color: $alizarin-crimson;
+
+      span {
+        font-size: 12px;
+        color: $xanadu;
+      }
     }
   }
 }

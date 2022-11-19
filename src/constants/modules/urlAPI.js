@@ -46,4 +46,7 @@ export default {
   // Api Banner
   GET_BANNER: '/home/banner/get',
   POST_EDIT_BANNER: '/home/banner/update',
+
+  // Api Hotsale
+  GET_LIST_HOT_SALE: '/cars/list/hotsale',
 };
