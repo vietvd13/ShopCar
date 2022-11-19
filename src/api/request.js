@@ -4,6 +4,7 @@ import CONSTANTS from '@/constants';
 import { postRefreshToken } from '@/api/modules/Auth';
 import store from '@/store';
 import router, { resetRouter } from '@/routers';
+import { getLanguage } from '@/utils/getLang';
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_URL_API,
@@ -49,9 +50,11 @@ service.interceptors.request.use(
     if (TOKEN) {
       config.headers = { 
         'Authorization': `Bearer ${TOKEN}`,
-        'Accept': 'application/json',
       }
     }
+
+    config.headers['Accept'] = 'application/json';
+    config.headers['Accept-Language'] = getLanguage();
 
     return config;
   },
