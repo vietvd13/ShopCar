@@ -51,5 +51,6 @@ export default {
   GET_LIST_HOT_SALE: '/cars/list/hotsale',
 
   // Api PDF
-  GET_FILE_PDF: '/policy/detail',
+  GET_FILE_PDF_POLICY: '/policy/detail',
+  GET_FILE_PDF_INSURANCE: '/insurance/detail'
 };

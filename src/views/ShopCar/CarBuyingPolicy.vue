@@ -27,7 +27,7 @@
 
 <script>
 import TitleContent from './components/TitleContent.vue';
-import { getFilePDF } from '@/api/modules/Home';
+import { getFilePDFPolicy } from '@/api/modules/Home';
 import { setLoading } from '@/utils/setLoading';
 
 export default {
@@ -51,12 +51,12 @@ export default {
     methods: {
         async initData() {
             setLoading(true);
-            await this.handleGetFilePDF();
+            await this.handleGetFilePDFPolicy();
             setLoading(false);
         },
-        async handleGetFilePDF() {
+        async handleGetFilePDFPolicy() {
             try {
-                const { status_code, data } = await getFilePDF();
+                const { status_code, data } = await getFilePDFPolicy();
 
                 if (status_code === 200) {
                     this.file = data.file;
