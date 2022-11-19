@@ -49,4 +49,7 @@ export default {
 
   // Api Hotsale
   GET_LIST_HOT_SALE: '/cars/list/hotsale',
+
+  // Api PDF
+  GET_FILE_PDF: '/policy/detail',
 };

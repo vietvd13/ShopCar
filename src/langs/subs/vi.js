@@ -24,6 +24,7 @@ export default {
     TEXT_VIEW_MORE: "Xem toàn bộ...",
     PREVIEW: 'Preview',
     UPDATE_BANNER: 'Cập nhật banner',
+    NO_DATA: 'Không có dữ liệu'
   },
   TOAST: {
     SUCCESS: "Thành công",

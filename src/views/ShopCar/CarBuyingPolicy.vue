@@ -7,24 +7,67 @@
         </div>
 
         <b-card>
-            <VuePdfApp
-                style="height: 100vh;"
-                pdf="https://api-cars.thangld-dev.tech/uploads/uploads-1668829787061-239f0249-5114-41b8-831a-96129883348b.pdf"
-            />
+            <template v-if="file">
+                <embed
+                    class="view-pdf"
+                    :src="`${domainPDF}${file}`"
+                />
+            </template>
+
+            <template v-else>
+                <b-row>
+                    <b-col class="text-center">
+                        <span>{{ $t('APP.NO_DATA') }}</span>
+                    </b-col>
+                </b-row>
+            </template>
         </b-card>
     </div>
 </template>
 
 <script>
 import TitleContent from './components/TitleContent.vue';
-import VuePdfApp from "vue-pdf-app";
-import "vue-pdf-app/dist/icons/main.css";
+import { getFilePDF } from '@/api/modules/Home';
+import { setLoading } from '@/utils/setLoading';
 
 export default {
     name: 'CarBuyingPolicy',
     components: {
         TitleContent,
-        VuePdfApp
+    },
+    computed: {
+        domainPDF() {
+            return process.env.VUE_APP_URL_IMAGE;
+        }
+    },
+    data() {
+        return {
+            file: ''
+        }
+    },
+    created () {
+        this.initData();
+    },
+    methods: {
+        async initData() {
+            setLoading(true);
+            await this.handleGetFilePDF();
+            setLoading(false);
+        },
+        async handleGetFilePDF() {
+            try {
+                const { status_code, data } = await getFilePDF();
+
+                if (status_code === 200) {
+                    this.file = data.file;
+                } else {
+                    this.file = '';
+                }
+            } catch (err) {
+                this.file = '';
+                console.log(err);
+            }
+        }
     },
 }
 </script>
@@ -35,6 +78,11 @@ export default {
 
     &__header {
         margin-bottom: 10px;
+    }
+
+    .view-pdf {
+        width: 100%;
+        height: 100vh;
     }
 }
 </style>

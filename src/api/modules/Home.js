@@ -56,3 +56,7 @@ export function getDetailHappyMoment(BODY = null, PARAMS = null) {
 export function getListHotSale(BODY = null, PARAMS = null) {
   return request.getRequest(CONSTANTS.URL_API.GET_LIST_HOT_SALE, BODY, PARAMS);
 }
+
+export function getFilePDF() {
+  return request.postRequest(CONSTANTS.URL_API.GET_FILE_PDF, null, null);
+}
