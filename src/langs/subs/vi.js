@@ -139,11 +139,11 @@ export default {
       TITLE_SALLER_INFOR: 'Thông tin người bán',
       TITLE_VEHICLE_OPTIONS_AND_DETAILS: 'Tùy chọn xe và chi tiết',
 
-      LICENSE_PLATE : "Biển số xe",
       PRICE: 'Giá bán',
       YEAR: "Năm",
       FUEL_TYPE: "Nhiên liệu",
       COLOR: "Màu sắc",
+      LICENSE_PLATE : "Biển số xe",
       FORECLOSURE_MORTGAGE: "Tịch thu nhà | Thế chấp",
       NON_PAYMENT_OF_TAX: "Không nộp thuế",
       ACCIDENT: "Tai nạn",
@@ -156,6 +156,7 @@ export default {
 
       NAME: "Tên",
       CONTACT: "Liên hệ",
+      EMPLOYEE_ID: 'ID nhân viên'
     },
   },
   DASHBOARD: {
