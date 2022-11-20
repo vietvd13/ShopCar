@@ -1,11 +1,88 @@
 <template>
-    <div>
-        Insurance
+    <div class="car-buying-insurance">
+        <div class="car-buying-insurance__header">
+            <TitleContent>
+                {{ $t('SHOP_CAR.CAR_BUYING_POLICY.TITLE') }}
+            </TitleContent>
+        </div>
+
+        <b-card>
+            <template v-if="file">
+                <embed
+                    class="view-pdf"
+                    :src="`${domainPDF}${file}`"
+                />
+            </template>
+
+            <template v-else>
+                <b-row>
+                    <b-col class="text-center">
+                        <span>{{ $t('APP.NO_DATA') }}</span>
+                    </b-col>
+                </b-row>
+            </template>
+        </b-card>
     </div>
 </template>
 
 <script>
+import TitleContent from './components/TitleContent.vue';
+import { getFilePDFInsurance } from '@/api/modules/Home';
+import { setLoading } from '@/utils/setLoading';
+
 export default {
-    name: 'ShopCarInsurance'
+    name: 'ShopCarInsurance',
+    components: {
+        TitleContent,
+    },
+    computed: {
+        domainPDF() {
+            return process.env.VUE_APP_URL_IMAGE;
+        }
+    },
+    data() {
+        return {
+            file: ''
+        }
+    },
+    created () {
+        this.initData();
+    },
+    methods: {
+        async initData() {
+            setLoading(true);
+            await this.handleGetFilePDFInsurance();
+            setLoading(false);
+        },
+        async handleGetFilePDFInsurance() {
+            try {
+                const { status_code, data } = await getFilePDFInsurance();
+
+                if (status_code === 200) {
+                    this.file = data.file;
+                } else {
+                    this.file = '';
+                }
+            } catch (err) {
+                this.file = '';
+                console.log(err);
+            }
+        }
+    },
 }
 </script>
+
+<style lang="scss" scoped>
+.car-buying-insurance {
+    margin-bottom: 10px;
+
+    &__header {
+        margin-bottom: 10px;
+    }
+
+    .view-pdf {
+        width: 100%;
+        height: 100vh;
+    }
+}
+</style>

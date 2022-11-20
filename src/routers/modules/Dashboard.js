@@ -5,7 +5,7 @@ const Dashboard = {
   name: 'Dashboard',
   component: LayoutDashboard,
   redirect: {
-    name: 'Collaborators'
+    name: 'CarManagement'
   },
   children: [
     {

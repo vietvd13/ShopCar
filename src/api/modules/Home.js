@@ -56,3 +56,11 @@ export function getDetailHappyMoment(BODY = null, PARAMS = null) {
 export function getListHotSale(BODY = null, PARAMS = null) {
   return request.getRequest(CONSTANTS.URL_API.GET_LIST_HOT_SALE, BODY, PARAMS);
 }
+
+export function getFilePDFPolicy() {
+  return request.postRequest(CONSTANTS.URL_API.GET_FILE_PDF_POLICY, null, null);
+}
+
+export function getFilePDFInsurance() {
+  return request.postRequest(CONSTANTS.URL_API.GET_FILE_PDF_INSURANCE, null, null);
+}
