@@ -100,7 +100,6 @@ export default {
         const { status_code, data } = await getDetailCar(BODY);
 
         if (status_code === 200) {
-          console.log(data);
           this.isCar = data;
         }
       } catch (err) {
