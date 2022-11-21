@@ -132,6 +132,12 @@ export default {
         CONTENT: "Nội dung",
         SEND: "Gửi",
       },
+      CONTACT: {
+        PHONE: "Số điện thoại",
+        ADDRESS: "Địa chỉ",
+        EMAIL: "Email",
+        MAP: "Bản đồ"
+      },
       PROFILE: {
         TITLE: 'Trang cá nhân',
       },

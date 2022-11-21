@@ -64,3 +64,7 @@ export function getFilePDFPolicy() {
 export function getFilePDFInsurance() {
   return request.postRequest(CONSTANTS.URL_API.GET_FILE_PDF_INSURANCE, null, null);
 }
+
+export function getProfilePublic() {
+  return request.postRequest(CONSTANTS.URL_API.USER_INFOR_PUBLIC, null, null);
+}

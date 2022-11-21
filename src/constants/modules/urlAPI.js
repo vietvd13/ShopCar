@@ -4,6 +4,7 @@ export default {
   REFRESH_TOKEN: '/auth/relogin',
   CHANGE_PASSWORD: '/auth/change-password',
   USER_INFOR: '/auth/infor',
+  USER_INFOR_PUBLIC: '/auth/infor-public',
   CHANGE_USER_INFOR: "/auth/change-infor",
 
   // Api Upload
