@@ -24,6 +24,8 @@
               :year="isCar.year_manufacture"
               :distanceDriven="isCar.distance_driven"
               :fuelType="isCar.fuel_type"
+              :gearbox="isCar.gearbox"
+              :cylynder="isCar.cylinder_capacity"
               :color="isCar.color"
               :carType="isCar.car_type"
               :seizure="isCar.seizure"

@@ -65,7 +65,7 @@
                                     </b-td>
 
                                     <b-td>
-                                        no-key
+                                        {{ gearbox }}
                                     </b-td>
 
                                     <b-td class="title-car-infor">
@@ -73,7 +73,7 @@
                                     </b-td>
 
                                     <b-td>
-                                        no-key
+                                        {{ cylynder }}
                                     </b-td>
                                 </b-tr>
 
@@ -231,6 +231,14 @@ export default {
             default: 0, 
         },
         fuelType: {
+            type: String,
+            default: ''
+        },
+        gearbox: {
+            type: String,
+            default: ''
+        },
+        cylynder: {
             type: String,
             default: ''
         },
