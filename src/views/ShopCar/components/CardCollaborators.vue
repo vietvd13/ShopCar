@@ -124,6 +124,7 @@ export default {
 
     img {
       width: 155px;
+      object-fit: cover;
     }
 
     overflow: hidden;

@@ -111,7 +111,7 @@ export default {
     
     img {
       width: 100%;
-      object-fit: fill;
+      object-fit: cover;
       transition: 0.3s all ease-in-out 0s;
     }
 
