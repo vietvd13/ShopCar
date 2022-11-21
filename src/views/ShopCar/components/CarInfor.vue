@@ -18,8 +18,8 @@
                                         {{ $t('SHOP_CAR.DETAIL_CAR.PRICE') }}
                                     </b-td>
 
-                                    <b-td colspan="3">
-                                        {{ formatPrice(price) }} 만원
+                                    <b-td colspan="3" class="td-price">
+                                        <span>{{ formatPrice(price) }}</span> 만원
                                     </b-td>
                                 </b-tr>
 
@@ -145,7 +145,7 @@
                                         {{ $t('SHOP_CAR.DETAIL_CAR.CONTACT') }}
                                     </b-td>
 
-                                    <b-td>
+                                    <b-td class="td-contact">
                                         {{ contact }}
                                     </b-td>
                                 </b-tr>
@@ -312,13 +312,29 @@ export default {
         font-weight: 600;
         background-color: $main;
         color: $white;
+        text-align: center;
         vertical-align: middle;
+
+        width: 110px;
     }
 
     td {
         min-width: 100px;
         font-weight: 500;
-        font-size: 14px;
+        vertical-align: middle;
+    }
+
+    .td-price {
+        span {
+            font-size: 30px;
+            font-weight: bold;
+            color: $alizarin-crimson;
+        }
+    }
+
+    .td-contact {
+        font-size: 30px;
+        font-weight: bold;
     }
 }
 </style>
