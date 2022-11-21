@@ -175,6 +175,9 @@ export default {
     },
     CAR_BUYING_POLICY: {
       TITLE: 'Chính sách mua xe'
+    },
+    CONTACT: {
+      TITLE: 'Liên hệ'
     }
   },
   DASHBOARD: {
