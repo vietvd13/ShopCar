@@ -52,5 +52,7 @@ export default {
 
   // Api PDF
   GET_FILE_PDF_POLICY: '/policy/detail',
-  GET_FILE_PDF_INSURANCE: '/insurance/detail'
+  GET_FILE_PDF_INSURANCE: '/insurance/detail',
+  EDIT_FILE_PDF_POLICY: '/policy/edit',
+  EDIT_FILE_PDF_INSURANCE: '/insurance/edit',
 };

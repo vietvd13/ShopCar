@@ -49,6 +49,22 @@ const Dashboard = {
       component: () => import(/* webpackChunkName: "BannerManagement" */ '@/views/Dashboard/BannerManagement.vue')
     },
     {
+      path: 'policy',
+      name: 'PolicyManagement',
+      meta: {
+        title: 'ROUTER.POLICY_MANAGEMENT',
+      },
+      component: () => import(/* webpackChunkName: "PolicyManagement" */ '@/views/Dashboard/PolicyManagement.vue')
+    },
+    {
+      path: 'insurance',
+      name: 'InsuranceManagement',
+      meta: {
+        title: 'ROUTER.INSURANCE_MANAGEMENT',
+      },
+      component: () => import(/* webpackChunkName: "PolicyManagement" */ '@/views/Dashboard/InsuranceManagement.vue')
+    },
+    {
       path: 'profile',
       name: 'ProfilePage',
       meta: {
