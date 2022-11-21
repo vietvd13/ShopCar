@@ -160,6 +160,8 @@ export default {
   .view-pdf {
     width: 100%;
     height: calc(100vh - 250px);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 </style>
