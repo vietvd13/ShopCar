@@ -3,7 +3,10 @@
     <b-row>
       <b-card class="w-100 mt-2">
         <template v-if="file">
-          <embed class="view-pdf" :src="`${domainPDF}${file}`" />
+          <object class="view-pdf" :data="`${domainPDF}${file}`" type="application/pdf">
+            <iframe :src="`${domainPDF}${file}`" frameborder="0"></iframe>
+          </object>
+
         </template>
 
         <template v-else>
@@ -18,53 +21,26 @@
 
     <b-row>
       <b-col class="text-right mt-2">
-        <b-button
-          variant="primary"
-          class="btn-app"
-          @click="handleShowModal"
-        >
+        <b-button variant="primary" class="btn-app" @click="handleShowModal">
           {{ $t("APP.BUTTON_UPDATE") }}
         </b-button>
       </b-col>
     </b-row>
 
     <div class="policy-page__modal">
-      <b-modal
-        v-model="isModal.show"
-        no-close-on-backdrop
-        no-close-on-esc
-        hide-header-close
-        static
-        scrollable
-      >
+      <b-modal v-model="isModal.show" no-close-on-backdrop no-close-on-esc hide-header-close static scrollable>
         <b-form>
-          <b-form-group
-            label-cols-sm="4"
-            label-cols-md="4"
-            label-cols-lg="4"
-            label-cols-xl="4"
-            label-cols="4"
-            label-for="file"
-            label="File"
-          >
-            <b-form-file
-              id="file"
-              v-model="init_file"
-              accept="application/pdf"
-              placeholder="Choose a file"
-              drop-placeholder="Drop file here..."
-              type="file"
-            ></b-form-file>
+          <b-form-group label-cols-sm="4" label-cols-md="4" label-cols-lg="4" label-cols-xl="4" label-cols="4"
+            label-for="file" label="File">
+            <b-form-file id="file" v-model="init_file" accept="application/pdf" placeholder="Choose a file"
+              drop-placeholder="Drop file here..." type="file"></b-form-file>
           </b-form-group>
         </b-form>
 
         <template #modal-footer>
           <b-row align-v="baseline">
             <b-col cols="6" class="text-center">
-              <b-button
-                class="btn-default btn-cancel"
-                @click="hanldeCloseModal"
-              >
+              <b-button class="btn-default btn-cancel" @click="hanldeCloseModal">
                 {{ $t("APP.CANCEL") }}
               </b-button>
             </b-col>
@@ -171,13 +147,14 @@ export default {
 @import "@/scss/variables.scss";
 
 .policy-page {
+
   &__header,
   &__content {
     margin-bottom: 10px;
   }
 
   &__header {
-    button + button {
+    button+button {
       margin-left: 10px;
     }
   }
