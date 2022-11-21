@@ -82,6 +82,9 @@ export default {
     UPDATE_BANNER_ERROR: 'Bạn đã cập nhật banner thất bại',
 
     REQUIRED_FILE: "Vui lòng chọn file",
+
+    CHANGE_PROFILE_SUCCESS: "Bạn đã cập nhật hồ sơ thành công",
+    CHANGE_PROFILE_ERROR: "Bạn dã cập nhật hồ sơ thất bại"
   },
   SHOP_CAR: {
     HOME: {

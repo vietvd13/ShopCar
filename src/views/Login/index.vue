@@ -43,17 +43,17 @@
 </template>
 
 <script>
-import Toast from '../../toast';
-import { validEmail, validPassword } from '../../utils/validate';
-import { setLoading } from '../../utils/setLoading';
-import { postLogin } from '../../api/modules/Auth';
+import Toast from '@/toast';
+import { validEmail, validPassword } from '@/utils/validate';
+import { setLoading } from '@/utils/setLoading';
+import { postLogin } from '@/api/modules/Auth';
 
 export default {
   name: 'LoginApp',
   data() {
     return {
       Account: {
-        email: 'vuducviet0131@gmail.com',
+        email: 'thangld2407@gmail.com',
         password: '123456',
       }
     }
