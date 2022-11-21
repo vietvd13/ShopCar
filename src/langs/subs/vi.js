@@ -4,6 +4,7 @@ export default {
     BUTTON_BACK: "Trở lại",
     BUTTON_ADD: "Thêm mới",
     BUTTON_DELETE_MANY: "Xoá nhiều",
+    BUTTON_UPDATE: "Cập nhật",
     BUTTON_FILTER: "Áp dụng",
     TABLE_NO_DATA: "Không có dữ liệu",
     PLEASE_IMPORT_IMAGE: "Lựa chọn ảnh",
@@ -24,7 +25,8 @@ export default {
     TEXT_VIEW_MORE: "Xem toàn bộ...",
     PREVIEW: 'Preview',
     UPDATE_BANNER: 'Cập nhật banner',
-    NO_DATA: 'Không có dữ liệu'
+    NO_DATA: 'Không có dữ liệu',
+
   },
   TOAST: {
     SUCCESS: "Thành công",
@@ -44,7 +46,8 @@ export default {
     CUSTOMER_SUPPORT: "Hỗ trợ khách hàng",
     BANNER_MANAGEMENT: 'Quản lý banner',
     PROFILE: "Thông tin cá nhân",
-    POLICY_MANAGEMENT: "Quản lý chính sách"
+    POLICY_MANAGEMENT: "Quản lý chính sách",
+    INSURANCE_MANAGEMENT: "Quản lý bảo hiểm",
   },
   TOAST_MESSAGE: {
     CHANGE_LANGUAGE_SUCCESS: "Bạn đã thay đổi ngôn ngữ thành công",
@@ -77,6 +80,8 @@ export default {
 
     UPDATE_BANNER_SUCCESS: 'Bạn đã cập nhật banner thành công',
     UPDATE_BANNER_ERROR: 'Bạn đã cập nhật banner thất bại',
+
+    REQUIRED_FILE: "Vui lòng chọn file",
   },
   SHOP_CAR: {
     HOME: {

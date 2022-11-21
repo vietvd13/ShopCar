@@ -1,5 +1,5 @@
 <template>
-  <div class="policy-page container">
+  <div class="insurance-page container">
     <b-row>
       <b-card class="w-100 mt-2">
         <template v-if="file">
@@ -28,7 +28,7 @@
       </b-col>
     </b-row>
 
-    <div class="policy-page__modal">
+    <div class="insurance-page__modal">
       <b-modal
         v-model="isModal.show"
         no-close-on-backdrop
@@ -70,7 +70,7 @@
             </b-col>
 
             <b-col cols="6" class="text-center">
-              <b-button class="btn-default btn-app" @click="handleUpdatePolicy">
+              <b-button class="btn-default btn-app" @click="handleUpdateinsurance">
                 {{ $t("APP.SAVE") }}
               </b-button>
             </b-col>
@@ -82,13 +82,13 @@
 </template>
 
 <script>
-import { getFilePDFPolicy } from "@/api/modules/Home";
+import { getFilePDFInsurance } from "@/api/modules/Home";
 import { postFile } from "@/api/modules/Upload";
 import Toast from "@/toast";
-import { postEditPolicy } from "@/api/modules/Dashboard";
+import { postEditInsurance } from "@/api/modules/Dashboard";
 
 export default {
-  name: "PolicyManagement",
+  name: "insuranceManagement",
   data() {
     return {
       file: null,
@@ -110,12 +110,12 @@ export default {
 
   methods: {
     async initData() {
-      await this.handleGetFilePDFPolicy();
+      await this.handleGetFilePDFinsurance();
     },
 
-    async handleGetFilePDFPolicy() {
+    async handleGetFilePDFinsurance() {
       try {
-        const { status_code, data } = await getFilePDFPolicy();
+        const { status_code, data } = await getFilePDFInsurance();
 
         if (status_code === 200) {
           if (data.file) {
@@ -141,7 +141,7 @@ export default {
       this.init_file = null;
     },
 
-    async handleUpdatePolicy() {
+    async handleUpdateinsurance() {
       if (!this.init_file) {
         return Toast.warning(this.$t("TOAST_MESSAGE.REQUIRED_FILE"));
       }
@@ -151,10 +151,10 @@ export default {
       }
       const BODY = {
         file: this.file,
-        policy_id: this.current_id,
+        insurance_id: this.current_id,
       };
 
-      const response_update = await postEditPolicy(BODY);
+      const response_update = await postEditInsurance(BODY);
       if (response_update.status_code === 200) {
         Toast.success(response_update.message);
         this.hanldeCloseModal();
@@ -170,7 +170,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/scss/variables.scss";
 
-.policy-page {
+.insurance-page {
   &__header,
   &__content {
     margin-bottom: 10px;

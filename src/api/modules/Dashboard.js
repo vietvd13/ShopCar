@@ -60,3 +60,13 @@ export function getBanner(BODY = null, PARAMS = null) {
 export function postEditBanner(BODY = null, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.POST_EDIT_BANNER, BODY, PARAMS);
 }
+
+// Chính sách bảo hiểm
+
+export function postEditPolicy(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.EDIT_FILE_PDF_POLICY, BODY, PARAMS);
+}
+
+export function postEditInsurance(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.EDIT_FILE_PDF_INSURANCE, BODY, PARAMS);
+}

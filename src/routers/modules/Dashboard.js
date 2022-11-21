@@ -57,6 +57,14 @@ const Dashboard = {
       component: () => import(/* webpackChunkName: "PolicyManagement" */ '@/views/Dashboard/PolicyManagement.vue')
     },
     {
+      path: 'insurance',
+      name: 'InsuranceManagement',
+      meta: {
+        title: 'ROUTER.INSURANCE_MANAGEMENT',
+      },
+      component: () => import(/* webpackChunkName: "PolicyManagement" */ '@/views/Dashboard/InsuranceManagement.vue')
+    },
+    {
       path: 'profile',
       name: 'ProfilePage',
       meta: {
