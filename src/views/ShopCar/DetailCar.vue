@@ -44,7 +44,12 @@
       </div>
 
       <div class="content-car-options">
-        <CarOptions />
+        <CarOptions 
+          :exterior="isCar.exterior"
+          :guts="isCar.guts"
+          :safety="isCar.safety"
+          :convenience="isCar.convenience"
+        />
       </div>
 
       <div class="content-car-images">

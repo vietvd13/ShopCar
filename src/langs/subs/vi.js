@@ -165,7 +165,13 @@ export default {
       EMPLOYEE_ID: 'ID nhân viên',
       AFFILIATED_COMPANY: 'Trực thuộc',
       BUSINESS_ADDRESS: 'Địa chỉ kinh doanh',
-      PARKING_LOCATION: 'Vị trí đỗ xe'
+      PARKING_LOCATION: 'Vị trí đỗ xe',
+
+      CAR_OPTION_EXTERIOR: 'Ngoại thất',
+      CAR_OPTION_GUTS: 'Nội thất',
+      CAR_OPTION_SAFETY: 'An toàn',
+      CAR_OPTION_CONVENIENCE: 'Tiện ích',
+
     },
     CAR_BUYING_POLICY: {
       TITLE: 'Chính sách mua xe'
