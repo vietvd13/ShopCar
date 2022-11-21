@@ -145,6 +145,7 @@ export default {
       TITLE_BASIC_INFOR: 'Thông tin cơ bản',
       TITLE_SALLER_INFOR: 'Thông tin người bán',
       TITLE_VEHICLE_OPTIONS_AND_DETAILS: 'Tùy chọn xe và chi tiết',
+      TITLE_PERFORMANCE_CHECK: 'Kiểm tra hiệu suất',
 
       PRICE: 'Giá bán',
       LICENSE_PLATE : "Biển số xe",

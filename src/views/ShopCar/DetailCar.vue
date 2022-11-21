@@ -57,6 +57,12 @@
           :items="isCar.images"
         />
       </div>
+
+      <div class="content-car-performance">
+        <ViewPDF 
+          :linkFile="isCar.performance_check"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -67,6 +73,7 @@ import PreviewImage from './components/PreviewImage.vue';
 import CarInfor from './components/CarInfor.vue';
 import CarOptions from './components/CarOptions.vue';
 import ListImage from './components/ListImage.vue';
+import ViewPDF from './components/ViewPdf.vue';
 
 import { getDetailCar } from '@/api/modules/Home';
 
@@ -77,7 +84,8 @@ export default {
     PreviewImage,
     CarInfor,
     CarOptions,
-    ListImage
+    ListImage,
+    ViewPDF
   },
   data() {
     return {
@@ -123,7 +131,8 @@ export default {
     .content-basic-infor,
     .content-preview-image,
     .content-car-options,
-    .content-car-images {
+    .content-car-images,
+    .content-car-performance {
       margin-bottom: 10px;
     }
   }
