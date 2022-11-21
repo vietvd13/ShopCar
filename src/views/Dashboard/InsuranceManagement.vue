@@ -3,7 +3,7 @@
     <b-row>
       <b-card class="w-100 mt-2">
         <template v-if="file">
-          <iframe :src="`${domainPDF}${file}`" frameborder="0"></iframe>
+          <iframe :src="`${domainPDF}${file}`" frameborder="0" class="view-pdf"></iframe>
         </template>
 
         <template v-else>
