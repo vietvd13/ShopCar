@@ -3,9 +3,7 @@
     <b-row>
       <b-card class="w-100 mt-2">
         <template v-if="file">
-          <object class="view-pdf" :data="`${domainPDF}${file}`" type="application/pdf">
-            <iframe :src="`${domainPDF}${file}`" frameborder="0"></iframe>
-          </object>
+          <iframe :src="`${domainPDF}${file}`" frameborder="0"></iframe>
 
         </template>
 
