@@ -262,8 +262,10 @@ export default {
     },
 
     handleCancelChange() {
+      if (this.is_edit) {
+        this.getProfile();
+      }
       this.is_edit = false;
-      this.getProfile();
     },
 
     async handleChangePassword() {
@@ -298,6 +300,7 @@ export default {
           this.address = response.data.address;
           this.gender = response.data.gender;
           this.dob = new Date(response.data.dob);
+          this.$store.dispatch('auth/setProfile', response.data)
         } else {
           Toast.warning(this.$t('TOAST_MESSAGE.GET_PROFILE_ERROR'));
         }
