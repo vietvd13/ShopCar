@@ -326,14 +326,14 @@ export default {
 
     .td-price {
         span {
-            font-size: 30px;
+            font-size: 25px;
             font-weight: bold;
             color: $alizarin-crimson;
         }
     }
 
     .td-contact {
-        font-size: 30px;
+        font-size: 25px;
         font-weight: bold;
     }
 }
