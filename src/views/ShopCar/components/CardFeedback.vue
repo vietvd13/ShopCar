@@ -10,9 +10,10 @@
         fluid 
         alt="Customer Feedback Image"
         v-bind="{
-          height: 190,
+          height: mapImageHeight(typeScreen),
           width: 'auto'
         }"
+        :style="`height: ${mapImageHeight(typeScreen)}px`"
       />
     </div>
 
@@ -64,11 +65,25 @@ export default {
   computed: {
     domainImage() {
       return process.env.VUE_APP_URL_IMAGE;
+    },
+    typeScreen() {
+      return this.$store.getters.sizeScreen.type;
     }
   },
   methods: {
     goToDetail() {
       this.$router.push({ name: 'DetailHappyMoment', params: { id: this.id }});
+    },
+    mapImageHeight(size) {
+      const MAP_SIZE = {
+        xl: 190,
+        lg: 190,
+        md: 220,
+        sm: 170,
+        xs: 170,
+      };
+
+      return MAP_SIZE[size];
     }
   },
 }
@@ -95,9 +110,8 @@ export default {
     text-align: center;
     
     img {
-      height: 190px;
       width: 100%;
-      object-fit: cover;
+      object-fit: fill;
       transition: 0.3s all ease-in-out 0s;
     }
 

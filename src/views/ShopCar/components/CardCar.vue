@@ -7,9 +7,10 @@
         fluid 
         :alt="carName"
         v-bind="{
-          height: 200,
+          height: mapImageHeight(typeScreen),
           width: 'auto'
         }"
+        :style="`height: ${mapImageHeight(typeScreen)}px`"
       />
     </div>
     <div class="card-car__desc">
@@ -61,7 +62,13 @@ export default {
   computed: {
     domainImage() {
       return process.env.VUE_APP_URL_IMAGE;
+    },
+    typeScreen() {
+      return this.$store.getters.sizeScreen.type;
     }
+  },
+  created () {
+    this.mapImageHeight();
   },
   methods: {
     formatPrice,
@@ -71,6 +78,17 @@ export default {
 
         window.open(route.href);
       }
+    },
+    mapImageHeight(size) {
+      const MAP_SIZE = {
+        xl: 190,
+        lg: 190,
+        md: 220,
+        sm: 170,
+        xs: 170,
+      };
+
+      return MAP_SIZE[size];
     }
   },
 }
@@ -101,7 +119,6 @@ export default {
     justify-content: center;
 
     img {
-      height: 200px !important;
       width: 100%;
       object-fit: fill;
       transition: 0.3s all ease-in-out 0s;

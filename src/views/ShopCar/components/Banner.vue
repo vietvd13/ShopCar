@@ -56,8 +56,8 @@ export default {
 <style lang="scss" scoped>
 .banner-home {
   width: 100%;
-  object-fit: cover;
+  object-fit: scale-down;
 
-  height: 370px;
+  max-height: 370px;
 }
 </style>
