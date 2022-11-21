@@ -7,168 +7,200 @@
 
             <div class="content-infor">
                 <b-row>
-                    <b-col cols="12" xs="12" sm="12" md="12" lg="12">
-                        <b-row>
-                            <b-col cols="12" xs="12" sm="12" md="12" lg="6">
-                                <b-row class="mb-2">
-                                    <b-col cols="5">
-                                        <span class="title-text">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.YEAR') }}:
-                                        </span>
-                                    </b-col>
+                    <b-col cols="12" xs="12" sm="12" md="12" lg="7">
+                        <b-table-simple
+                            bordered
+                            no-border-collapse
+                        >
+                            <b-tbody>
+                                <b-tr>
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.PRICE') }}
+                                    </b-td>
 
-                                    <b-col cols="7">
-                                        {{ year }}
-                                    </b-col>
-                                </b-row> 
+                                    <b-td colspan="3">
+                                        {{ formatPrice(price) }} 만원
+                                    </b-td>
+                                </b-tr>
 
-                                <b-row class="mb-2">
-                                    <b-col cols="5">
-                                        <span class="title-text">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.FUEL_TYPE') }}:
-                                        </span>
-                                    </b-col>
+                                <b-tr>
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.LICENSE_PLATE') }}
+                                    </b-td>
 
-                                    <b-col cols="7">
-                                        {{ fuelType }}
-                                    </b-col>
-                                </b-row> 
-
-                                <b-row class="mb-2">
-                                    <b-col cols="5">
-                                        <span class="title-text">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.COLOR') }}:
-                                        </span>
-                                    </b-col>
-
-                                    <b-col cols="7">
-                                        {{ color }}
-                                    </b-col>
-                                </b-row> 
-
-                                <b-row class="mb-2">
-                                    <b-col cols="5">
-                                        <span class="title-text">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.LICENSE_PLATE') }}:
-                                        </span>
-                                    </b-col>
-
-                                    <b-col cols="7">
+                                    <b-td>
                                         {{ licensePlate }}
-                                    </b-col>
-                                </b-row> 
+                                    </b-td>
 
-                                <b-row class="mb-2">
-                                    <b-col cols="5">
-                                        <span class="title-text">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.FORECLOSURE_MORTGAGE') }}:
-                                        </span>
-                                    </b-col>
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.YEAR') }}
+                                    </b-td>
 
-                                    <b-col cols="7">
-                                        {{ foreclosureMortgage }}
-                                    </b-col>
-                                </b-row> 
+                                    <b-td>
+                                        {{ year }}
+                                    </b-td>
+                                </b-tr>
 
-                                <b-row class="mb-2">
-                                    <b-col cols="5">
-                                        <span class="title-text">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.NON_PAYMENT_OF_TAX') }}:
-                                        </span>
-                                    </b-col>
+                                <b-tr>
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.DISTANCE_DRIVEN') }}
+                                    </b-td>
 
-                                    <b-col cols="7">
-                                        {{ nonpPaymentOfTax }}
-                                    </b-col>
-                                </b-row> 
+                                    <b-td>
+                                        {{ distanceDriven }}
+                                    </b-td>
 
-                                <b-row class="mb-2">
-                                    <b-col cols="5">
-                                        <span class="title-text">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.ACCIDENT') }}:
-                                        </span>
-                                    </b-col>
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.FUEL_TYPE') }}
+                                    </b-td>
 
-                                    <b-col cols="7">
-                                        {{ accident }}
-                                    </b-col>
-                                </b-row> 
-                            </b-col>
+                                    <b-td>
+                                        {{ fuelType }}
+                                    </b-td>
+                                </b-tr>
 
-                            <b-col cols="12" xs="12" sm="12" md="12" lg="6">
-                                <b-row class="mb-2">
-                                    <b-col cols="5">
-                                        <span class="title-text">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.FIRST_REGISTRATION_DATE') }}:
-                                        </span>
-                                    </b-col>
+                                <b-tr>
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.TRANSMISSION') }}
+                                    </b-td>
 
-                                    <b-col cols="7">
-                                        {{ firstRegistrationDate }}
-                                    </b-col>
-                                </b-row> 
-                                
-                                <b-row class="mb-2">
-                                    <b-col cols="5">
-                                        <span class="title-text">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.GEARBOX') }}:
-                                        </span>
-                                    </b-col>
+                                    <b-td>
+                                        no-key
+                                    </b-td>
 
-                                    <b-col cols="7">
-                                        {{ gearbox }}
-                                    </b-col>
-                                </b-row> 
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.DISPLACEMENT') }}
+                                    </b-td>
 
-                                <b-row class="mb-2">
-                                    <b-col cols="5">
-                                        <span class="title-text">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.DISTANCE_DRIVEN') }}:
-                                        </span>
-                                    </b-col>
+                                    <b-td>
+                                        no-key
+                                    </b-td>
+                                </b-tr>
 
-                                    <b-col cols="7">
-                                        {{ distanceDriven }} km
-                                    </b-col>
-                                </b-row> 
+                                <b-tr>
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.COLOR') }}
+                                    </b-td>
 
-                                <b-row class="mb-2">
-                                    <b-col cols="5">
-                                        <span class="title-text">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.VEHICLE_IDENTIFICATION_NUMBER') }}:
-                                        </span>
-                                    </b-col>
+                                    <b-td>
+                                        {{ color }}
+                                    </b-td>
 
-                                    <b-col cols="7">
-                                        {{ vehicleIdentificationNumber }}
-                                    </b-col>
-                                </b-row> 
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.CAR_TYPE') }}
+                                    </b-td>
 
-                                <b-row class="mb-2">
-                                    <b-col cols="5">
-                                        <span class="title-text">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.MODEL_NAME') }}:
-                                        </span>
-                                    </b-col>
+                                    <b-td>
+                                        {{ carType }}
+                                    </b-td>
+                                </b-tr>
 
-                                    <b-col cols="7">
-                                        {{ modelName }}
-                                    </b-col>
-                                </b-row> 
+                                <b-tr>
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.SEIZURE') }}
+                                    </b-td>
 
-                                <b-row>
-                                    <b-col cols="5">
-                                        <span class="title-text">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.PRESENTATION_NUMBER') }}:
-                                        </span>
-                                    </b-col>
+                                    <b-td>
+                                        {{ seizure }}
+                                    </b-td>
 
-                                    <b-col cols="7">
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.MORTGAGE') }}
+                                    </b-td>
+
+                                    <b-td>
+                                        {{ mortgage }}
+                                    </b-td>
+                                </b-tr>
+
+                                <b-tr>
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.PRESENTATION_NUMBER') }}
+                                    </b-td>
+
+                                    <b-td>
                                         {{ presentationNumber }}
-                                    </b-col>
-                                </b-row> 
-                            </b-col>
-                        </b-row>
+                                    </b-td>
+
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.STORAGE_LOCATION') }}
+                                    </b-td>
+
+                                    <b-td>
+                                        {{ storageLocation }}
+                                    </b-td>
+                                </b-tr>
+                            </b-tbody>
+                        </b-table-simple>
+                    </b-col>
+
+                    <b-col cols="12" xs="12" sm="12" md="12" lg="5">
+                        <b-table-simple
+                            bordered
+                            no-border-collapse
+                        >
+                            <b-tbody>
+                                <b-tr>
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.CONTACT') }}
+                                    </b-td>
+
+                                    <b-td>
+                                        {{ contact }}
+                                    </b-td>
+                                </b-tr>
+
+                                <b-tr>
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.NAME') }}
+                                    </b-td>
+
+                                    <b-td>
+                                        {{ saller }}
+                                    </b-td>
+                                </b-tr>
+
+                                <b-tr>
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.EMPLOYEE_ID') }}
+                                    </b-td>
+
+                                    <b-td>
+                                        {{ employeeId }}
+                                    </b-td>
+                                </b-tr>
+
+                                <b-tr>
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.AFFILIATED_COMPANY') }}
+                                    </b-td>
+
+                                    <b-td>
+                                        {{ affiliatedCompany }}
+                                    </b-td>
+                                </b-tr>
+
+                                <b-tr>
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.BUSINESS_ADDRESS') }}
+                                    </b-td>
+
+                                    <b-td>
+                                        {{ businessAddress }}
+                                    </b-td>
+                                </b-tr>
+
+                                <b-tr>
+                                    <b-td class="title-car-infor">
+                                        {{ $t('SHOP_CAR.DETAIL_CAR.PARKING_LOCATION') }}
+                                    </b-td>
+
+                                    <b-td>
+                                        {{ parkingLocation }}
+                                    </b-td>
+                                </b-tr>
+                            </b-tbody>
+                        </b-table-simple>
                     </b-col>
                 </b-row>
             </div>
@@ -177,12 +209,26 @@
 </template>
 
 <script>
+import { formatPrice } from '@/utils/helper';
+
 export default {
     name: 'CarInfor',
     props: {
+        price: {
+            type: [String, Number],
+            default: 0,
+        },
+        licensePlate: {
+            type: String,
+            default: ''
+        },
         year: {
             type: String,
             default: '' 
+        },
+        distanceDriven: {
+            type: Number,
+            default: 0, 
         },
         fuelType: {
             type: String,
@@ -192,46 +238,53 @@ export default {
             type: String,
             default: ''
         },
-        licensePlate: {
-            type: String,
-            default: ''
-        },
-        foreclosureMortgage: {
-            type: String,
-            default: '' 
-        },
-        nonpPaymentOfTax: {
+        carType: {
             type: String,
             default: '',
         },
-        accident: {
+        seizure: {
             type: String,
-            default: '',   
+            default: '',
         },
-        firstRegistrationDate: {
-            type: String,
-            default: '',   
-        },
-        gearbox: {
-            type: String,
-            default: '',   
-        },
-        distanceDriven: {
-            type: Number,
-            default: 0, 
-        },
-        vehicleIdentificationNumber: {
+        mortgage: {
             type: String,
             default: '', 
-        },
-        modelName: {
-            type: String,
-            default: '',  
         },
         presentationNumber: {
             type: String,
             default: '', 
+        },
+        storageLocation: {
+            type: String,
+            default: '',
+        },
+        contact: {
+            type: String,
+            default: '',
+        },
+        saller: {
+            type: String,
+            default: '',
+        },
+        employeeId: {
+            type: String,
+            default: '',
+        },
+        affiliatedCompany: {
+            type: String,
+            default: '',
+        },
+        businessAddress: {
+            type: String,
+            default: '',
+        },
+        parkingLocation: {
+            type: String,
+            default: '',
         }
+    },
+    methods: {
+        formatPrice
     },
 }
 </script>
@@ -247,8 +300,17 @@ export default {
         font-weight: 600;
     }
 
-    .title-text {
+    .title-car-infor {
         font-weight: 600;
+        background-color: $main;
+        color: $white;
+        vertical-align: middle;
+    }
+
+    td {
+        min-width: 100px;
+        font-weight: 500;
+        font-size: 14px;
     }
 }
 </style>

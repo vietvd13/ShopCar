@@ -7,37 +7,35 @@
     </div>
 
     <div class="detail-car__content">
-      <div class="content-basic-infor">
-        <BasicInforCar 
+      <div class="content-preview-image">
+        <PreviewImage
           :name="isCar.car_name"
           :price="isCar.price_display" 
+          :images="isCar.images" 
         />
-      </div>
-
-      <div class="content-preview-image">
-        <PreviewImage :images="isCar.images" />
       </div>
 
       <div class="content-car-basic">
         <b-row>
           <b-col cols="12" xs="12" sm="12" md="12" lg="12">
-            <CarInfor 
+            <CarInfor
+              :price="isCar.price_display"
+              :licensePlate="isCar.license_plate"
               :year="isCar.year_manufacture"
+              :distanceDriven="isCar.distance_driven"
               :fuelType="isCar.fuel_type"
               :color="isCar.color"
-              :licensePlate="isCar.license_plate"
-              :foreclosureMortgage="isCar.mortgage"
-              :gearbox="isCar.gearbox"
-              :distanceDriven="isCar.distance_driven"
+              :carType="isCar.car_type"
+              :seizure="isCar.seizure"
+              :mortgage="isCar.mortgage"
               :presentationNumber="isCar.presentation_number"
-            />
-          </b-col>
-
-          <b-col cols="12" xs="12" sm="12" md="12" lg="12">
-            <SallerInfor 
-              :fullname="isCar.seller_name"
-              :phone="isCar.phone_contact"
-              :employee-id="isCar.employee_number"
+              :storageLocation="isCar.storage_location"
+              :contact="isCar.phone_contact"
+              :saller="isCar.seller_name"
+              :employeeId="isCar.employee_number"
+              :affiliatedCompany="isCar.affiliated_company"
+              :businessAddress="isCar.business_address"
+              :parkingLocation="isCar.parking_location"
             />
           </b-col>
         </b-row>
@@ -58,10 +56,8 @@
 
 <script>
 import TitleContent from './components/TitleContent.vue';
-import BasicInforCar from './components/BasicInforCar.vue';
 import PreviewImage from './components/PreviewImage.vue';
 import CarInfor from './components/CarInfor.vue';
-import SallerInfor from './components/SallerInfor.vue';
 import CarOptions from './components/CarOptions.vue';
 import ListImage from './components/ListImage.vue';
 
@@ -71,10 +67,8 @@ export default {
   name: 'DetailCar',
   components: {
     TitleContent,
-    BasicInforCar,
     PreviewImage,
     CarInfor,
-    SallerInfor,
     CarOptions,
     ListImage
   },

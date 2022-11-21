@@ -1,6 +1,11 @@
 <template>
   <b-card>
     <div class="preview-image">
+      <BasicInforCar
+        v-if="name"
+        :name="name"
+      />
+
       <b-row>
         <b-col
           cols="12"
@@ -59,9 +64,19 @@
 </template>
 
 <script>
+import BasicInforCar from './BasicInforCar.vue';
+
 export default {
   name: 'PreviewImage',
+  components: {
+    BasicInforCar,
+  },
   props: {
+    name: {
+      type: String,
+      required: false,
+      default: ''
+    },
     images: {
       type: Array,
       required: true,
@@ -119,6 +134,24 @@ export default {
 @import '@/scss/variables';
 
 .preview-image {
+  .basic-infor-car {
+    margin-bottom: 10px;
+  
+    .car-name {
+      font-weight: bold;
+      font-size: 25px;
+    }
+
+    .car-price {
+      font-weight: bold;
+      font-size: 20px;
+
+      span {
+        color: $alizarin-crimson;
+      }
+    }
+  }
+
   .display-image-preview {
     display: flex;
     justify-content: center;

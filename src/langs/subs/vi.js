@@ -141,23 +141,25 @@ export default {
       TITLE_VEHICLE_OPTIONS_AND_DETAILS: 'Tùy chọn xe và chi tiết',
 
       PRICE: 'Giá bán',
-      YEAR: "Năm",
-      FUEL_TYPE: "Nhiên liệu",
-      COLOR: "Màu sắc",
       LICENSE_PLATE : "Biển số xe",
-      FORECLOSURE_MORTGAGE: "Tịch thu nhà | Thế chấp",
-      NON_PAYMENT_OF_TAX: "Không nộp thuế",
-      ACCIDENT: "Tai nạn",
-      FIRST_REGISTRATION_DATE: "Ngày đăng ký đầu tiên",
-      GEARBOX: "Hộp số",
+      YEAR: "Năm",
       DISTANCE_DRIVEN: "Khoảng cách lái xe",
-      VEHICLE_IDENTIFICATION_NUMBER: "Số nhận dạng xe",
-      MODEL_NAME: "Tên mô hình",
+      FUEL_TYPE: "Nhiên liệu",
+      TRANSMISSION: "Truyền tải",
+      DISPLACEMENT: "Dịch chuyển",
+      COLOR: "Màu sắc",
+      CAR_TYPE: "Loại xe",
+      SEIZURE: "Co giật",
+      MORTGAGE: "Thế chấp",
       PRESENTATION_NUMBER: "Số trình bày",
+      STORAGE_LOCATION: 'Khu vực lưu trữ',
 
-      NAME: "Tên",
       CONTACT: "Liên hệ",
-      EMPLOYEE_ID: 'ID nhân viên'
+      NAME: "Tên",
+      EMPLOYEE_ID: 'ID nhân viên',
+      AFFILIATED_COMPANY: 'Trực thuộc',
+      BUSINESS_ADDRESS: 'Địa chỉ kinh doanh',
+      PARKING_LOCATION: 'Vị trí đỗ xe'
     },
     CAR_BUYING_POLICY: {
       TITLE: 'Chính sách mua xe'
