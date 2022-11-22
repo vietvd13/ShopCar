@@ -8,9 +8,9 @@
 
         <b-card>
             <template v-if="file">
-                <embed
-                    class="view-pdf"
-                    :src="`${domainPDF}${file}`"
+                <ViewPDF
+                    :class-name="'view-pdf'"
+                    :file="`${domainPDF}${file}`"
                 />
             </template>
 
@@ -29,11 +29,13 @@
 import TitleContent from './components/TitleContent.vue';
 import { getFilePDFInsurance } from '@/api/modules/Home';
 import { setLoading } from '@/utils/setLoading';
+import ViewPDF from '@/components/ViewPDF.vue';
 
 export default {
     name: 'ShopCarInsurance',
     components: {
         TitleContent,
+        ViewPDF
     },
     computed: {
         domainPDF() {
@@ -82,7 +84,7 @@ export default {
 
     .view-pdf {
         width: 100%;
-        height: 100vh;
+        height: 700px;
     }
 }
 </style>

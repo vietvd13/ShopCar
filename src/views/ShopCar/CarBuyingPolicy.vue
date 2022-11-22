@@ -84,7 +84,7 @@ export default {
 
     .view-pdf {
         width: 100%;
-        height: 100vh;
+        height: 700px;
     }
 }
 </style>
