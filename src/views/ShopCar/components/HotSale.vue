@@ -1,20 +1,10 @@
 <template>
   <div class="hot-sale-home">
-    <TitleContent>{{ $t('SHOP_CAR.HOME.HOT_SALE.TITLE') }}</TitleContent>
-
-    <template v-if="['xl'].includes(typeScreen)">
-      <CardSlider :items="handleDataSliderAndList(items, 'slider')" />
-    </template>
-
-    <template v-else>
-      <ListCardCar :items="handleDataSliderAndList(items, 'list')" />
-    </template>
+    <ListCardCar :items="items" />
   </div>
 </template>
 
 <script>
-import TitleContent from './TitleContent.vue';
-import CardSlider from './CardSlider.vue';
 import ListCardCar from './ListCardCar.vue';
 
 import { handleDataSliderAndList } from '@/utils/handleDataSliderAndList';
@@ -23,8 +13,6 @@ import { getListHotSale } from '@/api/modules/Home';
 export default {
   name: 'HotSaleHome',
   components: {
-    TitleContent,
-    CardSlider,
     ListCardCar
   },
   computed: {
