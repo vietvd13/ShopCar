@@ -102,8 +102,6 @@ export default {
     img {
       transform: scale(1.2);
     }
-
-    border: 1px solid $international-orange;
   }
 
   &__img {
