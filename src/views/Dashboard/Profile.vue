@@ -48,16 +48,6 @@
 
                 <b-row class="mb-3 d-block align-items-center d-sm-flex">
                   <b-col cols="4" md="2">
-                    <h6>{{ $t('DASHBOARD.PROFILE.ADDRESS') }}</h6>
-                  </b-col>
-                  <b-col>
-                    <b-input :disabled="!is_edit" v-model="address" :placeholder="$t('DASHBOARD.PROFILE.ADDRESS')">
-                    </b-input>
-                  </b-col>
-                </b-row>
-
-                <b-row class="mb-3 d-block align-items-center d-sm-flex">
-                  <b-col cols="4" md="2">
                     <h6>{{ $t('DASHBOARD.PROFILE.GENDER.LABEL') }}</h6>
                   </b-col>
                   <b-col>
@@ -81,9 +71,8 @@
               </div>
             </div>
 
-
             <div class="card-header header-elements-sm-inline">
-              <h6 class="card-title font-normal font-superBold">{{ $t('DASHBOARD.PROFILE.SETTINGS.OTHER') }}</h6>
+              <h6 class="card-title font-normal font-superBold m-0">{{ $t('DASHBOARD.PROFILE.SETTINGS.OTHER') }}</h6>
             </div>
             <div class="card-body font-normal">
               <div>
@@ -117,6 +106,91 @@
 
           </div>
         </b-tab>
+
+        <b-tab title="Thông tin công ty">
+          <div class="profile card">
+            <div class="card-body font-normal">
+              <div>
+                <b-row class="mb-3 d-block align-items-center d-sm-flex">
+                  <b-col cols="4" md="2">
+                    <h6>{{ $t('DASHBOARD.PROFILE.COMPANY.NAME') }}</h6>
+                  </b-col>
+                  <b-col>
+                    <b-input :disabled="!is_edit" v-model="company_name"
+                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.NAME')">
+                    </b-input>
+                  </b-col>
+                </b-row>
+
+                <b-row class="mb-3 d-block align-items-center d-sm-flex">
+                  <b-col cols="4" md="2">
+                    <h6>{{ $t('DASHBOARD.PROFILE.COMPANY.ADDRESS') }}</h6>
+                  </b-col>
+                  <b-col>
+                    <b-input :disabled="!is_edit" v-model="company_address" readonly
+                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.ADDRESS')">
+                    </b-input>
+                  </b-col>
+                </b-row>
+
+                <b-row class="mb-3 d-block align-items-center d-sm-flex">
+                  <b-col cols="4" md="2">
+                    <h6>{{ $t('DASHBOARD.PROFILE.COMPANY.MAP') }}</h6>
+                  </b-col>
+                  <b-col>
+                    <b-input :disabled="!is_edit" v-model="company_map"
+                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.MAP')">
+                    </b-input>
+                  </b-col>
+                </b-row>
+
+
+                <b-row class="mb-3 d-block align-items-center d-sm-flex">
+                  <b-col cols="4" md="2">
+                    <h6>{{ $t('DASHBOARD.PROFILE.COMPANY.LINK_FACEBOOK') }}</h6>
+                  </b-col>
+                  <b-col>
+                    <b-input :disabled="!is_edit" v-model="link_facebook"
+                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.LINK_FACEBOOK')"></b-input>
+                  </b-col>
+                </b-row>
+
+                <b-row class="mb-3 d-block align-items-center d-sm-flex">
+                  <b-col cols="4" md="2">
+                    <h6>{{ $t('DASHBOARD.PROFILE.COMPANY.LINK_ZALO') }}</h6>
+                  </b-col>
+                  <b-col>
+                    <b-input :disabled="!is_edit" v-model="link_zalo" :placeholder="$t('DASHBOARD.PROFILE.COMPANY.LINK_ZALO')">
+                    </b-input>
+                  </b-col>
+                </b-row>
+
+                <b-row class="mb-3 d-block align-items-center d-sm-flex">
+                  <b-col cols="4" md="2">
+                    <h6>{{ $t('DASHBOARD.PROFILE.COMPANY.LINK_MESSENGER') }}</h6>
+                  </b-col>
+                  <b-col>
+                    <b-input :disabled="!is_edit" v-model="link_messenger"
+                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.LINK_MESSENGER')"></b-input>
+                  </b-col>
+                </b-row>
+
+                <div class="d-flex justify-content-end mt-4">
+                  <b-button variant="outlined" class=" mr-2 border" id="btn-cancel" @click="handleCancelChange">
+                    {{ $t('DASHBOARD.PROFILE.SETTINGS.CANCEL') }}
+                  </b-button>
+                  <b-button v-if="is_edit" :disabled="is_process" class="btn-app" @click="handleSave">
+                    {{ $t('DASHBOARD.PROFILE.SETTINGS.SAVE') }}
+                  </b-button>
+                  <b-button v-else class="btn-app" @click="handleChange">
+                    {{ $t('DASHBOARD.PROFILE.SETTINGS.CHANGE') }}
+                  </b-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </b-tab>
+
         <b-tab :title="$t('DASHBOARD.PROFILE.CHANGEPASSWORD')">
           <b-row class="mb-3 d-block align-items-center d-sm-flex">
             <b-col cols="4" md="2">
@@ -165,6 +239,8 @@
             </b-button>
           </b-row>
         </b-tab>
+
+
       </b-tabs>
 
     </div>
@@ -193,7 +269,12 @@ export default {
       email: "",
       email_noti: "",
       phone: "",
-      address: "",
+      company_address: "",
+      company_name: "",
+      company_map: "",
+      link_messenger: "",
+      link_facebook: "",
+      link_zalo: "",
       gender: "male",
       is_process: false,
       is_edit: false,
@@ -229,11 +310,17 @@ export default {
       try {
         const BODY = {
           phone: this.phone,
-          address: this.address,
           fullname: this.fullname,
           dob: this.dob,
           gender: this.gender,
-          email_noti: this.email_noti
+          email_noti: this.email_noti,
+          company_name: this.company_name,
+          company_address: this.company_address,
+          company_map: this.company_map,
+          link_messenger: this.link_messenger,
+          link_facebook: this.link_facebook,
+          link_zalo: this.link_zalo,
+
         }
         const response = await postChangeUserInfor(BODY);
         if (response.status) {
@@ -297,15 +384,21 @@ export default {
           this.email = response.data.email;
           this.email_noti = response.data.email_notification;
           this.phone = response.data.phone_number;
-          this.address = response.data.address;
           this.gender = response.data.gender;
           this.dob = new Date(response.data.dob);
+          this.company_name = response.data.company_name;
+          this.company_address = response.data.company_address;
+          this.company_map = response.data.company_map;
+          this.link_messenger = response.data.link_messenger;
+          this.link_facebook = response.data.link_facebook;
+          this.link_zalo = response.data.link_zalo;
+
           this.$store.dispatch('auth/setProfile', response.data)
         } else {
           Toast.warning(this.$t('TOAST_MESSAGE.GET_PROFILE_ERROR'));
         }
       } catch (error) {
-        console.log(error);
+        Toast.warning(this.$t('TOAST_MESSAGE.GET_PROFILE_ERROR'));
       }
     },
   },
