@@ -270,11 +270,20 @@ export default {
         MALE: "Nam",
         FEMALE: "Nữ",
       },
+      COMPANY: {
+        NAME: "Tên công ty",
+        ADDRESS: "Địa chỉ công ty",
+        MAP: "Bản đồ công ty",
+        LINK_FACEBOOK: "Địa chỉ Facebook",
+        LINK_ZALO: "Địa chỉ Zalo",
+        LINK_MESSENGER: "Địa chỉ Messenger",
+      },
       SETTINGS: {
         OTHER: "Cài đặt khác",
         CANCEL: "Huỷ",
         SAVE: "Lưu",
         CHANGE: "Thay đổi",
+        COMPANY: "Thông tin công ty"
       },
     },
   },
