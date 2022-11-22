@@ -241,6 +241,7 @@ export default {
         } else {
           Toast.warning(response.message);
         }
+        this.getProfile();
       } catch (error) {
         Toast.warning(this.$t('TOAST_MESSAGE.CHANGE_PROFILE_ERROR'));
       }
@@ -261,8 +262,10 @@ export default {
     },
 
     handleCancelChange() {
+      if (this.is_edit) {
+        this.getProfile();
+      }
       this.is_edit = false;
-      this.getProfile();
     },
 
     async handleChangePassword() {
@@ -293,10 +296,11 @@ export default {
           this.fullname = response.data.name;
           this.email = response.data.email;
           this.email_noti = response.data.email_notification;
-          this.phone = response.data.phone;
+          this.phone = response.data.phone_number;
           this.address = response.data.address;
           this.gender = response.data.gender;
           this.dob = new Date(response.data.dob);
+          this.$store.dispatch('auth/setProfile', response.data)
         } else {
           Toast.warning(this.$t('TOAST_MESSAGE.GET_PROFILE_ERROR'));
         }
