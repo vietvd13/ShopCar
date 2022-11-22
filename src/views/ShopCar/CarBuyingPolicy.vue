@@ -8,9 +8,9 @@
 
         <b-card>
             <template v-if="file">
-                <embed
+                <VuePdfEmbed
                     class="view-pdf"
-                    :src="`${domainPDF}${file}`"
+                    :source="`${domainPDF}${file}`"
                 />
             </template>
 
@@ -29,11 +29,13 @@
 import TitleContent from './components/TitleContent.vue';
 import { getFilePDFPolicy } from '@/api/modules/Home';
 import { setLoading } from '@/utils/setLoading';
+import VuePdfEmbed from 'vue-pdf-embed/dist/vue2-pdf-embed.js';
 
 export default {
     name: 'CarBuyingPolicy',
     components: {
         TitleContent,
+        VuePdfEmbed
     },
     computed: {
         domainPDF() {
