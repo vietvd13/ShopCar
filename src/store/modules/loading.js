@@ -1,7 +1,7 @@
 const state = {
 	loading: {
 		show: false,
-		variant: 'light',
+		variant: 'white',
 		opacity: 1,
 		blur: '1rem',
 		rounded: 'sm',

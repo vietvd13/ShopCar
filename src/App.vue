@@ -5,6 +5,7 @@
     :opacity="loading.opacity"
     :blur="loading.blur"
     :rounded="loading.sm"
+    :z-index="9999"
   >
     <template #overlay>
       <div class="text-center">
