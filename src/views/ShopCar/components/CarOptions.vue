@@ -118,7 +118,7 @@ span {
     display: block;
 
     i {
-        color: $main;
+        color: $international-orange;
         margin-right: 5px;
     }
 }

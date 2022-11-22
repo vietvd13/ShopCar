@@ -41,10 +41,9 @@ export default {
 @import './scss/variables.scss';
 
 .icon-loading {
-  color: $main;
+  color: $international-orange;
   font-size: 40px;
   margin-bottom: 10px;
-
 }
 
 .text-loading {

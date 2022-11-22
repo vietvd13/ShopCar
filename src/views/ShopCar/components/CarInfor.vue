@@ -310,7 +310,7 @@ export default {
 
     .title-car-infor {
         font-weight: 600;
-        background-color: $main;
+        background-color: $international-orange;
         color: $white;
         text-align: center;
         vertical-align: middle;

@@ -135,7 +135,7 @@ export default {
     margin: 5px 0;
     font-weight: 600;
     color: $white;
-    background-color: $main;
+    background-color: $international-orange;
     padding: 5px 0;
     border-radius: 5px;
   }
@@ -143,7 +143,7 @@ export default {
   &__description {
     text-align: center;
     color: $white;
-    background-color: $main;
+    background-color: $international-orange;
     padding: 5px 0;
     border-radius: 5px;
     margin-bottom: 5px;

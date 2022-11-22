@@ -92,7 +92,7 @@ export default {
   align-items: center;
   justify-content: center;
   font-size: 20px;
-  color: $main;
+  color: $international-orange;
 
   i {
     cursor: pointer;

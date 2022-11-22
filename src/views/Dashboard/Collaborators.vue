@@ -704,7 +704,7 @@ export default {
             text-align: center;
             vertical-align: middle;
 
-            background-color: $main;
+            background-color: $international-orange;
             color: $white;
           }
         }

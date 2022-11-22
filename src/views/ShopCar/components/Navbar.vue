@@ -1,50 +1,35 @@
 <template>
-  <b-navbar toggleable="lg">
-    <b-navbar-brand
-      href="#"
-      @click="goToRoute('HomeShopCar')"
-    >
-      <i class="fas fa-home-lg-alt" />
-    </b-navbar-brand>
-
-    <b-navbar-toggle target="nav-collapse">
-      <template #default>
-        <i class="custom-icon-toggle fas fa-bars" />
-      </template>
-    </b-navbar-toggle>
-
-    <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav>
-        <router-link
-          v-for="route in listRoute"
-          :key="route.value"
-          :to="route.path"
-        >
-          {{ $t(route.text) }}
-        </router-link>
-      </b-navbar-nav>
-
-      <b-navbar-nav class="ml-auto">
-        <b-form-input 
-          size="sm"
-          class="mr-sm-2 mb-sm-2 mb-lg-0" 
-          :placeholder="$t('SHOP_CAR.HOME.SEARCH')"
-        />
-
-        <b-button 
-          size="sm" 
-          class="my-2 my-sm-0 btn-default btn-app" 
-        >
-          {{ $t('SHOP_CAR.HOME.SEARCH') }}
-        </b-button>
-      </b-navbar-nav>
-    </b-collapse>
+  <b-navbar toggleable="lg" sticky>
+    <b-container>
+      <b-navbar-brand
+        href="#"
+        @click="goToRoute('HomeShopCar')"
+      >
+        <i class="fas fa-home-lg-alt" />
+      </b-navbar-brand>
+      <b-navbar-toggle target="nav-collapse">
+        <template #default>
+          <i class="custom-icon-toggle fas fa-bars" />
+        </template>
+      </b-navbar-toggle>
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <router-link
+            v-for="route in listRoute"
+            :key="route.value"
+            :to="route.path"
+          >
+            {{ $t(route.text) }}
+          </router-link>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-container>
   </b-navbar>
 </template>
 
 <script>
 export default {
-  name: 'SearchHome',
+  name: 'NavbarShop',
   data() {
     return {
       listRoute: [
@@ -90,30 +75,23 @@ export default {
 @import '@/scss/variables';
 
 .navbar {
-  background-color: $main;
+  background-color: $white;
   padding: 0.5rem;
 
   .navbar-brand {
     margin-right: 0;
-
-    &:hover {
-      color: $white;
-    }
-
-    &:focus {
-      color: $white;
-    }
+    color: $international-orange;
   }
 
   .custom-icon-toggle {
-    color: $sub-main;
+    color: $scorpion;
     font-size: 25px;
   }
 
   a {
     padding: 10px;
     text-decoration: none;
-    color: $white;
+    color: $scorpion;
     text-transform: capitalize;
     font-weight: bold;
   }
@@ -121,7 +99,7 @@ export default {
   .router-link-active {
     font-weight: bold;
     opacity: 1;
-    color: $sub-main;
+    color: $international-orange;
   }
 }
 </style>

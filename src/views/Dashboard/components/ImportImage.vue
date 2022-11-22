@@ -185,7 +185,7 @@ export default {
 
   .zone-reset-import {
     width: 4cm;
-    background-color: $main;
+    background-color: $international-orange;
     padding: 5px;
     text-align: center;
     color: $white;

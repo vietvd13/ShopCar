@@ -159,7 +159,7 @@ export default {
     &__title {
       text-align: center;
       padding: 5px 0;
-      background-color: $main;
+      background-color: $international-orange;
       color: $white;
     }
 

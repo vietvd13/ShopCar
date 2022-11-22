@@ -6,8 +6,6 @@
 
 <script>
 import ListCardCar from './ListCardCar.vue';
-
-import { handleDataSliderAndList } from '@/utils/handleDataSliderAndList';
 import { getListHotSale } from '@/api/modules/Home';
 
 export default {
@@ -29,7 +27,6 @@ export default {
     this.initData();
   },
   methods: {
-    handleDataSliderAndList,
     async initData() {
       await this.handleGetListHotsale();
     },

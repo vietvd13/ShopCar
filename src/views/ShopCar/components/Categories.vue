@@ -62,7 +62,7 @@ export default {
 @import '../../../scss/variables';
 
 .card-categories {
-  background-color: $main;
+  background-color: $international-orange;
   text-align: center;
   padding: 10px 0;
   border-radius: 5px;

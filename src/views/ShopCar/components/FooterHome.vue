@@ -2,34 +2,34 @@
     <div class="footer-home">
         <div class="content-lang">
             <div class="main-content">
-                <b-row>
-                    <b-col>
-                        <div
-                            :class="{'item-lang': true, 'active-lang': lang === CONSTANTS.VALUE.LANGUAGE_VIETNAMESE}"
-                            @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_VIETNAMESE)"
-                        >
-                            {{ $t('LANGUAGES.VIETNAMESE') }}
-                        </div>
-                    </b-col>
-
-                    <b-col>
-                        <div 
-                            :class="{'item-lang': true, 'active-lang': lang === CONSTANTS.VALUE.LANGUAGE_ENGLISH}"
-                            @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_ENGLISH)"
-                        >
-                            {{ $t('LANGUAGES.ENGLISH') }}
-                        </div>
-                    </b-col>
-
-                    <b-col>
-                        <div 
-                            :class="{'item-lang': true, 'active-lang': lang === CONSTANTS.VALUE.LANGUAGE_KOREAN}"
-                            @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_KOREAN)"
-                        >
-                            {{ $t('LANGUAGES.KOREAN') }}
-                        </div>
-                    </b-col>
-                </b-row>
+                <b-col>
+                    <b-row>
+                        <b-col>
+                            <div
+                                :class="{'item-lang': true, 'active-lang': lang === CONSTANTS.VALUE.LANGUAGE_VIETNAMESE}"
+                                @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_VIETNAMESE)"
+                            >
+                                {{ $t('LANGUAGES.VIETNAMESE') }}
+                            </div>
+                        </b-col>
+                        <b-col>
+                            <div
+                                :class="{'item-lang': true, 'active-lang': lang === CONSTANTS.VALUE.LANGUAGE_ENGLISH}"
+                                @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_ENGLISH)"
+                            >
+                                {{ $t('LANGUAGES.ENGLISH') }}
+                            </div>
+                        </b-col>
+                        <b-col>
+                            <div
+                                :class="{'item-lang': true, 'active-lang': lang === CONSTANTS.VALUE.LANGUAGE_KOREAN}"
+                                @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_KOREAN)"
+                            >
+                                {{ $t('LANGUAGES.KOREAN') }}
+                            </div>
+                        </b-col>
+                    </b-row>
+                </b-col>
             </div>
         </div>
     </div>
@@ -74,7 +74,7 @@ export default {
 
 .footer-home {
     width: 100%;
-    background-color: $main;
+    background-color: $mine-shaft;
     color: $white;
     padding: 5px;
 
@@ -88,7 +88,7 @@ export default {
         }
 
         .active-lang {
-            color: $sub-main;
+            color: $white;
         }
     }
 }

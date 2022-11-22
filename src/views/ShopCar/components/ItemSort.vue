@@ -72,7 +72,7 @@ export default {
       &:hover {
         cursor: pointer;
 
-        background-color: $main;
+        background-color: $international-orange;
         color: $white;
       }
     }

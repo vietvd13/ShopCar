@@ -58,6 +58,6 @@ export default {
   width: 100%;
   object-fit: scale-down;
 
-  max-height: 370px;
+  max-height: auto;
 }
 </style>

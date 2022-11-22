@@ -1,11 +1,12 @@
 <template>
   <div class="app-shop" :style="handleOverflow">
-    <b-container>
-      <!-- Banner -->
-      <Banner />
+    <!-- Navbar -->
+    <Navbar />
 
-      <!-- Navbar -->
-      <Search />
+    <!-- Banner -->
+    <Banner />
+
+    <b-container>
 
       <!-- App View -->
       <AppMain />
@@ -30,10 +31,10 @@
       <div class="app-shop__contact-support">
         <ContactSupport />
       </div>
-
-      <!-- Footer -->
-      <FooterHome />
     </b-container>
+
+    <!-- Footer -->
+    <FooterHome />
   </div>
 </template>
 
@@ -44,7 +45,7 @@ import {
 } from '@/api/modules/Home';
 
 import Banner from '@/views/ShopCar/components/Banner.vue';
-import Search from '@/views/ShopCar/components/Search.vue';
+import Navbar from '@/views/ShopCar/components/Navbar.vue';
 import AppMain from './components/AppMain.vue';
 import CustomerFeedback from '@/views/ShopCar/components/CustomerFeedback.vue';
 import ListCollaborators from '@/views/ShopCar/components/ListCollaborators.vue';
@@ -55,7 +56,7 @@ export default {
   name: 'LayoutShopCar',
   components: {
     Banner,
-    Search,
+    Navbar,
     AppMain,
     CustomerFeedback,
     ListCollaborators,
@@ -141,6 +142,7 @@ export default {
 .app-shop {
   height: 100vh;
   background-color: $seashell;
+  overflow-x: hidden;
 
   &__happy-moment,
   &__collaborators,

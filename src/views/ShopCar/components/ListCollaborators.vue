@@ -68,7 +68,7 @@ export default {
 .list-collaborators-home {
     .show-more {
         margin-bottom: 5px;
-        color: $main;
+        color: $international-orange;
         font-weight: 600;
         cursor: pointer;
     }

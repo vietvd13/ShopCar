@@ -23,7 +23,6 @@ export default {
   background-color: $white;
   margin-bottom: 10px;
   padding: 10px;
-  border-radius: 5px;
 
   &__dot {
     width: 7px;

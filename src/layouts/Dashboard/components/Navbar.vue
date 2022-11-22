@@ -79,12 +79,12 @@ export default {
 @import '@/scss/variables.scss';
 
 .navbar {
-  background-color: $main;
+  background-color: $white;
 
   a {
     padding: 10px;
     text-decoration: none;
-    color: $white;
+    color: $scorpion;
     font-weight: 600;
     text-transform: capitalize;
   }
@@ -92,18 +92,17 @@ export default {
   .router-link-active {
     font-weight: 600;
     opacity: 1;
-    color: $sub-main;
+    color: $international-orange;
   }
-
 }
 
 .navbar-user {
   ::v-deep .dropdown-toggle::after {
-    color: $white;
+    color: $scorpion;
   }
 
   ::v-deep span {
-    color: $white;
+    color: $scorpion;
     margin-right: 10px;
     text-transform: capitalize;
   }

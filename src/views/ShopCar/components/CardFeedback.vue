@@ -103,7 +103,7 @@ export default {
       transform: scale(1.2);
     }
 
-    border: 1px solid $main;
+    border: 1px solid $international-orange;
   }
 
   &__img {
