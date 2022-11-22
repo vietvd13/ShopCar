@@ -3,7 +3,10 @@
     <b-row>
       <b-card class="w-100 mt-2">
         <template v-if="file">
-          <iframe :src="`${domainPDF}${file}`" frameborder="0" class="view-pdf"></iframe>
+          <ViewPDF 
+            :src="`${domainPDF}${file}`" 
+            class="view-pdf"
+          />
         </template>
 
         <template v-else>
@@ -59,9 +62,13 @@ import { getFilePDFInsurance } from "@/api/modules/Home";
 import { postFile } from "@/api/modules/Upload";
 import Toast from "@/toast";
 import { postEditInsurance } from "@/api/modules/Dashboard";
+import ViewPDF from '@/components/ViewPDF.vue';
 
 export default {
   name: "insuranceManagement",
+  components: {
+    ViewPDF,
+  },
   data() {
     return {
       file: null,

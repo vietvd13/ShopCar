@@ -3,7 +3,10 @@
     <b-row>
       <b-card class="w-100 mt-2">
         <template v-if="file">
-          <iframe :src="`${domainPDF}${file}`" frameborder="0" class="view-pdf"></iframe>
+          <ViewPDF 
+            :file="`${domainPDF}${file}`"
+            class="view-pdf" 
+          />
 
         </template>
 
@@ -60,9 +63,13 @@ import { getFilePDFPolicy } from "@/api/modules/Home";
 import { postFile } from "@/api/modules/Upload";
 import Toast from "@/toast";
 import { postEditPolicy } from "@/api/modules/Dashboard";
+import ViewPDF from '@/components/ViewPDF.vue';
 
 export default {
   name: "PolicyManagement",
+  components: {
+    ViewPDF,
+  },
   data() {
     return {
       file: null,
