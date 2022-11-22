@@ -78,6 +78,8 @@ export default {
   background-color: $white;
   padding: 0.5rem;
 
+  z-index: 99999;
+
   .navbar-brand {
     margin-right: 0;
     color: $international-orange;
