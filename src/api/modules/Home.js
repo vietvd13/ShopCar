@@ -58,7 +58,7 @@ export function getListHotSale(BODY = null, PARAMS = null) {
     page: 1,
     limit: 20,
     sort: {
-      hot_sale: -1,
+      is_hotsale: -1,
     }
   }
 
