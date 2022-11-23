@@ -28,7 +28,7 @@ export default {
     width: 7px;
     height: 30px;
 
-    background-color: $sub-main;
+    background-color: $international-orange;
   }
 
   &__text {
