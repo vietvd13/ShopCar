@@ -129,6 +129,7 @@ export default {
         PHONE: "전화 번호",
         ADDRESS: "주소",
         EMAIL: "이메일",
+        WEBSITE: "Website",
         MAP: "지도"
       },
       PROFILE: {

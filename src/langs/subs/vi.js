@@ -142,6 +142,7 @@ export default {
         PHONE: "Số điện thoại",
         ADDRESS: "Địa chỉ",
         EMAIL: "Email",
+        WEBSITE: "Website",
         MAP: "Bản đồ"
       },
       PROFILE: {

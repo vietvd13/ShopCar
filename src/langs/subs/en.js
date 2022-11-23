@@ -129,6 +129,7 @@ export default {
         PHONE: "Phone number",
         ADDRESS: "Address",
         EMAIL: "Email",
+        WEBSITE: "Website",
         MAP: "Map"
       },
       PROFILE: {
