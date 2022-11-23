@@ -269,6 +269,7 @@ export default {
       PHONE: "Số điện thoại",
       ADDRESS: "Địa chỉ",
       ADDRESS_MAIL_NOTI: "Địa chỉ nhận thông báo",
+      COMPANY_INFOR: "Thông tin công ty",
       GENDER: {
         LABEL: "Giới tính",
         MALE: "Nam",

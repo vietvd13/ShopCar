@@ -3,10 +3,7 @@
     <b-row>
       <b-card class="w-100 mt-2">
         <template v-if="file">
-          <ViewPDF 
-            :src="`${domainPDF}${file}`" 
-            class="view-pdf"
-          />
+          <ViewPDF :file="`${domainPDF}${file}`" class="view-pdf" />
         </template>
 
         <template v-else>
@@ -168,6 +165,10 @@ export default {
     height: calc(100vh - 250px);
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .pdf-app #outerContainer {
+    z-index: 1;
   }
 }
 </style>
