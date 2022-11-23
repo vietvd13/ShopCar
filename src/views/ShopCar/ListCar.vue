@@ -152,6 +152,7 @@ export default {
     margin-bottom: 10px;
 
     .content-filter,
+    .content-sort,
     .content-customer-feedback {
       margin-bottom: 10px;
     }

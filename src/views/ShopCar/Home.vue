@@ -33,8 +33,7 @@ export default {
 
   &__content {
     .content-filter,
-    .content-hotsale,
-    .content-customer-feedback {
+    .content-hotsale {
       margin-bottom: 10px;
     }
   }
