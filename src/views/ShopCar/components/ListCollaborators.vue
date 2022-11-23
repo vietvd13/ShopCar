@@ -5,7 +5,7 @@
         <div class="list-collaborators-home__list">
             <b-row>
                 <b-col 
-                    cols="6" xs="6" sm="6" md="6" lg="3" xl="3" 
+                    cols="6" xs="6" sm="4" md="3" lg="2" xl="2" 
                     v-for="(collaborator, idx) in items" 
                     :key="idx"
                 >

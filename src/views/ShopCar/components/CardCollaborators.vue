@@ -27,8 +27,8 @@
           @click="goToLink(kakaotalk)"
           :src="require('@/assets/images/kakaotalk.png')"
           v-bind="{
-            width: 38,
-            height: 38
+            width: 25,
+            height: 25
           }" 
         />
       </div>
@@ -38,8 +38,8 @@
           @click="goToLink(zalo)"
           :src="require('@/assets/images/zalo.png')" 
           v-bind="{
-            width: 38,
-            height: 38
+            width: 25,
+            height: 25
           }" 
         />
       </div>
@@ -49,8 +49,8 @@
           @click="goToLink(messager)"
           :src="require('@/assets/images/messager.png')"
           v-bind="{
-            width: 38,
-            height: 38
+            width: 25,
+            height: 25
           }" 
         />
       </div>
@@ -118,12 +118,12 @@ export default {
   overflow: hidden;
 
   &__img {
-    text-align: center;
-    min-height: 189px;
+    display: flex;
+    min-height: 2cm;
     margin-bottom: 10px;
 
     img {
-      width: 155px;
+      width: 100%;
       object-fit: cover;
     }
 
@@ -151,11 +151,11 @@ export default {
 
   &__telephone {
     text-align: center;
-    margin: 5px 0;
+    margin: 10px 0;
     font-weight: 600;
 
     i {
-      font-size: 13px;
+      font-size: 14px;
     }
   }
 
@@ -167,7 +167,7 @@ export default {
     .item-social {
       text-align: center;
       img {
-        width: 38px;
+        width: 25px;
         cursor: pointer;
 
         border-radius: 5px;

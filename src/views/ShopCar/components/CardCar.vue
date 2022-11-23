@@ -102,7 +102,7 @@ export default {
       const MAP_SIZE = {
         xl: 190,
         lg: 190,
-        md: 240,
+        md: 170,
         sm: 170,
         xs: 170,
       };
