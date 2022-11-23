@@ -3,37 +3,43 @@
     class="card-feedback"
     @click="goToDetail()"
   >
-    <div class="card-feedback__img">
-      <b-img-lazy 
-        :src="`${domainImage}${image}`"
-        :blank-src="require('@/assets/images/noimage.webp')" 
-        fluid 
-        alt="Customer Feedback Image"
-        v-bind="{
-          height: mapImageHeight(typeScreen),
-          width: 'auto'
-        }"
-        :style="`height: ${mapImageHeight(typeScreen)}px`"
-      />
-    </div>
+    <b-row>
+      <b-col cols="6">
+        <div class="card-feedback__img">
+          <b-img-lazy 
+            :src="`${domainImage}${image}`"
+            :blank-src="require('@/assets/images/noimage.webp')" 
+            fluid 
+            alt="Customer Feedback Image"
+            v-bind="{
+              height: mapImageHeight(typeScreen),
+              width: 'auto'
+            }"
+            :style="`height: ${mapImageHeight(typeScreen)}px`"
+          />
+        </div>
+      </b-col>
 
-    <div class="card-feedback__desc">
-      <div class="desc-writer">
-        {{ writer }}
-      </div>
+      <b-col>
+        <div class="card-feedback__desc">
+          <div class="desc-writer">
+            {{ writer }}
+          </div>
 
-      <div class="desc-rate">
-        <i class="fas fa-star" />
-        <i class="fas fa-star" />
-        <i class="fas fa-star" />
-        <i class="fas fa-star" />
-        <i class="fas fa-star" />
-      </div>
+          <div class="desc-rate">
+            <i class="fas fa-star" />
+            <i class="fas fa-star" />
+            <i class="fas fa-star" />
+            <i class="fas fa-star" />
+            <i class="fas fa-star" />
+          </div>
 
-      <div class="desc-text">
-        {{ feedback }}
-      </div>
-    </div>
+          <div class="desc-text">
+            {{ feedback }}
+          </div>
+        </div>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -95,14 +101,8 @@ export default {
 .card-feedback {
   cursor: pointer;
   background-color: $white;
-  border: 1px solid $iron;
+  border: 1px solid $porcelain;
   overflow: hidden;
-
-  &:hover {
-    img {
-      transform: scale(1.2);
-    }
-  }
 
   &__img {
     text-align: center;
@@ -110,7 +110,6 @@ export default {
     img {
       width: 100%;
       object-fit: cover;
-      transition: 0.3s all ease-in-out 0s;
     }
 
     overflow: hidden;

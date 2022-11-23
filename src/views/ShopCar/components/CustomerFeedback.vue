@@ -5,7 +5,7 @@
     <div class="customer-feedbac-home__list">
       <b-row>
         <b-col 
-          cols="6" xs="6" sm="6" md="6" lg="3" xl="3" 
+          cols="6" xs="6" sm="6" md="6" lg="4" xl="3" 
           v-for="feedback in items" 
           :key="feedback._id"
         >

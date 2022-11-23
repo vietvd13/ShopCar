@@ -13,6 +13,7 @@
       <CardCar
         :car-id="car._id"
         :car-image="car.primary_image"
+        :hotsale="car.is_hotsale"
         :car-name="car.car_name"
         :date-sale="car.year_manufacture"
         :category="car.category"

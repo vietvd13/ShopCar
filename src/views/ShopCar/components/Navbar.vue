@@ -79,6 +79,7 @@ export default {
   padding: 0.5rem;
 
   z-index: 99999;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   .navbar-brand {
     margin-right: 0;

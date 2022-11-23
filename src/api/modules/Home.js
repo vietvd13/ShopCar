@@ -54,7 +54,15 @@ export function getDetailHappyMoment(BODY = null, PARAMS = null) {
 }
 
 export function getListHotSale(BODY = null, PARAMS = null) {
-  return request.getRequest(CONSTANTS.URL_API.GET_LIST_HOT_SALE, BODY, PARAMS);
+  BODY = {
+    page: 1,
+    limit: 20,
+    sort: {
+      hot_sale: 1,
+    }
+  }
+
+  return request.postRequest(CONSTANTS.URL_API.GET_LIST_CAR, BODY, PARAMS);
 }
 
 export function getFilePDFPolicy() {

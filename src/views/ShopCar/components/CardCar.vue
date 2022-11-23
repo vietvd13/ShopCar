@@ -12,6 +12,9 @@
         }"
         :style="`height: ${mapImageHeight(typeScreen)}px`"
       />
+      <span class="card-car__hotsale" v-if="hotsale">
+        <i class="fas fa-heart" />
+      </span>
     </div>
     <div class="card-car__desc">
       <div class="car-name">
@@ -44,6 +47,10 @@ export default {
       type: String,
       required: true,
       default: '',
+    },
+    hotsale: {
+      type: Boolean,
+      default: false,
     },
     carName: {
       type: String,
@@ -93,11 +100,11 @@ export default {
     },
     mapImageHeight(size) {
       const MAP_SIZE = {
-        xl: 220,
-        lg: 220,
-        md: 220,
-        sm: 170,
-        xs: 170,
+        xl: 190,
+        lg: 190,
+        md: 190,
+        sm: 190,
+        xs: 190,
       };
 
       return MAP_SIZE[size];
@@ -112,6 +119,7 @@ export default {
 .card-car {
   cursor: pointer;
   overflow: hidden;
+  border: 1px solid $porcelain;
 
   &:hover {
     img {
@@ -119,11 +127,34 @@ export default {
     }
   }
 
+  &__hotsale {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 35px;
+    height: 35px;
+    background-color: $white;
+
+    display: flex;
+
+    border-bottom-right-radius: 35px;
+
+    i {
+      color: $international-orange;
+      font-size: 17px;
+
+      margin: 5px;
+    }
+
+    z-index: 2;
+  }
+
   &__img {
     display: flex;
     text-align: center;
     vertical-align: middle;
     justify-content: center;
+    position: relative;
 
     img {
       width: 100%;
@@ -154,6 +185,7 @@ export default {
       display: -webkit-box;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
+      font-size: 16px;
     }
 
     .date-sale {

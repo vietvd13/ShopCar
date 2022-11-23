@@ -26,6 +26,7 @@ export default {
     PREVIEW: 'Preview',
     UPDATE_BANNER: 'Cập nhật banner',
     NO_DATA: 'Không có dữ liệu',
+    HOT_SALE: 'Hot Sale',
 
   },
   TOAST: {

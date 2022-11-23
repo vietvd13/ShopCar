@@ -8,8 +8,13 @@ body {
   background-color: $seashell;
 }
 
-.card-body {
-  padding: 1rem;
+.card {
+  border: none;
+  border-radius: 0;
+
+  .card-body {
+    padding: 1rem;
+  }  
 }
 
 .sticky-col {
