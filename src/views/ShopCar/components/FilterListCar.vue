@@ -228,7 +228,7 @@ export default {
                 const { status_code, data } = await getListCategories();
 
                 if (status_code === 200) {
-                    this.listCategories = generateSelect(data, false, '_id', 'category_name');
+                    this.listCategories = generateSelect(data, true);
                 } else {
                     this.listCategories = [];
                 }
