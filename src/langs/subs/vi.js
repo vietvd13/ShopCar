@@ -97,6 +97,8 @@ export default {
         CONTACT: "Liên lạc",
       },
       FILTER: {
+        FILTER_CAR: "Lọc danh sách xe",
+
         YEAR: "Năm sản xuất",
         CATEGORIES: "Hãng xe",
         COLOR: "Màu sắc",
