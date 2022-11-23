@@ -3,43 +3,37 @@
     class="card-feedback"
     @click="goToDetail()"
   >
-    <b-row>
-      <b-col cols="6">
-        <div class="card-feedback__img">
-          <b-img-lazy 
-            :src="`${domainImage}${image}`"
-            :blank-src="require('@/assets/images/noimage.webp')" 
-            fluid 
-            alt="Customer Feedback Image"
-            v-bind="{
-              height: mapImageHeight(typeScreen),
-              width: 'auto'
-            }"
-            :style="`height: ${mapImageHeight(typeScreen)}px`"
-          />
+      <div class="card-feedback__img">
+        <b-img-lazy 
+          :src="`${domainImage}${image}`"
+          :blank-src="require('@/assets/images/noimage.webp')" 
+          fluid 
+          alt="Customer Feedback Image"
+          v-bind="{
+            height: mapImageHeight(typeScreen),
+            width: 'auto'
+          }"
+          :style="`height: ${mapImageHeight(typeScreen)}px`"
+        />
+      </div>
+
+      <div class="card-feedback__desc">
+        <div class="desc-writer">
+          {{ writer }}
         </div>
-      </b-col>
 
-      <b-col>
-        <div class="card-feedback__desc">
-          <div class="desc-writer">
-            {{ writer }}
-          </div>
-
-          <div class="desc-rate">
-            <i class="fas fa-star" />
-            <i class="fas fa-star" />
-            <i class="fas fa-star" />
-            <i class="fas fa-star" />
-            <i class="fas fa-star" />
-          </div>
-
-          <div class="desc-text">
-            {{ feedback }}
-          </div>
+        <div class="desc-rate">
+          <i class="fas fa-star" />
+          <i class="fas fa-star" />
+          <i class="fas fa-star" />
+          <i class="fas fa-star" />
+          <i class="fas fa-star" />
         </div>
-      </b-col>
-    </b-row>
+
+        <div class="desc-text">
+          {{ feedback }}
+        </div>
+      </div>
   </div>
 </template>
 
@@ -82,11 +76,11 @@ export default {
     },
     mapImageHeight(size) {
       const MAP_SIZE = {
-        xl: 190,
-        lg: 190,
-        md: 220,
-        sm: 170,
-        xs: 170,
+        xl: 100,
+        lg: 130,
+        md: 130,
+        sm: 130,
+        xs: 130,
       };
 
       return MAP_SIZE[size];
@@ -140,7 +134,7 @@ export default {
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 4;
       font-size: 0.9rem;
 
       margin: 7px 0;
