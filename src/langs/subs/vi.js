@@ -291,5 +291,22 @@ export default {
         COMPANY: "Thông tin công ty"
       },
     },
+    CAR: {
+      BUTTON_ADD_NEW: 'Thêm mới',
+      BUTTON_ACTIONS: 'Thao tác',
+
+      TABLE_NO: 'STT',
+      TABLE_IMAGE: 'Hình ảnh',
+      TABLE_CAR_NAME: 'Tên xe',
+      TABLE_CAR_BRAND: 'Hãng xe',
+      TABLE_HOT_SALE: 'Hot sale',
+      TABLE_ACTIONS: 'Thao tác',
+
+      TABLE_TEXT_HOT_SALE: 'Hot sale',
+      TABLE_TEXT_NO_HOT_SALE: 'Bình thường',
+
+      TABLE_TEXT_EDIT: 'Chỉnh sửa',
+      TABLE_TEXT_DELETE: 'Xoá',
+    }
   },
 };

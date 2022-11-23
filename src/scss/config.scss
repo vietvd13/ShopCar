@@ -61,3 +61,7 @@ label {
 .b-toaster {
   z-index: 999999;
 }
+
+.pdf-app .toolbar {
+  z-index: 100 !important;
+}

@@ -39,7 +39,7 @@ export default {
   POST_EDIT_CUSTOMER_SUPPORT: '/support/edit',
 
   // Api Filter
-  GET_LIST_CATEGORIES: '/category/list',
+  GET_LIST_CATEGORIES: '/filter/category',
   GET_LIST_COLOR: '/filter/color',
   GET_LIST_FUEL_TYPE: '/filter/fuel-type',
   GET_LIST_GEAR_BOX: '/filter/gearbox',
@@ -56,4 +56,7 @@ export default {
   GET_FILE_PDF_INSURANCE: '/insurance/detail',
   EDIT_FILE_PDF_POLICY: '/policy/edit',
   EDIT_FILE_PDF_INSURANCE: '/insurance/edit',
+
+  // Api Car
+  GET_LIST_CAR_DASHBOARD: '/cars/list'
 };
