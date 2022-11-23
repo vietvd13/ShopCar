@@ -35,8 +35,6 @@ export default {
   min-height: calc(100vh - 60px);
 
   &__app-main {
-    margin-top: 60px;
-
     padding: 10px;
 
     overflow: hidden;

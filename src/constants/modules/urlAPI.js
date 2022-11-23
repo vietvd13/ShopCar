@@ -56,4 +56,7 @@ export default {
   GET_FILE_PDF_INSURANCE: '/insurance/detail',
   EDIT_FILE_PDF_POLICY: '/policy/edit',
   EDIT_FILE_PDF_INSURANCE: '/insurance/edit',
+
+  // Api Car
+  GET_LIST_CAR_DASHBOARD: '/cars/list'
 };

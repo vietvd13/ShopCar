@@ -70,3 +70,8 @@ export function postEditPolicy(BODY = null, PARAMS = null) {
 export function postEditInsurance(BODY = null, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.EDIT_FILE_PDF_INSURANCE, BODY, PARAMS);
 }
+
+// Car
+export function postListCar(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.GET_LIST_CAR_DASHBOARD, BODY, PARAMS);
+}
