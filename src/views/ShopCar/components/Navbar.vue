@@ -18,6 +18,7 @@
             v-for="route in listRoute"
             :key="route.value"
             :to="route.path"
+            class="item-route"
           >
             {{ $t(route.text) }}
           </router-link>
@@ -84,6 +85,14 @@ export default {
   .navbar-brand {
     margin-right: 0;
     color: $international-orange;
+
+    &:hover {
+      color: $international-orange;
+    }
+
+    &:focus {
+      color: $international-orange;
+    }
   }
 
   .custom-icon-toggle {
@@ -96,7 +105,18 @@ export default {
     text-decoration: none;
     color: $scorpion;
     text-transform: capitalize;
-    font-weight: bold;
+    font-weight: 600;
+  }
+
+  .item-route {
+    text-align: center;
+    min-width: 100px;
+    transition: 0.2s all ease-in-out 0s;
+    font-size: 15px;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   .router-link-active {
