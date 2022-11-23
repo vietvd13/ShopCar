@@ -88,6 +88,38 @@
         </b-table>
       </div>
     </b-card>
+
+    <div class="car-management-page__pagination">
+      <b-row align-h="center">
+        <b-col>
+          <b-form-select 
+            v-model="pagination.per_page" 
+            size="sm"
+            @change="onChangePerPage"
+            class="select-per-page"
+          >
+            <b-form-select-option
+              v-for="(option, idx) in optionsPerpage"
+              :key="idx"
+              :value="option.value"
+            >
+              {{ $t(option.text) }}
+            </b-form-select-option>
+          </b-form-select>
+        </b-col>
+        <b-col>
+          <b-pagination
+            v-model="pagination.current_page"
+            :total-rows="pagination.total"
+            :per-page="pagination.per_page"
+            align="right"
+            pills
+            size="sm"
+          />
+        </b-col>
+      </b-row>
+    </div>
+
   </div>
 </template>
 
@@ -136,6 +168,18 @@ export default {
         },
       ]
     },
+    isCurrentPage() {
+      return this.pagination.current_page; 
+    },
+  },
+  watch: {
+    async isCurrentPage() {
+      setLoading(true);
+
+      await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
+
+      setLoading(false);
+    }
   },
   data() {
     return {
@@ -174,15 +218,24 @@ export default {
           }
         }
 
-        const { status_code, data } = await postListCar(BODY);
+        const { status_code, data, pagination } = await postListCar(BODY);
 
         if (status_code === 200) {
           this.items = data;
+          this.pagination.current_page = pagination.current_page;
+          this.pagination.per_page = pagination.per_page;
+          this.pagination.total = pagination.total;
         } else {
           this.items = [];
+          this.pagination.current_page = 1;
+          this.pagination.per_page = 10;
+          this.pagination.total = 0;
         }
       } catch (err) {
         this.items = [];
+        this.pagination.current_page = 1;
+        this.pagination.per_page = 10;
+        this.pagination.total = 0;
         console.log(err);
       }
     },
@@ -203,12 +256,15 @@ export default {
     onClickDelete(id) {
       console.log(id);
     },
+    async onChangePerPage() {
+      await this.handleGetListCar(1, this.pagination.per_page);
+    },
     async handleSort(ctx) {
       this.isSort.field = ctx.sortBy;
       this.isSort.type = ctx.sortDesc === false ? 1 : -1;
 
       setLoading(true);
-      await this.handleGetListCar(1, this.pagination.per_page);
+      await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
       setLoading(false);
     },
     calNo(item) {
@@ -222,9 +278,12 @@ export default {
 @import '@/scss/variables.scss';
 
 .car-management-page {
-  &__control,
-  &__table {
+  &__control {
     margin-bottom: 10px;
+  }
+
+  &__pagination {
+    margin-top: 10px;
   }
 
   &__control {
@@ -234,7 +293,7 @@ export default {
   }
 
   &__table {
-    height: calc(100vh - 290px);
+    height: calc(100vh - 250px);
     overflow: auto;
     
     ::v-deep table {
