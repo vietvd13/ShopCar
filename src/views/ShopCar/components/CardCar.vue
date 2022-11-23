@@ -1,5 +1,5 @@
 <template>
-  <div class="card-car" @click="onClickCardCar(carId)">
+  <div class="card-car mb-2 mb-md-2" @click="onClickCardCar(carId)">
     <div class="card-car__img">
       <b-img-lazy 
         :src="`${domainImage}${carImage}`"
@@ -17,9 +17,11 @@
       <div class="car-name">
         {{ carName }}
       </div>
+
       <div class="date-sale">
-        {{ dateSale }}
+        {{ dateSale }} - {{ category }} - {{ color }}
       </div>
+
       <div class="car-price">
         {{ formatPrice(carPrice) }} <span>만원</span>
       </div>
@@ -53,6 +55,16 @@ export default {
       required: true,
       default: '',
     },
+    category: {
+      type: String,
+      required: true,
+      default: '',
+    },
+    color: {
+      type: String,
+      required: true,
+      default: '',
+    },
     carPrice: {
       type: [Number, String],
       required: true,
@@ -81,8 +93,8 @@ export default {
     },
     mapImageHeight(size) {
       const MAP_SIZE = {
-        xl: 190,
-        lg: 190,
+        xl: 220,
+        lg: 220,
         md: 220,
         sm: 170,
         xs: 170,
@@ -100,9 +112,6 @@ export default {
 .card-car {
   cursor: pointer;
   overflow: hidden;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 1px solid $iron;
 
   &:hover {
     img {
@@ -133,7 +142,7 @@ export default {
     background-color: $white;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    text-align: center;
+    text-align: left;
     font-family: 'Noto Sans KR', sans-serif;
 
     .car-name {
@@ -154,9 +163,9 @@ export default {
     }
 
     .car-price {
-      font-size: 18px;
+      font-size: 28px;
       font-weight: 500;
-      color: $alizarin-crimson;
+      color: $international-orange;
 
       span {
         font-size: 12px;

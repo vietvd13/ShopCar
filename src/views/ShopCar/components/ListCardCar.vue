@@ -7,13 +7,16 @@
       xs="6" 
       sm="6" 
       md="6" 
-      lg="3"
+      lg="4"
+      xl="3"
     >
       <CardCar
         :car-id="car._id"
         :car-image="car.primary_image"
         :car-name="car.car_name"
         :date-sale="car.year_manufacture"
+        :category="car.category"
+        :color="car.color"
         :car-price="car.price_display"
       />
     </b-col>
@@ -41,6 +44,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/variables';
+@import '@/scss/variables';
 
 </style>
