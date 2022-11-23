@@ -3,13 +3,12 @@
         <p class="title-content">
             {{ $t('SHOP_CAR.DETAIL_CAR.TITLE_PERFORMANCE_CHECK') }}
         </p>
-
+        
         <template v-if="linkFile">
-            <embed 
-                :src="`${domainPDF}${linkFile}`" 
-                type=""
-                class="view-pdf-car-performance"
-            >
+            <ViewPdfApp 
+                :file="`${domainPDF}${linkFile}`"
+                :class-name="'view-pdf'"
+            />
         </template>
 
         <template v-else>
@@ -21,8 +20,13 @@
 </template>
 
 <script>
+import ViewPdfApp from '@/components/ViewPDF.vue';
+
 export default {
     name: 'ViewPDF',
+    components: {
+        ViewPdfApp,
+    },
     props: {
         linkFile: {
             type: String,
@@ -48,5 +52,10 @@ export default {
 .view-pdf-car-performance {
     width: 100%;
     height: 500px;
+}
+
+.view-pdf {
+    width: 100%;
+    height: 700px;
 }
 </style>
