@@ -112,7 +112,6 @@ export default {
     text-align: center;
     min-width: 100px;
     transition: 0.2s all ease-in-out 0s;
-    font-size: 15px;
 
     &:hover {
       transform: scale(1.1);
