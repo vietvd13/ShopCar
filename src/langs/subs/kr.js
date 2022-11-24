@@ -6,6 +6,7 @@ export default {
     BUTTON_DELETE_MANY: "많이 삭제",
     BUTTON_UPDATE: "업데이트",
     BUTTON_FILTER: "적용하다",
+    BUTTON_RESET_FILTER: "필터 지우기",
     TABLE_NO_DATA: "데이터 없음",
     PLEASE_IMPORT_IMAGE: "사진 선택",
     REQUIRED_IMAGE_SIZE_4_6: "크기 4x6",
@@ -56,7 +57,7 @@ export default {
     LOGIN_ERROR: "로그인에 실패했습니다. 계정을 다시 확인하십시오.",
     LOGOUT_ERROR: "로그아웃 실패",
     CREATE_COLLABORATORS_SUCCESS: "협력자를 성공적으로 생성했습니다.",
-    CREATE_COLLABORATORS_ERROR: "협력자를 생성하지 못했습니다.",
+    CREATE_COLLABORATORS_ERROR: "협력자를 만들지 못했습니다.",
     EDIT_COLLABORATORS_SUCCESS: "협력자 정보를 성공적으로 편집했습니다.",
     EDIT_COLLABORATORS_ERROR: "협력자 정보를 편집하지 못했습니다.",
     DELETE_COLLABORATORS_SUCCESS: "협력자를 성공적으로 삭제했습니다.",
@@ -87,18 +88,26 @@ export default {
         CONTACT: "연락하다"
       },
       FILTER: {
+        FILTER_CAR: "자동차 목록 필터링",
+        SEARCH: "검색",
         YEAR: "제조 연도",
         CATEGORIES: "자동차 회사",
         COLOR: "색깔",
         FUEL_TYPE: "연료 종류",
         GEAR_BOX: "엔진",
         DISTANCE: "거리",
-        PRICE: "가격"
+        PRICE: "가격",
+        PLACEHOLDER_SEARCH: "검색 키워드",
+        PLACEHOLDER_FROM_YEAR: "연도부터",
+        PLACEHOLDER_TO_YEAR: "올해로",
+        PLACEHOLDER_INPUT_MAX_DISTANCE: "가장 큰 가치",
+        PLACEHOLDER_INPUT_MAX_PRICE: "가장 큰 가치"
       },
       SORT_LIST_CAR: {
         CAR_NAME: "차량 이름",
         PRICE: "가격",
         YEAR_MANUFACTURE: "제조 연도",
+        PER_PAGE: "차량 번호",
         TEXT_PER_PAGE_8: "8차/페이지",
         TEXT_PER_PAGE_16: "16차/페이지",
         TEXT_PER_PAGE_24: "24차/페이지",
@@ -129,7 +138,7 @@ export default {
         PHONE: "전화 번호",
         ADDRESS: "주소",
         EMAIL: "이메일",
-        WEBSITE: "Website",
+        WEBSITE: "웹사이트",
         MAP: "지도"
       },
       PROFILE: {
@@ -269,6 +278,20 @@ export default {
         CHANGE: "변화",
         COMPANY: "회사 정보"
       }
+    },
+    CAR: {
+      BUTTON_ADD_NEW: "새로운 걸 더하다",
+      BUTTON_ACTIONS: "시장 조작",
+      TABLE_NO: "STT",
+      TABLE_IMAGE: "그림",
+      TABLE_CAR_NAME: "차량 이름",
+      TABLE_CAR_BRAND: "자동차 회사",
+      TABLE_HOT_SALE: "뜨거운 판매",
+      TABLE_ACTIONS: "시장 조작",
+      TABLE_TEXT_HOT_SALE: "뜨거운 판매",
+      TABLE_TEXT_NO_HOT_SALE: "정상",
+      TABLE_TEXT_EDIT: "편집하다",
+      TABLE_TEXT_DELETE: "삭제"
     }
   }
 }

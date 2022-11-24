@@ -6,6 +6,7 @@ export default {
     BUTTON_DELETE_MANY: "Delete a lot",
     BUTTON_UPDATE: "Update",
     BUTTON_FILTER: "Apply",
+    BUTTON_RESET_FILTER: "Clear filter",
     TABLE_NO_DATA: "No data",
     PLEASE_IMPORT_IMAGE: "Photo selection",
     REQUIRED_IMAGE_SIZE_4_6: "Size 4x6",
@@ -56,7 +57,7 @@ export default {
     LOGIN_ERROR: "Login failed, please check your account again",
     LOGOUT_ERROR: "Logout failed",
     CREATE_COLLABORATORS_SUCCESS: "You have successfully created a collaborator",
-    CREATE_COLLABORATORS_ERROR: "You have failed to create a collaborator",
+    CREATE_COLLABORATORS_ERROR: "You have failed to create collaborator",
     EDIT_COLLABORATORS_SUCCESS: "You have successfully edited the collaborator information",
     EDIT_COLLABORATORS_ERROR: "You have failed to edit the collaborator information",
     DELETE_COLLABORATORS_SUCCESS: "You have successfully deleted the collaborator",
@@ -87,18 +88,26 @@ export default {
         CONTACT: "Contact"
       },
       FILTER: {
+        FILTER_CAR: "Filter car list",
+        SEARCH: "Search",
         YEAR: "Year of manufacture",
         CATEGORIES: "Car company",
         COLOR: "Color",
         FUEL_TYPE: "Fuel type",
         GEAR_BOX: "Engine",
         DISTANCE: "Distance",
-        PRICE: "Price"
+        PRICE: "Price",
+        PLACEHOLDER_SEARCH: "Search keyword",
+        PLACEHOLDER_FROM_YEAR: "From year",
+        PLACEHOLDER_TO_YEAR: "To year",
+        PLACEHOLDER_INPUT_MAX_DISTANCE: "The greatest value",
+        PLACEHOLDER_INPUT_MAX_PRICE: "The greatest value"
       },
       SORT_LIST_CAR: {
         CAR_NAME: "Vehicle name",
         PRICE: "Price",
         YEAR_MANUFACTURE: "Year of manufacture",
+        PER_PAGE: "Vehicle number",
         TEXT_PER_PAGE_8: "8 cars/page",
         TEXT_PER_PAGE_16: "16 cars/page",
         TEXT_PER_PAGE_24: "24 cars/page",
@@ -269,6 +278,20 @@ export default {
         CHANGE: "Change",
         COMPANY: "Company information"
       }
+    },
+    CAR: {
+      BUTTON_ADD_NEW: "Add new",
+      BUTTON_ACTIONS: "Manipulation",
+      TABLE_NO: "STT",
+      TABLE_IMAGE: "Picture",
+      TABLE_CAR_NAME: "Vehicle name",
+      TABLE_CAR_BRAND: "Car company",
+      TABLE_HOT_SALE: "Hot sale",
+      TABLE_ACTIONS: "Manipulation",
+      TABLE_TEXT_HOT_SALE: "Hot sale",
+      TABLE_TEXT_NO_HOT_SALE: "Normal",
+      TABLE_TEXT_EDIT: "Edit",
+      TABLE_TEXT_DELETE: "Delete"
     }
   }
 }
