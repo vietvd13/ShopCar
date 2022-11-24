@@ -110,7 +110,9 @@ export default {
 
         PLACEHOLDER_SEARCH: 'Từ khoá tìm kiếm',
         PLACEHOLDER_FROM_YEAR: 'Từ năm',
-        PLACEHOLDER_TO_YEAR: 'Tới năm'
+        PLACEHOLDER_TO_YEAR: 'Tới năm',
+        PLACEHOLDER_INPUT_MAX_DISTANCE: 'Giá trị lớn nhất',
+        PLACEHOLDER_INPUT_MAX_PRICE: 'Giá trị lớn nhất'
       },
       SORT_LIST_CAR: {
         CAR_NAME: "Tên xe",

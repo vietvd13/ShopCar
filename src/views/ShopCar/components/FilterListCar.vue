@@ -38,6 +38,7 @@
                                     type="number"
                                     v-model="isFilter.from_year"
                                     :placeholder="$t('SHOP_CAR.HOME.FILTER.PLACEHOLDER_FROM_YEAR')"
+                                    @keydown.native="validInputNumber"
                                 />
                                 <b-input-group-prepend is-text>
                                     <b> - </b>
@@ -47,6 +48,7 @@
                                     type="number"
                                     v-model="isFilter.to_year"
                                     :placeholder="$t('SHOP_CAR.HOME.FILTER.PLACEHOLDER_TO_YEAR')"
+                                    @keydown.native="validInputNumber"
                                 />
                             </b-input-group>
                         </div>
@@ -150,8 +152,9 @@
                                         <b-form-input
                                             type="number"
                                             size="sm" 
-                                            placeholder="Enter your name"
+                                            :placeholder="$t('SHOP_CAR.HOME.FILTER.PLACEHOLDER_INPUT_MAX_DISTANCE')"
                                             v-model="configSlider.distance.max"
+                                            @keydown.native="validInputNumber"
                                         />
                                     </b-col>
                                 </b-row>
@@ -188,8 +191,9 @@
                                         <b-form-input
                                             type="number"
                                             size="sm" 
-                                            placeholder="Enter your name"
+                                            :placeholder="$t('SHOP_CAR.HOME.FILTER.PLACEHOLDER_INPUT_MAX_PRICE')"
                                             v-model="configSlider.price.max"
+                                            @keydown.native="validInputNumber"
                                         />
                                     </b-col>
                                 </b-row>
@@ -225,6 +229,7 @@ import {
     getListGearBox
 } from '@/api/modules/Home';
 import { generateSelect } from '@/utils/helper';
+import { validInputNumber } from '@/utils/handleInput';
 
 export default {
     name: 'FilterListCar',
@@ -329,6 +334,7 @@ export default {
         this.initSlider();
     },
     methods: {
+        validInputNumber,
         initSlider() {
             this.filterDistance = document.getElementById('filter-distance');
 
