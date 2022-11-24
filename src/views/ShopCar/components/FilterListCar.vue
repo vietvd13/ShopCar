@@ -206,6 +206,16 @@
                 <b-row>
                     <b-col class="text-center">
                         <b-button
+                            variant="danger"
+                            class="mt-4 btn-default btn-remove-filter"
+                            @click="onClickResetFilter()"
+                        >
+                            {{ $t('APP.BUTTON_RESET_FILTER') }}
+                        </b-button>
+                    </b-col>
+
+                    <b-col class="text-center">
+                        <b-button
                             class="mt-4 btn-app btn-default btn-filter"
                             @click="onClickFilter()"
                         >
@@ -244,8 +254,8 @@ export default {
                 color: null,
                 fuel_type: null,
                 gear_box: null,
-                distance: [0, 0],
-                price: [0, 0]
+                distance: [0, 500],
+                price: [0, 500]
             },
 
             configSlider: this.$store.getters.configSlider || {
@@ -433,6 +443,32 @@ export default {
         },
         onClickFilter() {
             this.$emit('filter');
+        },
+        async onClickResetFilter() {
+            this.isFilter = {
+                search: '',
+                from_year: '',
+                to_year: '',
+                categories: null,
+                color: null,
+                fuel_type: null,
+                gear_box: null,
+                distance: [0, 500],
+                price: [0, 500]
+            }
+
+            this.configSlider = {
+                distance: {
+                    min: 0,
+                    max: 500,
+                },
+                price: {
+                    min: 0,
+                    max: 500,
+                }
+            }
+
+            this.$emit('filter');
         }
     },
 }
@@ -472,6 +508,10 @@ export default {
 }
 
 .btn-filter {
+    min-width: 150px;
+}
+
+.btn-remove-filter {
     min-width: 150px;
 }
 

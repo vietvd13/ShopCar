@@ -6,6 +6,7 @@ export default {
     BUTTON_DELETE_MANY: "Xoá nhiều",
     BUTTON_UPDATE: "Cập nhật",
     BUTTON_FILTER: "Áp dụng",
+    BUTTON_RESET_FILTER: "Xoá bộc lọc",
     TABLE_NO_DATA: "Không có dữ liệu",
     PLEASE_IMPORT_IMAGE: "Lựa chọn ảnh",
     REQUIRED_IMAGE_SIZE_4_6: "Size 4x6",

@@ -16,8 +16,8 @@ function getIsFilter() {
         color: null,
         fuel_type: null,
         gear_box: null,
-        distance: [0, 0],
-        price: [0, 0]
+        distance: [0, 500],
+        price: [0, 500]
     }
 }
 
