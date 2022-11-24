@@ -248,6 +248,7 @@ export default {
       PHONE: "전화 번호",
       ADDRESS: "주소",
       ADDRESS_MAIL_NOTI: "알림을 받을 주소",
+      COMPANY_INFOR: "회사 정보",
       GENDER: {
         LABEL: "섹스",
         MALE: "남성",

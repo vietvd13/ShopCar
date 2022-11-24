@@ -82,7 +82,7 @@
                       <h6>{{ $t('LANGUAGES.LANGUAGES') }}</h6>
                     </div>
                     <b-col>
-                      <b-form-select :disabled="is_edit" v-model="language">
+                      <b-form-select :disabled="!is_edit" v-model="language">
                         <option value="vi">{{ $t('LANGUAGES.VIETNAMESE') }}</option>
                         <option value="en">{{ $t('LANGUAGES.ENGLISH') }}</option>
                         <option value="kr">{{ $t('LANGUAGES.KOREAN') }}</option>
@@ -107,7 +107,7 @@
           </div>
         </b-tab>
 
-        <b-tab title="Thông tin công ty">
+        <b-tab :title=" $t('DASHBOARD.PROFILE.COMPANY_INFOR') ">
           <div class="profile card">
             <div class="card-body font-normal">
               <div>

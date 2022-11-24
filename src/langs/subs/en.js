@@ -248,6 +248,7 @@ export default {
       PHONE: "Phone number",
       ADDRESS: "Address",
       ADDRESS_MAIL_NOTI: "Address to receive notifications",
+      COMPANY_INFOR: "Company information",
       GENDER: {
         LABEL: "Sex",
         MALE: "male",
