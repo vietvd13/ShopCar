@@ -35,6 +35,8 @@
 
     <!-- Footer -->
     <FooterHome />
+
+    <BalloonsContact />
   </div>
 </template>
 
@@ -51,6 +53,7 @@ import CustomerFeedback from '@/views/ShopCar/components/CustomerFeedback.vue';
 import ListCollaborators from '@/views/ShopCar/components/ListCollaborators.vue';
 import ContactSupport from '@/views/ShopCar/components/ContactSupport.vue'
 import FooterHome from '@/views/ShopCar/components/FooterHome.vue';
+import BalloonsContact from '@/components/BalloonsContact.vue';
 
 export default {
   name: 'LayoutShopCar',
@@ -62,6 +65,7 @@ export default {
     ListCollaborators,
     ContactSupport,
     FooterHome,
+    BalloonsContact
   },
   data() {
     return {

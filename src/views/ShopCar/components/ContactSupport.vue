@@ -1,5 +1,5 @@
 <template>
-    <div class="contact-support">
+    <div class="contact-support" id="zone-contact-support">
         <TitleContent>{{ $t('SHOP_CAR.HOME.CONTACT_SUPPORT.TITLE') }}</TitleContent>
 
         <div class="contact-support__form">
