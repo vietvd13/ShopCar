@@ -6,6 +6,8 @@ const getters = {
   token: state => state.auth.token,
   refresh_token: state => state.auth.refresh_token,
   profile: state => state.auth.profile,
+  isFilter: state => state.filter.isFilter,
+  configSlider: state => state.filter.configSlider,
 };
 
 export default getters;

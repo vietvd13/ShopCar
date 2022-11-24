@@ -68,6 +68,8 @@ const mutations = {
     Cookies.remove(CONSTANTS.COOKIES.TOKEN);
     Cookies.remove(CONSTANTS.COOKIES.REFRESH_TOKEN);
     Cookies.remove(CONSTANTS.COOKIES.PROFILE);
+    Cookies.remove(CONSTANTS.COOKIES.IS_FILTER);
+    Cookies.remove(CONSTANTS.COOKIES.CONFIG_SLIDER);
 
     state.token = '';
     state.refresh_token = '';

@@ -99,6 +99,7 @@ export default {
       FILTER: {
         FILTER_CAR: "Lọc danh sách xe",
 
+        SEARCH: "Tìm kiếm",
         YEAR: "Năm sản xuất",
         CATEGORIES: "Hãng xe",
         COLOR: "Màu sắc",
@@ -106,6 +107,10 @@ export default {
         GEAR_BOX: "Động cơ",
         DISTANCE: "Khoảng cách",
         PRICE: "Giá tiền",
+
+        PLACEHOLDER_SEARCH: 'Từ khoá tìm kiếm',
+        PLACEHOLDER_FROM_YEAR: 'Từ năm',
+        PLACEHOLDER_TO_YEAR: 'Tới năm'
       },
       SORT_LIST_CAR: {
         CAR_NAME: "Tên xe",
