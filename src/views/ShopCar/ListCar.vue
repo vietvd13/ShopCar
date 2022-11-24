@@ -114,7 +114,7 @@ export default {
           filter: {
 
           },
-          // search: ''
+          search: ''
         }
 
         if (this.sort.sort) {
@@ -125,9 +125,9 @@ export default {
 
         const FILTER = this.$store.getters.isFilter;
 
-        // if (FILTER.search) {
-        //   BODY.search = FILTER.search;
-        // }
+        if (FILTER.search) {
+          BODY.search = FILTER.search;
+        }
 
         if (FILTER.from_year && FILTER.to_year) {
           BODY.filter.from_year = FILTER.from_year;
