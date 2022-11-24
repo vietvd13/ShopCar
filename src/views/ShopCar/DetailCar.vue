@@ -53,6 +53,7 @@
       </div>
 
       <div class="content-car-images">
+        
         <ListImage 
           :items="isCar.images"
         />
@@ -85,7 +86,7 @@ export default {
     CarInfor,
     CarOptions,
     ListImage,
-    ViewPDF
+    ViewPDF,
   },
   data() {
     return {

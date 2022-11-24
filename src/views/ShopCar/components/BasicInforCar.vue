@@ -7,13 +7,6 @@
         </div>
       </b-col>
     </b-row>
-    <!-- <b-row>
-      <b-col>
-        <div class="car-price text-left">
-          {{ $t('SHOP_CAR.DETAIL_CAR.PRICE') }}: <span>{{ price }}</span> 만원
-        </div>
-      </b-col>
-    </b-row> -->
   </div>
 </template>
 
@@ -26,11 +19,6 @@ export default {
       required: true,
       default: ''
     },
-    // price: {
-    //   type: [String, Number],
-    //   required: true,
-    //   default: 0
-    // },
   },
 }
 </script>

@@ -1,31 +1,35 @@
 <template>
-    <b-card>
-        <p class="title-content">
-            {{ $t('SHOP_CAR.DETAIL_CAR.TITLE_PERFORMANCE_CHECK') }}
-        </p>
+    <div id="tab-car-performance">
+        <MenuDetailCar :tab-active="'tab-car-performance'" />
+        <b-card>
+            <p class="title-content">
+                {{ $t('SHOP_CAR.DETAIL_CAR.TITLE_PERFORMANCE_CHECK') }}
+            </p>
         
-        <template v-if="linkFile">
-            <ViewPdfApp 
-                :file="`${domainPDF}${linkFile}`"
-                :class-name="'view-pdf'"
-            />
-        </template>
-
-        <template v-else>
-            <div class="text-center">
-                {{ $t('APP.NO_DATA') }}
-            </div>
-        </template>
-    </b-card>
+            <template v-if="linkFile">
+                <ViewPdfApp
+                    :file="`${domainPDF}${linkFile}`"
+                    :class-name="'view-pdf'"
+                />
+            </template>
+            <template v-else>
+                <div class="text-center">
+                    {{ $t('APP.NO_DATA') }}
+                </div>
+            </template>
+        </b-card>
+    </div>
 </template>
 
 <script>
 import ViewPdfApp from '@/components/ViewPDF.vue';
+import MenuDetailCar from '@/components/MenuDetailCar.vue';
 
 export default {
     name: 'ViewPDF',
     components: {
         ViewPdfApp,
+        MenuDetailCar
     },
     props: {
         linkFile: {

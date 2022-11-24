@@ -193,7 +193,6 @@ export default {
       CAR_OPTION_GUTS: 'Nội thất',
       CAR_OPTION_SAFETY: 'An toàn',
       CAR_OPTION_CONVENIENCE: 'Tiện ích',
-
     },
     CAR_BUYING_POLICY: {
       TITLE: 'Chính sách mua xe'
