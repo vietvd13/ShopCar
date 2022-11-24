@@ -7,11 +7,13 @@
       >
         <i class="fas fa-home-lg-alt" />
       </b-navbar-brand>
+
       <b-navbar-toggle target="nav-collapse">
         <template #default>
           <i class="custom-icon-toggle fas fa-bars" />
         </template>
       </b-navbar-toggle>
+
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <router-link
@@ -24,15 +26,49 @@
           </router-link>
         </b-navbar-nav>
       </b-collapse>
+
+      <b-navbar-nav class="ml-auto">
+        <b-nav-item-dropdown right>
+          <template #button-content>
+            {{ $t(convertTextLanguage()) }}
+          </template>
+
+          <b-dropdown-item 
+            href="#"
+            @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_VIETNAMESE)"
+          >
+            {{ $t('LANGUAGES.VIETNAMESE') }}
+          </b-dropdown-item>
+
+          <b-dropdown-item 
+            href="#"
+            @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_ENGLISH)"
+          >
+            {{ $t('LANGUAGES.ENGLISH') }}
+          </b-dropdown-item>
+
+          <b-dropdown-item 
+            href="#"
+            @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_KOREAN)"
+          >
+            {{ $t('LANGUAGES.KOREAN') }}
+          </b-dropdown-item>
+        </b-nav-item-dropdown>
+      </b-navbar-nav>
     </b-container>
   </b-navbar>
 </template>
 
 <script>
+import CONSTANTS from '@/constants';
+import Toast from '@/toast';
+
 export default {
   name: 'NavbarShop',
   data() {
     return {
+      CONSTANTS,
+      
       listRoute: [
         {
           value: 'VEHICLE_LIST',
@@ -58,6 +94,11 @@ export default {
       keyword: ''
     }
   },
+  computed: {
+    lang() {
+        return this.$store.getters.language; 
+    }
+  },
   methods: {
     goToRoute(name) {
       if (name) {
@@ -67,7 +108,31 @@ export default {
           this.$router.push({ name });
         }
       }
-    }
+    },
+    convertTextLanguage() {
+      const LANG = this.$store.getters.language;
+
+      const LIBRARY = {
+        'vi': 'LANGUAGES.VIETNAMESE',
+        'en': 'LANGUAGES.ENGLISH',
+        'kr': 'LANGUAGES.KOREAN'
+      }
+
+      return LIBRARY[LANG] || '';
+    },
+    setLanguage(language = CONSTANTS.VALUE.LANGUAGE_KOREAN) {
+        if (this.lang !== language) {
+          this.$store.dispatch('app/setLanguage', language)
+              .then(() => {
+                  this.$i18n.locale = language;
+
+                  Toast.success(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_SUCCESS'));
+              })
+              .catch(() => {
+                  Toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
+              })
+        }
+      }
   },
 }
 </script>
