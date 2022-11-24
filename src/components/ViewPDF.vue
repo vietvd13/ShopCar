@@ -4,6 +4,8 @@
         :title="title"
         :theme="theme"
         :class="className"
+        :page-number="1"
+        :page-scale="'page-height'"
     />
 </template>
 

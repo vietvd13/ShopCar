@@ -36,6 +36,7 @@ import ListCardCar from './components/ListCardCar.vue';
 
 import { setLoading } from '@/utils/setLoading';
 import { getListCar } from '@/api/modules/Home';
+import { handleSrollTop } from '@/utils/helper'
 
 export default {
   name: 'ListCar',
@@ -106,6 +107,7 @@ export default {
     async handleGetListCar(page, per_page) {
       try {
         setLoading(true);
+        handleSrollTop();
 
         let BODY = {
           page: page,

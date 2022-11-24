@@ -51,7 +51,7 @@ import Toast from '@/toast';
 import { postCreateSupport } from '@/api/modules/Home';
 import { setLoading } from '@/utils/setLoading';
 import TitleContent from './TitleContent.vue';
-
+import { handleSrollTop } from '@/utils/helper';
 
 export default {
     name: 'ContactSupport',
@@ -70,6 +70,7 @@ export default {
     methods: {
         async handleSubmitContactSupport() {
             try {
+                handleSrollTop();
                 setLoading(true);
 
                 const BODY = {

@@ -16,31 +16,27 @@
       </div>
 
       <div class="content-car-basic">
-        <b-row>
-          <b-col cols="12" xs="12" sm="12" md="12" lg="12">
-            <CarInfor
-              :price="isCar.price_display"
-              :licensePlate="isCar.license_plate"
-              :year="isCar.year_manufacture"
-              :distanceDriven="isCar.distance_driven"
-              :fuelType="isCar.fuel_type"
-              :gearbox="isCar.gearbox"
-              :cylynder="isCar.cylinder_capacity"
-              :color="isCar.color"
-              :carType="isCar.car_type"
-              :seizure="isCar.seizure"
-              :mortgage="isCar.mortgage"
-              :presentationNumber="isCar.presentation_number"
-              :storageLocation="isCar.storage_location"
-              :contact="isCar.phone_contact"
-              :saller="isCar.seller_name"
-              :employeeId="isCar.employee_number"
-              :affiliatedCompany="isCar.affiliated_company"
-              :businessAddress="isCar.business_address"
-              :parkingLocation="isCar.parking_location"
-            />
-          </b-col>
-        </b-row>
+          <CarInfor
+            :price="isCar.price_display"
+            :licensePlate="isCar.license_plate"
+            :year="isCar.year_manufacture"
+            :distanceDriven="isCar.distance_driven"
+            :fuelType="isCar.fuel_type"
+            :gearbox="isCar.gearbox"
+            :cylynder="isCar.cylinder_capacity"
+            :color="isCar.color"
+            :carType="isCar.car_type"
+            :seizure="isCar.seizure"
+            :mortgage="isCar.mortgage"
+            :presentationNumber="isCar.presentation_number"
+            :storageLocation="isCar.storage_location"
+            :contact="isCar.phone_contact"
+            :saller="isCar.seller_name"
+            :employeeId="isCar.employee_number"
+            :affiliatedCompany="isCar.affiliated_company"
+            :businessAddress="isCar.business_address"
+            :parkingLocation="isCar.parking_location"
+          />
       </div>
 
       <div class="content-car-options">
@@ -53,7 +49,6 @@
       </div>
 
       <div class="content-car-images">
-        
         <ListImage 
           :items="isCar.images"
         />

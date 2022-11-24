@@ -31,7 +31,7 @@
                 <b-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6">
                     <iframe
                         :src="profile.map || `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.904149296542!2d105.81368901533224!3d21.036520892888273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab6d7fee2771%3A0xc4a199ae8b20e4c7!2zMjY2IMSQ4buZaSBD4bqlbg!5e0!3m2!1svi!2s!4v1669199823487!5m2!1svi!2s`"
-                        width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade" />
                 </b-col>
             </b-row>
@@ -100,11 +100,13 @@ export default {
     background-color: $mine-shaft;
     color: $white;
 
-    padding: 20px 0;
+    padding: 50px 0;
 
     &__company-name {
         font-size: 22px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
+        color: $international-orange;
+        font-weight: bold;
     }
 
     &__address,

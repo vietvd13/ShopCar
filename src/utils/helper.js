@@ -78,10 +78,22 @@ function elementInViewport(el) {
     );
 }
 
+function handleSrollTop() {
+    const APP_SHOP = document.getElementsByClassName('app-shop');
+
+    if (APP_SHOP.length) {
+        APP_SHOP[0].scroll({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+}
+
 export {
     getArrValueOfArr,
     replaceValueWithIndex,
     generateSelect,
     formatPrice,
-    elementInViewport
+    elementInViewport,
+    handleSrollTop
 }

@@ -1,10 +1,11 @@
 import store from '@/store';
-import router, { resetRouter } from '../routers';
+import router, { resetRouter } from '@/routers';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import { setPageName } from '../utils/setPageName';
+import { setPageName } from '@/utils/setPageName';
 import Cookies from 'js-cookie';
 import CONSTANTS from '@/constants';
+import { handleSrollTop } from '@/utils/helper';
 
 function isExitToken() {
   const TOKEN = Cookies.get(CONSTANTS.COOKIES.TOKEN);
@@ -66,5 +67,6 @@ router.beforeEach((to, from, next) => {
 });
 
 router.afterEach(() => {
+  handleSrollTop();
   NProgress.done();
 });
