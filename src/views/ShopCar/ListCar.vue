@@ -36,7 +36,7 @@ import ListCardCar from './components/ListCardCar.vue';
 
 import { setLoading } from '@/utils/setLoading';
 import { getListCar } from '@/api/modules/Home';
-import { handleSrollTop } from '@/utils/helper'
+import { handleSrollTop } from '@/utils/helper';
 
 export default {
   name: 'ListCar',

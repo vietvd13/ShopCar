@@ -119,7 +119,7 @@ export default {
         CAR_NAME: "Tên xe",
         PRICE: "Giá",
         YEAR_MANUFACTURE: "Năm sản xuất",
-
+        PER_PAGE: "Số xe",
         TEXT_PER_PAGE_8: "8 xe/trang",
         TEXT_PER_PAGE_16: "16 xe/trang",
         TEXT_PER_PAGE_24: "24 xe/trang",

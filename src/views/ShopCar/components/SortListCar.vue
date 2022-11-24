@@ -1,30 +1,47 @@
 <template>
   <div class="sort-list-car">
-    <div 
-      v-for="(sort, idx) in optionSort" 
-      :key="idx"
-      class="content-list-sort"
-    >
-      <ItemSort 
-        :sort-name="sort.sortName" 
-        :key-sort="sort.key"
-      />
-    </div>
-    <div class="content-select-perpage">
-      <b-form-select 
-        v-model="per_page" 
-        size="sm"
-        @change="onChangePerPage"
+    <b-row>
+      <b-col
+        v-for="(sort, idx) in optionSort" 
+        :key="idx"
+        cols="6" 
+        xs="6" 
+        sm="6" 
+        md="6" 
+        lg="6"
+        xl="3"
       >
-        <b-form-select-option
-          v-for="(option, idx) in optionsPerpage"
-          :key="idx"
-          :value="option.value"
+        <ItemSort 
+          :sort-name="sort.sortName" 
+          :key-sort="sort.key"
+        />
+      </b-col>
+
+      <b-col
+        cols="6" 
+        xs="6" 
+        sm="6" 
+        md="6" 
+        lg="6"
+        xl="3"
+      >
+        <span class="label-filter-per-page">{{ $t('SHOP_CAR.HOME.SORT_LIST_CAR.PER_PAGE') }}</span>
+        <b-form-select 
+          v-model="per_page" 
+          size="sm"
+          @change="onChangePerPage"
+          class="filter-per-page"
         >
-          {{ $t(option.text) }}
-        </b-form-select-option>
-      </b-form-select>
-    </div>
+          <b-form-select-option
+            v-for="(option, idx) in optionsPerpage"
+            :key="idx"
+            :value="option.value"
+          >
+            {{ $t(option.text) }}
+          </b-form-select-option>
+        </b-form-select>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -87,12 +104,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/variables';
+@import '@/scss/variables';
 
 .sort-list-car {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  margin-top: 20px;
 }
 
+.filter-per-page {
+  width: 110px;
+}
+
+.label-filter-per-page {
+  font-size: 12px;
+  margin-right: 5px;
+}
 </style>

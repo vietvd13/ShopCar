@@ -47,11 +47,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/variables';
+@import '@/scss/variables';
 
 .item-sort {
   display: flex;
   font-size: 12px;
+  margin-bottom: 10px;
 
   span {
     display: flex;
