@@ -2,7 +2,9 @@
   <div class="list-car">
     <div class="list-car__content">
       <div class="content-filter">
-        <FilterListCar />
+        <FilterListCar 
+          @filter="onClickApplyFilter"    
+        />
       </div>
 
       <div class="content-sort">
@@ -66,15 +68,15 @@ export default {
   },
   watch: {
     isCurrentPage() {
-      this.handleGetListCar();
+      this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
     },
     isPerPage() {
-      this.handleGetListCar();
+      this.handleGetListCar(1, this.pagination.per_page);
     }
   },
   created() {
     this.initBus();
-    this.handleGetListCar();
+    this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
   },
   destroyed () {
     this.removeBus();
@@ -85,32 +87,77 @@ export default {
         this.sort.sort = sort.sort;
         this.sort.type = sort.type;
 
-        await this.handleGetListCar();
+        await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
       });
 
       this.$bus.on('LIST_CAR_PER_PAGE_CHANGE', async(per_page) => {
         this.pagination.current_page = 1;
         this.pagination.per_page = per_page;
 
-        await this.handleGetListCar();
+        await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
       })
     },
     removeBus() {
       this.$bus.off('LIST_CAR_SORT_CLICK');
     },
-    async handleGetListCar() {
+    async onClickApplyFilter() {
+      console.log('onClickApplyFilter');
+      await this.handleGetListCar()
+    },
+    async handleGetListCar(page, per_page) {
       try {
         setLoading(true);
 
         let BODY = {
-          page: this.pagination.current_page,
-          limit: this.pagination.per_page,
+          page: page,
+          limit: per_page,
+          filter: {
+
+          },
+          // search: ''
         }
 
         if (this.sort.sort) {
           BODY.sort = {
             [this.sort.sort]: this.sort.type
           }
+        }
+
+        const FILTER = this.$store.getters.isFilter;
+
+        // if (FILTER.search) {
+        //   BODY.search = FILTER.search;
+        // }
+
+        if (FILTER.from_year && FILTER.to_year) {
+          BODY.filter.from_year = FILTER.from_year;
+          BODY.filter.to_year = FILTER.to_year;
+        }
+
+        if (FILTER.price) {
+          BODY.filter.from_price = parseInt(FILTER.price[0]);
+          BODY.filter.to_price = parseInt(FILTER.price[1]);
+        }
+
+        if (FILTER.distance) {
+          BODY.filter.from_distance = parseInt(FILTER.distance[0]);
+          BODY.filter.to_distance = parseInt(FILTER.distance[1]);
+        }
+
+        if (FILTER.categories) {
+          BODY.filter.category = FILTER.categories;
+        }
+
+        if (FILTER.fuel_type) {
+          BODY.filter.fuel_type = FILTER.fuel_type;
+        }
+
+        if (FILTER.gear_box) {
+          BODY.filter.gear_box = FILTER.gear_box;
+        }
+
+        if (FILTER.color) {
+          BODY.filter.color = FILTER.color;
         }
 
         const { status_code, data, pagination } = await getListCar(BODY);

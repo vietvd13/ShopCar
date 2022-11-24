@@ -2,7 +2,9 @@
   <div class="home-shop-car">
     <div class="home-shop-car__content">
       <div class="content-filter">
-        <FilterListCar />
+        <FilterListCar 
+          @filter="onClickApplyFilter"        
+        />
       </div>
 
       <div class="content-hotsale">
@@ -21,6 +23,11 @@ export default {
   components: {
     FilterListCar,
     HotSaleHome,
+  },
+  methods: {
+    onClickApplyFilter() {
+      this.$router.push({ name: 'ListCar' });
+    }
   },
 }
 </script>

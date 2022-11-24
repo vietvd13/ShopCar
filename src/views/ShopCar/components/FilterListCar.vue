@@ -65,7 +65,7 @@
                                 :options="listCategories"
                             >
                                 <template #first>
-                                    <b-form-select-option :value="null" disabled>
+                                    <b-form-select-option :value="null">
                                         {{ $t('APP.PLEASE_SELECT') }}
                                     </b-form-select-option>
                                 </template>
@@ -82,7 +82,7 @@
                                 :options="listColor"
                             >
                                 <template #first>
-                                    <b-form-select-option :value="null" disabled>
+                                    <b-form-select-option :value="null">
                                         {{ $t('APP.PLEASE_SELECT') }}
                                     </b-form-select-option>
                                 </template>
@@ -99,7 +99,7 @@
                                 :options="listFuelType"
                             >
                                 <template #first>
-                                    <b-form-select-option :value="null" disabled>
+                                    <b-form-select-option :value="null">
                                         {{ $t('APP.PLEASE_SELECT') }}
                                     </b-form-select-option>
                                 </template>
@@ -115,7 +115,7 @@
                                 :options="listGearBox"
                             >
                                 <template #first>
-                                    <b-form-select-option :value="null" disabled>
+                                    <b-form-select-option :value="null">
                                         {{ $t('APP.PLEASE_SELECT') }}
                                     </b-form-select-option>
                                 </template>
@@ -207,6 +207,7 @@
                     <b-col class="text-center">
                         <b-button
                             class="mt-4 btn-app btn-default btn-filter"
+                            @click="onClickFilter()"
                         >
                             {{ $t('APP.BUTTON_FILTER') }}
                         </b-button>
@@ -429,6 +430,9 @@ export default {
                 this.listGearBox = [];
                 console.log(err);
             }
+        },
+        onClickFilter() {
+            this.$emit('filter');
         }
     },
 }
