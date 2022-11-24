@@ -30,28 +30,40 @@
       <b-navbar-nav class="ml-auto">
         <b-nav-item-dropdown right>
           <template #button-content>
-            {{ $t(convertTextLanguage()) }}
+            <flag  :iso="convertFlagLanguage()" />
+            <span class="text-lang">
+              {{ $t(convertTextLanguage()) }}
+            </span>
           </template>
 
           <b-dropdown-item 
             href="#"
             @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_VIETNAMESE)"
           >
-            {{ $t('LANGUAGES.VIETNAMESE') }}
+            <flag iso="vn" /> 
+            <span class="text-lang">
+              {{ $t('LANGUAGES.VIETNAMESE') }}
+            </span>
           </b-dropdown-item>
 
           <b-dropdown-item 
             href="#"
             @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_ENGLISH)"
           >
-            {{ $t('LANGUAGES.ENGLISH') }}
+            <flag iso="us" />
+            <span class="text-lang">
+              {{ $t('LANGUAGES.ENGLISH') }}
+            </span>
           </b-dropdown-item>
 
           <b-dropdown-item 
             href="#"
             @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_KOREAN)"
           >
-            {{ $t('LANGUAGES.KOREAN') }}
+            <flag iso="kr" />
+            <span class="text-lang">
+              {{ $t('LANGUAGES.KOREAN') }}
+            </span>
           </b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
@@ -108,6 +120,17 @@ export default {
           this.$router.push({ name });
         }
       }
+    },
+    convertFlagLanguage() {
+      const LANG = this.$store.getters.language;
+
+      const LIBRARY = {
+        'vi': 'vn',
+        'en': 'us',
+        'kr': 'kr'
+      }
+
+      return LIBRARY[LANG] || '';
     },
     convertTextLanguage() {
       const LANG = this.$store.getters.language;
@@ -189,5 +212,9 @@ export default {
     opacity: 1;
     color: $international-orange;
   }
+}
+
+::v-deep .text-lang {
+  margin-left: 10px;
 }
 </style>

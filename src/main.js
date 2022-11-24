@@ -22,6 +22,10 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
+// Flag 
+import FlagIcon from 'vue-flag-icon';
+Vue.use(FlagIcon);
+
 // Package
 import router from '@/routers'
 import i18n from '@/langs'

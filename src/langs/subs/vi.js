@@ -37,7 +37,7 @@ export default {
   },
   LANGUAGES: {
     LANGUAGES: "Ngôn ngữ",
-    VIETNAMESE: "Tiêng Việt",
+    VIETNAMESE: "Tiếng Việt",
     ENGLISH: "Tiếng Anh",
     KOREAN: "Tiếng Hàn",
   },
