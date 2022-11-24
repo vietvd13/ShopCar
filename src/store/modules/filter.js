@@ -16,8 +16,8 @@ function getIsFilter() {
         color: null,
         fuel_type: null,
         gear_box: null,
-        distance: [0, 1500],
-        price: [0, 1500]
+        distance: [0, 50000],
+        price: [0, 50000]
     }
 }
 
@@ -31,11 +31,11 @@ function getConfigSlider() {
     return {
         distance: {
             min: 0,
-            max: 1500,
+            max: 50000,
         },
         price: {
             min: 0,
-            max: 1500,
+            max: 50000,
         }
     }
 }
