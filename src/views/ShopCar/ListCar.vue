@@ -101,8 +101,7 @@ export default {
       this.$bus.off('LIST_CAR_SORT_CLICK');
     },
     async onClickApplyFilter() {
-      console.log('onClickApplyFilter');
-      await this.handleGetListCar()
+      await this.handleGetListCar(1, this.pagination.per_page);
     },
     async handleGetListCar(page, per_page) {
       try {
