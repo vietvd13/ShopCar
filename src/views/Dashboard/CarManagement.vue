@@ -1,5 +1,11 @@
 <template>
   <div class="car-management-page">
+    <div class="car-management-page__filter">
+      <FilterListCarDashboard 
+        @filter="onClickApplyFilter"  
+      />
+    </div>
+
     <div class="car-management-page__control">
       <b-row>
         <b-col class="text-right">
@@ -126,9 +132,13 @@
 <script>
 import { setLoading } from '@/utils/setLoading';
 import { postListCar } from '@/api/modules/Dashboard';
+import FilterListCarDashboard from './components/FilterListCar.vue';
 
 export default {
   name: 'CarManagement',
+  components: {
+    FilterListCarDashboard,
+  },
   computed: {
     domainImage() {
       return process.env.VUE_APP_URL_IMAGE;
@@ -205,17 +215,73 @@ export default {
       await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
       setLoading(false);
     },
+    async onClickApplyFilter() {
+      setLoading(true);
+      await this.handleGetListCar(1, this.pagination.per_page);
+      setLoading(false);
+    },
     async handleGetListCar(page, limit) {
       try {
         const BODY = {
           page: page,
           limit: limit,
+          sort: {
+
+          },
+          filter: {
+
+          },
         }
 
         if (this.isSort.field) {
           BODY.sort = {
             [this.isSort.field]: this.isSort.type,
           }
+        }
+
+        const FILTER = this.$store.getters.isFilterDashboard;
+
+        if (FILTER.search) {
+          BODY.search = FILTER.search;
+        }
+
+        if (FILTER.from_year && FILTER.to_year) {
+          BODY.filter.from_year = FILTER.from_year;
+          BODY.filter.to_year = FILTER.to_year;
+        }
+
+        if (FILTER.price) {
+          BODY.filter.from_price = parseInt(FILTER.price[0]);
+          BODY.filter.to_price = parseInt(FILTER.price[1]);
+        }
+
+        if (FILTER.distance) {
+          BODY.filter.from_distance = parseInt(FILTER.distance[0]);
+          BODY.filter.to_distance = parseInt(FILTER.distance[1]);
+        }
+
+        if (FILTER.categories) {
+          BODY.filter.category = FILTER.categories;
+        }
+
+        if (FILTER.fuel_type) {
+          BODY.filter.fuel_type = FILTER.fuel_type;
+        }
+
+        if (FILTER.gear_box) {
+          BODY.filter.gear_box = FILTER.gear_box;
+        }
+
+        if (FILTER.color) {
+          BODY.filter.color = FILTER.color;
+        }
+
+        if ([true, false].includes(FILTER.is_hotsale)) {
+          BODY.filter.is_hotsale = FILTER.is_hotsale;
+        }
+
+        if ([true, false].includes(FILTER.is_data_crawl)) {
+          BODY.filter.is_data_crawl = FILTER.is_data_crawl;
         }
 
         const { status_code, data, pagination } = await postListCar(BODY);
@@ -257,7 +323,9 @@ export default {
       console.log(id);
     },
     async onChangePerPage() {
+      setLoading(true);
       await this.handleGetListCar(1, this.pagination.per_page);
+      setLoading(false);
     },
     async handleSort(ctx) {
       this.isSort.field = ctx.sortBy;
@@ -278,6 +346,7 @@ export default {
 @import '@/scss/variables.scss';
 
 .car-management-page {
+  &__filter,
   &__control {
     margin-bottom: 10px;
   }
@@ -293,7 +362,7 @@ export default {
   }
 
   &__table {
-    height: calc(100vh - 250px);
+    height: calc(100vh - 310px);
     overflow: auto;
     
     ::v-deep table {

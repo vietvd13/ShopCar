@@ -8,6 +8,8 @@ const getters = {
   profile: state => state.auth.profile,
   isFilter: state => state.filter.isFilter,
   configSlider: state => state.filter.configSlider,
+  isFilterDashboard: state => state.filter.isFilterDashboard,
+  configSliderDashboard: state => state.filter.configSliderDashboard
 };
 
 export default getters;

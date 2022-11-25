@@ -40,9 +40,53 @@ function getConfigSlider() {
     }
 }
 
+function getIsFilterDashboard() {
+    const IS_FILTER = Cookies.get(CONSTANTS.COOKIES.IS_FILTER_DASHBOARD);
+
+    if (IS_FILTER) {
+        return JSON.parse(IS_FILTER);
+    }
+
+    return {
+        search: '',
+        from_year: '',
+        to_year: '',
+        categories: null,
+        color: null,
+        fuel_type: null,
+        gear_box: null,
+        is_hotsale: null,
+        is_data_crawl: null,
+        distance: [0, 50000],
+        price: [0, 50000]
+    }
+}
+
+function getConfigSliderDashboard() {
+    const CONFIG_SLIDER = Cookies.get(CONSTANTS.COOKIES.CONFIG_SLIDER_DASHBOARD);
+
+    if (CONFIG_SLIDER) {
+        return JSON.parse(CONFIG_SLIDER);
+    }
+
+    return {
+        distance: {
+            min: 0,
+            max: 50000,
+        },
+        price: {
+            min: 0,
+            max: 50000,
+        }
+    }
+}
+
 const state = {
     isFilter: getIsFilter(),
-    configSlider: getConfigSlider()
+    configSlider: getConfigSlider(),
+
+    isFilterDashboard: getIsFilterDashboard(),
+    configSliderDashboard: getConfigSliderDashboard(),
 };
 
 const mutations = {
@@ -54,6 +98,16 @@ const mutations = {
     SET_CONFIG_SLIDER: (state, config) => {
         state.configSlider = config;
         Cookies.set(CONSTANTS.COOKIES.CONFIG_SLIDER, JSON.stringify(config));
+    },
+
+    SET_FILTER_DASHBOARD: (state, filter) => {
+        state.isFilter = filter;
+        Cookies.set(CONSTANTS.COOKIES.IS_FILTER_DASHBOARD, JSON.stringify(filter));
+    },
+
+    SET_CONFIG_SLIDER_DASHBOARD: (state, config) => {
+        state.configSlider = config;
+        Cookies.set(CONSTANTS.COOKIES.CONFIG_SLIDER_DASHBOARD, JSON.stringify(config));
     }
 };
 
@@ -64,6 +118,14 @@ const actions = {
 
     setConfigSlider({ commit }, config) {
         commit('SET_CONFIG_SLIDER', config);
+    },
+
+    setFilterDashboard({ commit }, filter) {
+        commit('SET_FILTER_DASHBOARD', filter);
+    },
+
+    setConfigSliderDashboard({ commit }, config) {
+        commit('SET_CONFIG_SLIDER_DASHBOARD', config);
     }
 };
 

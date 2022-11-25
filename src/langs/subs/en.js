@@ -280,6 +280,27 @@ export default {
       }
     },
     CAR: {
+      FILTER: {
+        FILTER_CAR: "Filter car list",
+        SEARCH: "Search",
+        YEAR: "Year of manufacture",
+        CATEGORIES: "Car company",
+        COLOR: "Color",
+        FUEL_TYPE: "Fuel type",
+        GEAR_BOX: "Engine",
+        DATA_CRAWL: "Data crawl",
+        HOT_SALE: "Hot sale",
+        DISTANCE: "Distance",
+        PRICE: "Price",
+        PLACEHOLDER_SEARCH: "Search keyword",
+        PLACEHOLDER_FROM_YEAR: "From year",
+        PLACEHOLDER_TO_YEAR: "To year",
+        PLACEHOLDER_INPUT_MAX_DISTANCE: "The greatest value",
+        PLACEHOLDER_INPUT_MAX_PRICE: "The greatest value",
+
+        TEXT_YES: "Yes",
+        TEXT_NO: "No",
+      },
       BUTTON_ADD_NEW: "Add new",
       BUTTON_ACTIONS: "Manipulation",
       TABLE_NO: "STT",
