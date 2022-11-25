@@ -12,6 +12,45 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav class="ml-auto">
+        <b-nav-item-dropdown right class="mb-sm-2 mr-lg-2">
+          <template #button-content>
+            <flag :iso="convertFlagLanguage()" />
+            <span class="text-lang">
+              {{ $t(convertTextLanguage()) }}
+            </span>
+          </template>
+
+          <b-dropdown-item 
+            href="#"
+            @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_VIETNAMESE)"
+          >
+            <flag iso="vn" /> 
+            <span class="text-lang">
+              {{ $t('LANGUAGES.VIETNAMESE') }}
+            </span>
+          </b-dropdown-item>
+
+          <b-dropdown-item 
+            href="#"
+            @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_ENGLISH)"
+          >
+            <flag iso="us" />
+            <span class="text-lang">
+              {{ $t('LANGUAGES.ENGLISH') }}
+            </span>
+          </b-dropdown-item>
+
+          <b-dropdown-item 
+            href="#"
+            @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_KOREAN)"
+          >
+            <flag iso="kr" />
+            <span class="text-lang">
+              {{ $t('LANGUAGES.KOREAN') }}
+            </span>
+          </b-dropdown-item>
+        </b-nav-item-dropdown>
+
         <b-nav-item-dropdown :text="fullname" right>
           <b-dropdown-item 
             @click="onClickProfile()"
@@ -44,11 +83,49 @@ export default {
     }
   },
   computed: {
+    lang() {
+        return this.$store.getters.language; 
+    },
     fullname() {
       return this.$store.getters.profile.name || ''; 
     }
   },
   methods: {
+    convertFlagLanguage() {
+      const LANG = this.$store.getters.language;
+
+      const LIBRARY = {
+        'vi': 'vn',
+        'en': 'us',
+        'kr': 'kr'
+      }
+
+      return LIBRARY[LANG] || '';
+    },
+    convertTextLanguage() {
+      const LANG = this.$store.getters.language;
+
+      const LIBRARY = {
+        'vi': 'LANGUAGES.VIETNAMESE',
+        'en': 'LANGUAGES.ENGLISH',
+        'kr': 'LANGUAGES.KOREAN'
+      }
+
+      return LIBRARY[LANG] || '';
+    },
+    setLanguage(language = CONSTANTS.VALUE.LANGUAGE_KOREAN) {
+      if (this.lang !== language) {
+        this.$store.dispatch('app/setLanguage', language)
+            .then(() => {
+                this.$i18n.locale = language;
+
+                Toast.success(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_SUCCESS'));
+            })
+            .catch(() => {
+                Toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
+            })
+      }
+    },
     onClickProfile() {
       if (this.$router.currentRoute.name !== 'ProfilePage') {
         this.$router.push({ name: 'ProfilePage' });
@@ -89,6 +166,10 @@ export default {
   }
 }
 
+::v-deep .text-lang {
+  margin-left: 10px;
+}
+
 .navbar-user {
   ::v-deep .dropdown-toggle::after {
     color: $scorpion;
@@ -99,6 +180,5 @@ export default {
     margin-right: 10px;
     text-transform: capitalize;
   }
-
 }
 </style>

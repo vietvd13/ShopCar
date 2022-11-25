@@ -144,18 +144,18 @@ export default {
       return LIBRARY[LANG] || '';
     },
     setLanguage(language = CONSTANTS.VALUE.LANGUAGE_KOREAN) {
-        if (this.lang !== language) {
-          this.$store.dispatch('app/setLanguage', language)
-              .then(() => {
-                  this.$i18n.locale = language;
+      if (this.lang !== language) {
+        this.$store.dispatch('app/setLanguage', language)
+            .then(() => {
+                this.$i18n.locale = language;
 
-                  Toast.success(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_SUCCESS'));
-              })
-              .catch(() => {
-                  Toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
-              })
-        }
+                Toast.success(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_SUCCESS'));
+            })
+            .catch(() => {
+                Toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
+            })
       }
+    }
   },
 }
 </script>
