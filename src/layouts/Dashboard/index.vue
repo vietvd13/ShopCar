@@ -49,6 +49,8 @@ export default {
     .app-main {
       background-color: $seashell;
       margin-top: 10px;
+
+      height: calc(100vh - 100px);
     }
   }
 }

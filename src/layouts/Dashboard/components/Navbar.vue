@@ -12,7 +12,7 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav class="ml-auto">
-        <b-nav-item-dropdown right class="mb-sm-2 mr-lg-2">
+        <b-nav-item-dropdown right class="mb-2 mb-lg-0 mb-xl-0 mr-lg-2">
           <template #button-content>
             <flag :iso="convertFlagLanguage()" />
             <span class="text-lang">

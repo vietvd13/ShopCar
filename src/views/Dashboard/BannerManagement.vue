@@ -178,11 +178,11 @@ export default {
         margin-bottom: 10px;
 
         .show-image {
-            height: 370px;
+            max-height: 370px;
 
             img {
                 object-fit: scale-down;
-                height: 370px;
+                max-height: 370px;
             }
 
             #import-banner {

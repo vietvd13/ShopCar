@@ -360,7 +360,7 @@ export default {
   }
 
   &__table {
-    height: calc(100vh - 310px);
+    height: calc(100vh - 285px);
     overflow: auto;
     
     ::v-deep table {
