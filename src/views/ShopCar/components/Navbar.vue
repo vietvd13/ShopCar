@@ -25,48 +25,48 @@
             {{ $t(route.text) }}
           </router-link>
         </b-navbar-nav>
+
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item-dropdown right>
+            <template #button-content>
+              <flag :iso="convertFlagLanguage()" class="pulldown-lang" />
+              <span class="text-lang">
+                {{ $t(convertTextLanguage()) }}
+              </span>
+            </template>
+
+            <b-dropdown-item 
+              href="#"
+              @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_VIETNAMESE)"
+            >
+              <flag iso="vn" /> 
+              <span class="text-lang">
+                {{ $t('LANGUAGES.VIETNAMESE') }}
+              </span>
+            </b-dropdown-item>
+
+            <b-dropdown-item 
+              href="#"
+              @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_ENGLISH)"
+            >
+              <flag iso="us" />
+              <span class="text-lang">
+                {{ $t('LANGUAGES.ENGLISH') }}
+              </span>
+            </b-dropdown-item>
+
+            <b-dropdown-item 
+              href="#"
+              @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_KOREAN)"
+            >
+              <flag iso="kr" />
+              <span class="text-lang">
+                {{ $t('LANGUAGES.KOREAN') }}
+              </span>
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+        </b-navbar-nav>
       </b-collapse>
-
-      <b-navbar-nav class="ml-auto">
-        <b-nav-item-dropdown right>
-          <template #button-content>
-            <flag  :iso="convertFlagLanguage()" />
-            <span class="text-lang">
-              {{ $t(convertTextLanguage()) }}
-            </span>
-          </template>
-
-          <b-dropdown-item 
-            href="#"
-            @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_VIETNAMESE)"
-          >
-            <flag iso="vn" /> 
-            <span class="text-lang">
-              {{ $t('LANGUAGES.VIETNAMESE') }}
-            </span>
-          </b-dropdown-item>
-
-          <b-dropdown-item 
-            href="#"
-            @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_ENGLISH)"
-          >
-            <flag iso="us" />
-            <span class="text-lang">
-              {{ $t('LANGUAGES.ENGLISH') }}
-            </span>
-          </b-dropdown-item>
-
-          <b-dropdown-item 
-            href="#"
-            @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_KOREAN)"
-          >
-            <flag iso="kr" />
-            <span class="text-lang">
-              {{ $t('LANGUAGES.KOREAN') }}
-            </span>
-          </b-dropdown-item>
-        </b-nav-item-dropdown>
-      </b-navbar-nav>
     </b-container>
   </b-navbar>
 </template>
@@ -212,11 +212,21 @@ export default {
     opacity: 1;
     color: $international-orange;
   }
+
+  .pulldown-lang {
+    margin-left: 10px;
+  }
 }
 
 ::v-deep .text-lang {
   margin-left: 10px;
   font-weight: 500;
   color: $scorpion;
+}
+
+@media only screen and (max-width: 991px) {
+  .item-route {
+    text-align: left !important;
+  }
 }
 </style>
