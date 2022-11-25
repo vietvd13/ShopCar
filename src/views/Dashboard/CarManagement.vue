@@ -20,80 +20,78 @@
       </b-row>
     </div>
 
-    <b-card>
-      <div class="car-management-page__table">
-        <b-table
-          :items="items"
-          :fields="headerTable"
-          bordered
-          show-empty
-          no-local-sorting
-          no-sort-reset
-          no-border-collapse
-          @sort-changed="handleSort"
-        >
-          <template #cell(delete_multiple)="delete_multiple">
-            <b-form-checkbox
-              :value="delete_multiple.item._id"
-              :unchecked-value="delete_multiple.item._id"
-              @change="onSelectDelete"
-            />
-          </template>
+    <div class="car-management-page__table">
+      <b-table
+        :items="items"
+        :fields="headerTable"
+        bordered
+        show-empty
+        no-local-sorting
+        no-sort-reset
+        no-border-collapse
+        @sort-changed="handleSort"
+      >
+        <template #cell(delete_multiple)="delete_multiple">
+          <b-form-checkbox
+            :value="delete_multiple.item._id"
+            :unchecked-value="delete_multiple.item._id"
+            @change="onSelectDelete"
+          />
+        </template>
 
-          <template #cell(created_at)="created_at">
-            <span>{{ calNo(created_at) }}</span>
-          </template>
+        <template #cell(created_at)="created_at">
+          <span>{{ calNo(created_at) }}</span>
+        </template>
 
-          <template #cell(primary_image)="primary_image">
-            <b-img-lazy
-              thumbnail
-              fluid
-              :src="`${domainImage}${primary_image.item.primary_image}`"
-              :blank-src="require('@/assets/images/noimage.webp')"
-              :alt="items.car_name"
-              class="avatar-collaborators"
-            />
-          </template>
+        <template #cell(primary_image)="primary_image">
+          <b-img-lazy
+            thumbnail
+            fluid
+            :src="`${domainImage}${primary_image.item.primary_image}`"
+            :blank-src="require('@/assets/images/noimage.webp')"
+            :alt="items.car_name"
+            class="avatar-collaborators"
+          />
+        </template>
 
-          <template #cell(is_hotsale)="is_hotsale">
-            <b-badge v-if="is_hotsale.item.is_hotsale === false" variant="secondary">
-              {{ $t('DASHBOARD.CAR.TABLE_TEXT_NO_HOT_SALE') }}
-            </b-badge>
-            <b-badge v-if="is_hotsale.item.is_hotsale === true" variant="success">
-              {{ $t('DASHBOARD.CAR.TABLE_TEXT_HOT_SALE') }}
-            </b-badge>
-          </template>
+        <template #cell(is_hotsale)="is_hotsale">
+          <b-badge v-if="is_hotsale.item.is_hotsale === false" variant="secondary">
+            {{ $t('DASHBOARD.CAR.TABLE_TEXT_NO_HOT_SALE') }}
+          </b-badge>
+          <b-badge v-if="is_hotsale.item.is_hotsale === true" variant="success">
+            {{ $t('DASHBOARD.CAR.TABLE_TEXT_HOT_SALE') }}
+          </b-badge>
+        </template>
 
-          <template #cell(actions)="actions">
-            <div class="item-action">
-              <b-button 
-                variant="warning"
-                class="btn-default"
-                @click="onClickEdit(actions.item._id)"
-              >
-                {{ $t('DASHBOARD.CAR.TABLE_TEXT_EDIT') }}
-              </b-button>
-            </div>
+        <template #cell(actions)="actions">
+          <div class="item-action">
+            <b-button 
+              variant="warning"
+              class="btn-default"
+              @click="onClickEdit(actions.item._id)"
+            >
+              {{ $t('DASHBOARD.CAR.TABLE_TEXT_EDIT') }}
+            </b-button>
+          </div>
 
-            <div class="item-action">
-              <b-button 
-                variant="danger"
-                class="btn-default"
-                @click="onClickDelete(actions.item._id)"
-              >
-                {{ $t('DASHBOARD.CAR.TABLE_TEXT_DELETE') }}
-              </b-button>
-            </div>
-          </template>
+          <div class="item-action">
+            <b-button 
+              variant="danger"
+              class="btn-default"
+              @click="onClickDelete(actions.item._id)"
+            >
+              {{ $t('DASHBOARD.CAR.TABLE_TEXT_DELETE') }}
+            </b-button>
+          </div>
+        </template>
 
-          <template #empty>
-            <div class="text-center">
-              {{ $t('APP.TABLE_NO_DATA') }}
-            </div>
-          </template>
-        </b-table>
-      </div>
-    </b-card>
+        <template #empty>
+          <div class="text-center">
+            {{ $t('APP.TABLE_NO_DATA') }}
+          </div>
+        </template>
+      </b-table>
+    </div>
 
     <div class="car-management-page__pagination">
       <b-row align-h="center">
@@ -376,7 +374,7 @@ export default {
             text-align: center;
             vertical-align: middle;
 
-            background-color: $international-orange;
+            background-color: $mine-shaft;
             color: $white;
           }
         }

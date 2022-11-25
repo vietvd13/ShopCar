@@ -643,7 +643,7 @@ export default {
             text-align: center;
             vertical-align: middle;
 
-            background-color: $international-orange;
+            background-color: $mine-shaft;
             color: $white;
           }
         }

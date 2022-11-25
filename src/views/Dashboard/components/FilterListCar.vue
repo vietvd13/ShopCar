@@ -10,7 +10,7 @@
             </span>
         </div>
 
-        <b-collapse id="filter-home-car" :visible="true">
+        <b-collapse id="filter-home-car" :visible="false">
             <div class="filter-list-car">
                 <b-row>
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
