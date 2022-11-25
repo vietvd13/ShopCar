@@ -1,5 +1,5 @@
 <template>
-  <b-navbar toggleable="lg" sticky>
+  <b-navbar toggleable="lg" sticky class="navbar-dashboard">
     <b-navbar-brand @click.prevent.stop="$emit('toggle')">
       <i id="toggle-menu" class="fas fa-bars" />
     </b-navbar-brand>
@@ -147,7 +147,7 @@ export default {
 <style lang="scss" scoped>
 @import '@/scss/variables.scss';
 
-.navbar {
+.navbar-dashboard {
   background-color: $white;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
