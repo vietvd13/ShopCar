@@ -29,7 +29,11 @@ export default {
     },
     methods: {
         scrollToContactSupport() {
-            document.getElementById('zone-contact-support').scrollIntoView({
+            const EL = document.getElementById('zone-contact-support');
+            const APP_SHOP = document.getElementsByClassName('app-shop');
+
+            APP_SHOP[0].scroll({
+                top: EL.offsetTop - 76,
                 behavior: 'smooth'
             });
         }
