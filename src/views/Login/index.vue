@@ -110,7 +110,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../scss/variables.scss';
+@import '@/scss/variables.scss';
 
 .login-page {
   height: 100vh;
@@ -123,6 +123,7 @@ export default {
       font-size: 25px;
       margin-bottom: 25px;
       text-align: center;
+      font-weight: 700;
     }
 
     .item-form {
