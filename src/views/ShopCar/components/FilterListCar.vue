@@ -13,7 +13,7 @@
         <b-collapse id="filter-home-car" :visible="true">
             <div class="filter-list-car">
                 <b-row>
-                    <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="6">
+                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
                             <label for="filter-search">
                                 {{ $t('SHOP_CAR.HOME.FILTER.SEARCH') }}
@@ -26,7 +26,7 @@
                         </div>
                     </b-col>
 
-                    <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="6">
+                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
                             <label for="filter-from-year">
                                 {{ $t('SHOP_CAR.HOME.FILTER.YEAR') }}
@@ -54,7 +54,7 @@
                         </div>
                     </b-col>
 
-                    <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="6">
+                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
                             <label for="filter-categories">
                                 {{ $t('SHOP_CAR.HOME.FILTER.CATEGORIES') }}
@@ -73,7 +73,7 @@
                         </div>
                     </b-col>  
 
-                    <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="6">
+                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
                             <label for="filter-color">{{ $t('SHOP_CAR.HOME.FILTER.COLOR') }}</label>
                             <b-form-select
@@ -90,7 +90,7 @@
                         </div>
                     </b-col>
 
-                    <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="6">
+                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
                             <label for="filter-fuel-type">{{ $t('SHOP_CAR.HOME.FILTER.FUEL_TYPE') }}</label>
                             <b-form-select
@@ -107,7 +107,7 @@
                         </div>
                     </b-col>
 
-                    <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="6">
+                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
                             <label for="">{{ $t('SHOP_CAR.HOME.FILTER.GEAR_BOX') }}</label>
                             <b-form-select
@@ -123,7 +123,7 @@
                         </div>
                     </b-col>
 
-                    <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="6">
+                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
                             <label for="filter-distance">{{ $t('SHOP_CAR.HOME.FILTER.DISTANCE') }}</label>
 
@@ -162,7 +162,7 @@
                         </div>
                     </b-col>
 
-                    <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="6">
+                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
                             <label for="filter-price">{{ $t('SHOP_CAR.HOME.FILTER.PRICE') }}</label>
 
