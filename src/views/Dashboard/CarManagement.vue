@@ -143,7 +143,7 @@ export default {
     },
     headerTable() {
       return [
-        { key: 'delete_multiple', label: '', thClass: 'text-center', tdClass: 'text-center' },
+        { key: 'delete_multiple', label: '', thClass: 'th-col-check text-center', tdClass: 'td-col-check text-center' },
         { key: 'created_at', label: this.$t('DASHBOARD.CAR.TABLE_NO'), sortable: true, thClass: 'text-center td-no', tdClass: 'text-center base-td' },
         { key: 'primary_image', label: this.$t('DASHBOARD.CAR.TABLE_IMAGE'), thClass: 'text-center th-image', tdClass: 'text-center base-td' },
         { key: 'car_name', label: this.$t('DASHBOARD.CAR.TABLE_CAR_NAME'), sortable: true, thClass: 'text-center th-car-name', tdClass: 'text-center base-td' },
@@ -383,10 +383,11 @@ export default {
       tbody {
         tr {
           td {
-            min-width: 100px;
+            // min-width: 100px;
 
             text-align: center;
             vertical-align: middle;
+            align-items: center;
             background-color: $white;
 
             .item-contact {

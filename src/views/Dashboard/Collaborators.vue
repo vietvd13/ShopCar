@@ -295,7 +295,7 @@ export default {
   computed: {
     headerTable() {
       return [
-        { key: 'delete_multiple', label: '', thClass: 'text-center', tdClass: 'text-center' },
+        { key: 'delete_multiple', label: '', thClass: 'th-col-check text-center', tdClass: 'td-col-check text-center' },
         { key: 'no', label: this.$t('DASHBOARD.COLLABORATORS_MANAGEMENT.TABLE.NO'), thClass: 'text-center', tdClass: 'text-center base-td' },
         { key: 'image', label: this.$t('DASHBOARD.COLLABORATORS_MANAGEMENT.TABLE.AVATAR'), thClass: 'text-center', tdClass: 'text-center base-td' },
         { key: 'staff_name', label: this.$t('DASHBOARD.COLLABORATORS_MANAGEMENT.TABLE.FULLNAME'), sortable: true, thClass: 'text-center', tdClass: 'text-center base-td' },
@@ -713,7 +713,7 @@ export default {
       tbody {
         tr {
           td {
-            min-width: 100px;
+            // min-width: 100px;
 
             text-align: center;
             vertical-align: middle;

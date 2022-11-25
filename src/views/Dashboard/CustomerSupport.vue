@@ -386,7 +386,7 @@ export default {
       tbody {
         tr {
           td {
-            min-width: 100px;
+            // min-width: 100px;
 
             text-align: center;
             vertical-align: middle;

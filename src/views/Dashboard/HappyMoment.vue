@@ -257,7 +257,7 @@ export default {
   computed: {
     headerTable() {
       return [
-        { key: 'delete_multiple', label: '', thClass: 'text-center', tdClass: 'text-center td-delete-multiple' },
+        { key: 'delete_multiple', label: '', thClass: 'th-col-check text-center', tdClass: 'td-col-check text-center td-delete-multiple' },
         { key: 'no', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.NO'), thClass: 'text-center', tdClass: 'text-center base-td td-no' },
         { key: 'primary_image', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.PRIMARY_IMAGE'), thClass: 'text-center', tdClass: 'text-center td-primary-image' },
         { key: 'title', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.TITLE'), sortable: true, thClass: 'text-center', tdClass: 'text-center' },
@@ -652,7 +652,7 @@ export default {
       tbody {
         tr {
           td {
-            min-width: 130px;
+            // min-width: 130px;
 
             text-align: center;
             vertical-align: middle;
