@@ -1,4 +1,4 @@
-# shop-car
+# Shop Car
 
 ## Project setup
 ```
