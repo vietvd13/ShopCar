@@ -1,30 +1,31 @@
 <template>
   <b-navbar toggleable="lg" sticky>
-    <b-navbar-toggle target="nav-collapse" />
+    <b-navbar-brand @click.prevent.stop="$emit('toggle')">
+      <i id="toggle-menu" class="fas fa-bars" />
+    </b-navbar-brand>
+
+    <b-navbar-toggle target="nav-collapse">
+      <template #default>
+        <i class="fas fa-angle-down" />
+      </template>
+    </b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav>
-        <router-link v-for="route in routes" :key="route.name" :to="route.path">
-          {{ $t(route.meta.title) }}
-        </router-link>
+      <b-navbar-nav class="ml-auto">
+        <b-nav-item-dropdown :text="fullname" right>
+          <b-dropdown-item 
+            @click="onClickProfile()"
+          >
+            {{ $t('SHOP_CAR.HOME.PROFILE.TITLE') }}
+          </b-dropdown-item>
+          <b-dropdown-item 
+            @click="handleLogout"
+          >
+            {{ $t('SHOP_CAR.HOME.LOGOUT.TITLE') }}
+          </b-dropdown-item>
+        </b-nav-item-dropdown>
       </b-navbar-nav>
-    </b-collapse>
-
-    <b-navbar-nav class="navbar-user">
-      <b-nav-item-dropdown :text="fullname" right>
-        <b-dropdown-item 
-          @click="onClickProfile()"
-        >
-          {{ $t('SHOP_CAR.HOME.PROFILE.TITLE') }}
-        </b-dropdown-item>
-        <b-dropdown-item 
-          @click="handleLogout"
-        >
-          {{ $t('SHOP_CAR.HOME.LOGOUT.TITLE') }}
-        </b-dropdown-item>
-      </b-nav-item-dropdown>
-    </b-navbar-nav>
-    
+    </b-collapse>    
   </b-navbar>
 </template>
 
@@ -40,15 +41,6 @@ export default {
       asyncRoutes,
       routes: [],
       CONSTANTS
-    }
-  },
-  created() {
-    const DASHBORAD = this.asyncRoutes.find((route) => route.name === 'Dashboard');
-
-    if (DASHBORAD) {
-      this.routes = (DASHBORAD.children).filter((route) => route.hidden !== true);
-    } else {
-      this.routes.length = 0;
     }
   },
   computed: {
@@ -80,6 +72,7 @@ export default {
 
 .navbar {
   background-color: $white;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   a {
     padding: 10px;
