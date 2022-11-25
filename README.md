@@ -20,5 +20,10 @@ yarn build
 yarn lint
 ```
 
+### View report (Path: dist/report.html)
+```
+yarn report
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
