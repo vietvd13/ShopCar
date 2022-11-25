@@ -19,7 +19,12 @@ export const constantRoutes = [
 ];
 
 export const asyncRoutes = [
-  Dashboard
+  Dashboard,
+  {
+    path: '*',
+    redirect: { name: 'HomeShopCar' },
+    hidden: true,
+  },
 ];
 
 const createRouter = () => new VueRouter({

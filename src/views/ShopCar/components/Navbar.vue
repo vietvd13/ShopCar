@@ -216,5 +216,7 @@ export default {
 
 ::v-deep .text-lang {
   margin-left: 10px;
+  font-weight: 500;
+  color: $scorpion;
 }
 </style>

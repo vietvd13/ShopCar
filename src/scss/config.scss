@@ -66,3 +66,20 @@ label {
 .pdf-app .toolbar {
   z-index: 100 !important;
 }
+
+.pagination {
+  .page-link {
+    color: $mine-shaft;
+    font-weight: 500;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .active {
+    color: $white;
+    font-weight: 500;
+  }
+}
+
