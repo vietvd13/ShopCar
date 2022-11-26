@@ -1,5 +1,9 @@
 <template>
     <div class="import-image-car">
+        <p class="title-content">
+            {{ $t('SHOP_CAR.DETAIL_CAR.TITLE_IMAGE') }}
+        </p>
+
         <b-row>
             <b-col
                 cols="12" xs="12" sm="12" md="12" lg="6"
@@ -195,6 +199,11 @@ export default {
 @import '@/scss/variables';
 
 .import-image-car {
+    .title-content {
+        font-size: 22px;
+        font-weight: 600;
+    }
+
     .zone-import-image {
         input {
             display: none;

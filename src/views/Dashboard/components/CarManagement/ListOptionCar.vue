@@ -1,5 +1,9 @@
 <template>
     <div class="list-option-car">
+        <p class="title-content">
+            {{ $t('SHOP_CAR.DETAIL_CAR.TITLE_VEHICLE_OPTIONS_AND_DETAILS') }}
+        </p>
+
         <b-row>
             <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="3">
                 <label for="exterior">
@@ -100,4 +104,8 @@ export default {
 <style lang="scss" scoped>
 @import '@/scss/variables';
 
+.title-content {
+    font-size: 22px;
+    font-weight: 600;
+}
 </style>

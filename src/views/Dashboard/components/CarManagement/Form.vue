@@ -18,7 +18,9 @@
         </div>
 
         <div class="form-car__basic-infor">
-
+            <BasicInfor 
+            
+            />
         </div>
 
         <div class="form-car__options">
@@ -36,12 +38,14 @@
 
 <script>
 import ImportImageCar from './ImportImageCar.vue';
+import BasicInfor from './BasicInfor.vue';
 import ListOptionCar from './ListOptionCar.vue';
 
 export default {
     name: 'FormCar',
     components: {
         ImportImageCar,
+        BasicInfor,
         ListOptionCar
     },
     props: {
