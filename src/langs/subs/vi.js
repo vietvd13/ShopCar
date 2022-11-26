@@ -338,6 +338,19 @@ export default {
 
       TABLE_TEXT_EDIT: "Chỉnh sửa",
       TABLE_TEXT_DELETE: "Xoá",
+
+      FORM: {
+        TITLE_MODAL: "Quản lý thông tin xe",
+
+        TITLE_CAR: "Tiêu đề",
+        PLACEHOLDER_TITLE_CAR: "Nhập tiêu đề",
+
+        CAR_OPTION_EXTERIOR: "Ngoại thất",
+        CAR_OPTION_GUTS: "Nội thất",
+        CAR_OPTION_SAFETY: "An toàn",
+        CAR_OPTION_CONVENIENCE: "Tiện ích",
+        PLACEHOLDER_OPTION: "Nhập option",
+      }
     }
   },
 };

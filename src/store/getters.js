@@ -9,7 +9,7 @@ const getters = {
   isFilter: state => state.filter.isFilter,
   configSlider: state => state.filter.configSlider,
   isFilterDashboard: state => state.filter.isFilterDashboard,
-  configSliderDashboard: state => state.filter.configSliderDashboard
+  configSliderDashboard: state => state.filter.configSliderDashboard,
 };
 
 export default getters;

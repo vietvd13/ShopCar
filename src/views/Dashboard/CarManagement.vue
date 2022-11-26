@@ -9,7 +9,7 @@
     <div class="car-management-page__control">
       <b-row>
         <b-col class="text-right">
-          <b-button class="btn-app btn-add-new">
+          <b-button class="btn-app btn-add-new" @click="onClickCreate()">
             {{ $t('DASHBOARD.CAR.BUTTON_ADD_NEW') }}
           </b-button>
 
@@ -125,6 +125,19 @@
       </b-row>
     </div>
 
+    <b-modal 
+      v-model="isModal.show"
+      no-close-on-backdrop
+      no-close-on-esc
+      static
+      scrollable
+      body-class="modal-body-car"
+      footer-class="modal-footer-car"
+      :title="$t('DASHBOARD.CAR.FORM.TITLE_MODAL')"
+      size="xl"
+    >
+      <FormCar />
+    </b-modal>
   </div>
 </template>
 
@@ -132,11 +145,13 @@
 import { setLoading } from '@/utils/setLoading';
 import { postListCar } from '@/api/modules/Dashboard';
 import FilterListCarDashboard from './components/FilterListCar.vue';
+import FormCar from './components/CarManagement/Form.vue';
 
 export default {
   name: 'CarManagement',
   components: {
     FilterListCarDashboard,
+    FormCar
   },
   computed: {
     domainImage() {
@@ -203,6 +218,10 @@ export default {
         field: '',
         type: '',
       },
+      isModal: {
+        show: false,
+        type: '',
+      }
     }
   },
   created () {
@@ -315,7 +334,13 @@ export default {
         this.selectRow.push(id);
       }
     },
+    onClickCreate() {
+      this.isModal.type = 'CREATE';
+      this.isModal.show = true;
+    },
     onClickEdit(id) {
+      this.isModal.type = 'EDIT';
+      this.isModal.show = true;
       console.log(id);
     },
     onClickDelete(id) {
