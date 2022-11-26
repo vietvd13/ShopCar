@@ -48,9 +48,9 @@ export default {
   #page-content-wrapper {
     .app-main {
       background-color: $seashell;
-      margin-top: 10px;
+      padding: 10px 0;
 
-      height: calc(100vh - 100px);
+      height: calc(100vh - 56px);
     }
   }
 }

@@ -69,6 +69,7 @@
               variant="warning"
               class="btn-default"
               @click="onClickEdit(actions.item._id)"
+              v-if="actions.item.is_data_crawl === false"
             >
               {{ $t('DASHBOARD.CAR.TABLE_TEXT_EDIT') }}
             </b-button>
