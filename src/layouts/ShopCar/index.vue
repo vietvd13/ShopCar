@@ -147,7 +147,6 @@ export default {
   height: 100vh;
   background-color: $seashell;
   overflow-x: hidden;
-  position: relative;
 
   &__happy-moment,
   &__collaborators,
