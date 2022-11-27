@@ -130,11 +130,11 @@
                             <div class="show-range">
                                 <b-row>
                                     <b-col class="text-left">
-                                        {{ isFilter.distance[0] }}
+                                        {{ formatNumber(isFilter.distance[0]) }} km
                                     </b-col>
 
                                     <b-col class="text-right">
-                                        {{ isFilter.distance[1] }}
+                                        {{ formatNumber(isFilter.distance[1]) }} km
                                     </b-col>
                                 </b-row>
                             </div>
@@ -169,11 +169,11 @@
                             <div class="show-range">
                                 <b-row>
                                     <b-col class="text-left">
-                                        {{ isFilter.price[0] }}
+                                        {{ formatPrice(isFilter.price[0]) }} 만원
                                     </b-col>
 
                                     <b-col class="text-right">
-                                        {{ isFilter.price[1] }}
+                                        {{ formatPrice(isFilter.price[1]) }} 만원
                                     </b-col>
                                 </b-row>
                             </div>
@@ -239,7 +239,7 @@ import {
     getListFuleType,
     getListGearBox
 } from '@/api/modules/Home';
-import { generateSelect } from '@/utils/helper';
+import { generateSelect, formatPrice, formatNumber } from '@/utils/helper';
 import { validInputNumber } from '@/utils/handleInput';
 
 export default {
@@ -296,12 +296,12 @@ export default {
         async rangeDistanceMaxChange() {
             const CONFIG = {
                 distance: {
-                    min: parseInt(this.configSlider.distance.min),
-                    max: parseInt(this.configSlider.distance.max),
+                    min: parseInt(this.configSlider.distance.min) || 0,
+                    max: parseInt(this.configSlider.distance.max) || 0,
                 },
                 price: {
-                    min: parseInt(this.configSlider.price.min),
-                    max: parseInt(this.configSlider.price.max),
+                    min: parseInt(this.configSlider.price.min) || 0,
+                    max: parseInt(this.configSlider.price.max) || 0,
                 }
             }
 
@@ -309,8 +309,8 @@ export default {
                 .then(() => {
                     this.filterDistance.noUiSlider.updateOptions({
                         range: {
-                            'min': parseInt(this.configSlider.distance.min),
-                            'max': parseInt(this.configSlider.distance.max)
+                            'min': parseInt(this.configSlider.distance.min) || 0,
+                            'max': parseInt(this.configSlider.distance.max) || 0
                         }
                     });
                 });
@@ -318,12 +318,12 @@ export default {
         async rangePriceMaxChange() {
             const CONFIG = {
                 distance: {
-                    min: parseInt(this.configSlider.distance.min),
-                    max: parseInt(this.configSlider.distance.max),
+                    min: parseInt(this.configSlider.distance.min) || 0,
+                    max: parseInt(this.configSlider.distance.max) || 0,
                 },
                 price: {
-                    min: parseInt(this.configSlider.price.min),
-                    max: parseInt(this.configSlider.price.max),
+                    min: parseInt(this.configSlider.price.min) || 0,
+                    max: parseInt(this.configSlider.price.max) || 0,
                 }
             }
 
@@ -331,8 +331,8 @@ export default {
                 .then(() => {
                     this.filterPrice.noUiSlider.updateOptions({
                         range: {
-                            'min': parseInt(this.configSlider.price.min),
-                            'max': parseInt(this.configSlider.price.max)
+                            'min': parseInt(this.configSlider.price.min) || 0,
+                            'max': parseInt(this.configSlider.price.max) || 0
                         }
                     });
             })
@@ -346,6 +346,8 @@ export default {
     },
     methods: {
         validInputNumber,
+        formatPrice,
+        formatNumber,
         initSlider() {
             this.filterDistance = document.getElementById('filter-distance');
 
@@ -354,8 +356,8 @@ export default {
                 connect: true,
                 step: 1,
                 range: {
-                    'min': this.configSlider.distance.min,
-                    'max': this.configSlider.distance.max
+                    'min': this.configSlider.distance.min || 0,
+                    'max': this.configSlider.distance.max || 0
                 }
             });
 
@@ -370,8 +372,8 @@ export default {
                 connect: true,
                 step: 1,
                 range: {
-                    'min': this.configSlider.price.min,
-                    'max': this.configSlider.price.max
+                    'min': this.configSlider.price.min || 0,
+                    'max': this.configSlider.price.max || 0
                 }
             });
 

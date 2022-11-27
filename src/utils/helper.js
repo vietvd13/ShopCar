@@ -58,6 +58,15 @@ function formatPrice(price) {
     return '0';
 }
 
+function formatNumber(number) {
+    if (number) {
+        number = parseInt(number);
+        return String(number).replace(/(.)(?=(\d{3})+$)/g,'$1,');
+    }
+
+    return '0';
+}
+
 function elementInViewport(el) {
     var rect     = el.getBoundingClientRect(),
         vWidth   = window.innerWidth || document.documentElement.clientWidth,
@@ -94,6 +103,7 @@ export {
     replaceValueWithIndex,
     generateSelect,
     formatPrice,
+    formatNumber,
     elementInViewport,
     handleSrollTop
 }

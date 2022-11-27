@@ -17,6 +17,7 @@
 
       <div class="content-pagination">
         <b-pagination
+          v-if="pagination.total > 0"
           v-model="pagination.current_page"
           :total-rows="pagination.total"
           :per-page="pagination.per_page"
