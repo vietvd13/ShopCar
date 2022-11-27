@@ -1,5 +1,7 @@
 <template>
   <div class="app-body">
+    <BalloonsContact />
+    
     <div class="app-shop" :style="handleOverflow">
       <!-- Navbar -->
       <Navbar />
@@ -30,8 +32,6 @@
       <!-- Footer -->
       <FooterHome />
     </div>
-
-    <BalloonsContact />
   </div>
 </template>
 
