@@ -28,7 +28,7 @@ export default {
     UPDATE_BANNER: "Cập nhật banner",
     NO_DATA: "Không có dữ liệu",
     HOT_SALE: "Hot Sale",
-
+    OPTION_OTHER: "Khác"
   },
   TOAST: {
     SUCCESS: "Thành công",

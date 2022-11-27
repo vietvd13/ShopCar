@@ -13,7 +13,7 @@
         :style="`height: ${mapImageHeight(typeScreen)}px`"
       />
       <span class="card-car__hotsale" v-if="hotsale">
-        <i class="fas fa-heart" />
+        <i class="fad fa-fire-alt" />
       </span>
     </div>
     <div class="card-car__desc">

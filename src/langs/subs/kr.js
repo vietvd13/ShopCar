@@ -27,7 +27,8 @@ export default {
     PREVIEW: "시사",
     UPDATE_BANNER: "배너 업데이트",
     NO_DATA: "데이터 없음",
-    HOT_SALE: "뜨거운 판매"
+    HOT_SALE: "뜨거운 판매",
+    OPTION_OTHER: "다른"
   },
   TOAST: {
     SUCCESS: "성공적인",

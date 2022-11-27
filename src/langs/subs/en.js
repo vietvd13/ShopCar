@@ -27,7 +27,8 @@ export default {
     PREVIEW: "Preview",
     UPDATE_BANNER: "Update banner",
     NO_DATA: "No data",
-    HOT_SALE: "Hot Sale"
+    HOT_SALE: "Hot Sale",
+    OPTION_OTHER: "Other"
   },
   TOAST: {
     SUCCESS: "Successful",

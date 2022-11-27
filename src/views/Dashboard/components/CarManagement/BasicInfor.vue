@@ -200,6 +200,14 @@
 </template>
 
 <script>
+import { 
+    getListCategories,
+    getListColor,
+    getListFuleType,
+    getListGearBox
+} from '@/api/modules/Home';
+import { generateSelect } from '@/utils/helper';
+
 export default {
     name: 'InputBasicInfor',
     data() {
@@ -224,8 +232,80 @@ export default {
                 affiliatedCompany: null,
                 businessAddress: null,
                 parkingLocation: null
-            }
+            },
+
+            listCategories: [],
+            listColor: [],
+            listFuelType: [],
+            listGearBox: [],
         }
+    },
+    created () {
+        this.initData();
+    },
+    methods: {
+        async initData() {
+            this.handleGetListCategories();
+            this.handleGetListColor();
+            this.handleGetListFuleType();
+            this.handleGetListGearBox();
+        },
+        async handleGetListCategories() {
+            try {
+                const { status_code, data } = await getListCategories();
+
+                if (status_code === 200) {
+                    this.listCategories = generateSelect(data, true);
+                } else {
+                    this.listCategories = [];
+                }
+            } catch (err) {
+                this.listCategories = [];
+                console.log(err);
+            }
+        },
+        async handleGetListColor() {
+            try {
+                const { status_code, data } = await getListColor();
+
+                if (status_code === 200) {
+                    this.listColor = generateSelect(data, true);
+                } else {
+                    this.listColor = [];
+                }
+            } catch (err) {
+                this.listColor = [];
+                console.log(err);
+            }
+        },
+        async handleGetListFuleType() {
+            try {
+                const { status_code, data } = await getListFuleType();
+
+                if (status_code === 200) {
+                    this.listFuelType = generateSelect(data, true);
+                } else {
+                    this.listFuelType = [];
+                }
+            } catch (err) {
+                this.listFuelType = [];
+                console.log(err);
+            }
+        },
+        async handleGetListGearBox() {
+            try {
+                const { status_code, data } = await getListGearBox();
+
+                if (status_code === 200) {
+                    this.listGearBox = generateSelect(data, true);
+                } else {
+                    this.listGearBox = [];
+                }
+            } catch (err) {
+                this.listGearBox = [];
+                console.log(err);
+            }
+        },
     },
 }
 </script>
