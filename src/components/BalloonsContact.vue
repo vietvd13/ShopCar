@@ -19,11 +19,15 @@ export default {
         }
     },
     mounted () {
-        this.isVisible = elementInViewport(document.getElementById('tab-collaborators-home'));
+        const el = document.getElementById('tab-collaborators-home');
 
-        if (document.getElementsByClassName('app-shop').length) {
-            document.getElementsByClassName('app-shop')[0].onscroll = () => {
-                this.isVisible = elementInViewport(document.getElementById('tab-collaborators-home'));
+        if (el) {
+            this.isVisible = elementInViewport(document.getElementById('tab-collaborators-home'));
+
+            if (document.getElementsByClassName('app-shop').length) {
+                document.getElementsByClassName('app-shop')[0].onscroll = () => {
+                    this.isVisible = elementInViewport(document.getElementById('tab-collaborators-home'));
+                }
             }
         }
     },
