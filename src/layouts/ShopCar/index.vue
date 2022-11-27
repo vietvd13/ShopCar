@@ -1,5 +1,7 @@
 <template>
   <div class="app-shop" :style="handleOverflow">
+    <BalloonsContact />
+
     <!-- Navbar -->
     <Navbar />
 
@@ -35,8 +37,6 @@
 
     <!-- Footer -->
     <FooterHome />
-
-    <BalloonsContact />
   </div>
 </template>
 
@@ -147,6 +147,7 @@ export default {
   height: 100vh;
   background-color: $seashell;
   overflow-x: hidden;
+  position: relative;
 
   &__happy-moment,
   &__collaborators,

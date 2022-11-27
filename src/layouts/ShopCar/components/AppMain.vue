@@ -16,6 +16,5 @@ export default {
 <style lang="scss" scoped>
 .view-app-main {
 	margin-top: 10px;
-	position: relative;
 }
 </style>
