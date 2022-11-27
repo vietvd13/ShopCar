@@ -46,7 +46,7 @@ export default {
 
 .balloons-contact {
     z-index: 100;
-    position: absolute;
+    position: fixed;
     cursor: pointer;
 
     bottom: 30px;
