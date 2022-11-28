@@ -6,6 +6,7 @@ const getters = {
   token: state => state.auth.token,
   refresh_token: state => state.auth.refresh_token,
   profile: state => state.auth.profile,
+  isRelogin: state => state.auth.isRelogin,
   isFilter: state => state.filter.isFilter,
   configSlider: state => state.filter.configSlider,
   isFilterDashboard: state => state.filter.isFilterDashboard,

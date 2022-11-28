@@ -5,6 +5,7 @@ import { postRefreshToken } from '@/api/modules/Auth';
 import store from '@/store';
 import router, { resetRouter } from '@/routers';
 import { getLanguage } from '@/utils/getLang';
+import Toast from '@/toast';
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_URL_API,
@@ -43,6 +44,10 @@ function handleLogout() {
     });
 }
 
+async function handleSetIsRelogin(status) {
+  await store.dispatch('auth/setIsRelogin', status)
+}
+
 service.interceptors.request.use(
   config => {
     const TOKEN = getToken();
@@ -73,29 +78,38 @@ service.interceptors.response.use(
     const { status_code, message } = error.response.data;
 
     if (status_code === 500 && message === 'jwt expired') {
-      try {
-        const BODY = {
-          refresh_token: getRefreshToken(),
-        };
+      if (store.getters.isRelogin === false) {
+        try {
+          const BODY = {
+            refresh_token: getRefreshToken(),
+          };
   
-        const { status_code, access_token, refresh_token } = await postRefreshToken(BODY);
+          await handleSetIsRelogin(true);
+    
+          const { status_code, access_token, refresh_token } = await postRefreshToken(BODY);
+    
+          if (status_code === 200) {
+            await store.dispatch('auth/setToken', access_token)
+            .then(async() => {
+              await store.dispatch('auth/setRefreshToken', refresh_token)
+                .then(async() => {
+                  await handleSetIsRelogin(false);
+                  console.log('[APP]: Refresh...');
+                })
+            });
   
-        if (status_code === 200) {
-          await store.dispatch('auth/setToken', access_token)
-          .then(async() => {
-            await store.dispatch('auth/setRefreshToken', refresh_token)
-              .then(() => {
-                console.log('[APP]: Refresh...');
-              })
-          });
-
-          return service(originalRequest);
-        } else {
-          handleLogout();
+            return service(originalRequest);
+          } else {
+            handleLogout();
+          }
+        } catch (err) {
+          console.log(err);
         }
-      } catch (err) {
-        console.log(err);
+      } else {
+        handleLogout();
       }
+    } else {
+      Toast.error(message);
     }
 
     return Promise.reject(error);

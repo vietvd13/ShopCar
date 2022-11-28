@@ -45,7 +45,8 @@ const state = {
   initApp: 0,
   token: getToken(),
   refresh_token: getRefreshToken(),
-  profile: getProfile()
+  profile: getProfile(),
+  isRelogin: false,
 };
 
 const mutations = {
@@ -83,6 +84,11 @@ const mutations = {
       gender: '',
       email_notification: ''
     };
+
+    state.isRelogin = false;
+  },
+  SET_IS_RELOGIN: (state, status) => {
+    state.isRelogin = status;
   }
 };
 
@@ -115,6 +121,9 @@ const actions = {
   },
   logout({ commit }) {
     commit('LOGOUT');
+  },
+  setIsRelogin({ commit }, status) {
+    commit('SET_IS_RELOGIN', status);
   }
 };
 
