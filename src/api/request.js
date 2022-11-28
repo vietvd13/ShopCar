@@ -70,6 +70,12 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   response => {
+    const { status_code, error_message } = response.data;
+
+    if (status_code !== 200) {
+      Toast.warning(error_message);
+    }
+
     return response.data;
   },
   async (error) => {

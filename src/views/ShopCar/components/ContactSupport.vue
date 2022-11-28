@@ -70,7 +70,6 @@ export default {
     methods: {
         async handleSubmitContactSupport() {
             try {
-                handleSrollTop();
                 setLoading(true);
 
                 const BODY = {
@@ -83,10 +82,8 @@ export default {
 
                 if (status_code === 200) {
                     this.handleResetForm();
-
                     Toast.success(this.$t('TOAST_MESSAGE.CREATE_CUSTOMER_SUPPORT_SUCCESS'));
-                } else {
-                    Toast.warning(this.$t('TOAST_MESSAGE.CREATE_CUSTOMER_SUPPORT_ERROR'));
+                    handleSrollTop();
                 }
 
                 setLoading(false);
