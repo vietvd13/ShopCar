@@ -172,6 +172,7 @@ import { postImages, postFile } from '@/api/modules/Upload';
 import FilterListCarDashboard from './components/FilterListCar.vue';
 import FormCar from './components/CarManagement/Form.vue';
 import { getArrValueOfArr, replaceValueWithIndex } from '@/utils/helper';
+import Toast from '@/toast';
 
 export default {
   name: 'CarManagement',
@@ -474,17 +475,24 @@ export default {
     },
     async onClickSaveModal() {
       try {
+        setLoading(true);
+
         const BODY = await this.handleInitObjectCar();
 
-        const { status_code, data } = await postCreateCar(BODY);
+        const { status_code } = await postCreateCar(BODY);
 
         if (status_code === 200) {
-          console.log(data);
+          this.onClickCloseModal();
+          await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
+          Toast.success(this.$t('TOAST_MESSAGE.CREATE_CAR_SUCCESS'));
         }
+
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
+
         console.log(error);
       }
-      console.log(this.isForm);
     },
     async handleInitObjectCar() {
       const GET_UPDATE_IMAGE = this.handleGetListIdxImport(this.isForm.images);
@@ -499,13 +507,13 @@ export default {
 
       const PRIMARY_IMAGE = this.handleGetPrimaryImage(LIST_NEW_IMAGE);
 
-      const PERFORMANCE_CHECK = this.handleUploadPerformanceCheck();
+      const PERFORMANCE_CHECK = await this.handleUploadPerformanceCheck();
 
       const NEW_CAR = {
         car_name: this.isForm.title,
         price: parseInt(this.isForm.price),
         license_plate: this.isForm.licensePlate,
-        year_manufacture: this.isForm.year,
+        year_manufacture: parseInt(this.isForm.year),
         distance_driven: parseInt(this.isForm.distanceDriven),
         fuel_type: this.handleInitOther(this.isForm.fuelType, this.isForm.otherFuelType),
         cylinder_capacity: this.isForm.cylynder,
@@ -531,8 +539,6 @@ export default {
         business_address: this.isForm.businessAddress,
         parking_location: this.isForm.parkingLocation,
       }
-
-      console.log(NEW_CAR);
 
       return NEW_CAR;
     },
