@@ -43,6 +43,7 @@ export default {
   GET_LIST_COLOR: '/filter/color',
   GET_LIST_FUEL_TYPE: '/filter/fuel-type',
   GET_LIST_GEAR_BOX: '/filter/gearbox',
+  GET_LIST_CAR_TYPE: '/filter/cartype',
 
   // Api Banner
   GET_BANNER: '/home/banner/get',
@@ -58,5 +59,6 @@ export default {
   EDIT_FILE_PDF_INSURANCE: '/insurance/edit',
 
   // Api Car
-  GET_LIST_CAR_DASHBOARD: '/cars/list'
+  GET_LIST_CAR_DASHBOARD: '/cars/list',
+  POST_CREATE_CAR: '/cars/create',
 };

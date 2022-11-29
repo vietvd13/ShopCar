@@ -19,7 +19,35 @@
                                 <b-td colspan="3" class="td-price">
                                     <b-form-input 
                                         v-model="isForm.price" 
-                                        placeholder="Enter your name" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_PRICE')" 
+                                    />
+                                </b-td>
+                            </b-tr>
+                            <b-tr>
+                                <b-td class="title-car-infor">
+                                    {{ $t('SHOP_CAR.DETAIL_CAR.CATEGORIES') }}
+                                </b-td>
+                                <b-td colspan="3" class="td-categories">
+                                    <b-form-select 
+                                        v-model="isForm.categories" 
+                                        :options="listCategories"
+                                    >
+                                        <template #first>
+                                            <b-form-select-option :value="null">
+                                                {{ $t('DASHBOARD.CAR.FORM.PLACEHOLDER_CATEGORIES') }}
+                                            </b-form-select-option>
+                                        </template>
+
+                                        <b-form-select-option :value="-1">
+                                            {{ $t('APP.OPTION_OTHER') }}
+                                        </b-form-select-option>
+                                    </b-form-select>
+
+                                    <b-form-input 
+                                        v-show="isForm.categories === -1"
+                                        class="mt-2"
+                                        v-model="otherCategories"
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_CATEGORIES')" 
                                     />
                                 </b-td>
                             </b-tr>
@@ -30,7 +58,7 @@
                                 <b-td>
                                     <b-form-input 
                                         v-model="isForm.licensePlate" 
-                                        placeholder="Enter your name" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_LICENSE_PLATE')" 
                                     />
                                 </b-td>
                                 <b-td class="title-car-infor">
@@ -39,7 +67,7 @@
                                 <b-td>
                                     <b-form-input 
                                         v-model="isForm.year" 
-                                        placeholder="Enter your name" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_YEAR')" 
                                     />
                                 </b-td>
                             </b-tr>
@@ -50,14 +78,34 @@
                                 <b-td>
                                     <b-form-input 
                                         v-model="isForm.distanceDriven" 
-                                        placeholder="Enter your name" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_DISTANCE_DRIVEN')" 
                                     />
                                 </b-td>
                                 <b-td class="title-car-infor">
                                     {{ $t('SHOP_CAR.DETAIL_CAR.FUEL_TYPE') }}
                                 </b-td>
                                 <b-td>
-                                    {{ isForm.fuelType }}
+                                    <b-form-select 
+                                        v-model="isForm.fuelType" 
+                                        :options="listFuelType"
+                                    >
+                                        <template #first>
+                                            <b-form-select-option :value="null">
+                                                {{ $t('DASHBOARD.CAR.FORM.PLACEHOLDER_FUEL_TYPE') }}
+                                            </b-form-select-option>
+                                        </template>
+
+                                        <b-form-select-option :value="-1">
+                                            {{ $t('APP.OPTION_OTHER') }}
+                                        </b-form-select-option>
+                                    </b-form-select>
+
+                                    <b-form-input 
+                                        v-show="isForm.fuelType === -1"
+                                        class="mt-2"
+                                        v-model="otherFuelType"
+                                        :placeholder="$t('APP.PLACEHOLDER_PLEASE_INPUT')" 
+                                    />
                                 </b-td>
                             </b-tr>
                             <b-tr>
@@ -65,13 +113,36 @@
                                     {{ $t('SHOP_CAR.DETAIL_CAR.TRANSMISSION') }}
                                 </b-td>
                                 <b-td>
-                                    {{ isForm.gearbox }}
+                                    <b-form-select 
+                                        v-model="isForm.gearbox" 
+                                        :options="listGearBox"
+                                    >
+                                        <template #first>
+                                            <b-form-select-option :value="null">
+                                                {{ $t('DASHBOARD.CAR.FORM.PLACEHOLDER_TRANSMISSION') }}
+                                            </b-form-select-option>
+                                        </template>
+
+                                        <b-form-select-option :value="-1">
+                                            {{ $t('APP.OPTION_OTHER') }}
+                                        </b-form-select-option>
+                                    </b-form-select>
+
+                                    <b-form-input 
+                                        v-show="isForm.gearbox === -1"
+                                        class="mt-2"
+                                        v-model="otherGearBox"
+                                        :placeholder="$t('APP.PLACEHOLDER_PLEASE_INPUT')" 
+                                    />
                                 </b-td>
                                 <b-td class="title-car-infor">
                                     {{ $t('SHOP_CAR.DETAIL_CAR.DISPLACEMENT') }}
                                 </b-td>
                                 <b-td>
-                                    {{ isForm.cylynder }}
+                                    <b-form-input 
+                                        v-model="isForm.cylynder" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_DISPLACEMENT')" 
+                                    />
                                 </b-td>
                             </b-tr>
                             <b-tr>
@@ -79,13 +150,53 @@
                                     {{ $t('SHOP_CAR.DETAIL_CAR.COLOR') }}
                                 </b-td>
                                 <b-td>
-                                    {{ isForm.color }}
+                                    <b-form-select 
+                                        v-model="isForm.color" 
+                                        :options="listColor"
+                                    >
+                                        <template #first>
+                                            <b-form-select-option :value="null">
+                                                {{ $t('DASHBOARD.CAR.FORM.PLACEHOLDER_COLOR') }}
+                                            </b-form-select-option>
+                                        </template>
+
+                                        <b-form-select-option :value="-1">
+                                            {{ $t('APP.OPTION_OTHER') }}
+                                        </b-form-select-option>
+                                    </b-form-select>
+
+                                    <b-form-input 
+                                        v-show="isForm.color === -1"
+                                        class="mt-2"
+                                        v-model="otherColor"
+                                        :placeholder="$t('APP.PLACEHOLDER_PLEASE_INPUT')" 
+                                    />
                                 </b-td>
                                 <b-td class="title-car-infor">
                                     {{ $t('SHOP_CAR.DETAIL_CAR.CAR_TYPE') }}
                                 </b-td>
                                 <b-td>
-                                    {{ isForm.carType }}
+                                    <b-form-select 
+                                        v-model="isForm.carType" 
+                                        :options="listCarType"
+                                    >
+                                        <template #first>
+                                            <b-form-select-option :value="null">
+                                                {{ $t('DASHBOARD.CAR.FORM.PLACEHOLDER_COLOR') }}
+                                            </b-form-select-option>
+                                        </template>
+
+                                        <b-form-select-option :value="-1">
+                                            {{ $t('APP.OPTION_OTHER') }}
+                                        </b-form-select-option>
+                                    </b-form-select>
+
+                                    <b-form-input 
+                                        v-show="isForm.carType === -1"
+                                        class="mt-2"
+                                        v-model="otherCarType"
+                                        :placeholder="$t('APP.PLACEHOLDER_PLEASE_INPUT')" 
+                                    />
                                 </b-td>
                             </b-tr>
                             <b-tr>
@@ -93,13 +204,19 @@
                                     {{ $t('SHOP_CAR.DETAIL_CAR.SEIZURE') }}
                                 </b-td>
                                 <b-td>
-                                    {{ isForm.seizure }}
+                                    <b-form-input 
+                                        v-model="isForm.seizure" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_SEIZURE')" 
+                                    />
                                 </b-td>
                                 <b-td class="title-car-infor">
                                     {{ $t('SHOP_CAR.DETAIL_CAR.MORTGAGE') }}
                                 </b-td>
                                 <b-td>
-                                    {{ isForm.mortgage }}
+                                    <b-form-input 
+                                        v-model="isForm.mortgage" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_MORTGAGE')" 
+                                    />
                                 </b-td>
                             </b-tr>
                             <b-tr>
@@ -107,13 +224,19 @@
                                     {{ $t('SHOP_CAR.DETAIL_CAR.PRESENTATION_NUMBER') }}
                                 </b-td>
                                 <b-td>
-                                    {{ isForm.presentationNumber }}
+                                    <b-form-input 
+                                        v-model="isForm.presentationNumber"
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_PRESENTATION_NUMBER')" 
+                                    />
                                 </b-td>
                                 <b-td class="title-car-infor">
                                     {{ $t('SHOP_CAR.DETAIL_CAR.STORAGE_LOCATION') }}
                                 </b-td>
                                 <b-td>
-                                    {{ isForm.storageLocation }}
+                                    <b-form-input 
+                                        v-model="isForm.storageLocation" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_STORAGE_LOCATION')" 
+                                    />
                                 </b-td>
                             </b-tr>
                         </b-tbody>
@@ -132,7 +255,7 @@
                                 <b-td class="td-contact">
                                     <b-form-input 
                                         v-model="isForm.contact" 
-                                        placeholder="Enter your name" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_CONTACT')" 
                                     />
                                 </b-td>
                             </b-tr>
@@ -143,7 +266,7 @@
                                 <b-td>
                                     <b-form-input 
                                         v-model="isForm.saller" 
-                                        placeholder="Enter your name" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_NAME')" 
                                     />
                                 </b-td>
                             </b-tr>
@@ -154,7 +277,7 @@
                                 <b-td>
                                     <b-form-input 
                                         v-model="isForm.employeeId" 
-                                        placeholder="Enter your name" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_EMPLOYEE_ID')" 
                                     />
                                 </b-td>
                             </b-tr>
@@ -165,7 +288,7 @@
                                 <b-td>
                                     <b-form-input 
                                         v-model="isForm.affiliatedCompany" 
-                                        placeholder="Enter your name" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_AFFILIATED_COMPANY')" 
                                     />
                                 </b-td>
                             </b-tr>
@@ -176,7 +299,7 @@
                                 <b-td>
                                     <b-form-input 
                                         v-model="isForm.businessAddress" 
-                                        placeholder="Enter your name" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_BUSINESS_ADDRESS')" 
                                     />
                                 </b-td>
                             </b-tr>
@@ -187,7 +310,7 @@
                                 <b-td>
                                     <b-form-input 
                                         v-model="isForm.parkingLocation" 
-                                        placeholder="Enter your name" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_PARKING_LOCATION')" 
                                     />
                                 </b-td>
                             </b-tr>
@@ -204,7 +327,8 @@ import {
     getListCategories,
     getListColor,
     getListFuleType,
-    getListGearBox
+    getListGearBox,
+    getListCarType
 } from '@/api/modules/Home';
 import { generateSelect } from '@/utils/helper';
 
@@ -214,6 +338,7 @@ export default {
         return {
             isForm: {
                 price: null,
+                categories: null,
                 licensePlate: null,
                 year: null,
                 distanceDriven: null,
@@ -231,14 +356,44 @@ export default {
                 employeeId: null,
                 affiliatedCompany: null,
                 businessAddress: null,
-                parkingLocation: null
+                parkingLocation: null,
             },
 
             listCategories: [],
             listColor: [],
             listFuelType: [],
             listGearBox: [],
+            listCarType: [],
+
+            otherCategories: '',
+            otherFuelType: '',
+            otherColor: '',
+            otherGearBox: '',
+            otherCarType: '',
         }
+    },
+    watch: {
+        isForm: {
+            handler: function() {
+                this.$emit('isForm', this.isForm);
+            },
+            deep: true,
+        },
+        otherCategories() {
+            this.$emit('otherCategories', this.otherCategories);
+        },
+        otherFuelType() {
+            this.$emit('otherFuelType', this.otherFuelType);
+        },
+        otherColor() {
+            this.$emit('otherColor', this.otherColor);
+        },
+        otherGearBox() {
+            this.$emit('otherGearBox', this.otherGearBox);
+        },
+        otherCarType() {
+            this.$emit('otherCarType', this.otherCarType);
+        },
     },
     created () {
         this.initData();
@@ -249,6 +404,7 @@ export default {
             this.handleGetListColor();
             this.handleGetListFuleType();
             this.handleGetListGearBox();
+            this.handleGetListCarType();
         },
         async handleGetListCategories() {
             try {
@@ -303,6 +459,20 @@ export default {
                 }
             } catch (err) {
                 this.listGearBox = [];
+                console.log(err);
+            }
+        },
+        async handleGetListCarType() {
+            try {
+                const { status_code, data } = await getListCarType();
+
+                if (status_code === 200) {
+                    this.listCarType = generateSelect(data, true);
+                } else {
+                    this.listCarType = [];
+                }
+            } catch (err) {
+                this.listCarType = [];
                 console.log(err);
             }
         },

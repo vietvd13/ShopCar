@@ -28,7 +28,9 @@ export default {
     UPDATE_BANNER: "Cập nhật banner",
     NO_DATA: "Không có dữ liệu",
     HOT_SALE: "Hot Sale",
-    OPTION_OTHER: "Khác"
+    OPTION_OTHER: "Khác",
+    PLACEHOLDER_PLEASE_INPUT: "Vui lòng nhập",
+    DROP_FILE: "Lựa chọn file"
   },
   TOAST: {
     SUCCESS: "Thành công",
@@ -169,6 +171,7 @@ export default {
       TITLE_PERFORMANCE_CHECK: "Kiểm tra hiệu suất",
 
       PRICE: "Giá bán",
+      CATEGORIES: "Hãng xe",
       LICENSE_PLATE : "Biển số xe",
       YEAR: "Năm",
       DISTANCE_DRIVEN: "Khoảng cách lái xe",
@@ -350,6 +353,28 @@ export default {
         CAR_OPTION_SAFETY: "An toàn",
         CAR_OPTION_CONVENIENCE: "Tiện ích",
         PLACEHOLDER_OPTION: "Nhập option",
+
+        PLACEHOLDER_PRICE: "Vui lòng nhập giá tiền",
+        PLACEHOLDER_CATEGORIES: "Vui lòng lựa chọn hãng xe",
+        PLACEHOLDER_LICENSE_PLATE: "Vui lòng nhập biển số xe",
+        PLACEHOLDER_YEAR: "Vùi lòng nhập năm sản xuất",
+        PLACEHOLDER_DISTANCE_DRIVEN: "Vui lòng nhập khoảng cách di chuyển",
+        PLACEHOLDER_FUEL_TYPE: "Vui lòng lựa chọn loại nhiên liệu",
+        PLACEHOLDER_TRANSMISSION: "Vui lòng lựa chọn loại truyền tải",
+        PLACEHOLDER_DISPLACEMENT: "Vui lòng lựa chọn loại di chuyển",
+        PLACEHOLDER_COLOR: "Vui lòng lựa chọn màu sắc",
+        PLACEHOLDER_CAR_TYPE: "Vui lòng lựa chọn loại xe",
+        PLACEHOLDER_SEIZURE: "Vui lòng lựa chọn loại co giật",
+        PLACEHOLDER_MORTGAGE: "Vui lòng lựa chọn loại thấp chế",
+        PLACEHOLDER_PRESENTATION_NUMBER: "Vui lòng nhập số trình bày",
+        PLACEHOLDER_STORAGE_LOCATION: "Vui lòng nhập khu vực lưu trữ",
+        PLACEHOLDER_CONTACT: "Vui lòng nhập liên hệ",
+        PLACEHOLDER_NAME: "Vui lòng nhập tên người bán",
+        PLACEHOLDER_EMPLOYEE_ID: "Vui lòng nhập mã số nhân viên",
+        PLACEHOLDER_AFFILIATED_COMPANY: "Vui lòng nhập công ty liên kết",
+        PLACEHOLDER_BUSINESS_ADDRESS: "Vui lòng nhập địa chỉ doanh nghiệp",
+        PLACEHOLDER_PARKING_LOCATION: "Vui lòng nhập vị trí đặt xe",
+        PLACEHOLDER_IMPORT_PERFORMANCE_CHECK: "Vui lòng nhập",
       }
     }
   },

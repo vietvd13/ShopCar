@@ -11,15 +11,21 @@
         </div>
 
         <div class="form-car__images">
-            <ImportImageCar 
-                @import="handleImportImage"
+            <ImportImageCar
                 :items="isForm.images"
+                @import="handleImportImage"
+                @remove="handleRemoveImage"
             />
         </div>
 
         <div class="form-car__basic-infor">
             <BasicInfor 
-            
+                @isForm="handleGetIsForm"
+                @otherCategories="handleGetOtherCategories"
+                @otherFuelType="handleGetOtherFuelType"
+                @otherColor="handleGetOtherColor"
+                @otherGearBox="handleGetOtherGearBox"
+                @otherCarType="handleGetOtherCarType"
             />
         </div>
 
@@ -33,6 +39,12 @@
                 @remove="handleRemoveOption"
             />
         </div>
+
+        <div class="form-car__performance-check">
+            <PerformanceCheck 
+                @file="handleGetPerformanceCheck"
+            />
+        </div>
     </div>
 </template>
 
@@ -40,13 +52,15 @@
 import ImportImageCar from './ImportImageCar.vue';
 import BasicInfor from './BasicInfor.vue';
 import ListOptionCar from './ListOptionCar.vue';
+import PerformanceCheck from './PerformanceCheck.vue';
 
 export default {
     name: 'FormCar',
     components: {
         ImportImageCar,
         BasicInfor,
-        ListOptionCar
+        ListOptionCar,
+        PerformanceCheck
     },
     props: {
         oldForm: {
@@ -65,22 +79,104 @@ export default {
 
                 images: [],
 
+                price: null,
+                categories: null,
+                licensePlate: null,
+                year: null,
+                distanceDriven: null,
+                fuelType: null,
+                gearbox: null,
+                cylynder: null,
+                color: null,
+                carType: null,
+                seizure: null,
+                mortgage: null,
+                presentationNumber: null,
+                storageLocation: null,
+                contact: null,
+                saller: null,
+                employeeId: null,
+                affiliatedCompany: null,
+                businessAddress: null,
+                parkingLocation: null,
+
+                otherCategories: '',
+                otherFuelType: '',
+                otherColor: '',
+                otherGearBox: '',
+                otherCarType: '',
+
                 exterior: [],
                 guts: [],
                 safety: [],
-                convenience: []
+                convenience: [],
+
+                performanceCheck: null
             }
+        }
+    },
+    watch: {
+        isForm: {
+            handler: function() {
+                this.$emit('form', this.isForm);
+            },
+            deep: true,
         }
     },
     methods: {
         handleImportImage(file) {
             (this.isForm.images).push(file);
         },
+        handleRemoveImage(idx) {
+            this.isForm.images.splice(idx, 1);
+        },
+        handleGetIsForm(isForm) {
+            this.isForm = {
+                ...this.isForm,
+                ...isForm
+            }
+        },
+        handleGetOtherCategories(otherCategories) {
+            this.isForm = {
+                ...this.isForm,
+                otherCategories
+            }
+        },
+        handleGetOtherFuelType(otherFuelType) {
+            this.isForm = {
+                ...this.isForm,
+                otherFuelType
+            }
+        },
+        handleGetOtherColor(otherColor) {
+            this.isForm = {
+                ...this.isForm,
+                other_color: otherColor,
+            }
+        },
+        handleGetOtherGearBox(otherGearBox) {
+            this.isForm = {
+                ...this.isForm,
+                otherGearBox
+            }
+        },
+        handleGetOtherCarType(otherCarType) {
+            this.isForm = {
+                ...this.isForm,
+                otherCarType
+            }
+        },
         handleAddOption(item) {
             this.isForm[item.type].push(item.value);
         },
         handleRemoveOption(item) {
             this.isForm[item.type].splice(item.index, 1);
+        },
+        handleGetPerformanceCheck(file) {
+            this.isForm = {
+                ...this.isForm,
+                performanceCheck: file
+            }
         }
     },
 }
@@ -91,7 +187,8 @@ export default {
 
 .form-car {
     &__title,
-    &__images {
+    &__images,
+    &__options {
         margin-bottom: 10px;
     }
 }

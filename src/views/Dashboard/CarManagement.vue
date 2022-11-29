@@ -136,16 +136,42 @@
       :title="$t('DASHBOARD.CAR.FORM.TITLE_MODAL')"
       size="xl"
     >
-      <FormCar />
+      <FormCar 
+        @form="handleGetForm"      
+      />
+
+      <template #modal-footer>
+        <b-row align-v="baseline">
+          <b-col cols="6" class="text-center">
+            <b-button 
+              class="btn-default btn-cancel"
+              @click="onClickCloseModal"
+            >
+              {{ $t('APP.CANCEL') }}
+            </b-button>
+          </b-col>
+
+          <b-col cols="6" class="text-center">
+            <b-button 
+              class="btn-default btn-app"
+              @click="onClickSaveModal"
+            >
+              {{ $t('APP.SAVE') }}
+            </b-button>
+          </b-col>
+        </b-row>
+      </template>
     </b-modal>
   </div>
 </template>
 
 <script>
 import { setLoading } from '@/utils/setLoading';
-import { postListCar } from '@/api/modules/Dashboard';
+import { postListCar, postCreateCar } from '@/api/modules/Dashboard';
+import { postImages, postFile } from '@/api/modules/Upload';
 import FilterListCarDashboard from './components/FilterListCar.vue';
 import FormCar from './components/CarManagement/Form.vue';
+import { getArrValueOfArr, replaceValueWithIndex } from '@/utils/helper';
 
 export default {
   name: 'CarManagement',
@@ -221,6 +247,45 @@ export default {
       isModal: {
         show: false,
         type: '',
+      },
+      isForm: {
+        title: '',
+
+        images: [],
+
+        price: null,
+        categories: null,
+        licensePlate: null,
+        year: null,
+        distanceDriven: null,
+        fuelType: null,
+        gearbox: null,
+        cylynder: null,
+        color: null,
+        carType: null,
+        seizure: null,
+        mortgage: null,
+        presentationNumber: null,
+        storageLocation: null,
+        contact: null,
+        saller: null,
+        employeeId: null,
+        affiliatedCompany: null,
+        businessAddress: null,
+        parkingLocation: null,
+
+        otherCategories: '',
+        otherFuelType: '',
+        otherColor: '',
+        otherGearBox: '',
+        otherCarType: '',
+
+        exterior: [],
+        guts: [],
+        safety: [],
+        convenience: [],
+
+        performanceCheck: null
       }
     }
   },
@@ -359,8 +424,202 @@ export default {
       await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
       setLoading(false);
     },
+    handleGetForm(form) {
+      this.isForm = form;
+    },
+    handleResetForm() {
+      this.isForm = {
+        title: '',
+
+        images: [],
+
+        price: null,
+        categories: null,
+        licensePlate: null,
+        year: null,
+        distanceDriven: null,
+        fuelType: null,
+        gearbox: null,
+        cylynder: null,
+        color: null,
+        carType: null,
+        seizure: null,
+        mortgage: null,
+        presentationNumber: null,
+        storageLocation: null,
+        contact: null,
+        saller: null,
+        employeeId: null,
+        affiliatedCompany: null,
+        businessAddress: null,
+        parkingLocation: null,
+
+        otherCategories: '',
+        otherFuelType: '',
+        otherColor: '',
+        otherGearBox: '',
+        otherCarType: '',
+
+        exterior: [],
+        guts: [],
+        safety: [],
+        convenience: [],
+
+        performanceCheck: null
+      }
+    },
+    onClickCloseModal() {
+      this.isModal.show = false;
+      this.handleResetForm();
+    },
+    async onClickSaveModal() {
+      try {
+        const BODY = await this.handleInitObjectCar();
+
+        const { status_code, data } = await postCreateCar(BODY);
+
+        if (status_code === 200) {
+          console.log(data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      console.log(this.isForm);
+    },
+    async handleInitObjectCar() {
+      const GET_UPDATE_IMAGE = this.handleGetListIdxImport(this.isForm.images);
+      let LIST_NEW_IMAGE = [];
+      
+      if (GET_UPDATE_IMAGE.new_images.length > 0) {
+        const IMAGES = await this.handleUploadImages(GET_UPDATE_IMAGE.new_images);
+        LIST_NEW_IMAGE = replaceValueWithIndex(GET_UPDATE_IMAGE.origin_images, IMAGES, GET_UPDATE_IMAGE.new_idx_images);
+      } else {
+        LIST_NEW_IMAGE = getArrValueOfArr(this.isForm.images, 'url');
+      }
+
+      const PRIMARY_IMAGE = this.handleGetPrimaryImage(LIST_NEW_IMAGE);
+
+      const PERFORMANCE_CHECK = this.handleUploadPerformanceCheck();
+
+      const NEW_CAR = {
+        car_name: this.isForm.title,
+        price: parseInt(this.isForm.price),
+        license_plate: this.isForm.licensePlate,
+        year_manufacture: this.isForm.year,
+        distance_driven: parseInt(this.isForm.distanceDriven),
+        fuel_type: this.handleInitOther(this.isForm.fuelType, this.isForm.otherFuelType),
+        cylinder_capacity: this.isForm.cylynder,
+        color: this.handleInitOther(this.isForm.color, this.isForm.otherColor),
+        gearbox: this.handleInitOther(this.isForm.gearbox, this.isForm.otherGearBox),
+        category: this.handleInitOther(this.isForm.categories, this.isForm.otherCategories),
+        performance_check: PERFORMANCE_CHECK,
+        primary_image: PRIMARY_IMAGE,
+        phone_contact: this.isForm.contact,
+        images: LIST_NEW_IMAGE,
+        car_type: this.handleInitOther(this.isForm.carType, this.isForm.otherCarType),
+        seizure: this.isForm.seizure,
+        mortgage: this.isForm.mortgage,
+        presentation_number: this.isForm.presentationNumber,
+        storage_location: this.isForm.storageLocation,
+        exterior: this.isForm.exterior,
+        guts: this.isForm.guts,
+        safety: this.isForm.safety,
+        convenience: this.isForm.convenience,
+        seller_name: this.isForm.saller,
+        employee_number: this.isForm.employeeId,
+        affiliated_company: this.isForm.affiliatedCompany,
+        business_address: this.isForm.businessAddress,
+        parking_location: this.isForm.parkingLocation,
+      }
+
+      console.log(NEW_CAR);
+
+      return NEW_CAR;
+    },
+    handleInitOther(value, other) {
+      return value !== -1 ? value : other;
+    },
+    handleGetListIdxImport(images) {
+      const len = images.length;
+      let idx = 0;
+
+      const result = [];
+      const result_idx = [];
+
+      while (idx < len) {
+        if (images[idx].type_import === 'new') {
+          result.push(images[idx]);
+          result_idx.push(idx);
+        }
+
+        idx++;
+      }
+
+      return {
+        origin_images: images,
+        new_images: result,
+        new_idx_images: result_idx
+      };
+    },
+    handleGetPrimaryImage(images) {
+      if (Array.isArray(images)) {
+        if (images.length > 0) {
+          return images[0];
+        }
+      }
+
+      return null;
+    },
+    async handleUploadImages(images) {
+      try {
+        const { status_code, data } = await postImages(images);
+
+        if (status_code === 200) {
+          return data;
+        }
+
+        return [];
+      } catch (err) {
+        console.log(err);
+
+        return [];
+      }
+    },
+    async handleUploadPerformanceCheck() {
+      if (this.isForm.performanceCheck) {
+        if (this.isForm.performanceCheck.type === 'new') {
+          try {
+            const FILE = this.isForm.performanceCheck.url;
+
+            console.log(FILE);
+
+            const { status_code, data } = await postFile(FILE);
+
+            if (status_code === 200) {
+              return data.image;
+            }
+
+            return '';
+          } catch (err) {
+            console.log(err);
+
+            return '';
+          }
+        }
+
+        return this.isForm.performanceCheck.url;
+      }
+    },
     calNo(item) {
       return ((this.pagination.current_page - 1) * this.pagination.per_page) + (item.index + 1);
+    },
+    handleAddTypeImage(images) {
+      return images.map((image) => {
+        return {
+          url: image,
+          type_import: 'old'
+        }
+      });
     },
   },
 }
@@ -409,8 +668,6 @@ export default {
       tbody {
         tr {
           td {
-            // min-width: 100px;
-
             text-align: center;
             vertical-align: middle;
             align-items: center;

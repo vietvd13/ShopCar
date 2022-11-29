@@ -75,3 +75,7 @@ export function postEditInsurance(BODY = null, PARAMS = null) {
 export function postListCar(BODY = null, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.GET_LIST_CAR_DASHBOARD, BODY, PARAMS);
 }
+
+export function postCreateCar(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_CREATE_CAR, BODY, PARAMS);
+}
