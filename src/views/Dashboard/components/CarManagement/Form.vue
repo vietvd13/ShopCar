@@ -19,7 +19,8 @@
         </div>
 
         <div class="form-car__basic-infor">
-            <BasicInfor 
+            <BasicInfor
+                :oldForm="isForm"
                 @isForm="handleGetIsForm"
                 @otherCategories="handleGetOtherCategories"
                 @otherFuelType="handleGetOtherFuelType"
@@ -30,7 +31,7 @@
         </div>
 
         <div class="form-car__options">
-            <ListOptionCar 
+            <ListOptionCar
                 :exterior="isForm.exterior"
                 :guts="isForm.guts"
                 :safety="isForm.safety"
@@ -41,7 +42,8 @@
         </div>
 
         <div class="form-car__performance-check">
-            <PerformanceCheck 
+            <PerformanceCheck
+                :oldFile="isForm.performanceCheck"
                 @file="handleGetPerformanceCheck"
             />
         </div>
@@ -67,7 +69,43 @@ export default {
             type: Object,
             default: function() {
                 return {
+                    title: '',
 
+                    images: [],
+
+                    price: null,
+                    categories: null,
+                    licensePlate: null,
+                    year: null,
+                    distanceDriven: null,
+                    fuelType: null,
+                    gearbox: null,
+                    cylynder: null,
+                    color: null,
+                    carType: null,
+                    seizure: null,
+                    mortgage: null,
+                    presentationNumber: null,
+                    storageLocation: null,
+                    contact: null,
+                    saller: null,
+                    employeeId: null,
+                    affiliatedCompany: null,
+                    businessAddress: null,
+                    parkingLocation: null,
+
+                    otherCategories: '',
+                    otherFuelType: '',
+                    otherColor: '',
+                    otherGearBox: '',
+                    otherCarType: '',
+
+                    exterior: [],
+                    guts: [],
+                    safety: [],
+                    convenience: [],
+
+                    performanceCheck: null
                 }
             }
         },
@@ -116,9 +154,17 @@ export default {
         }
     },
     watch: {
+        oldForm: {
+            handler: function() {
+                this.isForm = this.oldForm;
+            },
+            deep: true,
+        },
         isForm: {
             handler: function() {
-                this.$emit('form', this.isForm);
+                if (JSON.stringify(this.isForm) !== JSON.stringify(this.oldForm)) {
+                    this.$emit('form', this.isForm);
+                }
             },
             deep: true,
         }

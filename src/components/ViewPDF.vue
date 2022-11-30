@@ -20,7 +20,7 @@ export default {
     },
     props: {
         file: {
-            type: String,
+            type: [String, ArrayBuffer],
             default: '',
         },
         title: {

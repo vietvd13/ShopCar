@@ -77,5 +77,9 @@ export function postListCar(BODY = null, PARAMS = null) {
 }
 
 export function postCreateCar(BODY = null, PARAMS = null) {
-  return request.postRequest(CONSTANTS.URL_API.POST_CREATE_CAR, BODY, PARAMS);
+  return request.postRequest(CONSTANTS.URL_API.POST_CREATE_CAR_DASHBOARD, BODY, PARAMS);
+}
+
+export function postGetDetailCar(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.GET_DETAIL_CAR_DASHBOARD, BODY, PARAMS);
 }

@@ -334,6 +334,41 @@ import { generateSelect } from '@/utils/helper';
 
 export default {
     name: 'InputBasicInfor',
+    props: {
+        oldForm: {
+            type: Object,
+            default: function() {
+                return {
+                    price: null,
+                    categories: null,
+                    licensePlate: null,
+                    year: null,
+                    distanceDriven: null,
+                    fuelType: null,
+                    gearbox: null,
+                    cylynder: null,
+                    color: null,
+                    carType: null,
+                    seizure: null,
+                    mortgage: null,
+                    presentationNumber: null,
+                    storageLocation: null,
+                    contact: null,
+                    saller: null,
+                    employeeId: null,
+                    affiliatedCompany: null,
+                    businessAddress: null,
+                    parkingLocation: null,
+
+                    otherCategories: '',
+                    otherFuelType: '',
+                    otherColor: '',
+                    otherGearBox: '',
+                    otherCarType: '',
+                }
+            }
+        },
+    },
     data() {
         return {
             isForm: {
@@ -373,9 +408,17 @@ export default {
         }
     },
     watch: {
+        oldForm: {
+            handler: function() {
+                this.isForm = this.oldForm;
+            },
+            deep: true,
+        },
         isForm: {
             handler: function() {
-                this.$emit('isForm', this.isForm);
+                if (JSON.stringify(this.isForm) !== JSON.stringify(this.oldForm)) {
+                    this.$emit('isForm', this.isForm);
+                }
             },
             deep: true,
         },

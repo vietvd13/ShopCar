@@ -136,7 +136,8 @@
       :title="$t('DASHBOARD.CAR.FORM.TITLE_MODAL')"
       size="xl"
     >
-      <FormCar 
+      <FormCar
+        :oldForm="isForm"
         @form="handleGetForm"      
       />
 
@@ -167,7 +168,7 @@
 
 <script>
 import { setLoading } from '@/utils/setLoading';
-import { postListCar, postCreateCar } from '@/api/modules/Dashboard';
+import { postListCar, postCreateCar, postGetDetailCar } from '@/api/modules/Dashboard';
 import { postImages, postFile } from '@/api/modules/Upload';
 import FilterListCarDashboard from './components/FilterListCar.vue';
 import FormCar from './components/CarManagement/Form.vue';
@@ -401,13 +402,43 @@ export default {
       }
     },
     onClickCreate() {
+      this.handleResetForm();
       this.isModal.type = 'CREATE';
       this.isModal.show = true;
     },
-    onClickEdit(id) {
-      this.isModal.type = 'EDIT';
-      this.isModal.show = true;
-      console.log(id);
+    async handleGetDetailCar(id) {
+      try {
+        const BODY = {
+          car_id: id
+        }
+
+        const { status_code, data } = await postGetDetailCar(BODY);
+
+        if (status_code === 200) {
+          return data;
+        }
+
+        return null;
+      } catch (error) {
+        console.log(error);
+
+        return null;
+      }
+    },
+    async onClickEdit(id) {
+      try {
+        this.handleResetForm();
+        const CAR = await this.handleGetDetailCar(id);
+
+        if (CAR) {
+          this.isModal.type = 'EDIT';
+          this.isModal.show = true;
+          console.log(id);
+          console.log(CAR);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
     onClickDelete(id) {
       console.log(id);
