@@ -55,12 +55,12 @@ service.interceptors.request.use(
     if (TOKEN) {
       config.headers = { 
         'Authorization': `Bearer ${TOKEN}`,
-        'Accept': 'application/json',
+        'Content-Type': 'application/json',
         'Accept-Language': getLanguage()
       }
     } else {
       config.headers = { 
-        'Accept': 'application/json',
+        'Content-Type': 'application/json',
         'Accept-Language': getLanguage()
       }
     }
@@ -107,7 +107,7 @@ service.interceptors.response.use(
                   console.log('[APP]: Refresh...');
                 })
             });
-  
+            
             return service(originalRequest);
           } else {
             handleLogout();
