@@ -90,17 +90,11 @@ export default {
                       })
                   })
               })
-          }).catch(() => {
-            Toast.warning(this.$t('TOAST_MESSAGE.LOGIN_ERROR'));
           })
-        } else {
-          Toast.warning(this.$t('TOAST_MESSAGE.LOGIN_ERROR'));
         }
 
         setLoading(false);
       } catch (err) {
-        Toast.warning(this.$t('TOAST_MESSAGE.LOGIN_ERROR'));
-        
         setLoading(false);
         console.log(err);
       }

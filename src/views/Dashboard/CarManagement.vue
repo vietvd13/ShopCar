@@ -33,7 +33,9 @@
       >
         <template #cell(delete_multiple)="delete_multiple">
           <b-form-checkbox
+            :key="delete_multiple.item._id"
             :value="delete_multiple.item._id"
+            :checked="handleTickRowTable(delete_multiple.item._id, selectRow)"
             :unchecked-value="delete_multiple.item._id"
             @change="onSelectDelete"
           />
@@ -174,6 +176,7 @@ import FilterListCarDashboard from './components/FilterListCar.vue';
 import FormCar from './components/CarManagement/Form.vue';
 import { getArrValueOfArr, replaceValueWithIndex } from '@/utils/helper';
 import Toast from '@/toast';
+import { handleTickRowTable } from '@/utils/helper';
 
 export default {
   name: 'CarManagement',
@@ -299,6 +302,7 @@ export default {
     this.initData();
   },
   methods: {
+    handleTickRowTable,
     async initData() {
       setLoading(true);
       await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);

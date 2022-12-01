@@ -47,8 +47,10 @@
       >
         <template #cell(delete_multiple)="delete_multiple">
           <b-form-checkbox
+            :key="delete_multiple.item._id"
             :value="delete_multiple.item._id"
             :unchecked-value="delete_multiple.item._id"
+            :checked="handleTickRowTable(delete_multiple.item._id, selectRow)"
             @change="onSelectDelete"
           />
         </template>
@@ -286,6 +288,7 @@ import {
 } from '@/api/modules/Dashboard';
 import ImportImage from './components/ImportImage.vue';
 import Toast from '@/toast';
+import { handleTickRowTable } from '@/utils/helper';
 
 export default {
   name: 'CollaboratorsManagement',
@@ -389,6 +392,7 @@ export default {
     this.destroyEmit();
   },
   methods: {
+    handleTickRowTable,
     async initData() {
       await this.handleGetListCollaborators();
     },

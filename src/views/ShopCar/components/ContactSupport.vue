@@ -88,7 +88,6 @@ export default {
 
                 setLoading(false);
             } catch (err) {
-                Toast.warning(this.$t('TOAST_MESSAGE.CREATE_CUSTOMER_SUPPORT_ERROR'));
                 setLoading(false);
                 console.log(err);
             }

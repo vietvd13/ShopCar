@@ -100,6 +100,10 @@ function handleSrollTop() {
     }
 }
 
+function handleTickRowTable(id, arr) {
+    return arr.includes(id) ? id : null;
+}
+
 export {
     getArrValueOfArr,
     replaceValueWithIndex,
@@ -107,5 +111,6 @@ export {
     formatPrice,
     formatNumber,
     elementInViewport,
-    handleSrollTop
+    handleSrollTop,
+    handleTickRowTable
 }

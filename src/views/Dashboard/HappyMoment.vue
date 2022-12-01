@@ -47,8 +47,10 @@
       >
       <template #cell(delete_multiple)="delete_multiple">
           <b-form-checkbox
+            :key="delete_multiple.item._id"
             :value="delete_multiple.item._id"
             :unchecked-value="delete_multiple.item._id"
+            :checked="handleTickRowTable(delete_multiple.item._id, selectRow)"
             @change="onSelectDelete"
           />
         </template>
@@ -220,6 +222,7 @@ import ImportListImage from './components/ImportListImage.vue';
 import { setLoading } from '@/utils/setLoading';
 import Toast from '@/toast';
 import { getArrValueOfArr, replaceValueWithIndex } from '@/utils/helper';
+import { handleTickRowTable } from '@/utils/helper';
 
 export default {
   name: 'HappyMoment',
@@ -306,6 +309,7 @@ export default {
     this.initData();
   },
   methods: {
+    handleTickRowTable,
     async initData() {
       setLoading(true);
 
