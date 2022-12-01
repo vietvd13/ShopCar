@@ -87,3 +87,11 @@ export function postGetDetailCar(BODY = null, PARAMS = null) {
 export function postUpdateCar(BODY = null, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.POST_UPDATE_CAR_DASHBOARD, BODY, PARAMS);
 }
+
+export function postDeleteCar(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_DELETE_CAR_DASHBOARD, BODY, PARAMS)
+}
+
+export function postSetHotsaleCar(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_SET_HOTSALE_CAR_DASHBOARD, BODY, PARAMS);
+}

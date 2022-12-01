@@ -13,7 +13,7 @@
             {{ $t('DASHBOARD.CAR.BUTTON_ADD_NEW') }}
           </b-button>
 
-          <b-button class="btn-app btn-actions">
+          <b-button class="btn-app btn-actions" @click="onClickActions()">
             {{ $t('DASHBOARD.CAR.BUTTON_ACTIONS') }}
           </b-button>
         </b-col>
@@ -165,12 +165,55 @@
         </b-row>
       </template>
     </b-modal>
+
+    <b-modal
+      v-model="isModalAction"
+      no-close-on-backdrop
+      no-close-on-esc
+      static
+      scrollable
+      hide-footer
+      body-class="modal-body-action"
+      footer-class="modal-footer-action"
+      :title="$t('DASHBOARD.CAR.TABLE_ACTIONS')"
+    >
+      <div class="item-action">
+        <b-row>
+          <b-col>
+            <div class="content-action" @click="handleDeleteMany()">
+              {{ $t('DASHBOARD.CAR.ACITON_DELETE') }}
+            </div>
+          </b-col>
+        </b-row>
+      </div>
+
+      <div class="item-action">
+        <b-row>
+          <b-col>
+            <div class="content-action" @click="hanldeSetHotsale(true)">
+              {{ $t('DASHBOARD.CAR.ACTION_ADD_HOT_SALE') }}
+            </div>
+          </b-col>
+        </b-row>
+      </div>
+
+      <div class="item-action">
+        <b-row>
+          <b-col>
+            <div class="content-action" @click="hanldeSetHotsale(false)">
+              {{ $t('DASHBOARD.CAR.ACTION_REMOVE_HOT_SALE') }}
+            </div>
+          </b-col>
+        </b-row>
+      </div>
+
+    </b-modal>
   </div>
 </template>
 
 <script>
 import { setLoading } from '@/utils/setLoading';
-import { postListCar, postCreateCar, postGetDetailCar, postUpdateCar } from '@/api/modules/Dashboard';
+import { postListCar, postCreateCar, postGetDetailCar, postUpdateCar, postDeleteCar, postSetHotsaleCar } from '@/api/modules/Dashboard';
 import { postImages, postFile } from '@/api/modules/Upload';
 import FilterListCarDashboard from './components/FilterListCar.vue';
 import FormCar from './components/CarManagement/Form.vue';
@@ -295,7 +338,8 @@ export default {
           type: '',
           url: ''
         }
-      }
+      },
+      isModalAction: false,
     }
   },
   created () {
@@ -509,8 +553,8 @@ export default {
         console.log(error);
       }
     },
-    onClickDelete(id) {
-      console.log(id);
+    async onClickDelete(id) {
+      await this.handleDeleteOne(id);
     },
     async onChangePerPage() {
       setLoading(true);
@@ -735,8 +779,6 @@ export default {
       if (this.isForm.performanceCheck) {
         if (this.isForm.performanceCheck.type === 'new') {
           try {
-            console.log(this.isForm.performanceCheck);
-
             const FILE = this.isForm.performanceCheck.url;
 
             const { status_code, data } = await postFile(FILE);
@@ -755,6 +797,61 @@ export default {
 
         return this.isForm.performanceCheck.url;
       }
+    },
+    async handleDeleteOne(id) {
+      setLoading(true);
+      await this.handleDeleteCar([id]);
+      setLoading(false);
+    },
+    async handleDeleteMany() {
+      setLoading(true);
+      this.isModalAction = false;
+      await this.handleDeleteCar(this.selectRow);
+      this.selectRow = [];
+      setLoading(false);
+    },
+    async handleDeleteCar(items) {
+      try {
+        const BODY = {
+          ids: items,
+        }
+
+        const { status_code } = await postDeleteCar(BODY);
+
+        if (status_code === 200) {
+          await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
+          Toast.success(this.$t('TOAST_MESSAGE.DELETE_CAR_SUCCESS'));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async hanldeSetHotsale(status = true) {
+      try {
+        setLoading(true);
+        this.isModalAction = false;
+
+        const BODY = {
+          ids: this.selectRow,
+          is_hotsale: status
+        }
+
+        const { status_code } = await postSetHotsaleCar(BODY);
+
+        if (status_code === 200) {
+          Toast.success(this.$t('TOAST_MESSAGE.SET_HOTSALE_CAR_SUCCESS'));
+        }
+
+        this.selectRow = [];
+
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+      }
+    },
+    onClickActions() {
+      this.isModalAction = true;
     },
     calNo(item) {
       return ((this.pagination.current_page - 1) * this.pagination.per_page) + (item.index + 1);
@@ -838,6 +935,20 @@ export default {
         }
       }
     }
+  }
+}
+
+.item-action {
+  margin-bottom: 10px;
+
+  .content-action {
+    background-color: $international-orange;
+    text-align: center;
+    color: $white;
+    padding: 15px 0;
+    font-weight: 600;
+
+    cursor: pointer;
   }
 }
 </style>

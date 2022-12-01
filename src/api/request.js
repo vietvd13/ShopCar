@@ -74,10 +74,10 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   response => {
-    const { status_code, error_message } = response.data;
+    const { status_code, error_message, message } = response.data;
 
     if (status_code !== 200) {
-      Toast.warning(error_message);
+      Toast.warning(error_message || message);
     }
 
     return response.data;

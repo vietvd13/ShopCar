@@ -92,6 +92,8 @@ export default {
 
     CREATE_CAR_SUCCESS: "Bạn đã tạo xe thành công",
     UPDATE_CAR_SUCCESS: "Bạn đã cập nhật xe thành công",
+    DELETE_CAR_SUCCESS: "Bạn đã xoá xe thành công",
+    SET_HOTSALE_CAR_SUCCESS: "Bạn đã cập nhật xe hotsale thành công",
   },
   SHOP_CAR: {
     HOME: {
@@ -344,6 +346,10 @@ export default {
 
       TABLE_TEXT_EDIT: "Chỉnh sửa",
       TABLE_TEXT_DELETE: "Xoá",
+
+      ACITON_DELETE: "Xoá",
+      ACTION_ADD_HOT_SALE: "Đẩy hotsale",
+      ACTION_REMOVE_HOT_SALE: "Bỏ hotsale",
 
       FORM: {
         TITLE_MODAL: "Quản lý thông tin xe",
