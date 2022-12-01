@@ -105,7 +105,10 @@ export default {
                     safety: [],
                     convenience: [],
 
-                    performanceCheck: null
+                    performanceCheck: {
+                        type: 'old',
+                        url: ''
+                    }
                 }
             }
         },
@@ -149,7 +152,10 @@ export default {
                 safety: [],
                 convenience: [],
 
-                performanceCheck: null
+                performanceCheck: {
+                    type: 'old',
+                    url: ''
+                }
             }
         }
     },

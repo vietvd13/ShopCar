@@ -5,13 +5,17 @@
         </p>
 
         <div class="import-file">
-            <b-form-file
-                v-model="fileImport"
-                :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_IMPORT_PERFORMANCE_CHECK')"
-                :drop-placeholder="$t('APP.DROP_FILE')"
-                :browse-text="$t('APP.DROP_FILE')"
-                accept="application/pdf"
-            />
+            <label for="import-pdf">{{ $t('APP.DROP_FILE') }}</label>
+            <div class="zone-import">
+                <b-form-file
+                    id="import-pdf"
+                    v-model="fileImport.url"
+                    :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_IMPORT_PERFORMANCE_CHECK')"
+                    :drop-placeholder="$t('APP.DROP_FILE')"
+                    :browse-text="$t('APP.DROP_FILE')"
+                    accept="application/pdf"
+                />
+            </div>
         </div>
 
         <div class="preview-import-file" :key="handleViewPdf()">
@@ -51,40 +55,48 @@ export default {
         oldFile: {
             handler: function() {
                 this.filePreview = this.oldFile;
-            }
+            },
+            deep: true,
         },
         fileImport: {
             handler: function() {
                 this.$emit('file', {
-                    url: this.fileImport,
+                    url: this.fileImport.url,
                     type: 'new',
                 });
                 this.filePreview = {
                     type: 'new',
                     url: this.fileImport
                 }
-            }
+            },
+            deep: true,
         }
     },
     data() {
         return {
-            fileImport: null,
-            filePreview: null,
+            fileImport: {
+                type: '',
+                url: [],
+            },
+            filePreview: {
+                type: '',
+                url: '',
+            },
         }
     },
     methods: {
         handleViewPdf() {
             if (this.filePreview) {
                 if (this.filePreview.type === 'new') {
-                    return URL.createObjectURL(this.filePreview.url);
+                    return URL.createObjectURL(this.fileImport.url);
                 } 
 
-                if (this.fileImport.type === 'old') {
+                if (this.filePreview.type === 'old') {
                     return `${this.domainPDF}${this.filePreview.url}`;
                 }
             }
 
-            return '';
+            return null;
         }
     },
 }
@@ -100,7 +112,7 @@ export default {
     }
 
     .preview-import-file {
-        margin-top: 10px;
+        margin-top: 5px;
     }
 
     .view-pdf {
@@ -109,5 +121,9 @@ export default {
         overflow: auto;
         -webkit-overflow-scrolling: touch;
     }
+}
+
+.zone-import {
+    display: none;
 }
 </style>

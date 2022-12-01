@@ -91,6 +91,7 @@ export default {
     CHANGE_PROFILE_ERROR: "Bạn dã cập nhật hồ sơ thất bại",
 
     CREATE_CAR_SUCCESS: "Bạn đã tạo xe thành công",
+    UPDATE_CAR_SUCCESS: "Bạn đã cập nhật xe thành công",
   },
   SHOP_CAR: {
     HOME: {

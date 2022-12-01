@@ -61,5 +61,6 @@ export default {
   // Api Car
   GET_LIST_CAR_DASHBOARD: '/cars/list',
   POST_CREATE_CAR_DASHBOARD: '/cars/create',
-  GET_DETAIL_CAR_DASHBOARD: '/cars/detail'
+  GET_DETAIL_CAR_DASHBOARD: '/cars/detail',
+  POST_UPDATE_CAR_DASHBOARD: '/cars/edit',
 };

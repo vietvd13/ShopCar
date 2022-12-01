@@ -6,6 +6,14 @@
         :class="className"
         :page-number="1"
         :page-scale="'page-height'"
+        :config="{
+            toolbar: {
+                toolbarViewerMiddle: {
+                    scaleSelectContainer: true,
+                }
+            },
+            errorWrapper: false,
+        }"
     />
 </template>
 

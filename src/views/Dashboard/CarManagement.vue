@@ -168,7 +168,7 @@
 
 <script>
 import { setLoading } from '@/utils/setLoading';
-import { postListCar, postCreateCar, postGetDetailCar } from '@/api/modules/Dashboard';
+import { postListCar, postCreateCar, postGetDetailCar, postUpdateCar } from '@/api/modules/Dashboard';
 import { postImages, postFile } from '@/api/modules/Upload';
 import FilterListCarDashboard from './components/FilterListCar.vue';
 import FormCar from './components/CarManagement/Form.vue';
@@ -249,6 +249,7 @@ export default {
       isModal: {
         show: false,
         type: '',
+        id: null
       },
       isForm: {
         title: '',
@@ -287,7 +288,10 @@ export default {
         safety: [],
         convenience: [],
 
-        performanceCheck: null
+        performanceCheck: {
+          type: '',
+          url: ''
+        }
       }
     }
   },
@@ -425,16 +429,77 @@ export default {
         return null;
       }
     },
+    handleSetForm(data) {
+      const lenImage = data.images.length;
+      let idxImage = 0;
+
+      const listImage = [];
+
+      while (idxImage < lenImage) {
+        listImage.push({
+          type_import: 'old',
+          url: data.images[idxImage]
+        });
+
+        idxImage++;
+      }
+
+      const PERFORMANCE_CHECK = {
+        type: 'old',
+        url: data.performance_check
+      }
+
+      this.isForm = {
+        title: data.car_name,
+
+        images: listImage,
+
+        price: data.price,
+        categories: data.category,
+        licensePlate: data.license_plate,
+        year: data.year_manufacture,
+        distanceDriven: data.distance_driven,
+        fuelType: data.fuel_type,
+        gearbox: data.gearbox,
+        cylynder: data.cylinder_capacity,
+        color: data.color,
+        carType: data.car_type,
+        seizure: data.seizure,
+        mortgage: data.mortgage,
+        presentationNumber: data.presentation_number,
+        storageLocation: data.storage_location,
+        contact: data.phone_contact,
+        saller: data.seller_name,
+        employeeId: data.employee_number,
+        affiliatedCompany: data.affiliated_company,
+        businessAddress: data.business_address,
+        parkingLocation: data.parking_location,
+
+        otherCategories: '',
+        otherFuelType: '',
+        otherColor: '',
+        otherGearBox: '',
+        otherCarType: '',
+
+        exterior: data.exterior,
+        guts: data.guts,
+        safety: data.safety,
+        convenience: data.convenience,
+
+        performanceCheck: PERFORMANCE_CHECK
+      }
+    },
     async onClickEdit(id) {
       try {
         this.handleResetForm();
+        this.isModal.id = id;
         const CAR = await this.handleGetDetailCar(id);
 
         if (CAR) {
           this.isModal.type = 'EDIT';
           this.isModal.show = true;
-          console.log(id);
-          console.log(CAR);
+
+          this.handleSetForm(CAR);
         }
       } catch (error) {
         console.log(error);
@@ -497,7 +562,10 @@ export default {
         safety: [],
         convenience: [],
 
-        performanceCheck: null
+        performanceCheck: {
+          type: '',
+          url: ''
+        }
       }
     },
     onClickCloseModal() {
@@ -505,6 +573,21 @@ export default {
       this.handleResetForm();
     },
     async onClickSaveModal() {
+      try {
+        if (this.isModal.type === 'CREATE') {
+          await this.handleCreateCar();
+        }
+
+        if (this.isModal.type === 'EDIT') {
+          await this.handleUpdateCar();
+        }
+      } catch (error) {
+        setLoading(false);
+
+        console.log(error);
+      }
+    },
+    async handleCreateCar() {
       try {
         setLoading(true);
 
@@ -516,6 +599,28 @@ export default {
           this.onClickCloseModal();
           await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
           Toast.success(this.$t('TOAST_MESSAGE.CREATE_CAR_SUCCESS'));
+        }
+
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+
+        console.log(error);
+      }
+    },
+    async handleUpdateCar() {
+      try {
+        setLoading(true);
+
+        const BODY = await this.handleInitObjectCar();
+        BODY.car_id = this.isModal.id;
+
+        const { status_code } = await postUpdateCar(BODY);
+
+        if (status_code === 200) {
+          this.onClickCloseModal();
+          await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
+          Toast.success(this.$t('TOAST_MESSAGE.UPDATE_CAR_SUCCESS'));
         }
 
         setLoading(false);
@@ -626,9 +731,9 @@ export default {
       if (this.isForm.performanceCheck) {
         if (this.isForm.performanceCheck.type === 'new') {
           try {
-            const FILE = this.isForm.performanceCheck.url;
+            console.log(this.isForm.performanceCheck);
 
-            console.log(FILE);
+            const FILE = this.isForm.performanceCheck.url;
 
             const { status_code, data } = await postFile(FILE);
 
