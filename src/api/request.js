@@ -55,7 +55,7 @@ service.interceptors.request.use(
     if (TOKEN) {
       config.headers = { 
         'Authorization': `Bearer ${TOKEN}`,
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json; ',
         'Accept-Language': getLanguage()
       }
     } else {
