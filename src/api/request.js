@@ -12,8 +12,6 @@ const service = axios.create({
   timeout: 10000,
 });
 
-service.defaults.headers.common['Content-Type'] = 'application/json';
-
 function getToken() {
   const TOKEN = Cookies.get(CONSTANTS.COOKIES.TOKEN);
 

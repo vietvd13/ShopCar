@@ -94,6 +94,7 @@ export default {
     UPDATE_CAR_SUCCESS: "Bạn đã cập nhật xe thành công",
     DELETE_CAR_SUCCESS: "Bạn đã xoá xe thành công",
     SET_HOTSALE_CAR_SUCCESS: "Bạn đã cập nhật xe hotsale thành công",
+    SET_PRICE_CAR_SUCCESS: "Bạn đã cập nhật giá xe thành công",
   },
   SHOP_CAR: {
     HOME: {
@@ -344,12 +345,19 @@ export default {
       TABLE_TEXT_HOT_SALE: "Hot sale",
       TABLE_TEXT_NO_HOT_SALE: "Bình thường",
 
+      TABLE_TEXT_DETAIL: 'Chi tiết',
       TABLE_TEXT_EDIT: "Chỉnh sửa",
       TABLE_TEXT_DELETE: "Xoá",
 
       ACITON_DELETE: "Xoá",
       ACTION_ADD_HOT_SALE: "Đẩy hotsale",
       ACTION_REMOVE_HOT_SALE: "Bỏ hotsale",
+      ACTION_ADD_PRICE: "Cập nhật giá tiền",
+
+      TYPE_UPDATE: "Loại cập nhật",
+      UPDATE_PERCENTAGE: 'Phần trăm',
+      UPDATE_PRICE: 'Số tiền',
+      VALUE_UPDATE: "Giá cập nhật",
 
       FORM: {
         TITLE_MODAL: "Quản lý thông tin xe",

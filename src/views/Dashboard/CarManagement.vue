@@ -70,6 +70,16 @@
             <b-button 
               variant="warning"
               class="btn-default"
+              @click="onClickDetail(actions.item._id)"
+            >
+              {{ $t('DASHBOARD.CAR.TABLE_TEXT_DETAIL') }}
+            </b-button>
+          </div>
+
+          <div class="item-action">
+            <b-button 
+              variant="warning"
+              class="btn-default"
               @click="onClickEdit(actions.item._id)"
               v-if="actions.item.is_data_crawl === false"
             >
@@ -207,19 +217,84 @@
         </b-row>
       </div>
 
+      <div class="item-action">
+        <b-row>
+          <b-col>
+            <div class="content-action" @click="onClickSetPrice()">
+              {{ $t('DASHBOARD.CAR.ACTION_ADD_PRICE') }}
+            </div>
+          </b-col>
+        </b-row>
+      </div>
+
+    </b-modal>
+
+    <b-modal
+      v-model="isModalPrice"
+      no-close-on-backdrop
+      no-close-on-esc
+      static
+      scrollable
+      body-class="modal-body-price"
+      footer-class="modal-footer-price"
+      :title="$t('DASHBOARD.CAR.ACTION_ADD_PRICE')"
+    >
+      <div class="item-form">
+        <label for="select-type-update-price">{{ $t('DASHBOARD.CAR.TYPE_UPDATE') }}</label>
+        <b-form-select id="select-type-update-price" v-model="isUpdatePrice.type">
+          <b-form-select-option 
+            v-for="typeUpdate in optionUpdatePrice"
+            :key="typeUpdate.value"
+            :value="typeUpdate.value"
+          >
+            {{ $t(typeUpdate.text) }}
+          </b-form-select-option>
+        </b-form-select>
+      </div>
+
+      <div class="item-form">
+        <label for="input-value-update-price">{{ $t('DASHBOARD.CAR.VALUE_UPDATE') }}</label>
+        <b-form-input
+          id="input-value-update-price"
+          v-model="isUpdatePrice.value" 
+        />
+      </div>
+
+      <template #modal-footer>
+        <b-row align-v="baseline">
+          <b-col cols="6" class="text-center">
+            <b-button 
+              class="btn-default btn-cancel"
+              @click="onClickCloseModalPrice"
+            >
+              {{ $t('APP.CANCEL') }}
+            </b-button>
+          </b-col>
+
+          <b-col cols="6" class="text-center">
+            <b-button 
+              class="btn-default btn-app"
+              @click="onClickSaveModalPrice"
+            >
+              {{ $t('APP.SAVE') }}
+            </b-button>
+          </b-col>
+        </b-row>
+      </template>
     </b-modal>
   </div>
 </template>
 
 <script>
 import { setLoading } from '@/utils/setLoading';
-import { postListCar, postCreateCar, postGetDetailCar, postUpdateCar, postDeleteCar, postSetHotsaleCar } from '@/api/modules/Dashboard';
+import { postListCar, postCreateCar, postGetDetailCar, postUpdateCar, postDeleteCar, postSetHotsaleCar, posetSetPirce } from '@/api/modules/Dashboard';
 import { postImages, postFile } from '@/api/modules/Upload';
 import FilterListCarDashboard from './components/FilterListCar.vue';
 import FormCar from './components/CarManagement/Form.vue';
 import { getArrValueOfArr, replaceValueWithIndex } from '@/utils/helper';
 import Toast from '@/toast';
 import { handleTickRowTable } from '@/utils/helper';
+import CONSTANTS from '@/constants';
 
 export default {
   name: 'CarManagement',
@@ -269,6 +344,9 @@ export default {
     isCurrentPage() {
       return this.pagination.current_page; 
     },
+    optionUpdatePrice() {
+      return CONSTANTS.VALUE.OPTION_UPDATE_PRICE;
+    }
   },
   watch: {
     async isCurrentPage() {
@@ -340,6 +418,12 @@ export default {
         }
       },
       isModalAction: false,
+      isModalPrice: false,
+      
+      isUpdatePrice: {
+        type: 'PRICE',
+        value: null,
+      }
     }
   },
   created () {
@@ -535,6 +619,13 @@ export default {
         convenience: data.convenience,
 
         performanceCheck: PERFORMANCE_CHECK
+      }
+    },
+    onClickDetail(id) {
+      if (id) {
+        let route = this.$router.resolve({ name: 'DetailCar', params: { id }});
+
+        window.open(route.href);
       }
     },
     async onClickEdit(id) {
@@ -853,6 +944,49 @@ export default {
     onClickActions() {
       this.isModalAction = true;
     },
+    onClickSetPrice() {
+      this.isModalAction = false;
+      this.isModalPrice = true;
+    },
+    handleResetModalPrice() {
+      this.isUpdatePrice = {
+        type: 'PRICE',
+        value: null,
+      }
+    },
+    onClickCloseModalPrice() {
+      this.isModalPrice = false;
+      this.handleResetModalPrice();
+    },
+    async onClickSaveModalPrice() {
+      try {
+        setLoading(true);
+
+        const BODY = {
+          ids: this.selectRow,
+          type: this.isUpdatePrice.type,
+          price: this.isUpdatePrice.value ? parseInt(this.isUpdatePrice.value) : 0,
+        };
+
+        const { status_code } = await posetSetPirce(BODY);
+
+        this.isModalPrice = false;
+        this.handleResetModalPrice();
+
+        if (status_code === 200) {
+          Toast.success(this.$t('TOAST_MESSAGE.SET_PRICE_CAR_SUCCESS'));
+        }
+
+        this.selectRow = [];
+
+        await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
+
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+      }
+    },
     calNo(item) {
       return ((this.pagination.current_page - 1) * this.pagination.per_page) + (item.index + 1);
     },
@@ -950,5 +1084,9 @@ export default {
 
     cursor: pointer;
   }
+}
+
+.item-form {
+  margin-bottom: 10px;
 }
 </style>

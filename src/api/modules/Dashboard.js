@@ -95,3 +95,7 @@ export function postDeleteCar(BODY = null, PARAMS = null) {
 export function postSetHotsaleCar(BODY = null, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.POST_SET_HOTSALE_CAR_DASHBOARD, BODY, PARAMS);
 }
+
+export function posetSetPirce(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_SET_PRICE_CAR_DASHBOARD, BODY, PARAMS);
+}

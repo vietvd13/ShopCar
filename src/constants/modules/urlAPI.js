@@ -30,7 +30,7 @@ export default {
   POST_CREATE_HAPPY_MOMENT: '/review/create',
   GET_DETAIL_HAPPY_MOMENT: '/review/detail',
   POST_EDIT_HAPPY_MOMENT: '/review/edit',
-  POST_DELETE_HAPPY_MOMENT: 'review/remove',
+  POST_DELETE_HAPPY_MOMENT: '/review/remove',
 
   // Api Hỗ trợ khác hàng
   GET_LIST_CUSTOMER_SUPPORT: '/support/get',
@@ -64,5 +64,6 @@ export default {
   GET_DETAIL_CAR_DASHBOARD: '/cars/detail',
   POST_UPDATE_CAR_DASHBOARD: '/cars/edit',
   POST_DELETE_CAR_DASHBOARD: '/cars/remove',
-  POST_SET_HOTSALE_CAR_DASHBOARD: '/cars/update-hotsale'
+  POST_SET_HOTSALE_CAR_DASHBOARD: '/cars/update-hotsale',
+  POST_SET_PRICE_CAR_DASHBOARD: '/cars/update-price',
 };
