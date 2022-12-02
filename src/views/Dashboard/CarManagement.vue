@@ -930,6 +930,7 @@ export default {
         const { status_code } = await postSetHotsaleCar(BODY);
 
         if (status_code === 200) {
+          await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
           Toast.success(this.$t('TOAST_MESSAGE.SET_HOTSALE_CAR_SUCCESS'));
         }
 
