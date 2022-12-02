@@ -6,7 +6,7 @@ export function postImage(IMAGE = null, PARAMS = null) {
 
   BODY.append('image', IMAGE);
 
-  return request.postRequest(CONSTANTS.URL_API.UPLOAD_IMAGE, BODY, PARAMS);
+  return request.postFileRequest(CONSTANTS.URL_API.UPLOAD_IMAGE, BODY, PARAMS);
 }
 
 export function postImages(IMAGES = [], PARAMS = null) {
@@ -21,7 +21,7 @@ export function postImages(IMAGES = [], PARAMS = null) {
     idx++;
   }
 
-  return request.postRequest(CONSTANTS.URL_API.UPLOAD_IMAGES, BODY, PARAMS);
+  return request.postFileRequest(CONSTANTS.URL_API.UPLOAD_IMAGES, BODY, PARAMS);
 }
 
 export function postFile(FILE = null, PARAMS = null) {
@@ -29,5 +29,5 @@ export function postFile(FILE = null, PARAMS = null) {
 
   BODY.append('file', FILE)
 
-  return request.postRequest(CONSTANTS.URL_API.UPLOAD_FILE, BODY, PARAMS);
+  return request.postFileRequest(CONSTANTS.URL_API.UPLOAD_FILE, BODY, PARAMS);
 }

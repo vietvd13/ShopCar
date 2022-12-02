@@ -12,6 +12,8 @@ const service = axios.create({
   timeout: 10000,
 });
 
+service.defaults.headers.common['Content-Type'] = 'application/json';
+
 function getToken() {
   const TOKEN = Cookies.get(CONSTANTS.COOKIES.TOKEN);
 
@@ -53,16 +55,10 @@ service.interceptors.request.use(
     const TOKEN = getToken();
 
     if (TOKEN) {
-      config.headers = { 
-        'Authorization': `Bearer ${TOKEN}`,
-        'Content-Type': 'application/json',
-        'Accept-Language': getLanguage()
-      }
+      config.headers['Authorization'] = `Bearer ${TOKEN}`;
+      config.headers['Accept-Language'] = getLanguage();
     } else {
-      config.headers = { 
-        'Content-Type': 'application/json',
-        'Accept-Language': getLanguage()
-      }
+      config.headers['Accept-Language'] = getLanguage();
     }
 
     return config;
@@ -83,7 +79,7 @@ service.interceptors.response.use(
     return response.data;
   },
   async (error) => {
-    const originalRequest = error.config;
+    const originalRequest = error.response.config;
 
     const { status_code, message } = error.response.data;
 
@@ -107,8 +103,17 @@ service.interceptors.response.use(
                   console.log('[APP]: Refresh...');
                 })
             });
-            
-            return service(originalRequest);
+
+            return service({
+              method: originalRequest.method,
+              url: `${originalRequest.baseURL}${originalRequest.url}`,
+              headers: {
+                'Authorization': `Bearer ${getToken()}`,
+                'Accept-Language': getLanguage(),
+                'Content-Type': originalRequest.headers['Content-Type']
+              },
+              data: originalRequest.data
+            });
           } else {
             handleLogout();
           }
