@@ -2,7 +2,7 @@ export default {
   APP: {
     LOADING: "Loading...",
     BUTTON_BACK: "Come back",
-    BUTTON_ADD: "Add new",
+    BUTTON_ADD: "Add New",
     BUTTON_DELETE_MANY: "Delete a lot",
     BUTTON_UPDATE: "Update",
     BUTTON_FILTER: "Apply",
@@ -28,7 +28,9 @@ export default {
     UPDATE_BANNER: "Update banner",
     NO_DATA: "No data",
     HOT_SALE: "Hot Sale",
-    OPTION_OTHER: "Other"
+    OPTION_OTHER: "Other",
+    PLACEHOLDER_PLEASE_INPUT: "Please enter",
+    DROP_FILE: "File selection"
   },
   TOAST: {
     SUCCESS: "Successful",
@@ -58,7 +60,7 @@ export default {
     LOGIN_ERROR: "Login failed, please check your account again",
     LOGOUT_ERROR: "Logout failed",
     CREATE_COLLABORATORS_SUCCESS: "You have successfully created a collaborator",
-    CREATE_COLLABORATORS_ERROR: "You have failed to create collaborator",
+    CREATE_COLLABORATORS_ERROR: "You have failed to create a collaborator",
     EDIT_COLLABORATORS_SUCCESS: "You have successfully edited the collaborator information",
     EDIT_COLLABORATORS_ERROR: "You have failed to edit the collaborator information",
     DELETE_COLLABORATORS_SUCCESS: "You have successfully deleted the collaborator",
@@ -77,7 +79,12 @@ export default {
     UPDATE_BANNER_ERROR: "You have failed to update the banner",
     REQUIRED_FILE: "Please select file",
     CHANGE_PROFILE_SUCCESS: "You have successfully updated your profile",
-    CHANGE_PROFILE_ERROR: "You have failed to update your profile"
+    CHANGE_PROFILE_ERROR: "You have failed to update your profile",
+    CREATE_CAR_SUCCESS: "You have successfully created the car",
+    UPDATE_CAR_SUCCESS: "You have successfully updated your vehicle",
+    DELETE_CAR_SUCCESS: "You have successfully deleted the car",
+    SET_HOTSALE_CAR_SUCCESS: "You have successfully updated the hotsale car",
+    SET_PRICE_CAR_SUCCESS: "You have successfully updated the car price"
   },
   SHOP_CAR: {
     HOME: {
@@ -157,6 +164,7 @@ export default {
       TITLE_VEHICLE_OPTIONS_AND_DETAILS: "Vehicle options and details",
       TITLE_PERFORMANCE_CHECK: "Performance test",
       PRICE: "Price",
+      CATEGORIES: "Car company",
       LICENSE_PLATE: "License plates",
       YEAR: "Five",
       DISTANCE_DRIVEN: "Driving distance",
@@ -298,11 +306,10 @@ export default {
         PLACEHOLDER_TO_YEAR: "To year",
         PLACEHOLDER_INPUT_MAX_DISTANCE: "The greatest value",
         PLACEHOLDER_INPUT_MAX_PRICE: "The greatest value",
-
-        TEXT_YES: "Yes",
-        TEXT_NO: "No",
+        TEXT_YES: "Have",
+        TEXT_NO: "No"
       },
-      BUTTON_ADD_NEW: "Add new",
+      BUTTON_ADD_NEW: "Add New",
       BUTTON_ACTIONS: "Manipulation",
       TABLE_NO: "STT",
       TABLE_IMAGE: "Picture",
@@ -312,8 +319,48 @@ export default {
       TABLE_ACTIONS: "Manipulation",
       TABLE_TEXT_HOT_SALE: "Hot sale",
       TABLE_TEXT_NO_HOT_SALE: "Normal",
+      TABLE_TEXT_DETAIL: "Detail",
       TABLE_TEXT_EDIT: "Edit",
-      TABLE_TEXT_DELETE: "Delete"
+      TABLE_TEXT_DELETE: "Delete",
+      ACITON_DELETE: "Delete",
+      ACTION_ADD_HOT_SALE: "Push hotsale",
+      ACTION_REMOVE_HOT_SALE: "Quit hotsale",
+      ACTION_ADD_PRICE: "Update price",
+      TYPE_UPDATE: "Update type",
+      UPDATE_PERCENTAGE: "Percent",
+      UPDATE_PRICE: "Amount of money",
+      VALUE_UPDATE: "Updated price",
+      FORM: {
+        TITLE_MODAL: "Vehicle information management",
+        TITLE_CAR: "Title",
+        PLACEHOLDER_TITLE_CAR: "Enter title",
+        CAR_OPTION_EXTERIOR: "Exterior",
+        CAR_OPTION_GUTS: "Interior",
+        CAR_OPTION_SAFETY: "Safe",
+        CAR_OPTION_CONVENIENCE: "Utilities",
+        PLACEHOLDER_OPTION: "Enter option",
+        PLACEHOLDER_PRICE: "Please enter the price",
+        PLACEHOLDER_CATEGORIES: "Please select the car company",
+        PLACEHOLDER_LICENSE_PLATE: "Please enter license plate number",
+        PLACEHOLDER_YEAR: "Please enter the year of manufacture",
+        PLACEHOLDER_DISTANCE_DRIVEN: "Please enter travel distance",
+        PLACEHOLDER_FUEL_TYPE: "Please select fuel type",
+        PLACEHOLDER_TRANSMISSION: "Please select transmission type",
+        PLACEHOLDER_DISPLACEMENT: "Please select the type of move",
+        PLACEHOLDER_COLOR: "Please choose color",
+        PLACEHOLDER_CAR_TYPE: "Please select vehicle type",
+        PLACEHOLDER_SEIZURE: "Please select type of seizure",
+        PLACEHOLDER_MORTGAGE: "Please choose low-end model",
+        PLACEHOLDER_PRESENTATION_NUMBER: "Please enter presentation number",
+        PLACEHOLDER_STORAGE_LOCATION: "Please enter storage area",
+        PLACEHOLDER_CONTACT: "Please enter contact",
+        PLACEHOLDER_NAME: "Please enter the seller's name",
+        PLACEHOLDER_EMPLOYEE_ID: "Please enter employee number",
+        PLACEHOLDER_AFFILIATED_COMPANY: "Please enter affiliated company",
+        PLACEHOLDER_BUSINESS_ADDRESS: "Please enter business address",
+        PLACEHOLDER_PARKING_LOCATION: "Please enter your parking location",
+        PLACEHOLDER_IMPORT_PERFORMANCE_CHECK: "Please enter"
+      }
     }
   }
 }
