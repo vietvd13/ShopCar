@@ -316,6 +316,7 @@ export default {
       TABLE_CAR_NAME: "Vehicle name",
       TABLE_CAR_BRAND: "Car company",
       TABLE_HOT_SALE: "Hot sale",
+      TBALE_PRICE_DISPLAY: "Price",
       TABLE_ACTIONS: "Manipulation",
       TABLE_TEXT_HOT_SALE: "Hot sale",
       TABLE_TEXT_NO_HOT_SALE: "Normal",

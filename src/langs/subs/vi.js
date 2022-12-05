@@ -341,6 +341,7 @@ export default {
       TABLE_CAR_BRAND: "Hãng xe",
       TABLE_HOT_SALE: "Hot sale",
       TABLE_ACTIONS: "Thao tác",
+      TBALE_PRICE_DISPLAY: "Giá xe",
 
       TABLE_TEXT_HOT_SALE: "Hot sale",
       TABLE_TEXT_NO_HOT_SALE: "Bình thường",

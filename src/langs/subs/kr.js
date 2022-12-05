@@ -319,6 +319,7 @@ export default {
       TABLE_ACTIONS: "시장 조작",
       TABLE_TEXT_HOT_SALE: "뜨거운 판매",
       TABLE_TEXT_NO_HOT_SALE: "정상",
+      TBALE_PRICE_DISPLAY: "가격",
       TABLE_TEXT_DETAIL: "세부 사항",
       TABLE_TEXT_EDIT: "편집하다",
       TABLE_TEXT_DELETE: "삭제",

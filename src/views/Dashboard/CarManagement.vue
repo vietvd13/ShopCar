@@ -313,7 +313,7 @@ export default {
         { key: 'primary_image', label: this.$t('DASHBOARD.CAR.TABLE_IMAGE'), thClass: 'text-center th-image', tdClass: 'text-center base-td' },
         { key: 'car_name', label: this.$t('DASHBOARD.CAR.TABLE_CAR_NAME'), sortable: true, thClass: 'text-center th-car-name', tdClass: 'text-center base-td' },
         { key: 'category', label: this.$t('DASHBOARD.CAR.TABLE_CAR_BRAND'), sortable: true, thClass: 'text-center th-car-brand', tdClass: 'text-center base-td' },
-        { key: 'price_display', label: "Giá xe", sortable: true, thClass: 'text-center th-car-brand', tdClass: 'text-center base-td' },
+        { key: 'price_display', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_DISPLAY'), sortable: true, thClass: 'text-center th-car-brand', tdClass: 'text-center base-td' },
         { key: 'is_hotsale', label: this.$t('DASHBOARD.CAR.TABLE_HOT_SALE'), sortable: true, thClass: 'text-center th-hot-sale', tdClass: 'text-center base-td' },
         { key: 'actions', label: this.$t('DASHBOARD.CAR.TABLE_ACTIONS'), thClass: 'text-center th-actions', tdClass: 'text-center base-td' },
       ]
