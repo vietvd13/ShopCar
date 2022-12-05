@@ -313,6 +313,7 @@ export default {
         { key: 'primary_image', label: this.$t('DASHBOARD.CAR.TABLE_IMAGE'), thClass: 'text-center th-image', tdClass: 'text-center base-td' },
         { key: 'car_name', label: this.$t('DASHBOARD.CAR.TABLE_CAR_NAME'), sortable: true, thClass: 'text-center th-car-name', tdClass: 'text-center base-td' },
         { key: 'category', label: this.$t('DASHBOARD.CAR.TABLE_CAR_BRAND'), sortable: true, thClass: 'text-center th-car-brand', tdClass: 'text-center base-td' },
+        { key: 'price_display', label: "Giá xe", sortable: true, thClass: 'text-center th-car-brand', tdClass: 'text-center base-td' },
         { key: 'is_hotsale', label: this.$t('DASHBOARD.CAR.TABLE_HOT_SALE'), sortable: true, thClass: 'text-center th-hot-sale', tdClass: 'text-center base-td' },
         { key: 'actions', label: this.$t('DASHBOARD.CAR.TABLE_ACTIONS'), thClass: 'text-center th-actions', tdClass: 'text-center base-td' },
       ]
@@ -962,11 +963,19 @@ export default {
     async onClickSaveModalPrice() {
       try {
         setLoading(true);
+        
+        let key;
+        const LIBRAY = {
+          PRICE: 'price',
+          PERCENTAGE: 'percentage'
+        }
+
+        key = LIBRAY[this.isUpdatePrice.type];
 
         const BODY = {
           ids: this.selectRow,
           type: this.isUpdatePrice.type,
-          price: this.isUpdatePrice.value ? parseInt(this.isUpdatePrice.value) : 0,
+          [key]: this.isUpdatePrice.value ? parseInt(this.isUpdatePrice.value) : 0,
         };
 
         const { status_code } = await posetSetPirce(BODY);
