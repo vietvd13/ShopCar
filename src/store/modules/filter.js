@@ -101,7 +101,7 @@ const mutations = {
     },
 
     SET_FILTER_DASHBOARD: (state, filter) => {
-        state.isFilter = filter;
+        state.isFilterDashboard = filter;
         Cookies.set(CONSTANTS.COOKIES.IS_FILTER_DASHBOARD, JSON.stringify(filter));
     },
 
