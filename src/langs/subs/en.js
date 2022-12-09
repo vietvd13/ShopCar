@@ -297,7 +297,7 @@ export default {
         COLOR: "Color",
         FUEL_TYPE: "Fuel type",
         GEAR_BOX: "Engine",
-        DATA_CRAWL: "Data crawl",
+        DATA_CRAWL: "Vehicle source",
         HOT_SALE: "Hot sale",
         DISTANCE: "Distance",
         PRICE: "Price",

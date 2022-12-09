@@ -317,7 +317,7 @@ export default {
         COLOR: "Màu sắc",
         FUEL_TYPE: "Loại nhiên liệu",
         GEAR_BOX: "Động cơ",
-        DATA_CRAWL: "Data crawl",
+        DATA_CRAWL: "Nguồn xe",
         HOT_SALE: "Hot sale",
         DISTANCE: "Khoảng cách",
         PRICE: "Giá tiền",

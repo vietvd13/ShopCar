@@ -297,7 +297,7 @@ export default {
         COLOR: "색깔",
         FUEL_TYPE: "연료 종류",
         GEAR_BOX: "엔진",
-        DATA_CRAWL: "데이터 크롤링",
+        DATA_CRAWL: "차량 소스",
         HOT_SALE: "뜨거운 판매",
         DISTANCE: "거리",
         PRICE: "가격",
