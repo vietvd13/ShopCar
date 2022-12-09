@@ -56,6 +56,14 @@
           />
         </template>
 
+        <template #cell(price)="price">
+          {{ formatPrice(price.item.price) }}
+        </template>
+
+        <template #cell(price_display)="price_display">
+          {{ formatPrice(price_display.item.price_display) }}
+        </template>
+
         <template #cell(is_hotsale)="is_hotsale">
           <b-badge v-if="is_hotsale.item.is_hotsale === false" variant="secondary">
             {{ $t('DASHBOARD.CAR.TABLE_TEXT_NO_HOT_SALE') }}
@@ -291,7 +299,7 @@ import { postListCar, postCreateCar, postGetDetailCar, postUpdateCar, postDelete
 import { postImages, postFile } from '@/api/modules/Upload';
 import FilterListCarDashboard from './components/FilterListCar.vue';
 import FormCar from './components/CarManagement/Form.vue';
-import { getArrValueOfArr, replaceValueWithIndex } from '@/utils/helper';
+import { getArrValueOfArr, replaceValueWithIndex, formatPrice } from '@/utils/helper';
 import Toast from '@/toast';
 import { handleTickRowTable } from '@/utils/helper';
 import CONSTANTS from '@/constants';
@@ -313,7 +321,8 @@ export default {
         { key: 'primary_image', label: this.$t('DASHBOARD.CAR.TABLE_IMAGE'), thClass: 'text-center th-image', tdClass: 'text-center base-td' },
         { key: 'car_name', label: this.$t('DASHBOARD.CAR.TABLE_CAR_NAME'), sortable: true, thClass: 'text-center th-car-name', tdClass: 'text-center base-td' },
         { key: 'category', label: this.$t('DASHBOARD.CAR.TABLE_CAR_BRAND'), sortable: true, thClass: 'text-center th-car-brand', tdClass: 'text-center base-td' },
-        { key: 'price_display', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_DISPLAY'), sortable: true, thClass: 'text-center th-car-brand', tdClass: 'text-center base-td' },
+        { key: 'price', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_ORIGIN'), sortable: true, thClass: 'text-center th-car-price', tdClass: 'text-center base-td' },
+        { key: 'price_display', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_DISPLAY'), sortable: true, thClass: 'text-center th-car-price', tdClass: 'text-center base-td' },
         { key: 'is_hotsale', label: this.$t('DASHBOARD.CAR.TABLE_HOT_SALE'), sortable: true, thClass: 'text-center th-hot-sale', tdClass: 'text-center base-td' },
         { key: 'actions', label: this.$t('DASHBOARD.CAR.TABLE_ACTIONS'), thClass: 'text-center th-actions', tdClass: 'text-center base-td' },
       ]
@@ -432,6 +441,7 @@ export default {
   },
   methods: {
     handleTickRowTable,
+    formatPrice,
     async initData() {
       setLoading(true);
       await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
