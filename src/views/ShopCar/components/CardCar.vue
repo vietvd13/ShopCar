@@ -14,6 +14,7 @@
       />
       <span class="card-car__hotsale" v-if="hotsale">
         <i class="fad fa-fire-alt" />
+        {{ $t('APP.HOT_SALE') }}
       </span>
     </div>
     <div class="card-car__desc">
@@ -129,24 +130,21 @@ export default {
 
   &__hotsale {
     position: absolute;
-    left: 0;
+    background-color: red;
+    padding: 0.3rem;
     top: 0;
-    width: 35px;
-    height: 35px;
+    left: 0;
     background-color: $white;
-
-    display: flex;
-
-    border-bottom-right-radius: 35px;
+    color: $international-orange;
+    font-weight: bold;
+    font-size: 13px;
+    z-index: 2;
 
     i {
-      color: $international-orange;
-      font-size: 17px;
-
-      margin: 5px;
+      margin-right: 5px;
     }
 
-    z-index: 2;
+    border-bottom-right-radius: 0.3rem;
   }
 
   &__img {
