@@ -30,7 +30,8 @@ export default {
     HOT_SALE: "Hot Sale",
     OPTION_OTHER: "Other",
     PLACEHOLDER_PLEASE_INPUT: "Please enter",
-    DROP_FILE: "File selection"
+    DROP_FILE: "File selection",
+    SEARCHES: "result",
   },
   TOAST: {
     SUCCESS: "Successful",

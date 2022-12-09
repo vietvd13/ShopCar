@@ -30,7 +30,8 @@ export default {
     HOT_SALE: "Hot Sale",
     OPTION_OTHER: "Khác",
     PLACEHOLDER_PLEASE_INPUT: "Vui lòng nhập",
-    DROP_FILE: "Lựa chọn file"
+    DROP_FILE: "Lựa chọn file",
+    SEARCHES: "kết quả",
   },
   TOAST: {
     SUCCESS: "Thành công",

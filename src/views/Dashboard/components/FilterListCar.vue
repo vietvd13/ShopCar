@@ -1,7 +1,7 @@
 <template>
     <b-card>
         <div class="toggle-filter" v-b-toggle="'filter-home-car'">
-            {{ $t('DASHBOARD.CAR.FILTER.FILTER_CAR') }}
+            {{ $t('DASHBOARD.CAR.FILTER.FILTER_CAR') }}<span>: {{ totalCar }} {{ $t('APP.SEARCHES') }}</span>
             <span class="icon-toggle when-open">
                 <i class="fas fa-chevron-up" />
             </span>
@@ -157,7 +157,15 @@
 
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
-                            <label for="filter-distance-dashboard">{{ $t('DASHBOARD.CAR.FILTER.DISTANCE') }}</label>
+                            <label for="filter-distance-dashboard">
+                                <b-form-checkbox
+                                    id="apply-filter-distance"
+                                    v-model="isFilter.apply_distance"
+                                    name="apply-filter-distance"
+                                >
+                                    {{ $t('SHOP_CAR.HOME.FILTER.DISTANCE') }}
+                                </b-form-checkbox>
+                            </label>
 
                             <div class="show-range">
                                 <b-row>
@@ -196,7 +204,15 @@
 
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
-                            <label for="filter-price-dashboard">{{ $t('DASHBOARD.CAR.FILTER.PRICE') }}</label>
+                            <label for="filter-price-dashboard">
+                                <b-form-checkbox
+                                    id="apply-filter-price"
+                                    v-model="isFilter.apply_price"
+                                    name="apply-filter-price"
+                                >
+                                    {{ $t('SHOP_CAR.HOME.FILTER.PRICE') }}
+                                </b-form-checkbox>
+                            </label>
 
                             <div class="show-range">
                                 <b-row>
@@ -275,6 +291,12 @@ import { validInputNumber } from '@/utils/handleInput';
 
 export default {
     name: 'FilterListCarDashboard',
+    props: {
+        totalCar: {
+            type: Number,
+            default: 0
+        },
+    },
     data() {
         return {
             isFilter: this.$store.getters.isFilterDashboard || {
@@ -287,14 +309,16 @@ export default {
                 gear_box: null,
                 is_hotsale: null,
                 is_data_crawl: null,
-                distance: [0, 50000],
+                apply_distance: false,
+                apply_price: false,
+                distance: [0, 250000],
                 price: [0, 50000]
             },
 
             configSlider: this.$store.getters.configSliderDashboard || {
                 distance: {
                     min: 0,
-                    max: 50000,
+                    max: 250000,
                 },
                 price: {
                     min: 0,
@@ -498,14 +522,16 @@ export default {
                 gear_box: null,
                 is_hotsale: null,
                 is_data_crawl: null,
-                distance: [0, 50000],
+                apply_distance: false,
+                apply_price: false,
+                distance: [0, 250000],
                 price: [0, 50000]
             }
 
             this.configSlider = {
                 distance: {
                     min: 0,
-                    max: 50000,
+                    max: 250000,
                 },
                 price: {
                     min: 0,

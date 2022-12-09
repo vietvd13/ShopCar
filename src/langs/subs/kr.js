@@ -30,7 +30,8 @@ export default {
     HOT_SALE: "뜨거운 판매",
     OPTION_OTHER: "다른",
     PLACEHOLDER_PLEASE_INPUT: "들어 오세요",
-    DROP_FILE: "파일 선택"
+    DROP_FILE: "파일 선택",
+    SEARCHES: "결과",
   },
   TOAST: {
     SUCCESS: "성공적인",

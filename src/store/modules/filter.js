@@ -16,7 +16,7 @@ function getIsFilter() {
         color: null,
         fuel_type: null,
         gear_box: null,
-        distance: [0, 50000],
+        distance: [0, 250000],
         price: [0, 50000]
     }
 }
@@ -31,7 +31,7 @@ function getConfigSlider() {
     return {
         distance: {
             min: 0,
-            max: 50000,
+            max: 250000,
         },
         price: {
             min: 0,
@@ -57,7 +57,7 @@ function getIsFilterDashboard() {
         gear_box: null,
         is_hotsale: null,
         is_data_crawl: null,
-        distance: [0, 50000],
+        distance: [0, 250000],
         price: [0, 50000]
     }
 }
@@ -72,7 +72,7 @@ function getConfigSliderDashboard() {
     return {
         distance: {
             min: 0,
-            max: 50000,
+            max: 250000,
         },
         price: {
             min: 0,
