@@ -2,7 +2,8 @@
   <div class="list-car">
     <div class="list-car__content">
       <div class="content-filter">
-        <FilterListCar 
+        <FilterListCar
+          :total-car="pagination.total"
           @filter="onClickApplyFilter"    
         />
       </div>

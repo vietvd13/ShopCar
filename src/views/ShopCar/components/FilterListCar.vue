@@ -1,7 +1,7 @@
 <template>
     <b-card>
         <div class="toggle-filter" v-b-toggle="'filter-home-car'">
-            {{ $t('SHOP_CAR.HOME.FILTER.FILTER_CAR') }}
+            {{ $t('SHOP_CAR.HOME.FILTER.FILTER_CAR') }}<span>: {{ totalCar }} {{ $t('APP.SEARCHES') }}</span>
             <span class="icon-toggle when-open">
                 <i class="fas fa-chevron-up" />
             </span>
@@ -260,6 +260,12 @@ import { validInputNumber } from '@/utils/handleInput';
 
 export default {
     name: 'FilterListCar',
+    props: {
+        totalCar: {
+            type: Number,
+            default: 0
+        },
+    },
     data() {
         return {
             isFilter: this.$store.getters.isFilter || {

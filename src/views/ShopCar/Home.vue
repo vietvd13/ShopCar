@@ -2,7 +2,8 @@
   <div class="home-shop-car">
     <div class="home-shop-car__content">
       <div class="content-filter">
-        <FilterListCar 
+        <FilterListCar
+          :total-car="totalCar"
           @filter="onClickApplyFilter"        
         />
       </div>
@@ -23,6 +24,19 @@ export default {
   components: {
     FilterListCar,
     HotSaleHome,
+  },
+  data() {
+    return {
+      totalCar: 0
+    }
+  },
+  created () {
+    this.$bus.on('HOT_SALE_TOTAL_CAR', (totalCar) => {
+      this.totalCar = totalCar;
+    })
+  },
+  destroyed () {
+    this.$bus.off('HOT_SALE_TOTAL_CAR');
   },
   methods: {
     onClickApplyFilter() {

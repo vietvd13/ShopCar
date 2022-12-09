@@ -32,10 +32,11 @@ export default {
     },
     async handleGetListHotsale() {
       try {
-        const { status_code, data } = await getListHotSale();
+        const { status_code, data, pagination } = await getListHotSale();
 
         if (status_code === 200) {
           this.items = data;
+          this.$bus.emit('HOT_SALE_TOTAL_CAR', pagination.total);
         } else {
           this.items = [];
         }
