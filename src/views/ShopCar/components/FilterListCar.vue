@@ -496,7 +496,13 @@ export default {
                 }
             }
 
-            this.$emit('filter');
+            await this.$store.dispatch('filter/setFilter', this.isFilter)
+                .then(() => {
+                    this.$emit('filter');
+                })
+                .catch(() => {
+                    this.$emit('filter');
+                })
         }
     },
 }
