@@ -322,6 +322,7 @@ export default {
       TABLE_TEXT_NO_HOT_SALE: "정상",
       TABLE_CAR_PRICE_ORIGIN: "비용",
       TABLE_CAR_PRICE_DISPLAY: "가격",
+      TABLE_CAR_PRICE_DIFF: "변형 값",
       TABLE_TEXT_DETAIL: "세부 사항",
       TABLE_TEXT_EDIT: "편집하다",
       TABLE_TEXT_DELETE: "삭제",
@@ -333,6 +334,9 @@ export default {
       UPDATE_PERCENTAGE: "퍼센트",
       UPDATE_PRICE: "금액",
       VALUE_UPDATE: "업데이트된 가격",
+      TYPE_NO_CHANGE: '끊임없는',
+      TYPE_UP: '임금 인상',
+      TYPE_DOWN: '줄이다',
       FORM: {
         TITLE_MODAL: "차량 정보 관리",
         TITLE_CAR: "제목",

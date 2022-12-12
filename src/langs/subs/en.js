@@ -319,6 +319,7 @@ export default {
       TABLE_HOT_SALE: "Hot sale",
       TABLE_CAR_PRICE_ORIGIN: "Cost",
       TABLE_CAR_PRICE_DISPLAY: "Price",
+      TABLE_CAR_PRICE_DIFF: "Variation value",
       TABLE_ACTIONS: "Manipulation",
       TABLE_TEXT_HOT_SALE: "Hot sale",
       TABLE_TEXT_NO_HOT_SALE: "Normal",
@@ -333,6 +334,9 @@ export default {
       UPDATE_PERCENTAGE: "Percent",
       UPDATE_PRICE: "Amount of money",
       VALUE_UPDATE: "Updated price",
+      TYPE_NO_CHANGE: 'Constant',
+      TYPE_UP: 'Get a raise',
+      TYPE_DOWN: 'Reduce',
       FORM: {
         TITLE_MODAL: "Vehicle information management",
         TITLE_CAR: "Title",

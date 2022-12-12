@@ -65,6 +65,17 @@
           {{ formatPrice(price_display.item.price_display) }}
         </template>
 
+        <template #cell(price_diff)="price_diff">
+          <div :class="['show-diff-price', handleShowPriceDiff(handleCalPriceDiff(price_diff.item.price, price_diff.item.price_display))]">
+            <span
+              v-show="(handleCalPriceDiff(price_diff.item.price, price_diff.item.price_display)).diff"
+            >
+              {{ (handleCalPriceDiff(price_diff.item.price, price_diff.item.price_display)).diff }}%
+            </span>
+            {{ $t(handleShowTextPriceDiff(handleCalPriceDiff(price_diff.item.price, price_diff.item.price_display))) }}
+          </div>
+        </template>
+
         <template #cell(is_hotsale)="is_hotsale">
           <b-badge v-if="is_hotsale.item.is_hotsale === false" variant="secondary">
             {{ $t('DASHBOARD.CAR.TABLE_TEXT_NO_HOT_SALE') }}
@@ -302,7 +313,7 @@ import FilterListCarDashboard from './components/FilterListCar.vue';
 import FormCar from './components/CarManagement/Form.vue';
 import { getArrValueOfArr, replaceValueWithIndex, formatPrice } from '@/utils/helper';
 import Toast from '@/toast';
-import { handleTickRowTable } from '@/utils/helper';
+import { handleTickRowTable, handleCalPriceDiff } from '@/utils/helper';
 import CONSTANTS from '@/constants';
 
 export default {
@@ -318,12 +329,13 @@ export default {
     headerTable() {
       return [
         { key: 'delete_multiple', label: '', thClass: 'th-col-check text-center', tdClass: 'td-col-check text-center' },
-        { key: 'created_at', label: this.$t('DASHBOARD.CAR.TABLE_NO'), sortable: true, thClass: 'text-center td-no', tdClass: 'text-center base-td' },
+        { key: 'created_at', label: this.$t('DASHBOARD.CAR.TABLE_NO'), sortable: true, thClass: 'text-center th-no', tdClass: 'text-center base-td' },
         { key: 'primary_image', label: this.$t('DASHBOARD.CAR.TABLE_IMAGE'), thClass: 'text-center th-image', tdClass: 'text-center base-td' },
         { key: 'car_name', label: this.$t('DASHBOARD.CAR.TABLE_CAR_NAME'), sortable: true, thClass: 'text-center th-car-name', tdClass: 'text-center base-td' },
         { key: 'category', label: this.$t('DASHBOARD.CAR.TABLE_CAR_BRAND'), sortable: true, thClass: 'text-center th-car-brand', tdClass: 'text-center base-td' },
         { key: 'price', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_ORIGIN'), sortable: true, thClass: 'text-center th-car-price', tdClass: 'text-center base-td' },
         { key: 'price_display', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_DISPLAY'), sortable: true, thClass: 'text-center th-car-price', tdClass: 'text-center base-td' },
+        { key: 'price_diff', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_DIFF'), sortable: false, thClass: 'text-center th-car-price-diff', tdClass: 'text-center base-td' },
         { key: 'is_hotsale', label: this.$t('DASHBOARD.CAR.TABLE_HOT_SALE'), sortable: true, thClass: 'text-center th-hot-sale', tdClass: 'text-center base-td' },
         { key: 'actions', label: this.$t('DASHBOARD.CAR.TABLE_ACTIONS'), thClass: 'text-center th-actions', tdClass: 'text-center base-td' },
       ]
@@ -443,6 +455,7 @@ export default {
   methods: {
     handleTickRowTable,
     formatPrice,
+    handleCalPriceDiff,
     async initData() {
       setLoading(true);
       await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
@@ -1023,6 +1036,24 @@ export default {
         }
       });
     },
+    handleShowPriceDiff(diffCal) {
+      const LIBRAY_CLASS = {
+        'NO_CHANGE': 'type-no-change',
+        'UP': 'type-up-change',
+        'DOWN': 'type-down-change'
+      }
+
+      return LIBRAY_CLASS[diffCal['type']];
+    },
+    handleShowTextPriceDiff(diffCal) {
+      const LIBRAY_TEXT = {
+        'NO_CHANGE': 'DASHBOARD.CAR.TYPE_NO_CHANGE',
+        'UP': 'DASHBOARD.CAR.TYPE_UP',
+        'DOWN': 'DASHBOARD.CAR.TYPE_DOWN'
+      }
+
+      return LIBRAY_TEXT[diffCal['type']];
+    }
   },
 }
 </script>
@@ -1064,6 +1095,35 @@ export default {
             background-color: $mine-shaft;
             color: $white;
           }
+
+          .th-no {
+            width: 20px;
+          }
+
+          .th-image {
+            width: 200px;
+          }
+
+          .th-car-name {
+            width: 200px;
+          }
+
+          .th-car-brand {
+            width: 130px;
+          }
+
+          .th-car-price,
+          .th-car-price-diff {
+            min-width: 150px;
+          }
+
+          .th-hot-sale {
+            width: 150px;
+          }
+
+          .th-actions {
+            width: 100px;
+          }
         }
       }
 
@@ -1085,10 +1145,6 @@ export default {
 
             .item-action {
               margin: 10px 0;
-            }
-
-            .avatar-collaborators {
-              width: 4cm;
             }
           }
         }
@@ -1113,5 +1169,17 @@ export default {
 
 .item-form {
   margin-bottom: 10px;
+}
+
+.show-diff-price {
+  font-weight: 500;
+}
+
+.type-up-change {
+  color: $eucalyptus;
+}
+
+.type-down-change {
+  color: $alizarin-crimson;
 }
 </style>

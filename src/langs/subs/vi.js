@@ -344,6 +344,7 @@ export default {
       TABLE_ACTIONS: "Thao tác",
       TABLE_CAR_PRICE_ORIGIN: "Giá gốc",
       TABLE_CAR_PRICE_DISPLAY: "Giá xe",
+      TABLE_CAR_PRICE_DIFF: 'Giá chênh lệch',
 
       TABLE_TEXT_HOT_SALE: "Hot sale",
       TABLE_TEXT_NO_HOT_SALE: "Bình thường",
@@ -361,6 +362,10 @@ export default {
       UPDATE_PERCENTAGE: 'Phần trăm',
       UPDATE_PRICE: 'Số tiền',
       VALUE_UPDATE: "Giá cập nhật",
+
+      TYPE_NO_CHANGE: 'Không đổi',
+      TYPE_UP: 'Tăng',
+      TYPE_DOWN: 'Giảm',
 
       FORM: {
         TITLE_MODAL: "Quản lý thông tin xe",

@@ -104,6 +104,38 @@ function handleTickRowTable(id, arr) {
     return arr.includes(id) ? id : null;
 }
 
+function handleCalPriceDiff(price, price_display) {
+    if (price === price_display) {
+        return {
+            type: 'NO_CHANGE',
+            diff: 0,
+        }
+    }
+
+    const result = {
+        type: null,
+        diff: 0,
+    }
+
+    if (price < price_display) {
+        result.type = 'DOWN';
+    } else {
+        result.type = 'UP';
+    }
+
+    let diff = ((((price_display - price)) / price) * 100);
+    
+    if (diff < 0) {
+        diff = diff * -1;
+    }
+
+    diff = diff.toFixed(2);
+
+    result.diff = diff || 0;
+
+    return result;
+}
+
 export {
     getArrValueOfArr,
     replaceValueWithIndex,
@@ -112,5 +144,6 @@ export {
     formatNumber,
     elementInViewport,
     handleSrollTop,
-    handleTickRowTable
+    handleTickRowTable,
+    handleCalPriceDiff
 }
