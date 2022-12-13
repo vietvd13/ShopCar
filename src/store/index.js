@@ -16,7 +16,7 @@ const modules = {
 	loading,
 	sizeScreen,
 	auth,
-	filter
+	filter,
 };
 
 const store = new Vuex.Store({

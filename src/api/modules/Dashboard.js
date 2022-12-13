@@ -75,3 +75,27 @@ export function postEditInsurance(BODY = null, PARAMS = null) {
 export function postListCar(BODY = null, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.GET_LIST_CAR_DASHBOARD, BODY, PARAMS);
 }
+
+export function postCreateCar(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_CREATE_CAR_DASHBOARD, BODY, PARAMS);
+}
+
+export function postGetDetailCar(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.GET_DETAIL_CAR_DASHBOARD, BODY, PARAMS);
+}
+
+export function postUpdateCar(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_UPDATE_CAR_DASHBOARD, BODY, PARAMS);
+}
+
+export function postDeleteCar(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_DELETE_CAR_DASHBOARD, BODY, PARAMS)
+}
+
+export function postSetHotsaleCar(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_SET_HOTSALE_CAR_DASHBOARD, BODY, PARAMS);
+}
+
+export function posetSetPirce(BODY = null, PARAMS = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_SET_PRICE_CAR_DASHBOARD, BODY, PARAMS);
+}

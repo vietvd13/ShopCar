@@ -4,7 +4,7 @@
         class="balloons-contact" 
         @click="scrollToContactSupport()"
     >
-        <i class="fas fa-envelope" />
+        <i class="fas fa-comments" />
     </div>
 </template>
 
@@ -19,17 +19,21 @@ export default {
         }
     },
     mounted () {
-        this.isVisible = elementInViewport(document.getElementById('zone-contact-support'));
+        const el = document.getElementById('tab-collaborators-home');
 
-        if (document.getElementsByClassName('app-shop').length) {
-            document.getElementsByClassName('app-shop')[0].onscroll = () => {
-                this.isVisible = elementInViewport(document.getElementById('zone-contact-support'));
+        if (el) {
+            this.isVisible = elementInViewport(document.getElementById('tab-collaborators-home'));
+
+            if (document.getElementsByClassName('app-shop').length) {
+                document.getElementsByClassName('app-shop')[0].onscroll = () => {
+                    this.isVisible = elementInViewport(document.getElementById('tab-collaborators-home'));
+                }
             }
         }
     },
     methods: {
         scrollToContactSupport() {
-            const EL = document.getElementById('zone-contact-support');
+            const EL = document.getElementById('tab-collaborators-home');
             const APP_SHOP = document.getElementsByClassName('app-shop');
 
             APP_SHOP[0].scroll({
@@ -46,7 +50,7 @@ export default {
 
 .balloons-contact {
     z-index: 100;
-    position: absolute;
+    position: fixed;
     cursor: pointer;
 
     bottom: 30px;

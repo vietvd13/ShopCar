@@ -83,3 +83,23 @@ label {
   }
 }
 
+.th-col-check {
+  width: 10px !important;
+}
+
+.td-col-check {
+  .custom-checkbox {
+    margin-left: 0.5rem;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}

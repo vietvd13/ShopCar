@@ -1,5 +1,5 @@
 <template>
-    <div class="list-collaborators-home">
+    <div class="list-collaborators-home" id="tab-collaborators-home">
         <TitleContent>{{ $t('SHOP_CAR.HOME.COLLABORATORS.TITLE') }}</TitleContent>
 
         <div class="list-collaborators-home__list">

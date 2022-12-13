@@ -1,38 +1,67 @@
 <template>
   <div class="insurance-page container">
     <b-row>
-      <b-card class="w-100 mt-2">
-        <template v-if="file">
-          <ViewPDF :file="`${domainPDF}${file}`" class="view-pdf" />
-        </template>
-
-        <template v-else>
-          <b-row>
-            <b-col class="text-center">
-              <span>{{ $t("APP.NO_DATA") }}</span>
-            </b-col>
-          </b-row>
-        </template>
-      </b-card>
+      <b-col>
+        <b-card class="w-100 mt-2">
+          <template v-if="file.length">
+            <b-img-lazy
+              v-for="(image, idx) in file"
+              :key="idx"
+              :src="`${domainImage}${image}`"
+              :blank-src="require('@/assets/images/noimage.webp')"
+              fluid
+              :alt="image"
+              class="display-image"
+            />
+          </template>
+          <template v-else>
+            <b-row>
+              <b-col class="text-center">
+                <span>{{ $t("APP.NO_DATA") }}</span>
+              </b-col>
+            </b-row>
+          </template>
+        </b-card>
+      </b-col>
     </b-row>
 
     <b-row>
-      <b-col class="text-right mt-2">
-        <b-button variant="primary" class="btn-app" @click="handleShowModal">
+      <b-col class="text-center mt-2 mb-2">
+        <b-button
+          block
+          variant="primary"
+          class="btn-app"
+          @click="handleShowModal"
+        >
           {{ $t("APP.BUTTON_UPDATE") }}
         </b-button>
       </b-col>
     </b-row>
 
     <div class="insurance-page__modal">
-      <b-modal v-model="isModal.show" no-close-on-backdrop no-close-on-esc hide-header-close static scrollable>
-        <b-form>
-          <b-form-group label-cols-sm="4" label-cols-md="4" label-cols-lg="4" label-cols-xl="4" label-cols="4"
-            label-for="file" label="File">
-            <b-form-file id="file" v-model="init_file" accept="application/pdf" placeholder="Choose a file"
-              drop-placeholder="Drop file here..." type="file"></b-form-file>
-          </b-form-group>
-        </b-form>
+      <b-modal 
+        v-model="isModal.show" 
+        no-close-on-backdrop 
+        no-close-on-esc 
+        hide-header-close 
+        static 
+        scrollable
+        :title="$t('ROUTER.INSURANCE_MANAGEMENT')"
+      >
+        <label for="file">
+          {{ $t('APP.DROP_FILE') }}
+        </label>
+
+        <b-form-file 
+          id="file" 
+          v-model="init_file"  
+          accept="image/*" 
+          :placeholder="$t('APP.DROP_FILE')"
+          :drop-placeholder="$t('APP.DROP_FILE')"
+          :browse-text="$t('APP.DROP_FILE')"
+          type="file"
+          multiple
+        />
 
         <template #modal-footer>
           <b-row align-v="baseline">
@@ -56,19 +85,16 @@
 
 <script>
 import { getFilePDFInsurance } from "@/api/modules/Home";
-import { postFile } from "@/api/modules/Upload";
+import { postImages } from "@/api/modules/Upload";
 import Toast from "@/toast";
 import { postEditInsurance } from "@/api/modules/Dashboard";
-import ViewPDF from '@/components/ViewPDF.vue';
+import { setLoading } from "@/utils/setLoading";
 
 export default {
-  name: "insuranceManagement",
-  components: {
-    ViewPDF,
-  },
+  name: "InsuranceManagement",
   data() {
     return {
-      file: null,
+      file: [],
       current_id: "",
       init_file: null,
       isModal: {
@@ -77,7 +103,7 @@ export default {
     };
   },
   computed: {
-    domainPDF() {
+    domainImage() {
       return process.env.VUE_APP_URL_IMAGE;
     },
   },
@@ -87,7 +113,9 @@ export default {
 
   methods: {
     async initData() {
+      setLoading(true);
       await this.handleGetFilePDFinsurance();
+      setLoading(false);
     },
 
     async handleGetFilePDFinsurance() {
@@ -119,19 +147,34 @@ export default {
     },
 
     async handleUpdateinsurance() {
+      setLoading(true);
+
       if (!this.init_file) {
         return Toast.warning(this.$t("TOAST_MESSAGE.REQUIRED_FILE"));
       }
-      const response = await postFile(this.init_file);
-      if (response.status) {
-        this.file = response.data.image;
+
+      const result = [];
+
+      for (let image = 0; image < this.init_file.length; image++) {
+        result.push({
+          type_import: 'new',
+          url: this.init_file[image]
+        })
       }
+
+      const response = await postImages(result);
+
+      if (response.status) {
+        this.file = response.data;
+      }
+
       const BODY = {
         file: this.file,
         insurance_id: this.current_id,
       };
 
       const response_update = await postEditInsurance(BODY);
+
       if (response_update.status_code === 200) {
         Toast.success(response_update.message);
         this.hanldeCloseModal();
@@ -139,6 +182,8 @@ export default {
       } else {
         Toast.error(response_update.message);
       }
+
+      setLoading(false);
     },
   },
 };
@@ -148,7 +193,6 @@ export default {
 @import "@/scss/variables.scss";
 
 .insurance-page {
-
   &__header,
   &__content {
     margin-bottom: 10px;
@@ -160,15 +204,10 @@ export default {
     }
   }
 
-  .view-pdf {
+  .display-image {
     width: 100%;
-    height: calc(100vh - 250px);
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
   }
 
-  .pdf-app #outerContainer {
-    z-index: 1;
-  }
+  margin-bottom: 10px;
 }
 </style>

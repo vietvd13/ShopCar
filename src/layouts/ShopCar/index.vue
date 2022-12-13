@@ -1,42 +1,37 @@
 <template>
-  <div class="app-shop" :style="handleOverflow">
-    <!-- Navbar -->
-    <Navbar />
-
-    <!-- Banner -->
-    <Banner />
-
-    <b-container>
-
-      <!-- App View -->
-      <AppMain />
-
-      <!-- Happy Moment -->
-      <div 
-        class="app-shope__happy-moment"
-        v-if="showHappyMoment"
-      >
-        <CustomerFeedback :items="listFeedback" />
-      </div>
-
-      <!-- Collaborators -->
-      <div 
-        class="app-shop__collaborators"
-        v-if="showCollaborators"
-      >
-        <ListCollaborators  :items="listCollaborators" />
-      </div>
-
-      <!-- Contact Support -->
-      <div class="app-shop__contact-support">
-        <ContactSupport />
-      </div>
-    </b-container>
-
-    <!-- Footer -->
-    <FooterHome />
-
+  <div class="app-body">
     <BalloonsContact />
+    
+    <div class="app-shop" :style="handleOverflow">
+      <!-- Navbar -->
+      <Navbar />
+      <!-- Banner -->
+      <Banner />
+      <b-container>
+        <!-- App View -->
+        <AppMain />
+        <!-- Happy Moment -->
+        <div
+          class="app-shope__happy-moment"
+          v-if="showHappyMoment"
+        >
+          <CustomerFeedback :items="listFeedback" />
+        </div>
+        <!-- Collaborators -->
+        <div
+          class="app-shop__collaborators"
+          v-if="showCollaborators"
+        >
+          <ListCollaborators  :items="listCollaborators" />
+        </div>
+        <!-- Contact Support -->
+        <div class="app-shop__contact-support">
+          <ContactSupport />
+        </div>
+      </b-container>
+      <!-- Footer -->
+      <FooterHome />
+    </div>
   </div>
 </template>
 
@@ -142,6 +137,10 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/scss/variables';
+
+.app-body  {
+  position: relative;
+}
 
 .app-shop {
   height: 100vh;

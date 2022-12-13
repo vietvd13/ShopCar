@@ -120,8 +120,6 @@ export default {
           }
 
           Toast.success(this.$t('TOAST_MESSAGE.CREATE_CUSTOMER_SUPPORT_SUCCESS'));
-        } else {
-          Toast.warning(this.$t('TOAST_MESSAGE.CREATE_CUSTOMER_SUPPORT_ERROR'));
         }
 
         setLoading(false);

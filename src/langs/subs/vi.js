@@ -24,11 +24,14 @@ export default {
     PLEASE_INPUT: "Vui lòng nhập",
     PLEASE_SELECT: "Vui lòng lựa chọn",
     TEXT_VIEW_MORE: "Xem toàn bộ...",
-    PREVIEW: 'Preview',
-    UPDATE_BANNER: 'Cập nhật banner',
-    NO_DATA: 'Không có dữ liệu',
-    HOT_SALE: 'Hot Sale',
-
+    PREVIEW: "Preview",
+    UPDATE_BANNER: "Cập nhật banner",
+    NO_DATA: "Không có dữ liệu",
+    HOT_SALE: "Hot Sale",
+    OPTION_OTHER: "Khác",
+    PLACEHOLDER_PLEASE_INPUT: "Vui lòng nhập",
+    DROP_FILE: "Lựa chọn file",
+    SEARCHES: "kết quả",
   },
   TOAST: {
     SUCCESS: "Thành công",
@@ -46,7 +49,7 @@ export default {
     CAR_MANAGEMENT: "Quản lý xe",
     HAPPY_MOMENT: "Khoảng khắc vui vẻ",
     CUSTOMER_SUPPORT: "Hỗ trợ khách hàng",
-    BANNER_MANAGEMENT: 'Quản lý banner',
+    BANNER_MANAGEMENT: "Quản lý banner",
     PROFILE: "Thông tin cá nhân",
     POLICY_MANAGEMENT: "Quản lý chính sách",
     INSURANCE_MANAGEMENT: "Quản lý bảo hiểm",
@@ -56,9 +59,9 @@ export default {
     CHANGE_LANGUAGE_ERROR: "Bạn đã thay đổi ngôn ngữ thất bại",
 
     VALIDATE_ACCOUNT_LOGIN: "Định dạng tài khoản chưa chính xác. Vui lòng kiểm tra lại tài khoản",
-    LOGIN_ERROR: 'Đăng nhập thất bại, vui lòng kiểm tra lại tài khoản',
+    LOGIN_ERROR: "Đăng nhập thất bại, vui lòng kiểm tra lại tài khoản",
 
-    LOGOUT_ERROR: 'Đăng xuất thất bại',
+    LOGOUT_ERROR: "Đăng xuất thất bại",
 
     CREATE_COLLABORATORS_SUCCESS: "Bạn đã tạo cộng tác viên thành công",
     CREATE_COLLABORATORS_ERROR: "Bạn đã tạo cộng tác viên thất bại",
@@ -80,13 +83,19 @@ export default {
     CREATE_CUSTOMER_SUPPORT_SUCCESS: "Bạn đã tạo liên hệ hỗ trợ thành công. Vui lòng chờ đợi phản hồi của chúng tôi",
     CREATE_CUSTOMER_SUPPORT_ERROR: "Bạn chưa tạo liên hệ hỗ trợ thành công, vui lòng thử lại",
 
-    UPDATE_BANNER_SUCCESS: 'Bạn đã cập nhật banner thành công',
-    UPDATE_BANNER_ERROR: 'Bạn đã cập nhật banner thất bại',
+    UPDATE_BANNER_SUCCESS: "Bạn đã cập nhật banner thành công",
+    UPDATE_BANNER_ERROR: "Bạn đã cập nhật banner thất bại",
 
     REQUIRED_FILE: "Vui lòng chọn file",
 
     CHANGE_PROFILE_SUCCESS: "Bạn đã cập nhật hồ sơ thành công",
-    CHANGE_PROFILE_ERROR: "Bạn dã cập nhật hồ sơ thất bại"
+    CHANGE_PROFILE_ERROR: "Bạn dã cập nhật hồ sơ thất bại",
+
+    CREATE_CAR_SUCCESS: "Bạn đã tạo xe thành công",
+    UPDATE_CAR_SUCCESS: "Bạn đã cập nhật xe thành công",
+    DELETE_CAR_SUCCESS: "Bạn đã xoá xe thành công",
+    SET_HOTSALE_CAR_SUCCESS: "Bạn đã cập nhật xe hotsale thành công",
+    SET_PRICE_CAR_SUCCESS: "Bạn đã cập nhật giá xe thành công",
   },
   SHOP_CAR: {
     HOME: {
@@ -109,11 +118,11 @@ export default {
         DISTANCE: "Khoảng cách",
         PRICE: "Giá tiền",
 
-        PLACEHOLDER_SEARCH: 'Từ khoá tìm kiếm',
-        PLACEHOLDER_FROM_YEAR: 'Từ năm',
-        PLACEHOLDER_TO_YEAR: 'Tới năm',
-        PLACEHOLDER_INPUT_MAX_DISTANCE: 'Giá trị lớn nhất',
-        PLACEHOLDER_INPUT_MAX_PRICE: 'Giá trị lớn nhất'
+        PLACEHOLDER_SEARCH: "Từ khoá tìm kiếm",
+        PLACEHOLDER_FROM_YEAR: "Từ năm",
+        PLACEHOLDER_TO_YEAR: "Tới năm",
+        PLACEHOLDER_INPUT_MAX_DISTANCE: "Giá trị lớn nhất",
+        PLACEHOLDER_INPUT_MAX_PRICE: "Giá trị lớn nhất"
       },
       SORT_LIST_CAR: {
         CAR_NAME: "Tên xe",
@@ -154,21 +163,22 @@ export default {
         MAP: "Bản đồ"
       },
       PROFILE: {
-        TITLE: 'Trang cá nhân',
+        TITLE: "Trang cá nhân",
       },
       LOGOUT: {
-        TITLE: 'Đăng xuất'
+        TITLE: "Đăng xuất"
       }
     },
     DETAIL_CAR: {
-      TITLE: 'Thông tin xe chi tiết',
-      TITLE_IMAGE: 'Thông tin hình ảnh',
-      TITLE_BASIC_INFOR: 'Thông tin cơ bản',
-      TITLE_SALLER_INFOR: 'Thông tin người bán',
-      TITLE_VEHICLE_OPTIONS_AND_DETAILS: 'Tùy chọn xe và chi tiết',
-      TITLE_PERFORMANCE_CHECK: 'Kiểm tra hiệu suất',
+      TITLE: "Thông tin xe chi tiết",
+      TITLE_IMAGE: "Thông tin hình ảnh",
+      TITLE_BASIC_INFOR: "Thông tin cơ bản",
+      TITLE_SALLER_INFOR: "Thông tin người bán",
+      TITLE_VEHICLE_OPTIONS_AND_DETAILS: "Tùy chọn xe và chi tiết",
+      TITLE_PERFORMANCE_CHECK: "Kiểm tra hiệu suất",
 
-      PRICE: 'Giá bán',
+      PRICE: "Giá bán",
+      CATEGORIES: "Hãng xe",
       LICENSE_PLATE : "Biển số xe",
       YEAR: "Năm",
       DISTANCE_DRIVEN: "Khoảng cách lái xe",
@@ -180,25 +190,25 @@ export default {
       SEIZURE: "Co giật",
       MORTGAGE: "Thế chấp",
       PRESENTATION_NUMBER: "Số trình bày",
-      STORAGE_LOCATION: 'Khu vực lưu trữ',
+      STORAGE_LOCATION: "Khu vực lưu trữ",
 
       CONTACT: "Liên hệ",
       NAME: "Tên",
-      EMPLOYEE_ID: 'ID nhân viên',
-      AFFILIATED_COMPANY: 'Trực thuộc',
-      BUSINESS_ADDRESS: 'Địa chỉ kinh doanh',
-      PARKING_LOCATION: 'Vị trí đỗ xe',
+      EMPLOYEE_ID: "ID nhân viên",
+      AFFILIATED_COMPANY: "Trực thuộc",
+      BUSINESS_ADDRESS: "Địa chỉ kinh doanh",
+      PARKING_LOCATION: "Vị trí đỗ xe",
 
-      CAR_OPTION_EXTERIOR: 'Ngoại thất',
-      CAR_OPTION_GUTS: 'Nội thất',
-      CAR_OPTION_SAFETY: 'An toàn',
-      CAR_OPTION_CONVENIENCE: 'Tiện ích',
+      CAR_OPTION_EXTERIOR: "Ngoại thất",
+      CAR_OPTION_GUTS: "Nội thất",
+      CAR_OPTION_SAFETY: "An toàn",
+      CAR_OPTION_CONVENIENCE: "Tiện ích",
     },
     CAR_BUYING_POLICY: {
-      TITLE: 'Chính sách mua xe'
+      TITLE: "Chính sách mua xe"
     },
     CONTACT: {
-      TITLE: 'Liên hệ'
+      TITLE: "Liên hệ"
     }
   },
   DASHBOARD: {
@@ -299,21 +309,98 @@ export default {
       },
     },
     CAR: {
-      BUTTON_ADD_NEW: 'Thêm mới',
-      BUTTON_ACTIONS: 'Thao tác',
+      FILTER: {
+        FILTER_CAR: "Lọc danh sách xe",
 
-      TABLE_NO: 'STT',
-      TABLE_IMAGE: 'Hình ảnh',
-      TABLE_CAR_NAME: 'Tên xe',
-      TABLE_CAR_BRAND: 'Hãng xe',
-      TABLE_HOT_SALE: 'Hot sale',
-      TABLE_ACTIONS: 'Thao tác',
+        SEARCH: "Tìm kiếm",
+        YEAR: "Năm sản xuất",
+        CATEGORIES: "Hãng xe",
+        COLOR: "Màu sắc",
+        FUEL_TYPE: "Loại nhiên liệu",
+        GEAR_BOX: "Động cơ",
+        DATA_CRAWL: "Nguồn xe",
+        HOT_SALE: "Hot sale",
+        DISTANCE: "Khoảng cách",
+        PRICE: "Giá tiền",
 
-      TABLE_TEXT_HOT_SALE: 'Hot sale',
-      TABLE_TEXT_NO_HOT_SALE: 'Bình thường',
+        PLACEHOLDER_SEARCH: "Từ khoá tìm kiếm",
+        PLACEHOLDER_FROM_YEAR: "Từ năm",
+        PLACEHOLDER_TO_YEAR: "Tới năm",
+        PLACEHOLDER_INPUT_MAX_DISTANCE: "Giá trị lớn nhất",
+        PLACEHOLDER_INPUT_MAX_PRICE: "Giá trị lớn nhất",
 
-      TABLE_TEXT_EDIT: 'Chỉnh sửa',
-      TABLE_TEXT_DELETE: 'Xoá',
+        TEXT_YES: "Có",
+        TEXT_NO: "Không",
+      },
+
+      BUTTON_ADD_NEW: "Thêm mới",
+      BUTTON_ACTIONS: "Thao tác",
+
+      TABLE_NO: "STT",
+      TABLE_IMAGE: "Hình ảnh",
+      TABLE_CAR_NAME: "Tên xe",
+      TABLE_CAR_BRAND: "Hãng xe",
+      TABLE_HOT_SALE: "Hot sale",
+      TABLE_ACTIONS: "Thao tác",
+      TABLE_CAR_PRICE_ORIGIN: "Giá gốc",
+      TABLE_CAR_PRICE_DISPLAY: "Giá xe",
+      TABLE_CAR_PRICE_DIFF: 'Giá chênh lệch',
+
+      TABLE_TEXT_HOT_SALE: "Hot sale",
+      TABLE_TEXT_NO_HOT_SALE: "Bình thường",
+
+      TABLE_TEXT_DETAIL: 'Chi tiết',
+      TABLE_TEXT_EDIT: "Chỉnh sửa",
+      TABLE_TEXT_DELETE: "Xoá",
+
+      ACITON_DELETE: "Xoá",
+      ACTION_ADD_HOT_SALE: "Đẩy hotsale",
+      ACTION_REMOVE_HOT_SALE: "Bỏ hotsale",
+      ACTION_ADD_PRICE: "Cập nhật giá tiền",
+
+      TYPE_UPDATE: "Loại cập nhật",
+      UPDATE_PERCENTAGE: 'Phần trăm',
+      UPDATE_PRICE: 'Số tiền',
+      VALUE_UPDATE: "Giá cập nhật",
+
+      TYPE_NO_CHANGE: 'Không đổi',
+      TYPE_UP: 'Tăng',
+      TYPE_DOWN: 'Giảm',
+
+      FORM: {
+        TITLE_MODAL: "Quản lý thông tin xe",
+
+        TITLE_CAR: "Tiêu đề",
+        PLACEHOLDER_TITLE_CAR: "Nhập tiêu đề",
+
+        CAR_OPTION_EXTERIOR: "Ngoại thất",
+        CAR_OPTION_GUTS: "Nội thất",
+        CAR_OPTION_SAFETY: "An toàn",
+        CAR_OPTION_CONVENIENCE: "Tiện ích",
+        PLACEHOLDER_OPTION: "Nhập option",
+
+        PLACEHOLDER_PRICE: "Vui lòng nhập giá tiền",
+        PLACEHOLDER_CATEGORIES: "Vui lòng lựa chọn hãng xe",
+        PLACEHOLDER_LICENSE_PLATE: "Vui lòng nhập biển số xe",
+        PLACEHOLDER_YEAR: "Vùi lòng nhập năm sản xuất",
+        PLACEHOLDER_DISTANCE_DRIVEN: "Vui lòng nhập khoảng cách di chuyển",
+        PLACEHOLDER_FUEL_TYPE: "Vui lòng lựa chọn loại nhiên liệu",
+        PLACEHOLDER_TRANSMISSION: "Vui lòng lựa chọn loại truyền tải",
+        PLACEHOLDER_DISPLACEMENT: "Vui lòng lựa chọn loại di chuyển",
+        PLACEHOLDER_COLOR: "Vui lòng lựa chọn màu sắc",
+        PLACEHOLDER_CAR_TYPE: "Vui lòng lựa chọn loại xe",
+        PLACEHOLDER_SEIZURE: "Vui lòng lựa chọn loại co giật",
+        PLACEHOLDER_MORTGAGE: "Vui lòng lựa chọn loại thấp chế",
+        PLACEHOLDER_PRESENTATION_NUMBER: "Vui lòng nhập số trình bày",
+        PLACEHOLDER_STORAGE_LOCATION: "Vui lòng nhập khu vực lưu trữ",
+        PLACEHOLDER_CONTACT: "Vui lòng nhập liên hệ",
+        PLACEHOLDER_NAME: "Vui lòng nhập tên người bán",
+        PLACEHOLDER_EMPLOYEE_ID: "Vui lòng nhập mã số nhân viên",
+        PLACEHOLDER_AFFILIATED_COMPANY: "Vui lòng nhập công ty liên kết",
+        PLACEHOLDER_BUSINESS_ADDRESS: "Vui lòng nhập địa chỉ doanh nghiệp",
+        PLACEHOLDER_PARKING_LOCATION: "Vui lòng nhập vị trí đặt xe",
+        PLACEHOLDER_IMPORT_PERFORMANCE_CHECK: "Vui lòng nhập",
+      }
     }
   },
 };

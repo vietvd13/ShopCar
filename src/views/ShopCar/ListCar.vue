@@ -2,7 +2,8 @@
   <div class="list-car">
     <div class="list-car__content">
       <div class="content-filter">
-        <FilterListCar 
+        <FilterListCar
+          :total-car="pagination.total"
           @filter="onClickApplyFilter"    
         />
       </div>
@@ -17,6 +18,7 @@
 
       <div class="content-pagination">
         <b-pagination
+          v-if="pagination.total > 0"
           v-model="pagination.current_page"
           :total-rows="pagination.total"
           :per-page="pagination.per_page"
@@ -135,14 +137,18 @@ export default {
           BODY.filter.to_year = FILTER.to_year;
         }
 
-        if (FILTER.price) {
-          BODY.filter.from_price = parseInt(FILTER.price[0]);
-          BODY.filter.to_price = parseInt(FILTER.price[1]);
+        if (FILTER.apply_price) {
+          if (FILTER.price) {
+            BODY.filter.from_price = parseInt(FILTER.price[0]);
+            BODY.filter.to_price = parseInt(FILTER.price[1]);
+          }
         }
 
-        if (FILTER.distance) {
-          BODY.filter.from_distance = parseInt(FILTER.distance[0]);
-          BODY.filter.to_distance = parseInt(FILTER.distance[1]);
+        if (FILTER.apply_distance) {
+          if (FILTER.distance) {
+            BODY.filter.from_distance = parseInt(FILTER.distance[0]);
+            BODY.filter.to_distance = parseInt(FILTER.distance[1]);
+          }
         }
 
         if (FILTER.categories) {

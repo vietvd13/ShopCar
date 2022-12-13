@@ -47,8 +47,10 @@
       >
       <template #cell(delete_multiple)="delete_multiple">
           <b-form-checkbox
+            :key="delete_multiple.item._id"
             :value="delete_multiple.item._id"
             :unchecked-value="delete_multiple.item._id"
+            :checked="handleTickRowTable(delete_multiple.item._id, selectRow)"
             @change="onSelectDelete"
           />
         </template>
@@ -220,6 +222,7 @@ import ImportListImage from './components/ImportListImage.vue';
 import { setLoading } from '@/utils/setLoading';
 import Toast from '@/toast';
 import { getArrValueOfArr, replaceValueWithIndex } from '@/utils/helper';
+import { handleTickRowTable } from '@/utils/helper';
 
 export default {
   name: 'HappyMoment',
@@ -257,7 +260,7 @@ export default {
   computed: {
     headerTable() {
       return [
-        { key: 'delete_multiple', label: '', thClass: 'text-center', tdClass: 'text-center td-delete-multiple' },
+        { key: 'delete_multiple', label: '', thClass: 'th-col-check text-center', tdClass: 'td-col-check text-center td-delete-multiple' },
         { key: 'no', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.NO'), thClass: 'text-center', tdClass: 'text-center base-td td-no' },
         { key: 'primary_image', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.PRIMARY_IMAGE'), thClass: 'text-center', tdClass: 'text-center td-primary-image' },
         { key: 'title', label: this.$t('DASHBOARD.HAPPY_MOMENT.TABLE.TITLE'), sortable: true, thClass: 'text-center', tdClass: 'text-center' },
@@ -306,6 +309,7 @@ export default {
     this.initData();
   },
   methods: {
+    handleTickRowTable,
     async initData() {
       setLoading(true);
 
@@ -643,7 +647,7 @@ export default {
             text-align: center;
             vertical-align: middle;
 
-            background-color: $international-orange;
+            background-color: $mine-shaft;
             color: $white;
           }
         }
@@ -652,7 +656,7 @@ export default {
       tbody {
         tr {
           td {
-            min-width: 130px;
+            // min-width: 130px;
 
             text-align: center;
             vertical-align: middle;

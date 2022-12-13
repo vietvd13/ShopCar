@@ -8,7 +8,7 @@
                 </p>
                 <div class="content-infor">
                     <b-row>
-                        <b-col cols="12" xs="12" sm="12" md="12" lg="7">
+                        <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="7">
                             <b-table-simple
                                 bordered
                                 no-border-collapse
@@ -109,7 +109,7 @@
                                 </b-tbody>
                             </b-table-simple>
                         </b-col>
-                        <b-col cols="12" xs="12" sm="12" md="12" lg="5">
+                        <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="5">
                             <b-table-simple
                                 bordered
                                 no-border-collapse
@@ -288,9 +288,10 @@ export default {
     }
 
     td {
-        min-width: 100px;
         font-weight: 500;
         vertical-align: middle;
+        padding: 10px;
+        height: 80px;
     }
 
     .td-price {

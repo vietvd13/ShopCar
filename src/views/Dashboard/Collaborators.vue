@@ -47,8 +47,10 @@
       >
         <template #cell(delete_multiple)="delete_multiple">
           <b-form-checkbox
+            :key="delete_multiple.item._id"
             :value="delete_multiple.item._id"
             :unchecked-value="delete_multiple.item._id"
+            :checked="handleTickRowTable(delete_multiple.item._id, selectRow)"
             @change="onSelectDelete"
           />
         </template>
@@ -286,6 +288,7 @@ import {
 } from '@/api/modules/Dashboard';
 import ImportImage from './components/ImportImage.vue';
 import Toast from '@/toast';
+import { handleTickRowTable } from '@/utils/helper';
 
 export default {
   name: 'CollaboratorsManagement',
@@ -295,7 +298,7 @@ export default {
   computed: {
     headerTable() {
       return [
-        { key: 'delete_multiple', label: '', thClass: 'text-center', tdClass: 'text-center' },
+        { key: 'delete_multiple', label: '', thClass: 'th-col-check text-center', tdClass: 'td-col-check text-center' },
         { key: 'no', label: this.$t('DASHBOARD.COLLABORATORS_MANAGEMENT.TABLE.NO'), thClass: 'text-center', tdClass: 'text-center base-td' },
         { key: 'image', label: this.$t('DASHBOARD.COLLABORATORS_MANAGEMENT.TABLE.AVATAR'), thClass: 'text-center', tdClass: 'text-center base-td' },
         { key: 'staff_name', label: this.$t('DASHBOARD.COLLABORATORS_MANAGEMENT.TABLE.FULLNAME'), sortable: true, thClass: 'text-center', tdClass: 'text-center base-td' },
@@ -389,6 +392,7 @@ export default {
     this.destroyEmit();
   },
   methods: {
+    handleTickRowTable,
     async initData() {
       await this.handleGetListCollaborators();
     },
@@ -704,7 +708,7 @@ export default {
             text-align: center;
             vertical-align: middle;
 
-            background-color: $international-orange;
+            background-color: $mine-shaft;
             color: $white;
           }
         }
@@ -713,7 +717,7 @@ export default {
       tbody {
         tr {
           td {
-            min-width: 100px;
+            // min-width: 100px;
 
             text-align: center;
             vertical-align: middle;

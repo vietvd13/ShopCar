@@ -16,14 +16,14 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <router-link
-            v-for="route in listRoute"
-            :key="route.value"
+          <b-nav-item href="#" v-for="route in listRoute" :key="route.value">
+            <router-link
             :to="route.path"
             class="item-route"
           >
             {{ $t(route.text) }}
           </router-link>
+          </b-nav-item>
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
@@ -144,18 +144,18 @@ export default {
       return LIBRARY[LANG] || '';
     },
     setLanguage(language = CONSTANTS.VALUE.LANGUAGE_KOREAN) {
-        if (this.lang !== language) {
-          this.$store.dispatch('app/setLanguage', language)
-              .then(() => {
-                  this.$i18n.locale = language;
+      if (this.lang !== language) {
+        this.$store.dispatch('app/setLanguage', language)
+            .then(() => {
+                this.$i18n.locale = language;
 
-                  Toast.success(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_SUCCESS'));
-              })
-              .catch(() => {
-                  Toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
-              })
-        }
+                Toast.success(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_SUCCESS'));
+            })
+            .catch(() => {
+                Toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
+            })
       }
+    }
   },
 }
 </script>
@@ -188,29 +188,29 @@ export default {
     font-size: 25px;
   }
 
-  a {
-    padding: 10px;
-    text-decoration: none;
-    color: $scorpion;
-    text-transform: capitalize;
-    font-weight: 600;
-  }
-
-  .item-route {
-    text-align: center;
-    min-width: 100px;
-    transition: 0.2s all ease-in-out 0s;
-
-    &:hover {
-      transform: scale(1.1);
-      color: $mine-shaft;
+  a.nav-link {
+    a {
+      padding: 10px;
+      text-decoration: none;
+      color: $scorpion;
+      text-transform: capitalize;
+      font-weight: 600;
     }
-  }
 
-  .router-link-active {
-    font-weight: bold;
-    opacity: 1;
-    color: $international-orange;
+    a.item-route {
+      text-align: center;
+      min-width: 100px;
+
+      &:hover {
+        color: $mine-shaft;
+      }
+    }
+
+    .router-link-active {
+      font-weight: bold;
+      opacity: 1;
+      color: $international-orange;
+    }
   }
 
   .pulldown-lang {

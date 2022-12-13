@@ -1,7 +1,7 @@
 <template>
     <b-card>
         <div class="toggle-filter" v-b-toggle="'filter-home-car'">
-            {{ $t('SHOP_CAR.HOME.FILTER.FILTER_CAR') }}<span>: {{ totalCar }} {{ $t('APP.SEARCHES') }}</span>
+            {{ $t('DASHBOARD.CAR.FILTER.FILTER_CAR') }}<span>: {{ totalCar }} {{ $t('APP.SEARCHES') }}</span>
             <span class="icon-toggle when-open">
                 <i class="fas fa-chevron-up" />
             </span>
@@ -10,18 +10,18 @@
             </span>
         </div>
 
-        <b-collapse id="filter-home-car" :visible="true">
+        <b-collapse id="filter-home-car" :visible="false">
             <div class="filter-list-car">
                 <b-row>
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
                             <label for="filter-search">
-                                {{ $t('SHOP_CAR.HOME.FILTER.SEARCH') }}
+                                {{ $t('DASHBOARD.CAR.FILTER.SEARCH') }}
                             </label>
                             <b-form-input
                                 id="filter-search"
                                 v-model="isFilter.search"
-                                :placeholder="$t('SHOP_CAR.HOME.FILTER.PLACEHOLDER_SEARCH')"
+                                :placeholder="$t('DASHBOARD.CAR.FILTER.PLACEHOLDER_SEARCH')"
                             />
                         </div>
                     </b-col>
@@ -29,7 +29,7 @@
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
                             <label for="filter-from-year">
-                                {{ $t('SHOP_CAR.HOME.FILTER.YEAR') }}
+                                {{ $t('DASHBOARD.CAR.FILTER.YEAR') }}
                             </label>
                             <b-input-group class="mb-2">
                                 <b-form-input
@@ -37,7 +37,7 @@
                                     class="reset-border-right"
                                     type="number"
                                     v-model="isFilter.from_year"
-                                    :placeholder="$t('SHOP_CAR.HOME.FILTER.PLACEHOLDER_FROM_YEAR')"
+                                    :placeholder="$t('DASHBOARD.CAR.FILTER.PLACEHOLDER_FROM_YEAR')"
                                     @keydown.native="validInputNumber"
                                 />
                                 <b-input-group-prepend is-text>
@@ -47,7 +47,7 @@
                                     id="filter-to-year"
                                     type="number"
                                     v-model="isFilter.to_year"
-                                    :placeholder="$t('SHOP_CAR.HOME.FILTER.PLACEHOLDER_TO_YEAR')"
+                                    :placeholder="$t('DASHBOARD.CAR.FILTER.PLACEHOLDER_TO_YEAR')"
                                     @keydown.native="validInputNumber"
                                 />
                             </b-input-group>
@@ -57,7 +57,7 @@
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
                             <label for="filter-categories">
-                                {{ $t('SHOP_CAR.HOME.FILTER.CATEGORIES') }}
+                                {{ $t('DASHBOARD.CAR.FILTER.CATEGORIES') }}
                             </label>
                             <b-form-select
                                 id="filter-categories"
@@ -75,7 +75,7 @@
 
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
-                            <label for="filter-color">{{ $t('SHOP_CAR.HOME.FILTER.COLOR') }}</label>
+                            <label for="filter-color">{{ $t('DASHBOARD.CAR.FILTER.COLOR') }}</label>
                             <b-form-select
                                 id="filter-color"
                                 v-model="isFilter.color"
@@ -92,7 +92,7 @@
 
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
-                            <label for="filter-fuel-type">{{ $t('SHOP_CAR.HOME.FILTER.FUEL_TYPE') }}</label>
+                            <label for="filter-fuel-type">{{ $t('DASHBOARD.CAR.FILTER.FUEL_TYPE') }}</label>
                             <b-form-select
                                 id="filter-fuel-type"
                                 v-model="isFilter.fuel_type"
@@ -109,7 +109,7 @@
 
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
-                            <label for="">{{ $t('SHOP_CAR.HOME.FILTER.GEAR_BOX') }}</label>
+                            <label for="">{{ $t('DASHBOARD.CAR.FILTER.GEAR_BOX') }}</label>
                             <b-form-select
                                 v-model="isFilter.gear_box"
                                 :options="listGearBox"
@@ -125,7 +125,39 @@
 
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
-                            <label for="filter-distance">
+                            <label for="">{{ $t('DASHBOARD.CAR.FILTER.HOT_SALE') }}</label>
+                            <b-form-select
+                                v-model="isFilter.is_hotsale"
+                                :options="listHotSale"
+                            >
+                                <template #first>
+                                    <b-form-select-option :value="null">
+                                        {{ $t('APP.PLEASE_SELECT') }}
+                                    </b-form-select-option>
+                                </template>
+                            </b-form-select>
+                        </div>
+                    </b-col>
+
+                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
+                        <div class="item-form">
+                            <label for="">{{ $t('DASHBOARD.CAR.FILTER.DATA_CRAWL') }}</label>
+                            <b-form-select
+                                v-model="isFilter.is_data_crawl"
+                                :options="ListDataCrawl"
+                            >
+                                <template #first>
+                                    <b-form-select-option :value="null">
+                                        {{ $t('APP.PLEASE_SELECT') }}
+                                    </b-form-select-option>
+                                </template>
+                            </b-form-select>
+                        </div>
+                    </b-col>
+
+                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
+                        <div class="item-form">
+                            <label for="filter-distance-dashboard">
                                 <b-form-checkbox
                                     id="apply-filter-distance"
                                     v-model="isFilter.apply_distance"
@@ -149,7 +181,7 @@
 
                             <b-col class="text-center">
                                 <div
-                                    id="filter-distance"
+                                    id="filter-distance-dashboard"
                                     class="height-slider"
                                 />
                             </b-col>
@@ -160,7 +192,7 @@
                                         <b-form-input
                                             type="number"
                                             size="sm" 
-                                            :placeholder="$t('SHOP_CAR.HOME.FILTER.PLACEHOLDER_INPUT_MAX_DISTANCE')"
+                                            :placeholder="$t('DASHBOARD.CAR.FILTER.PLACEHOLDER_INPUT_MAX_DISTANCE')"
                                             v-model="configSlider.distance.max"
                                             @keydown.native="validInputNumber"
                                         />
@@ -172,7 +204,7 @@
 
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
-                            <label for="filter-price">
+                            <label for="filter-price-dashboard">
                                 <b-form-checkbox
                                     id="apply-filter-price"
                                     v-model="isFilter.apply_price"
@@ -196,7 +228,7 @@
 
                             <b-col class="text-center">
                                 <div
-                                    id="filter-price"
+                                    id="filter-price-dashboard"
                                     class="height-slider"
                                 />
                             </b-col>
@@ -207,7 +239,7 @@
                                         <b-form-input
                                             type="number"
                                             size="sm" 
-                                            :placeholder="$t('SHOP_CAR.HOME.FILTER.PLACEHOLDER_INPUT_MAX_PRICE')"
+                                            :placeholder="$t('DASHBOARD.CAR.FILTER.PLACEHOLDER_INPUT_MAX_PRICE')"
                                             v-model="configSlider.price.max"
                                             @keydown.native="validInputNumber"
                                         />
@@ -217,7 +249,6 @@
                         </div>
                     </b-col>
                 </b-row>
-
 
                 <b-row>
                     <b-col class="text-center">
@@ -259,7 +290,7 @@ import { generateSelect, formatPrice, formatNumber } from '@/utils/helper';
 import { validInputNumber } from '@/utils/handleInput';
 
 export default {
-    name: 'FilterListCar',
+    name: 'FilterListCarDashboard',
     props: {
         totalCar: {
             type: Number,
@@ -268,7 +299,7 @@ export default {
     },
     data() {
         return {
-            isFilter: this.$store.getters.isFilter || {
+            isFilter: this.$store.getters.isFilterDashboard || {
                 search: '',
                 from_year: '',
                 to_year: '',
@@ -276,13 +307,15 @@ export default {
                 color: null,
                 fuel_type: null,
                 gear_box: null,
+                is_hotsale: null,
+                is_data_crawl: null,
                 apply_distance: false,
                 apply_price: false,
                 distance: [0, 250000],
                 price: [0, 50000]
             },
 
-            configSlider: this.$store.getters.configSlider || {
+            configSlider: this.$store.getters.configSliderDashboard || {
                 distance: {
                     min: 0,
                     max: 250000,
@@ -297,6 +330,14 @@ export default {
             listColor: [],
             listFuelType: [],
             listGearBox: [],
+            listHotSale: [
+                { value: true, text: this.$t('DASHBOARD.CAR.FILTER.TEXT_YES') },
+                { value: false, text: this.$t('DASHBOARD.CAR.FILTER.TEXT_NO') }
+            ],
+            ListDataCrawl: [
+                { value: true, text: this.$t('DASHBOARD.CAR.FILTER.TEXT_YES') },
+                { value: false, text: this.$t('DASHBOARD.CAR.FILTER.TEXT_NO') }
+            ],
 
             filterDistance: null,
             filterPrice: null,
@@ -313,7 +354,7 @@ export default {
     watch: {
         isFilter: {
             handler: async function() {
-                await this.$store.dispatch('filter/setFilter', this.isFilter);
+                await this.$store.dispatch('filter/setFilterDashboard', this.isFilter);
             },
             deep: true,
         },
@@ -329,7 +370,7 @@ export default {
                 }
             }
 
-            await this.$store.dispatch('filter/setConfigSlider', CONFIG)
+            await this.$store.dispatch('filter/setConfigSliderDashboard', CONFIG)
                 .then(() => {
                     this.filterDistance.noUiSlider.updateOptions({
                         range: {
@@ -351,7 +392,7 @@ export default {
                 }
             }
 
-            await this.$store.dispatch('filter/setConfigSlider', CONFIG)
+            await this.$store.dispatch('filter/setConfigSliderDashboard', CONFIG)
                 .then(() => {
                     this.filterPrice.noUiSlider.updateOptions({
                         range: {
@@ -370,10 +411,10 @@ export default {
     },
     methods: {
         validInputNumber,
-        formatPrice,
+        formatPrice, 
         formatNumber,
         initSlider() {
-            this.filterDistance = document.getElementById('filter-distance');
+            this.filterDistance = document.getElementById('filter-distance-dashboard');
 
             noUiSlider.create(this.filterDistance, {
                 start: [this.isFilter.distance[0], this.isFilter.distance[1]],
@@ -389,7 +430,7 @@ export default {
                 this.isFilter.distance = values;
             })
 
-            this.filterPrice = document.getElementById('filter-price');
+            this.filterPrice = document.getElementById('filter-price-dashboard');
 
             noUiSlider.create(this.filterPrice, {
                 start: [this.isFilter.price[0], this.isFilter.price[1]],
@@ -479,6 +520,8 @@ export default {
                 color: null,
                 fuel_type: null,
                 gear_box: null,
+                is_hotsale: null,
+                is_data_crawl: null,
                 apply_distance: false,
                 apply_price: false,
                 distance: [0, 250000],
@@ -496,7 +539,7 @@ export default {
                 }
             }
 
-            await this.$store.dispatch('filter/setFilter', this.isFilter)
+            await this.$store.dispatch('filter/setFilterDashboard', this.isFilter)
                 .then(() => {
                     this.$emit('filter');
                 })

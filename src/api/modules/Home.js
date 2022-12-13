@@ -33,6 +33,10 @@ export function getListGearBox(BODY = null, PARAMS = null) {
   return request.getRequest(CONSTANTS.URL_API.GET_LIST_GEAR_BOX, BODY, PARAMS);
 }
 
+export function getListCarType(BODY = null, PARAMS = null) {
+  return request.getRequest(CONSTANTS.URL_API.GET_LIST_CAR_TYPE, BODY, PARAMS);
+}
+
 export function getListHappyMoment(BODY = { limit: 8, page: 1 }, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.GET_LIST_HAPPY_MOMENT, BODY, PARAMS);
 }
@@ -66,13 +70,13 @@ export function getListHotSale(BODY = null, PARAMS = null) {
 }
 
 export function getFilePDFPolicy() {
-  return request.postRequest(CONSTANTS.URL_API.GET_FILE_PDF_POLICY, null, null);
+  return request.postRequest(CONSTANTS.URL_API.GET_FILE_PDF_POLICY);
 }
 
 export function getFilePDFInsurance() {
-  return request.postRequest(CONSTANTS.URL_API.GET_FILE_PDF_INSURANCE, null, null);
+  return request.postRequest(CONSTANTS.URL_API.GET_FILE_PDF_INSURANCE);
 }
 
 export function getProfilePublic() {
-  return request.postRequest(CONSTANTS.URL_API.USER_INFOR_PUBLIC, null, null);
+  return request.postRequest(CONSTANTS.URL_API.USER_INFOR_PUBLIC);
 }

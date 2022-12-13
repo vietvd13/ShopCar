@@ -30,7 +30,7 @@ export default {
   POST_CREATE_HAPPY_MOMENT: '/review/create',
   GET_DETAIL_HAPPY_MOMENT: '/review/detail',
   POST_EDIT_HAPPY_MOMENT: '/review/edit',
-  POST_DELETE_HAPPY_MOMENT: 'review/remove',
+  POST_DELETE_HAPPY_MOMENT: '/review/remove',
 
   // Api Hỗ trợ khác hàng
   GET_LIST_CUSTOMER_SUPPORT: '/support/get',
@@ -43,6 +43,7 @@ export default {
   GET_LIST_COLOR: '/filter/color',
   GET_LIST_FUEL_TYPE: '/filter/fuel-type',
   GET_LIST_GEAR_BOX: '/filter/gearbox',
+  GET_LIST_CAR_TYPE: '/filter/cartype',
 
   // Api Banner
   GET_BANNER: '/home/banner/get',
@@ -58,5 +59,11 @@ export default {
   EDIT_FILE_PDF_INSURANCE: '/insurance/edit',
 
   // Api Car
-  GET_LIST_CAR_DASHBOARD: '/cars/list'
+  GET_LIST_CAR_DASHBOARD: '/cars/list',
+  POST_CREATE_CAR_DASHBOARD: '/cars/create',
+  GET_DETAIL_CAR_DASHBOARD: '/cars/detail',
+  POST_UPDATE_CAR_DASHBOARD: '/cars/edit',
+  POST_DELETE_CAR_DASHBOARD: '/cars/remove',
+  POST_SET_HOTSALE_CAR_DASHBOARD: '/cars/update-hotsale',
+  POST_SET_PRICE_CAR_DASHBOARD: '/cars/update-price',
 };

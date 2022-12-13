@@ -77,10 +77,14 @@ export default {
         width: 100%;
 
         padding: 10px 5px;
-        text-align: center;
         border: 1px solid $geyser;
         background-color: $concrete;
         cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
     }
 
     .item-menu-active {
