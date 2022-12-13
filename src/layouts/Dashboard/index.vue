@@ -52,6 +52,8 @@ export default {
 
       height: calc(100vh - 56px);
     }
+
+    overflow-y: auto;
   }
 }
 </style>

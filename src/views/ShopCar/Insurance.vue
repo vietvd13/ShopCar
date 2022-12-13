@@ -15,6 +15,7 @@
                     :blank-src="require('@/assets/images/noimage.webp')"
                     fluid
                     :alt="image"
+                    class="display-image"
                 />
             </template>
 
@@ -84,9 +85,8 @@ export default {
         margin-bottom: 10px;
     }
 
-    .view-pdf {
+    .display-image {
         width: 100%;
-        height: 700px;
     }
 }
 </style>
