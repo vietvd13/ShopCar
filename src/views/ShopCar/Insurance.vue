@@ -7,10 +7,14 @@
         </div>
 
         <b-card>
-            <template v-if="file">
-                <ViewPDF
-                    :class-name="'view-pdf'"
-                    :file="`${domainPDF}${file}`"
+            <template v-if="file.length">
+                <b-img-lazy
+                    v-for="(image, idx) in file"
+                    :key="idx"
+                    :src="`${domainImage}${image}`"
+                    :blank-src="require('@/assets/images/noimage.webp')"
+                    fluid
+                    :alt="image"
                 />
             </template>
 
@@ -29,22 +33,20 @@
 import TitleContent from './components/TitleContent.vue';
 import { getFilePDFInsurance } from '@/api/modules/Home';
 import { setLoading } from '@/utils/setLoading';
-import ViewPDF from '@/components/ViewPDF.vue';
 
 export default {
     name: 'ShopCarInsurance',
     components: {
         TitleContent,
-        ViewPDF
     },
     computed: {
-        domainPDF() {
+        domainImage() {
             return process.env.VUE_APP_URL_IMAGE;
         }
     },
     data() {
         return {
-            file: ''
+            file: []
         }
     },
     created () {
