@@ -54,10 +54,18 @@
         />
       </div>
 
-      <div class="content-car-performance">
-        <ViewPDF 
-          :linkFile="isCar.performance_check"
-        />
+      <div class="content-car-performance" id="tab-car-performance">
+        <MenuDetailCar :tab-active="'tab-car-performance'" />
+        <b-card>
+          <div class="img-car-performance">
+            <b-img-lazy
+              :src="`${domainImage}${isCar.performance_check}`"
+              :blank-src="require('@/assets/images/noimage.webp')"
+              fluid
+              :alt="isCar.car_name"
+            />
+          </div>
+        </b-card>
       </div>
     </div>
   </div>
@@ -69,7 +77,7 @@ import PreviewImage from './components/PreviewImage.vue';
 import CarInfor from './components/CarInfor.vue';
 import CarOptions from './components/CarOptions.vue';
 import ListImage from './components/ListImage.vue';
-import ViewPDF from './components/ViewPdf.vue';
+import MenuDetailCar from '@/components/MenuDetailCar.vue';
 
 import { getDetailCar } from '@/api/modules/Home';
 
@@ -81,7 +89,12 @@ export default {
     CarInfor,
     CarOptions,
     ListImage,
-    ViewPDF,
+    MenuDetailCar
+  },
+  computed: {
+    domainImage() {
+      return process.env.VUE_APP_URL_IMAGE;
+    },
   },
   data() {
     return {
@@ -130,6 +143,15 @@ export default {
     .content-car-images,
     .content-car-performance {
       margin-bottom: 10px;
+    }
+
+    .img-car-performance {
+      img {
+        width: 100%;
+      }
+
+      height: 500px;
+      overflow-y: scroll;
     }
   }
 }
