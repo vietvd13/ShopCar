@@ -1,4 +1,4 @@
-# shop-car
+# Shop Car
 
 ## Project setup
 ```
@@ -18,6 +18,11 @@ yarn build
 ### Lints and fixes files
 ```
 yarn lint
+```
+
+### View report (Path: dist/report.html)
+```
+yarn report
 ```
 
 ### Customize configuration

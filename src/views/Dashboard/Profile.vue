@@ -378,7 +378,7 @@ export default {
 
     async getProfile() {
       try {
-        const response = await postUserInfor();
+        const response = await postUserInfor({});
         if (response.status) {
           this.fullname = response.data.name;
           this.email = response.data.email;
