@@ -64,12 +64,16 @@ export default {
                 const { status_code, data } = await getFilePDFPolicy();
 
                 if (status_code === 200) {
-                    this.file = data.file;
+                    if (Array.isArray(data.file)) {
+                        this.file = data.file;
+                    } else {
+                        this.file = [];
+                    }
                 } else {
-                    this.file = '';
+                    this.file = [];
                 }
             } catch (err) {
-                this.file = '';
+                this.file = [];
                 console.log(err);
             }
         }
