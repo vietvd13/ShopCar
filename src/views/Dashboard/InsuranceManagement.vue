@@ -123,17 +123,19 @@ export default {
         const { status_code, data } = await getFilePDFInsurance();
 
         if (status_code === 200) {
-          if (data.file) {
+          if (Array.isArray(data.file)) {
             this.file = data.file;
           } else {
-            this.file = null;
+            this.file = [];
           }
           this.current_id = data._id;
         } else {
-          this.file = null;
+          this.file = [];
         }
       } catch (error) {
-        Toast.error(error);
+        this.file = [];
+        console.log(error);
+        setLoading(false);
       }
     },
 
@@ -147,43 +149,48 @@ export default {
     },
 
     async handleUpdateinsurance() {
-      setLoading(true);
+      try {
+        setLoading(true);
 
-      if (!this.init_file) {
-        return Toast.warning(this.$t("TOAST_MESSAGE.REQUIRED_FILE"));
+        if (!this.init_file) {
+          return Toast.warning(this.$t("TOAST_MESSAGE.REQUIRED_FILE"));
+        }
+
+        const result = [];
+
+        for (let image = 0; image < this.init_file.length; image++) {
+          result.push({
+            type_import: 'new',
+            url: this.init_file[image]
+          })
+        }
+
+        const response = await postImages(result);
+
+        if (response.status) {
+          this.file = response.data;
+        }
+
+        const BODY = {
+          file: this.file,
+          insurance_id: this.current_id,
+        };
+
+        const response_update = await postEditInsurance(BODY);
+
+        if (response_update.status_code === 200) {
+          Toast.success(response_update.message);
+          this.hanldeCloseModal();
+          this.initData();
+        } else {
+          Toast.error(response_update.message);
+        }
+
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
       }
-
-      const result = [];
-
-      for (let image = 0; image < this.init_file.length; image++) {
-        result.push({
-          type_import: 'new',
-          url: this.init_file[image]
-        })
-      }
-
-      const response = await postImages(result);
-
-      if (response.status) {
-        this.file = response.data;
-      }
-
-      const BODY = {
-        file: this.file,
-        insurance_id: this.current_id,
-      };
-
-      const response_update = await postEditInsurance(BODY);
-
-      if (response_update.status_code === 200) {
-        Toast.success(response_update.message);
-        this.hanldeCloseModal();
-        this.initData();
-      } else {
-        Toast.error(response_update.message);
-      }
-
-      setLoading(false);
     },
   },
 };
