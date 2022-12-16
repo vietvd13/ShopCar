@@ -362,6 +362,7 @@ export default {
       ACTION_REMOVE_HOT_SALE: "Bỏ hotsale",
       ACTION_ADD_PRICE: "Cập nhật giá tiền",
       ACTION_SALE: "Chương trình sale",
+      ACTION_UPDATE_PRICE_MANY: "Cập nhật giá toàn bộ (Filter)",
 
       TYPE_UPDATE: "Loại cập nhật",
       UPDATE_PERCENTAGE: 'Phần trăm',

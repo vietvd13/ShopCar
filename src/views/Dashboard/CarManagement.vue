@@ -257,6 +257,16 @@
         </b-row>
       </div>
 
+      <div class="item-action">
+        <b-row>
+          <b-col>
+            <div class="content-action" style="opacity: 0.5;">
+              {{ $t('DASHBOARD.CAR.ACTION_UPDATE_PRICE_MANY') }} (Develop...)
+            </div>
+          </b-col>
+        </b-row>
+      </div>
+
     </b-modal>
 
     <b-modal
