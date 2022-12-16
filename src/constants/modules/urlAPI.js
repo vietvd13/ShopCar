@@ -66,4 +66,7 @@ export default {
   POST_DELETE_CAR_DASHBOARD: '/cars/remove',
   POST_SET_HOTSALE_CAR_DASHBOARD: '/cars/update-hotsale',
   POST_SET_PRICE_CAR_DASHBOARD: '/cars/update-price',
+
+  // Api Sale
+  POST_SET_SALE: '/sale/settings',
 };

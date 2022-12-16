@@ -32,6 +32,8 @@ export default {
     PLACEHOLDER_PLEASE_INPUT: "Vui lòng nhập",
     DROP_FILE: "Lựa chọn file",
     SEARCHES: "kết quả",
+    ON: "Bật",
+    OFF: "Tắt",
   },
   TOAST: {
     SUCCESS: "Thành công",
@@ -96,6 +98,8 @@ export default {
     DELETE_CAR_SUCCESS: "Bạn đã xoá xe thành công",
     SET_HOTSALE_CAR_SUCCESS: "Bạn đã cập nhật xe hotsale thành công",
     SET_PRICE_CAR_SUCCESS: "Bạn đã cập nhật giá xe thành công",
+
+    SET_SALE_SUCCESS: "Bạn đã cập nhật chương trình thành công",
   },
   SHOP_CAR: {
     HOME: {
@@ -357,6 +361,7 @@ export default {
       ACTION_ADD_HOT_SALE: "Đẩy hotsale",
       ACTION_REMOVE_HOT_SALE: "Bỏ hotsale",
       ACTION_ADD_PRICE: "Cập nhật giá tiền",
+      ACTION_SALE: "Chương trình sale",
 
       TYPE_UPDATE: "Loại cập nhật",
       UPDATE_PERCENTAGE: 'Phần trăm',

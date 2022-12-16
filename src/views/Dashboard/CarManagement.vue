@@ -53,7 +53,7 @@
             :src="`${domainImage}${primary_image.item.primary_image}`"
             :blank-src="require('@/assets/images/noimage.webp')"
             :alt="items.car_name"
-            class="avatar-collaborators"
+            class="avatar-car"
           />
         </template>
 
@@ -247,6 +247,16 @@
         </b-row>
       </div>
 
+      <div class="item-action">
+        <b-row>
+          <b-col>
+            <div class="content-action" @click="onClickSale()">
+              {{ $t('DASHBOARD.CAR.ACTION_SALE') }}
+            </div>
+          </b-col>
+        </b-row>
+      </div>
+
     </b-modal>
 
     <b-modal
@@ -276,6 +286,7 @@
         <label for="input-value-update-price">{{ $t('DASHBOARD.CAR.VALUE_UPDATE') }}</label>
         <b-form-input
           id="input-value-update-price"
+          type="number"
           v-model="isUpdatePrice.value" 
         />
       </div>
@@ -302,12 +313,60 @@
         </b-row>
       </template>
     </b-modal>
+
+    <b-modal
+      v-model="isModalSale"
+      no-close-on-backdrop
+      no-close-on-esc
+      static
+      scrollable
+      body-class="modal-body-sale"
+      footer-class="modal-footer-sale"
+      :title="$t('DASHBOARD.CAR.ACTION_SALE')"
+    >
+      <label for="input-value-update-sale">{{ $t('DASHBOARD.CAR.ACTION_SALE') }}</label>
+      <b-form-input
+        id="input-value-update-sale"
+        type="number"
+        v-model="isUpdateSale.value"
+      />
+      <b-form-checkbox 
+        v-model="isUpdateSale.status" 
+        name="check-button-status-sale"
+        class="mt-2"
+        switch
+      >
+        {{ isUpdateSale.status ? $t('APP.ON') : $t('APP.OFF') }}
+      </b-form-checkbox>
+
+      <template #modal-footer>
+        <b-row align-v="baseline">
+          <b-col cols="6" class="text-center">
+            <b-button 
+              class="btn-default btn-cancel"
+              @click="onClickCloseModalSale"
+            >
+              {{ $t('APP.CANCEL') }}
+            </b-button>
+          </b-col>
+
+          <b-col cols="6" class="text-center">
+            <b-button 
+              class="btn-default btn-app"
+              @click="onClickSaveModalSale"
+            >
+              {{ $t('APP.SAVE') }}
+            </b-button>
+          </b-col>
+        </b-row>
+      </template>
+    </b-modal>
   </div>
 </template>
 
 <script>
 import { setLoading } from '@/utils/setLoading';
-import { postListCar, postCreateCar, postGetDetailCar, postUpdateCar, postDeleteCar, postSetHotsaleCar, posetSetPirce } from '@/api/modules/Dashboard';
+import { postListCar, postCreateCar, postGetDetailCar, postUpdateCar, postDeleteCar, postSetHotsaleCar, postSetPirce, postSetSale } from '@/api/modules/Dashboard';
 import { postImages, postFile } from '@/api/modules/Upload';
 import FilterListCarDashboard from './components/FilterListCar.vue';
 import FormCar from './components/CarManagement/Form.vue';
@@ -442,11 +501,16 @@ export default {
       },
       isModalAction: false,
       isModalPrice: false,
+      isModalSale: false,
       
       isUpdatePrice: {
         type: 'PRICE',
         value: null,
-      }
+      },
+      isUpdateSale: {
+        status: false,
+        value: null
+      },
     }
   },
   created () {
@@ -1006,7 +1070,7 @@ export default {
           [key]: this.isUpdatePrice.value ? parseInt(this.isUpdatePrice.value) : 0,
         };
 
-        const { status_code } = await posetSetPirce(BODY);
+        const { status_code } = await postSetPirce(BODY);
 
         this.isModalPrice = false;
         this.handleResetModalPrice();
@@ -1022,6 +1086,39 @@ export default {
         setLoading(false);
       } catch (error) {
         setLoading(false);
+        console.log(error);
+      }
+    },
+    onClickSale() {
+      this.isModalAction = false;
+      this.isModalSale = true;
+    },
+    onClickCloseModalSale() {
+      this.isModalSale = false;
+      this.isUpdateSale = {
+        status: false,
+        value: null,
+      };
+    },
+    async onClickSaveModalSale() {
+      try {
+        setLoading(true);
+        const BODY = {
+          is_sale: this.isUpdateSale.status || false,
+          sale_price: parseInt(this.isUpdateSale.value) || 0,
+        }
+
+        const { status_code } = await postSetSale(BODY);
+
+        if (status_code === 200) {
+          Toast.success(this.$t('TOAST_MESSAGE.SET_SALE_SUCCESS'));
+        }
+
+        await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
+
+        this.onClickCloseModalSale();
+        setLoading(false);
+      } catch(error) {
         console.log(error);
       }
     },
@@ -1181,5 +1278,9 @@ export default {
 
 .type-down-change {
   color: $alizarin-crimson;
+}
+
+.avatar-car {
+  min-width: 250px;
 }
 </style>
