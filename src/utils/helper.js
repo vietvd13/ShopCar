@@ -118,9 +118,9 @@ function handleCalPriceDiff(price, price_display) {
     }
 
     if (price < price_display) {
-        result.type = 'DOWN';
-    } else {
         result.type = 'UP';
+    } else {
+        result.type = 'DOWN';
     }
 
     let diff = ((((price_display - price)) / price) * 100);
