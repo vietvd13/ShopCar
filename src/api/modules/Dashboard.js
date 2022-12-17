@@ -103,3 +103,7 @@ export function postSetPirce(BODY = null, PARAMS = null) {
 export function postSetSale(BODY = null) {
   return request.postRequest(CONSTANTS.URL_API.POST_SET_SALE, BODY);
 }
+
+export function postSetPriceAll(BODY = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_SET_PRICE_CAR_DASHBOARD, BODY);
+}

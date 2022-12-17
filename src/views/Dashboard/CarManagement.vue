@@ -260,8 +260,8 @@
       <div class="item-action">
         <b-row>
           <b-col>
-            <div class="content-action" style="opacity: 0.5;">
-              {{ $t('DASHBOARD.CAR.ACTION_UPDATE_PRICE_MANY') }} (Develop...)
+            <div class="content-action" @click="onClickSetPriceAll()">
+              {{ $t('DASHBOARD.CAR.ACTION_UPDATE_PRICE_MANY') }}
             </div>
           </b-col>
         </b-row>
@@ -371,12 +371,67 @@
         </b-row>
       </template>
     </b-modal>
+
+    <b-modal
+      v-model="isModalSetPriceAll"
+      no-close-on-backdrop
+      no-close-on-esc
+      static
+      scrollable
+      body-class="modal-body-price"
+      footer-class="modal-footer-price"
+      :title="$t('DASHBOARD.CAR.ACTION_ADD_PRICE')"
+    >
+      <div class="item-form">
+        <label for="select-type-update-price">{{ $t('DASHBOARD.CAR.TYPE_UPDATE') }}</label>
+        <b-form-select id="select-type-update-price" v-model="isUpdatePriceAll.type">
+          <b-form-select-option 
+            v-for="typeUpdate in optionUpdatePrice"
+            :key="typeUpdate.value"
+            :value="typeUpdate.value"
+          >
+            {{ $t(typeUpdate.text) }}
+          </b-form-select-option>
+        </b-form-select>
+      </div>
+
+      <div class="item-form">
+        <label for="input-value-update-price">{{ $t('DASHBOARD.CAR.VALUE_UPDATE') }}</label>
+        <b-form-input
+          id="input-value-update-price"
+          type="number"
+          v-model="isUpdatePriceAll.value" 
+        />
+      </div>
+
+      <template #modal-footer>
+        <b-row align-v="baseline">
+          <b-col cols="6" class="text-center">
+            <b-button 
+              class="btn-default btn-cancel"
+              @click="onClickCloseModalUpdatePriceAll"
+            >
+              {{ $t('APP.CANCEL') }}
+            </b-button>
+          </b-col>
+
+          <b-col cols="6" class="text-center">
+            <b-button 
+              class="btn-default btn-app"
+              @click="onClickSaveModalUpdatePriceAll"
+            >
+              {{ $t('APP.SAVE') }}
+            </b-button>
+          </b-col>
+        </b-row>
+      </template>
+    </b-modal>
   </div>
 </template>
 
 <script>
 import { setLoading } from '@/utils/setLoading';
-import { postListCar, postCreateCar, postGetDetailCar, postUpdateCar, postDeleteCar, postSetHotsaleCar, postSetPirce, postSetSale } from '@/api/modules/Dashboard';
+import { postListCar, postCreateCar, postGetDetailCar, postUpdateCar, postDeleteCar, postSetHotsaleCar, postSetPirce, postSetSale, postSetPriceAll } from '@/api/modules/Dashboard';
 import { postImages, postFile } from '@/api/modules/Upload';
 import FilterListCarDashboard from './components/FilterListCar.vue';
 import FormCar from './components/CarManagement/Form.vue';
@@ -512,6 +567,7 @@ export default {
       isModalAction: false,
       isModalPrice: false,
       isModalSale: false,
+      isModalSetPriceAll: false,
       
       isUpdatePrice: {
         type: 'PRICE',
@@ -521,6 +577,11 @@ export default {
         status: false,
         value: null
       },
+      isUpdatePriceAll: {
+        type: 'PRICE',
+        value: null,
+      },
+      oldFilter: null,
     }
   },
   created () {
@@ -537,6 +598,7 @@ export default {
     },
     async onClickApplyFilter() {
       setLoading(true);
+      this.oldFilter = JSON.parse(JSON.stringify(this.$store.getters.isFilterDashboard));
       await this.handleGetListCar(1, this.pagination.per_page);
       setLoading(false);
     },
@@ -559,7 +621,7 @@ export default {
           }
         }
 
-        const FILTER = this.$store.getters.isFilterDashboard;
+        const FILTER = this.oldFilter ? this.oldFilter : this.$store.getters.isFilterDashboard;
 
         if (FILTER.search) {
           BODY.search = FILTER.search;
@@ -1127,6 +1189,113 @@ export default {
         await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
 
         this.onClickCloseModalSale();
+        setLoading(false);
+      } catch(error) {
+        console.log(error);
+      }
+    },
+    onClickSetPriceAll() {
+      this.isModalAction = false;
+      this.isModalSetPriceAll = true;
+    },
+    onClickCloseModalUpdatePriceAll() {
+      this.isModalSetPriceAll = false;
+      this.isUpdatePriceAll = {
+        type: 'PRICE',
+        value: null,
+      };
+    },
+    async onClickSaveModalUpdatePriceAll() {
+      try {
+        setLoading(true);
+        
+        let key;
+        const LIBRAY = {
+          PRICE: 'price',
+          PERCENTAGE: 'percentage'
+        }
+
+        key = LIBRAY[this.isUpdatePriceAll.type];
+
+        const BODY = {
+          type: this.isUpdatePriceAll.type,
+          [key]: this.isUpdatePriceAll.value ? parseInt(this.isUpdatePriceAll.value) : 0,
+          data_update: {
+            filter: {},
+            search: '',
+          }
+        };
+
+        const FILTER = this.oldFilter ? this.oldFilter : {
+          search: '',
+          from_year: '',
+          to_year: '',
+          categories: null,
+          color: null,
+          fuel_type: null,
+          gear_box: null,
+          is_hotsale: null,
+          is_data_crawl: null,
+          distance: [0, 250000],
+          price: [0, 50000]
+        };
+
+        if (FILTER.search) {
+          BODY.data_update.search = FILTER.search;
+        }
+
+        if (FILTER.from_year && FILTER.to_year) {
+          BODY.data_update.filter.from_year = FILTER.from_year;
+          BODY.data_update.filter.to_year = FILTER.to_year;
+        }
+
+        if (FILTER.apply_price) {
+          if (FILTER.price) {
+            BODY.data_update.filter.from_price = parseInt(FILTER.price[0]);
+            BODY.data_update.filter.to_price = parseInt(FILTER.price[1]);
+          }
+        }
+
+        if (FILTER.apply_distance) {
+          if (FILTER.distance) {
+            BODY.data_update.filter.from_distance = parseInt(FILTER.distance[0]);
+            BODY.data_update.filter.to_distance = parseInt(FILTER.distance[1]);
+          }
+        }
+
+        if (FILTER.categories) {
+          BODY.data_update.filter.category = FILTER.categories;
+        }
+
+        if (FILTER.fuel_type) {
+          BODY.data_update.filter.fuel_type = FILTER.fuel_type;
+        }
+
+        if (FILTER.gear_box) {
+          BODY.data_update.filter.gear_box = FILTER.gear_box;
+        }
+
+        if (FILTER.color) {
+          BODY.data_update.filter.color = FILTER.color;
+        }
+
+        if ([true, false].includes(FILTER.is_hotsale)) {
+          BODY.data_update.filter.is_hotsale = FILTER.is_hotsale;
+        }
+
+        if ([true, false].includes(FILTER.is_data_crawl)) {
+          BODY.data_update.filter.is_data_crawl = FILTER.is_data_crawl;
+        }
+
+        const { status_code } = await postSetPriceAll(BODY);
+
+        if (status_code === 200) {
+          Toast.success(this.$t('TOAST_MESSAGE.SET_PRICE_CAR_SUCCESS'));
+        }
+
+        await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
+
+        this.onClickCloseModalUpdatePriceAll();
         setLoading(false);
       } catch(error) {
         console.log(error);
