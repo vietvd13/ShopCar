@@ -34,6 +34,7 @@ export default {
     SEARCHES: "kết quả",
     ON: "Bật",
     OFF: "Tắt",
+    SELECT_ALL: 'Chọn tất cả',
   },
   TOAST: {
     SUCCESS: "Thành công",

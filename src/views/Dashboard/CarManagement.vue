@@ -21,6 +21,18 @@
       </b-row>
     </div>
 
+    <b-row>
+      <b-col class="mb-2">
+        <b-form-checkbox
+          id="checkbox-select-all"
+          v-model="isSelectAll"
+          name="checkbox-select-all"
+        >
+          {{ $t('APP.SELECT_ALL') }}
+        </b-form-checkbox>
+      </b-col>
+    </b-row>
+
     <div class="car-management-page__table">
       <b-table
         :items="items"
@@ -256,17 +268,6 @@
           </b-col>
         </b-row>
       </div>
-
-      <div class="item-action">
-        <b-row>
-          <b-col>
-            <div class="content-action" @click="onClickSetPriceAll()">
-              {{ $t('DASHBOARD.CAR.ACTION_UPDATE_PRICE_MANY') }}
-            </div>
-          </b-col>
-        </b-row>
-      </div>
-
     </b-modal>
 
     <b-modal
@@ -431,7 +432,7 @@
 
 <script>
 import { setLoading } from '@/utils/setLoading';
-import { postListCar, postCreateCar, postGetDetailCar, postUpdateCar, postDeleteCar, postSetHotsaleCar, postSetPirce, postSetSale, postSetPriceAll } from '@/api/modules/Dashboard';
+import { postListCar, postCreateCar, postGetDetailCar, postUpdateCar, postDeleteCar, postSetHotsaleCar, postSetPirce, postSetSale, postSetPriceAll, getSaleStatus } from '@/api/modules/Dashboard';
 import { postImages, postFile } from '@/api/modules/Upload';
 import FilterListCarDashboard from './components/FilterListCar.vue';
 import FormCar from './components/CarManagement/Form.vue';
@@ -451,6 +452,20 @@ export default {
       return process.env.VUE_APP_URL_IMAGE;
     },
     headerTable() {
+      if (this.isSelectAll) {
+        return [
+          { key: 'created_at', label: this.$t('DASHBOARD.CAR.TABLE_NO'), sortable: true, thClass: 'text-center th-no', tdClass: 'text-center base-td' },
+          { key: 'primary_image', label: this.$t('DASHBOARD.CAR.TABLE_IMAGE'), thClass: 'text-center th-image', tdClass: 'text-center base-td' },
+          { key: 'car_name', label: this.$t('DASHBOARD.CAR.TABLE_CAR_NAME'), sortable: true, thClass: 'text-center th-car-name', tdClass: 'text-center base-td' },
+          { key: 'category', label: this.$t('DASHBOARD.CAR.TABLE_CAR_BRAND'), sortable: true, thClass: 'text-center th-car-brand', tdClass: 'text-center base-td' },
+          { key: 'price', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_ORIGIN'), sortable: true, thClass: 'text-center th-car-price', tdClass: 'text-center base-td' },
+          { key: 'price_display', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_DISPLAY'), sortable: true, thClass: 'text-center th-car-price', tdClass: 'text-center base-td' },
+          { key: 'price_diff', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_DIFF'), sortable: false, thClass: 'text-center th-car-price-diff', tdClass: 'text-center base-td' },
+          { key: 'is_hotsale', label: this.$t('DASHBOARD.CAR.TABLE_HOT_SALE'), sortable: true, thClass: 'text-center th-hot-sale', tdClass: 'text-center base-td' },
+          { key: 'actions', label: this.$t('DASHBOARD.CAR.TABLE_ACTIONS'), thClass: 'text-center th-actions', tdClass: 'text-center base-td' },
+        ]
+      }
+
       return [
         { key: 'delete_multiple', label: '', thClass: 'th-col-check text-center', tdClass: 'td-col-check text-center' },
         { key: 'created_at', label: this.$t('DASHBOARD.CAR.TABLE_NO'), sortable: true, thClass: 'text-center th-no', tdClass: 'text-center base-td' },
@@ -462,7 +477,7 @@ export default {
         { key: 'price_diff', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_DIFF'), sortable: false, thClass: 'text-center th-car-price-diff', tdClass: 'text-center base-td' },
         { key: 'is_hotsale', label: this.$t('DASHBOARD.CAR.TABLE_HOT_SALE'), sortable: true, thClass: 'text-center th-hot-sale', tdClass: 'text-center base-td' },
         { key: 'actions', label: this.$t('DASHBOARD.CAR.TABLE_ACTIONS'), thClass: 'text-center th-actions', tdClass: 'text-center base-td' },
-      ]
+      ];
     },
     optionsPerpage() {
       return [
@@ -506,6 +521,7 @@ export default {
   },
   data() {
     return {
+      isSelectAll: false,
       items: [],
       selectRow: [],
       pagination: {
@@ -1068,8 +1084,80 @@ export default {
     },
     async handleDeleteCar(items) {
       try {
-        const BODY = {
-          ids: items,
+        let BODY = {
+
+        };
+
+        if (this.isSelectAll) {
+          BODY.data_update = {
+            filter: {},
+            search: '',
+          }
+
+          const FILTER = this.oldFilter ? this.oldFilter : {
+            search: '',
+            from_year: '',
+            to_year: '',
+            categories: null,
+            color: null,
+            fuel_type: null,
+            gear_box: null,
+            is_hotsale: null,
+            is_data_crawl: null,
+            distance: [0, 250000],
+            price: [0, 50000]
+          };
+
+          if (FILTER.search) {
+            BODY.data_update.search = FILTER.search;
+          }
+
+          if (FILTER.from_year && FILTER.to_year) {
+            BODY.data_update.filter.from_year = FILTER.from_year;
+            BODY.data_update.filter.to_year = FILTER.to_year;
+          }
+
+          if (FILTER.apply_price) {
+            if (FILTER.price) {
+              BODY.data_update.filter.from_price = parseInt(FILTER.price[0]);
+              BODY.data_update.filter.to_price = parseInt(FILTER.price[1]);
+            }
+          }
+
+          if (FILTER.apply_distance) {
+            if (FILTER.distance) {
+              BODY.data_update.filter.from_distance = parseInt(FILTER.distance[0]);
+              BODY.data_update.filter.to_distance = parseInt(FILTER.distance[1]);
+            }
+          }
+
+          if (FILTER.categories) {
+            BODY.data_update.filter.category = FILTER.categories;
+          }
+
+          if (FILTER.fuel_type) {
+            BODY.data_update.filter.fuel_type = FILTER.fuel_type;
+          }
+
+          if (FILTER.gear_box) {
+            BODY.data_update.filter.gear_box = FILTER.gear_box;
+          }
+
+          if (FILTER.color) {
+            BODY.data_update.filter.color = FILTER.color;
+          }
+
+          if ([true, false].includes(FILTER.is_hotsale)) {
+            BODY.data_update.filter.is_hotsale = FILTER.is_hotsale;
+          }
+
+          if ([true, false].includes(FILTER.is_data_crawl)) {
+            BODY.data_update.filter.is_data_crawl = FILTER.is_data_crawl;
+          }
+        } else {
+          BODY = {
+            ids: items,
+          }
         }
 
         const { status_code } = await postDeleteCar(BODY);
@@ -1087,9 +1175,80 @@ export default {
         setLoading(true);
         this.isModalAction = false;
 
-        const BODY = {
-          ids: this.selectRow,
+        let BODY = {
           is_hotsale: status
+        };
+
+        if (this.isSelectAll) {
+          BODY.data_update = {
+            filter: {},
+            search: '',
+          }
+
+          const FILTER = this.oldFilter ? this.oldFilter : {
+            search: '',
+            from_year: '',
+            to_year: '',
+            categories: null,
+            color: null,
+            fuel_type: null,
+            gear_box: null,
+            is_hotsale: null,
+            is_data_crawl: null,
+            distance: [0, 250000],
+            price: [0, 50000]
+          };
+
+          if (FILTER.search) {
+            BODY.data_update.search = FILTER.search;
+          }
+
+          if (FILTER.from_year && FILTER.to_year) {
+            BODY.data_update.filter.from_year = FILTER.from_year;
+            BODY.data_update.filter.to_year = FILTER.to_year;
+          }
+
+          if (FILTER.apply_price) {
+            if (FILTER.price) {
+              BODY.data_update.filter.from_price = parseInt(FILTER.price[0]);
+              BODY.data_update.filter.to_price = parseInt(FILTER.price[1]);
+            }
+          }
+
+          if (FILTER.apply_distance) {
+            if (FILTER.distance) {
+              BODY.data_update.filter.from_distance = parseInt(FILTER.distance[0]);
+              BODY.data_update.filter.to_distance = parseInt(FILTER.distance[1]);
+            }
+          }
+
+          if (FILTER.categories) {
+            BODY.data_update.filter.category = FILTER.categories;
+          }
+
+          if (FILTER.fuel_type) {
+            BODY.data_update.filter.fuel_type = FILTER.fuel_type;
+          }
+
+          if (FILTER.gear_box) {
+            BODY.data_update.filter.gear_box = FILTER.gear_box;
+          }
+
+          if (FILTER.color) {
+            BODY.data_update.filter.color = FILTER.color;
+          }
+
+          if ([true, false].includes(FILTER.is_hotsale)) {
+            BODY.data_update.filter.is_hotsale = FILTER.is_hotsale;
+          }
+
+          if ([true, false].includes(FILTER.is_data_crawl)) {
+            BODY.data_update.filter.is_data_crawl = FILTER.is_data_crawl;
+          }
+        } else {
+          BODY = {
+            ids: this.selectRow,
+          }
         }
 
         const { status_code } = await postSetHotsaleCar(BODY);
@@ -1125,6 +1284,13 @@ export default {
       this.handleResetModalPrice();
     },
     async onClickSaveModalPrice() {
+      if (this.isSelectAll) {
+        this.onClickSaveModalUpdatePriceAll();
+      } else {
+        this.handleUpdatePrice();
+      }
+    },
+    async handleUpdatePrice() {
       try {
         setLoading(true);
         
@@ -1161,9 +1327,37 @@ export default {
         console.log(error);
       }
     },
-    onClickSale() {
+    async onClickSale() {
+      setLoading(true);
       this.isModalAction = false;
+      await this.handleGetSaleStatus();
       this.isModalSale = true;
+      setLoading(false);
+    },
+    async handleGetSaleStatus() {
+      try {
+        const { status_code, data } = await getSaleStatus();
+
+        if (status_code === 200) {
+          this.isUpdateSale = {
+            status: data.is_sale,
+            value: data.sale_price,
+          };
+        } else {
+          this.isUpdateSale = {
+            status: false,
+            value: null,
+          };
+        }
+      } catch (error) {
+        this.isUpdateSale = {
+          status: false,
+          value: null,
+        };
+
+        setLoading(false);
+        console.log(error);
+      }
     },
     onClickCloseModalSale() {
       this.isModalSale = false;
@@ -1354,7 +1548,7 @@ export default {
   }
 
   &__table {
-    height: calc(100vh - 285px);
+    height: calc(100vh - 310px);
     overflow: auto;
     
     ::v-deep table {
@@ -1381,11 +1575,11 @@ export default {
           }
 
           .th-car-name {
-            width: 200px;
+            min-width: 200px;
           }
 
           .th-car-brand {
-            width: 130px;
+            min-width: 130px;
           }
 
           .th-car-price,

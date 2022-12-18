@@ -69,4 +69,5 @@ export default {
 
   // Api Sale
   POST_SET_SALE: '/sale/settings',
+  GET_SALE_STATUS: '/sale/status'
 };
