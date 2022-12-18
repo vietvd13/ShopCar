@@ -10,6 +10,7 @@ const getters = {
   isFilter: state => state.filter.isFilter,
   configSlider: state => state.filter.configSlider,
   isFilterDashboard: state => state.filter.isFilterDashboard,
+  isLimitDashboard: state => state.filter.isLimitDashboard,
   configSliderDashboard: state => state.filter.configSliderDashboard,
 };
 

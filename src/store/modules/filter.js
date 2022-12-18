@@ -86,28 +86,36 @@ const state = {
     configSlider: getConfigSlider(),
 
     isFilterDashboard: getIsFilterDashboard(),
+    isLimitDashboard: {
+        distance: false,
+        price: false,
+    },
     configSliderDashboard: getConfigSliderDashboard(),
 };
 
 const mutations = {
     SET_FILTER: (state, filter) => {
         state.isFilter = filter;
-        Cookies.set(CONSTANTS.COOKIES.IS_FILTER, JSON.stringify(filter));
+        // Cookies.set(CONSTANTS.COOKIES.IS_FILTER, JSON.stringify(filter));
     },
 
     SET_CONFIG_SLIDER: (state, config) => {
         state.configSlider = config;
-        Cookies.set(CONSTANTS.COOKIES.CONFIG_SLIDER, JSON.stringify(config));
+        // Cookies.set(CONSTANTS.COOKIES.CONFIG_SLIDER, JSON.stringify(config));
     },
 
     SET_FILTER_DASHBOARD: (state, filter) => {
         state.isFilterDashboard = filter;
-        Cookies.set(CONSTANTS.COOKIES.IS_FILTER_DASHBOARD, JSON.stringify(filter));
+        // Cookies.set(CONSTANTS.COOKIES.IS_FILTER_DASHBOARD, JSON.stringify(filter));
+    },
+
+    SET_LIMIT_DASHBOARD: (state, limit) => {
+        state.isLimitDashboard = limit;
     },
 
     SET_CONFIG_SLIDER_DASHBOARD: (state, config) => {
         state.configSlider = config;
-        Cookies.set(CONSTANTS.COOKIES.CONFIG_SLIDER_DASHBOARD, JSON.stringify(config));
+        // Cookies.set(CONSTANTS.COOKIES.CONFIG_SLIDER_DASHBOARD, JSON.stringify(config));
     }
 };
 
@@ -122,6 +130,10 @@ const actions = {
 
     setFilterDashboard({ commit }, filter) {
         commit('SET_FILTER_DASHBOARD', filter);
+    },
+
+    setLimitDashboard({ commit }, limit) {
+        commit('SET_LIMIT_DASHBOARD', limit);
     },
 
     setConfigSliderDashboard({ commit }, config) {
