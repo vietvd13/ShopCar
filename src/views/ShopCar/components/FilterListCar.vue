@@ -156,14 +156,20 @@
 
                             <div class="input-range">
                                 <b-row align-h="end">
-                                    <b-col cols="5" xs="5" sm="5" md="3" lg="3" xl="3" class="text-right">
-                                        <b-form-input
-                                            type="number"
-                                            size="sm" 
-                                            :placeholder="$t('SHOP_CAR.HOME.FILTER.PLACEHOLDER_INPUT_MAX_DISTANCE')"
-                                            v-model="configSlider.distance.max"
-                                            @keydown.native="validInputNumber"
-                                        />
+                                    <b-col cols="5" xs="5" sm="5" md="4" lg="4" xl="4" class="text-right">
+                                        <b-input-group class="mb-2">
+                                            <b-input-group-prepend is-text>
+                                                <input v-model="isLimit.distance" type="checkbox">
+                                            </b-input-group-prepend>
+                                            <b-form-input
+                                                type="number"
+                                                size="sm" 
+                                                :placeholder="$t('DASHBOARD.CAR.FILTER.PLACEHOLDER_INPUT_MAX_DISTANCE')"
+                                                v-model="configSlider.distance.max"
+                                                @keydown.native="validInputNumber"
+                                                :disabled="!isLimit.distance"
+                                            />
+                                        </b-input-group>
                                     </b-col>
                                 </b-row>
                             </div>
@@ -203,14 +209,20 @@
 
                             <div class="input-range">
                                 <b-row align-h="end">
-                                    <b-col cols="5" xs="5" sm="5" md="3" lg="3" xl="3" class="text-right">
-                                        <b-form-input
-                                            type="number"
-                                            size="sm" 
-                                            :placeholder="$t('SHOP_CAR.HOME.FILTER.PLACEHOLDER_INPUT_MAX_PRICE')"
-                                            v-model="configSlider.price.max"
-                                            @keydown.native="validInputNumber"
-                                        />
+                                    <b-col cols="5" xs="5" sm="5" md="4" lg="4" xl="4" class="text-right">
+                                        <b-input-group class="mb-2">
+                                            <b-input-group-prepend is-text>
+                                                <input v-model="isLimit.price" type="checkbox">
+                                            </b-input-group-prepend>
+                                            <b-form-input
+                                                type="number"
+                                                size="sm" 
+                                                :placeholder="$t('DASHBOARD.CAR.FILTER.PLACEHOLDER_INPUT_MAX_PRICE')"
+                                                v-model="configSlider.price.max"
+                                                @keydown.native="validInputNumber"
+                                                :disabled="!isLimit.price"
+                                            />
+                                        </b-input-group>
                                     </b-col>
                                 </b-row>
                             </div>
@@ -300,6 +312,11 @@ export default {
 
             filterDistance: null,
             filterPrice: null,
+
+            isLimit: this.$store.getters.isLimit || {
+                distance: false,
+                price: false,
+            }
         }
     },
     computed: {
@@ -314,6 +331,12 @@ export default {
         isFilter: {
             handler: async function() {
                 await this.$store.dispatch('filter/setFilter', this.isFilter);
+            },
+            deep: true,
+        },
+        isLimit: {
+            handler: async function() {
+                await this.$store.dispatch('filter/setLimit', this.isLimit);
             },
             deep: true,
         },

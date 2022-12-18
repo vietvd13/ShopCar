@@ -139,15 +139,19 @@ export default {
 
         if (FILTER.apply_price) {
           if (FILTER.price) {
+            const LIMIT = this.$store.getters.isLimit;
+
             BODY.filter.from_price = parseInt(FILTER.price[0]);
-            BODY.filter.to_price = parseInt(FILTER.price[1]);
+            BODY.filter.to_price = LIMIT.price ? parseInt(FILTER.price[1]) : null;
           }
         }
 
         if (FILTER.apply_distance) {
           if (FILTER.distance) {
+            const LIMIT = this.$store.getters.isLimit;
+
             BODY.filter.from_distance = parseInt(FILTER.distance[0]);
-            BODY.filter.to_distance = parseInt(FILTER.distance[1]);
+            BODY.filter.to_distance = LIMIT.distance ? parseInt(FILTER.distance[1]) : null;
           }
         }
 

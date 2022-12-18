@@ -8,6 +8,7 @@ const getters = {
   profile: state => state.auth.profile,
   isRelogin: state => state.auth.isRelogin,
   isFilter: state => state.filter.isFilter,
+  isLimit: state => state.filter.isLimit,
   configSlider: state => state.filter.configSlider,
   isFilterDashboard: state => state.filter.isFilterDashboard,
   isLimitDashboard: state => state.filter.isLimitDashboard,

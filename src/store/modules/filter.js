@@ -83,6 +83,10 @@ function getConfigSliderDashboard() {
 
 const state = {
     isFilter: getIsFilter(),
+    isLimit: {
+        distance: false,
+        price: false,
+    },
     configSlider: getConfigSlider(),
 
     isFilterDashboard: getIsFilterDashboard(),
@@ -98,6 +102,11 @@ const mutations = {
         state.isFilter = filter;
         // Cookies.set(CONSTANTS.COOKIES.IS_FILTER, JSON.stringify(filter));
     },
+
+    SET_LIMIT: (state, limit) => {
+        state.isLimit = limit;
+    },
+
 
     SET_CONFIG_SLIDER: (state, config) => {
         state.configSlider = config;
@@ -122,6 +131,10 @@ const mutations = {
 const actions = {
     setFilter({ commit }, filter) {
         commit('SET_FILTER', filter);
+    },
+
+    setLimit({ commit }, limit) {
+        commit('SET_LIMIT', limit);
     },
 
     setConfigSlider({ commit }, config) {

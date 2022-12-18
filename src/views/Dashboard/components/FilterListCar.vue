@@ -377,7 +377,7 @@ export default {
         },
         isLimit: {
             handler: async function() {
-                await this.$store.dispatch('filter/setFilterDashboard', this.isFilter);
+                await this.$store.dispatch('filter/setLimitDashboard', this.isLimit);
             },
             deep: true,
         },
