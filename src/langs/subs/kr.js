@@ -1,7 +1,7 @@
 export default {
   APP: {
     LOADING: "로드 중...",
-    BUTTON_BACK: "돌아와",
+    BUTTON_BACK: "반품",
     BUTTON_ADD: "새로운 걸 더하다",
     BUTTON_DELETE_MANY: "많이 삭제",
     BUTTON_UPDATE: "업데이트",
@@ -28,14 +28,17 @@ export default {
     UPDATE_BANNER: "배너 업데이트",
     NO_DATA: "데이터 없음",
     HOT_SALE: "뜨거운 판매",
-    OPTION_OTHER: "다른",
+    OPTION_OTHER: "은 다르다",
     PLACEHOLDER_PLEASE_INPUT: "들어 오세요",
     DROP_FILE: "파일 선택",
     SEARCHES: "결과",
+    ON: "켜다",
+    OFF: "끄다",
+    SELECT_ALL: "모두 선택"
   },
   TOAST: {
     SUCCESS: "성공적인",
-    WARNING: "경고",
+    WARNING: "알리다",
     DANGER: "오류"
   },
   LANGUAGES: {
@@ -61,7 +64,7 @@ export default {
     LOGIN_ERROR: "로그인에 실패했습니다. 계정을 다시 확인하십시오.",
     LOGOUT_ERROR: "로그아웃 실패",
     CREATE_COLLABORATORS_SUCCESS: "협력자를 성공적으로 생성했습니다.",
-    CREATE_COLLABORATORS_ERROR: "협력자를 생성하지 못했습니다.",
+    CREATE_COLLABORATORS_ERROR: "협력자를 만들지 못했습니다.",
     EDIT_COLLABORATORS_SUCCESS: "협력자 정보를 성공적으로 편집했습니다.",
     EDIT_COLLABORATORS_ERROR: "협력자 정보를 편집하지 못했습니다.",
     DELETE_COLLABORATORS_SUCCESS: "협력자를 성공적으로 삭제했습니다.",
@@ -85,11 +88,12 @@ export default {
     UPDATE_CAR_SUCCESS: "차량을 성공적으로 업데이트했습니다.",
     DELETE_CAR_SUCCESS: "자동차를 성공적으로 삭제했습니다.",
     SET_HOTSALE_CAR_SUCCESS: "hotsale 자동차를 성공적으로 업데이트했습니다.",
-    SET_PRICE_CAR_SUCCESS: "자동차 가격을 성공적으로 업데이트했습니다."
+    SET_PRICE_CAR_SUCCESS: "자동차 가격을 성공적으로 업데이트했습니다.",
+    SET_SALE_SUCCESS: "프로그램을 성공적으로 업데이트했습니다."
   },
   SHOP_CAR: {
     HOME: {
-      SEARCH: "검색",
+      SEARCH: "찾다",
       CATEGORIES: {
         VEHICLE_LIST: "차량 목록",
         CAR_BUYING_POLICY: "자동차 구매 정책",
@@ -98,13 +102,13 @@ export default {
       },
       FILTER: {
         FILTER_CAR: "자동차 목록 필터링",
-        SEARCH: "검색",
+        SEARCH: "찾다",
         YEAR: "제조 연도",
         CATEGORIES: "자동차 회사",
-        COLOR: "색깔",
+        COLOR: "색상",
         FUEL_TYPE: "연료 종류",
         GEAR_BOX: "엔진",
-        DISTANCE: "거리",
+        DISTANCE: "범위",
         PRICE: "가격",
         PLACEHOLDER_SEARCH: "검색 키워드",
         PLACEHOLDER_FROM_YEAR: "연도부터",
@@ -119,7 +123,7 @@ export default {
         PER_PAGE: "차량 번호",
         TEXT_PER_PAGE_8: "8차/페이지",
         TEXT_PER_PAGE_16: "16차/페이지",
-        TEXT_PER_PAGE_24: "24차/페이지",
+        TEXT_PER_PAGE_24: "24대/페이지",
         TEXT_PER_PAGE_32: "32대/페이지",
         TEXT_PER_PAGE_40: "40대/페이지"
       },
@@ -163,7 +167,7 @@ export default {
       TITLE_BASIC_INFOR: "기본 정보",
       TITLE_SALLER_INFOR: "판매자 정보",
       TITLE_VEHICLE_OPTIONS_AND_DETAILS: "차량 옵션 및 세부 정보",
-      TITLE_PERFORMANCE_CHECK: "성능 테스트",
+      TITLE_PERFORMANCE_CHECK: "성능 검사",
       PRICE: "가격",
       CATEGORIES: "자동차 회사",
       LICENSE_PLATE: "번호판",
@@ -172,12 +176,12 @@ export default {
       FUEL_TYPE: "연료",
       TRANSMISSION: "전염",
       DISPLACEMENT: "이동하다",
-      COLOR: "색깔",
+      COLOR: "색상",
       CAR_TYPE: "차량 범위",
-      SEIZURE: "경련",
+      SEIZURE: "동란",
       MORTGAGE: "저당",
       PRESENTATION_NUMBER: "발표 번호",
-      STORAGE_LOCATION: "저장소",
+      STORAGE_LOCATION: "저장 공간",
       CONTACT: "연락하다",
       NAME: "이름",
       EMPLOYEE_ID: "직원 ID",
@@ -204,7 +208,7 @@ export default {
       LOGIN: "로그인"
     },
     COLLABORATORS_MANAGEMENT: {
-      SEARCH: "검색",
+      SEARCH: "찾다",
       TABLE: {
         NO: "STT",
         AVATAR: "화신",
@@ -217,7 +221,7 @@ export default {
         SNS_ZALO: "잘로",
         SNS_MESSAGER: "메신저",
         DESCRIPTION: "설명하다",
-        EDIT: "편집하다",
+        EDIT: "편집",
         DELETE: "삭제"
       },
       MODAL: {
@@ -225,15 +229,15 @@ export default {
       }
     },
     HAPPY_MOMENT: {
-      SEARCH: "검색",
+      SEARCH: "찾다",
       TABLE: {
         NO: "STT",
-        PRIMARY_IMAGE: "영상",
+        PRIMARY_IMAGE: "사진",
         TITLE: "제목",
         CONTENT: "콘텐츠",
         WRITER: "창조자",
         ACTIONS: "시장 조작",
-        BTN_EDIT: "편집하다",
+        BTN_EDIT: "편집",
         BTN_DELETE: "삭제"
       },
       MODAL: {
@@ -248,12 +252,12 @@ export default {
         NO: "STT",
         NAME: "이름과 성",
         PHONE: "전화 번호",
-        QUESTION: "의문",
+        QUESTION: "문제",
         STATUS: "처리 상태",
         ACTION: "시장 조작",
         DETAIL: "표시하다",
         IN_PROGRESS: "프로세스 없음",
-        DONE: "완벽한"
+        DONE: "마치다"
       }
     },
     PROFILE: {
@@ -292,15 +296,15 @@ export default {
     CAR: {
       FILTER: {
         FILTER_CAR: "자동차 목록 필터링",
-        SEARCH: "검색",
+        SEARCH: "찾다",
         YEAR: "제조 연도",
         CATEGORIES: "자동차 회사",
-        COLOR: "색깔",
+        COLOR: "색상",
         FUEL_TYPE: "연료 종류",
         GEAR_BOX: "엔진",
         DATA_CRAWL: "차량 소스",
         HOT_SALE: "뜨거운 판매",
-        DISTANCE: "거리",
+        DISTANCE: "범위",
         PRICE: "가격",
         PLACEHOLDER_SEARCH: "검색 키워드",
         PLACEHOLDER_FROM_YEAR: "연도부터",
@@ -308,7 +312,7 @@ export default {
         PLACEHOLDER_INPUT_MAX_DISTANCE: "가장 큰 가치",
         PLACEHOLDER_INPUT_MAX_PRICE: "가장 큰 가치",
         TEXT_YES: "가지다",
-        TEXT_NO: "아니"
+        TEXT_NO: "아니다"
       },
       BUTTON_ADD_NEW: "새로운 걸 더하다",
       BUTTON_ACTIONS: "시장 조작",
@@ -318,25 +322,27 @@ export default {
       TABLE_CAR_BRAND: "자동차 회사",
       TABLE_HOT_SALE: "뜨거운 판매",
       TABLE_ACTIONS: "시장 조작",
+      TABLE_CAR_PRICE_ORIGIN: "비용",
+      TABLE_CAR_PRICE_DISPLAY: "자동차 가격",
+      TABLE_CAR_PRICE_DIFF: "가격 차이",
       TABLE_TEXT_HOT_SALE: "뜨거운 판매",
       TABLE_TEXT_NO_HOT_SALE: "정상",
-      TABLE_CAR_PRICE_ORIGIN: "비용",
-      TABLE_CAR_PRICE_DISPLAY: "가격",
-      TABLE_CAR_PRICE_DIFF: "변형 값",
       TABLE_TEXT_DETAIL: "세부 사항",
-      TABLE_TEXT_EDIT: "편집하다",
+      TABLE_TEXT_EDIT: "편집",
       TABLE_TEXT_DELETE: "삭제",
       ACITON_DELETE: "삭제",
       ACTION_ADD_HOT_SALE: "푸시 핫세일",
       ACTION_REMOVE_HOT_SALE: "핫 세일 종료",
       ACTION_ADD_PRICE: "가격 업데이트",
+      ACTION_SALE: "판매 프로그램",
+      ACTION_UPDATE_PRICE_MANY: "전체 가격 업데이트(필터)",
       TYPE_UPDATE: "업데이트 유형",
       UPDATE_PERCENTAGE: "퍼센트",
       UPDATE_PRICE: "금액",
       VALUE_UPDATE: "업데이트된 가격",
-      TYPE_NO_CHANGE: '끊임없는',
-      TYPE_UP: '임금 인상',
-      TYPE_DOWN: '줄이다',
+      TYPE_NO_CHANGE: "변하지 않은",
+      TYPE_UP: "인상",
+      TYPE_DOWN: "절감",
       FORM: {
         TITLE_MODAL: "차량 정보 관리",
         TITLE_CAR: "제목",
@@ -356,7 +362,7 @@ export default {
         PLACEHOLDER_DISPLACEMENT: "이동 유형을 선택하세요.",
         PLACEHOLDER_COLOR: "색상을 선택하세요",
         PLACEHOLDER_CAR_TYPE: "차종을 선택해주세요",
-        PLACEHOLDER_SEIZURE: "경련의 종류를 선택해주세요",
+        PLACEHOLDER_SEIZURE: "발작 유형을 선택하세요.",
         PLACEHOLDER_MORTGAGE: "저가형 모델을 선택하세요.",
         PLACEHOLDER_PRESENTATION_NUMBER: "발표번호를 입력해주세요",
         PLACEHOLDER_STORAGE_LOCATION: "수납공간을 입력해주세요",

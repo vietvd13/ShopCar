@@ -1,8 +1,8 @@
 export default {
   APP: {
     LOADING: "Loading...",
-    BUTTON_BACK: "Come back",
-    BUTTON_ADD: "Add New",
+    BUTTON_BACK: "Return",
+    BUTTON_ADD: "Add new",
     BUTTON_DELETE_MANY: "Delete a lot",
     BUTTON_UPDATE: "Update",
     BUTTON_FILTER: "Apply",
@@ -28,14 +28,17 @@ export default {
     UPDATE_BANNER: "Update banner",
     NO_DATA: "No data",
     HOT_SALE: "Hot Sale",
-    OPTION_OTHER: "Other",
+    OPTION_OTHER: "Is different",
     PLACEHOLDER_PLEASE_INPUT: "Please enter",
     DROP_FILE: "File selection",
     SEARCHES: "result",
+    ON: "Turn on",
+    OFF: "Turn off",
+    SELECT_ALL: "Select all"
   },
   TOAST: {
     SUCCESS: "Successful",
-    WARNING: "Warning",
+    WARNING: "Alert",
     DANGER: "Error"
   },
   LANGUAGES: {
@@ -61,7 +64,7 @@ export default {
     LOGIN_ERROR: "Login failed, please check your account again",
     LOGOUT_ERROR: "Logout failed",
     CREATE_COLLABORATORS_SUCCESS: "You have successfully created a collaborator",
-    CREATE_COLLABORATORS_ERROR: "You have failed to create a collaborator",
+    CREATE_COLLABORATORS_ERROR: "You have failed to create collaborator",
     EDIT_COLLABORATORS_SUCCESS: "You have successfully edited the collaborator information",
     EDIT_COLLABORATORS_ERROR: "You have failed to edit the collaborator information",
     DELETE_COLLABORATORS_SUCCESS: "You have successfully deleted the collaborator",
@@ -85,7 +88,8 @@ export default {
     UPDATE_CAR_SUCCESS: "You have successfully updated your vehicle",
     DELETE_CAR_SUCCESS: "You have successfully deleted the car",
     SET_HOTSALE_CAR_SUCCESS: "You have successfully updated the hotsale car",
-    SET_PRICE_CAR_SUCCESS: "You have successfully updated the car price"
+    SET_PRICE_CAR_SUCCESS: "You have successfully updated the car price",
+    SET_SALE_SUCCESS: "You have successfully updated the program"
   },
   SHOP_CAR: {
     HOME: {
@@ -104,7 +108,7 @@ export default {
         COLOR: "Color",
         FUEL_TYPE: "Fuel type",
         GEAR_BOX: "Engine",
-        DISTANCE: "Distance",
+        DISTANCE: "Range",
         PRICE: "Price",
         PLACEHOLDER_SEARCH: "Search keyword",
         PLACEHOLDER_FROM_YEAR: "From year",
@@ -174,7 +178,7 @@ export default {
       DISPLACEMENT: "Move",
       COLOR: "Color",
       CAR_TYPE: "Range of vehicle",
-      SEIZURE: "Convulsions",
+      SEIZURE: "Convulsion",
       MORTGAGE: "Mortgage",
       PRESENTATION_NUMBER: "Presentation number",
       STORAGE_LOCATION: "Storage area",
@@ -217,7 +221,7 @@ export default {
         SNS_ZALO: "Zalo",
         SNS_MESSAGER: "Messager",
         DESCRIPTION: "Describe",
-        EDIT: "Edit",
+        EDIT: "Editing",
         DELETE: "Delete"
       },
       MODAL: {
@@ -228,12 +232,12 @@ export default {
       SEARCH: "Search",
       TABLE: {
         NO: "STT",
-        PRIMARY_IMAGE: "Image",
+        PRIMARY_IMAGE: "Photo",
         TITLE: "Title",
         CONTENT: "Content",
         WRITER: "Creator",
         ACTIONS: "Manipulation",
-        BTN_EDIT: "Edit",
+        BTN_EDIT: "Editing",
         BTN_DELETE: "Delete"
       },
       MODAL: {
@@ -253,7 +257,7 @@ export default {
         ACTION: "Manipulation",
         DETAIL: "Display",
         IN_PROGRESS: "No process",
-        DONE: "Complete"
+        DONE: "Finish"
       }
     },
     PROFILE: {
@@ -300,7 +304,7 @@ export default {
         GEAR_BOX: "Engine",
         DATA_CRAWL: "Vehicle source",
         HOT_SALE: "Hot sale",
-        DISTANCE: "Distance",
+        DISTANCE: "Range",
         PRICE: "Price",
         PLACEHOLDER_SEARCH: "Search keyword",
         PLACEHOLDER_FROM_YEAR: "From year",
@@ -308,35 +312,37 @@ export default {
         PLACEHOLDER_INPUT_MAX_DISTANCE: "The greatest value",
         PLACEHOLDER_INPUT_MAX_PRICE: "The greatest value",
         TEXT_YES: "Have",
-        TEXT_NO: "No"
+        TEXT_NO: "Is not"
       },
-      BUTTON_ADD_NEW: "Add New",
+      BUTTON_ADD_NEW: "Add new",
       BUTTON_ACTIONS: "Manipulation",
       TABLE_NO: "STT",
       TABLE_IMAGE: "Picture",
       TABLE_CAR_NAME: "Vehicle name",
       TABLE_CAR_BRAND: "Car company",
       TABLE_HOT_SALE: "Hot sale",
-      TABLE_CAR_PRICE_ORIGIN: "Cost",
-      TABLE_CAR_PRICE_DISPLAY: "Price",
-      TABLE_CAR_PRICE_DIFF: "Variation value",
       TABLE_ACTIONS: "Manipulation",
+      TABLE_CAR_PRICE_ORIGIN: "Cost",
+      TABLE_CAR_PRICE_DISPLAY: "Car price",
+      TABLE_CAR_PRICE_DIFF: "Price difference",
       TABLE_TEXT_HOT_SALE: "Hot sale",
       TABLE_TEXT_NO_HOT_SALE: "Normal",
       TABLE_TEXT_DETAIL: "Detail",
-      TABLE_TEXT_EDIT: "Edit",
+      TABLE_TEXT_EDIT: "Editing",
       TABLE_TEXT_DELETE: "Delete",
       ACITON_DELETE: "Delete",
       ACTION_ADD_HOT_SALE: "Push hotsale",
       ACTION_REMOVE_HOT_SALE: "Quit hotsale",
       ACTION_ADD_PRICE: "Update price",
+      ACTION_SALE: "Sale program",
+      ACTION_UPDATE_PRICE_MANY: "Full price update (Filter)",
       TYPE_UPDATE: "Update type",
       UPDATE_PERCENTAGE: "Percent",
       UPDATE_PRICE: "Amount of money",
       VALUE_UPDATE: "Updated price",
-      TYPE_NO_CHANGE: 'Constant',
-      TYPE_UP: 'Get a raise',
-      TYPE_DOWN: 'Reduce',
+      TYPE_NO_CHANGE: "Unchanged",
+      TYPE_UP: "Get a raise",
+      TYPE_DOWN: "Reduction",
       FORM: {
         TITLE_MODAL: "Vehicle information management",
         TITLE_CAR: "Title",
