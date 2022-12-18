@@ -562,6 +562,11 @@ export default {
                 }
             }
 
+            this.isLimit = {
+                distance: false,
+                price: false,
+            }
+
             await this.$store.dispatch('filter/setFilterDashboard', this.isFilter)
                 .then(() => {
                     this.$emit('filter');
