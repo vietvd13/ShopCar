@@ -48,7 +48,7 @@
                     <a href="https://www.djauto.co.kr/" target="_blank">https://www.djauto.co.kr/</a>
                   </b-td>
                   <b-td>
-                    {{ saleInfor.state ? $t('SALE_INFOR.ON') : $t('SALE_INFOR.OFF') }}
+                    {{ saleInfor.status ? $t('SALE_INFOR.ON') : $t('SALE_INFOR.OFF') }}
                   </b-td>
                   <b-td>
                     {{ saleInfor.value }}
