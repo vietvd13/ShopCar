@@ -375,5 +375,14 @@ export default {
         PLACEHOLDER_IMPORT_PERFORMANCE_CHECK: "Vui lòng nhập"
       }
     }
+  },
+  SALE_INFOR: {
+    TITLE: "Chương trình điều chỉnh giá",
+    NO: "STT",
+    SOURCE: "Nguồn",
+    STATUS: "Trạng thái",
+    VALUE: "Giá trị",
+    ON: "Bật",
+    OFF: "Tắt",
   }
 }

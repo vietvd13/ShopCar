@@ -21,6 +21,46 @@
       </b-row>
     </div>
 
+    <div class="car-management-page__sale-infor mb-2">
+      <b-card>
+        <b-row>
+          <b-col>
+            <b-table-simple
+              bordered
+            >
+              <b-thead>
+                <!-- <b-tr>
+                  <b-th colspan="4">
+                    {{ $t('SALE_INFOR.TITLE') }}
+                  </b-th>
+                </b-tr> -->
+                <b-tr>
+                  <b-th>{{ $t('SALE_INFOR.NO') }}</b-th>
+                  <b-th>{{ $t('SALE_INFOR.SOURCE') }}</b-th>
+                  <b-th>{{ $t('SALE_INFOR.STATUS') }}</b-th>
+                  <b-th>{{ $t('SALE_INFOR.VALUE') }}</b-th>
+                </b-tr>
+              </b-thead>
+              <b-tbody>
+                <b-tr>
+                  <b-td>1</b-td>
+                  <b-td>
+                    <a href="https://www.djauto.co.kr/" target="_blank">https://www.djauto.co.kr/</a>
+                  </b-td>
+                  <b-td>
+                    {{ saleInfor.state ? $t('SALE_INFOR.ON') : $t('SALE_INFOR.OFF') }}
+                  </b-td>
+                  <b-td>
+                    {{ saleInfor.value }}
+                  </b-td>
+                </b-tr>
+              </b-tbody>
+            </b-table-simple>
+          </b-col>
+        </b-row>
+      </b-card>
+    </div>
+
     <b-row>
       <b-col class="mb-2">
         <b-form-checkbox
@@ -598,6 +638,10 @@ export default {
         value: null,
       },
       oldFilter: null,
+      saleInfor: {
+        status: false,
+        value: null,
+      }
     }
   },
   created () {
@@ -609,6 +653,7 @@ export default {
     handleCalPriceDiff,
     async initData() {
       setLoading(true);
+      await this.handleGetSaleInfor();
       await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
       setLoading(false);
     },
@@ -1346,6 +1391,31 @@ export default {
       this.isModalSale = true;
       setLoading(false);
     },
+    async handleGetSaleInfor() {
+      try {
+        const { status_code, data } = await getSaleStatus();
+
+        if (status_code === 200) {
+          this.saleInfor = {
+            status: data.is_sale,
+            value: data.sale_price,
+          };
+        } else {
+          this.saleInfor = {
+            status: false,
+            value: null,
+          };
+        }
+      } catch (error) {
+        this.saleInfor = {
+          status: false,
+          value: null,
+        };
+
+        setLoading(false);
+        console.log(error);
+      }
+    },
     async handleGetSaleStatus() {
       try {
         const { status_code, data } = await getSaleStatus();
@@ -1563,8 +1633,38 @@ export default {
     }
   }
 
+  &__sale-infor {
+    ::v-deep table {
+      margin-bottom: 0;
+
+      thead {
+        tr {
+
+          th {
+            text-align: center;
+            vertical-align: middle;
+
+            background-color: $mine-shaft;
+            color: $white;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            text-align: center;
+            vertical-align: middle;
+            align-items: center;
+            background-color: $white;
+          }
+        }
+      }
+    }
+  }
+
   &__table {
-    height: calc(100vh - 310px);
+    height: calc(100vh - 450px);
     overflow: auto;
     
     ::v-deep table {

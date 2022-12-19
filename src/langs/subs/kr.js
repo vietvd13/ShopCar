@@ -375,5 +375,14 @@ export default {
         PLACEHOLDER_IMPORT_PERFORMANCE_CHECK: "들어 오세요"
       }
     }
+  },
+  SALE_INFOR: {
+    TITLE: "가격 조정 프로그램",
+    NO: "숫자",
+    SOURCE: "출처",
+    STATUS: "상태",
+    VALUE: "값",
+    ON: "~에",
+    OFF: "끄다",
   }
 }

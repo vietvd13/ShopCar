@@ -375,5 +375,14 @@ export default {
         PLACEHOLDER_IMPORT_PERFORMANCE_CHECK: "Please enter"
       }
     }
+  },
+  SALE_INFOR: {
+    TITLE: "Price adjustment program",
+    NO: "NO",
+    SOURCE: "The source",
+    STATUS: "Status",
+    VALUE: "Value",
+    ON: "On",
+    OFF: "Off",
   }
 }
