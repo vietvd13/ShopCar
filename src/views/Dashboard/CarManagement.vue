@@ -1305,6 +1305,7 @@ export default {
         } else {
           BODY = {
             ids: this.selectRow,
+            is_hotsale: status
           }
         }
 
