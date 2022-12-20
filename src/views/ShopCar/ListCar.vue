@@ -142,7 +142,7 @@ export default {
             const LIMIT = this.$store.getters.isLimit;
 
             BODY.filter.from_price = parseInt(FILTER.price[0]);
-            BODY.filter.to_price = LIMIT.price ? parseInt(FILTER.price[1]) : null;
+            BODY.filter.to_price = LIMIT.price ? null : parseInt(FILTER.price[1]);
           }
         }
 
@@ -151,7 +151,7 @@ export default {
             const LIMIT = this.$store.getters.isLimit;
 
             BODY.filter.from_distance = parseInt(FILTER.distance[0]);
-            BODY.filter.to_distance = LIMIT.distance ? parseInt(FILTER.distance[1]) : null;
+            BODY.filter.to_distance = LIMIT.distance ? null : parseInt(FILTER.distance[1]);
           }
         }
 

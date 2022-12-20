@@ -34,7 +34,8 @@ export default {
     SEARCHES: "결과",
     ON: "켜다",
     OFF: "끄다",
-    SELECT_ALL: "모두 선택"
+    SELECT_ALL: "모두 선택",
+    NO_LIMIT: "제한 없음",
   },
   TOAST: {
     SUCCESS: "성공적인",

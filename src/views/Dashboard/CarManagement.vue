@@ -698,7 +698,7 @@ export default {
             const LIMIT = this.$store.getters.isLimitDashboard;
 
             BODY.filter.from_price = parseInt(FILTER.price[0]);
-            BODY.filter.to_price = LIMIT.price ? parseInt(FILTER.price[1]) : null;
+            BODY.filter.to_price = LIMIT.price ? null : parseInt(FILTER.price[1]);
           }
         }
 
@@ -707,7 +707,7 @@ export default {
             const LIMIT = this.$store.getters.isLimitDashboard;
 
             BODY.filter.from_distance = parseInt(FILTER.distance[0]);
-            BODY.filter.to_distance = LIMIT.distance ? parseInt(FILTER.distance[1]) : null;
+            BODY.filter.to_distance = LIMIT.distance ? null : parseInt(FILTER.distance[1]);
           }
         }
 
@@ -1171,7 +1171,7 @@ export default {
               const LIMIT = this.$store.getters.isLimitDashboard;
 
               BODY.filter.from_price = parseInt(FILTER.price[0]);
-              BODY.filter.to_price = LIMIT.price ? parseInt(FILTER.price[1]) : null;
+              BODY.filter.to_price = LIMIT.price ? null : parseInt(FILTER.price[1]);
             }
           }
 
@@ -1180,7 +1180,7 @@ export default {
               const LIMIT = this.$store.getters.isLimitDashboard;
 
               BODY.filter.from_distance = parseInt(FILTER.distance[0]);
-              BODY.filter.to_distance = LIMIT.distance ? parseInt(FILTER.distance[1]) : null;
+              BODY.filter.to_distance = LIMIT.distance ? null : parseInt(FILTER.distance[1]);
             }
           }
 
@@ -1266,7 +1266,7 @@ export default {
               const LIMIT = this.$store.getters.isLimitDashboard;
 
               BODY.filter.from_price = parseInt(FILTER.price[0]);
-              BODY.filter.to_price = LIMIT.price ? parseInt(FILTER.price[1]) : null;
+              BODY.filter.to_price = LIMIT.price ? null : parseInt(FILTER.price[1]);
             }
           }
 
@@ -1275,7 +1275,7 @@ export default {
               const LIMIT = this.$store.getters.isLimitDashboard;
 
               BODY.filter.from_distance = parseInt(FILTER.distance[0]);
-              BODY.filter.to_distance = LIMIT.distance ? parseInt(FILTER.distance[1]) : null;
+              BODY.filter.to_distance = LIMIT.distance ? null : parseInt(FILTER.distance[1]);
             }
           }
 
@@ -1459,6 +1459,10 @@ export default {
         const { status_code } = await postSetSale(BODY);
 
         if (status_code === 200) {
+          this.saleInfor = {
+            status: this.isUpdateSale.status,
+            value: parseInt(this.isUpdateSale.value) || 0,
+          };
           Toast.success(this.$t('TOAST_MESSAGE.SET_SALE_SUCCESS'));
         }
 
@@ -1530,7 +1534,7 @@ export default {
             const LIMIT = this.$store.getters.isLimitDashboard;
 
             BODY.filter.from_price = parseInt(FILTER.price[0]);
-            BODY.filter.to_price = LIMIT.price ? parseInt(FILTER.price[1]) : null;
+            BODY.filter.to_price = LIMIT.price ? null : parseInt(FILTER.price[1]);
           }
         }
 
@@ -1539,7 +1543,7 @@ export default {
             const LIMIT = this.$store.getters.isLimitDashboard;
 
             BODY.filter.from_distance = parseInt(FILTER.distance[0]);
-            BODY.filter.to_distance = LIMIT.distance ? parseInt(FILTER.distance[1]) : null;
+            BODY.filter.to_distance = LIMIT.distance ? null : parseInt(FILTER.distance[1]);
           }
         }
 

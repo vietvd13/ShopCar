@@ -34,7 +34,8 @@ export default {
     SEARCHES: "result",
     ON: "Turn on",
     OFF: "Turn off",
-    SELECT_ALL: "Select all"
+    SELECT_ALL: "Select all",
+    NO_LIMIT: "No limit",
   },
   TOAST: {
     SUCCESS: "Successful",

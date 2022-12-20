@@ -188,20 +188,10 @@
 
                             <div class="input-range">
                                 <b-row align-h="end">
-                                    <b-col cols="5" xs="5" sm="5" md="4" lg="4" xl="4" class="text-right">
-                                        <b-input-group class="mb-2">
-                                            <b-input-group-prepend is-text>
-                                                <input v-model="isLimit.distance" type="checkbox">
-                                            </b-input-group-prepend>
-                                            <b-form-input
-                                                type="number"
-                                                size="sm" 
-                                                :placeholder="$t('DASHBOARD.CAR.FILTER.PLACEHOLDER_INPUT_MAX_DISTANCE')"
-                                                v-model="configSlider.distance.max"
-                                                @keydown.native="validInputNumber"
-                                                :disabled="!isLimit.distance"
-                                            />
-                                        </b-input-group>
+                                    <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12" class="text-right">
+                                        <b-form-checkbox v-model="isLimit.distance">
+                                            {{ $t('APP.NO_LIMIT') }}
+                                        </b-form-checkbox>
                                     </b-col>
                                 </b-row>
                             </div>
@@ -241,20 +231,10 @@
 
                             <div class="input-range">
                                 <b-row align-h="end">
-                                    <b-col cols="5" xs="5" sm="5" md="4" lg="4" xl="4" class="text-right">
-                                        <b-input-group class="mb-2">
-                                            <b-input-group-prepend is-text>
-                                                <input v-model="isLimit.price" type="checkbox">
-                                            </b-input-group-prepend>
-                                            <b-form-input
-                                                type="number"
-                                                size="sm" 
-                                                :placeholder="$t('DASHBOARD.CAR.FILTER.PLACEHOLDER_INPUT_MAX_PRICE')"
-                                                v-model="configSlider.price.max"
-                                                @keydown.native="validInputNumber"
-                                                :disabled="!isLimit.price"
-                                            />
-                                        </b-input-group>
+                                    <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12" class="text-right">
+                                        <b-form-checkbox v-model="isLimit.price">
+                                            {{ $t('APP.NO_LIMIT') }}
+                                        </b-form-checkbox>
                                     </b-col>
                                 </b-row>
                             </div>

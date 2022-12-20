@@ -34,7 +34,8 @@ export default {
     SEARCHES: "kết quả",
     ON: "Bật",
     OFF: "Tắt",
-    SELECT_ALL: "Chọn tất cả"
+    SELECT_ALL: "Chọn tất cả",
+    NO_LIMIT: "Không giới hạn",
   },
   TOAST: {
     SUCCESS: "Thành công",
