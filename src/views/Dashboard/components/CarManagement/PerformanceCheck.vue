@@ -21,6 +21,8 @@
         <div class="preview-import-file">
             <template v-if="filePreview.url">
                 <b-img-lazy
+                    v-for="(image, idx) in filePreview.url"
+                    :key="idx"
                     :src="handleViewPdf(image)"
                     :blank-src="require('@/assets/images/noimage.webp')"
                     fluid
