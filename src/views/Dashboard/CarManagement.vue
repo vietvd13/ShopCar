@@ -966,6 +966,7 @@ export default {
 
         if (status_code === 200) {
           this.onClickCloseModal();
+          this.handleResetCheckRow();
           await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
           Toast.success(this.$t('TOAST_MESSAGE.CREATE_CAR_SUCCESS'));
         }
@@ -988,6 +989,7 @@ export default {
 
         if (status_code === 200) {
           this.onClickCloseModal();
+          this.handleResetCheckRow();
           await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
           Toast.success(this.$t('TOAST_MESSAGE.UPDATE_CAR_SUCCESS'));
         }
@@ -1228,6 +1230,7 @@ export default {
         const { status_code } = await postDeleteCar(BODY);
 
         if (status_code === 200) {
+          this.handleResetCheckRow();
           await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
           Toast.success(this.$t('TOAST_MESSAGE.DELETE_CAR_SUCCESS'));
         }
@@ -1324,6 +1327,7 @@ export default {
         const { status_code } = await postSetHotsaleCar(BODY);
 
         if (status_code === 200) {
+          this.handleResetCheckRow();
           await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
           Toast.success(this.$t('TOAST_MESSAGE.SET_HOTSALE_CAR_SUCCESS'));
         }
@@ -1387,8 +1391,7 @@ export default {
           Toast.success(this.$t('TOAST_MESSAGE.SET_PRICE_CAR_SUCCESS'));
         }
 
-        this.selectRow = [];
-
+        this.handleResetCheckRow();
         await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
 
         setLoading(false);
@@ -1482,6 +1485,7 @@ export default {
         await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
 
         this.onClickCloseModalSale();
+        this.handleResetCheckRow();
         setLoading(false);
       } catch(error) {
         console.log(error);
@@ -1593,6 +1597,8 @@ export default {
         await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
 
         this.onClickCloseModalUpdatePriceAll();
+        this.handleResetCheckRow();
+        this.isModalPrice = false;
         setLoading(false);
       } catch(error) {
         console.log(error);
@@ -1626,6 +1632,10 @@ export default {
       }
 
       return LIBRAY_TEXT[diffCal['type']];
+    },
+    handleResetCheckRow() {
+      this.isSelectAll = false;
+      this.selectRow = [];
     }
   },
 }
