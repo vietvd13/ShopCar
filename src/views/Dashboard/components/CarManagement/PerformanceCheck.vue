@@ -13,34 +13,44 @@
                     :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_IMPORT_PERFORMANCE_CHECK')"
                     :drop-placeholder="$t('APP.DROP_FILE')"
                     :browse-text="$t('APP.DROP_FILE')"
-                    accept="application/pdf"
+                    accept="image/*"
+                    multiple
                 />
             </div>
         </div>
 
-        <div class="preview-import-file" :key="handleViewPdf()">
-            <ViewPDF 
-                :file="handleViewPdf()" 
-                class="view-pdf"
-            />
+        <div class="preview-import-file">
+            <template v-if="filePreview.url.length">
+                <b-img-lazy
+                    v-for="(image, idx) in filePreview.url"
+                    :key="idx"
+                    :src="handleViewPdf(image)"
+                    :blank-src="require('@/assets/images/noimage.webp')"
+                    fluid
+                    :alt="`image-car-${idx + 1}`"
+                    class="display-image"
+                />
+            </template>
+            <template v-else>
+                <b-row>
+                    <b-col class="text-center">
+                        <span>{{ $t("APP.NO_DATA") }}</span>
+                    </b-col>
+                </b-row>
+            </template>
         </div>
     </div>
 </template>
 
 <script>
-import ViewPDF from '@/components/ViewPDF.vue';
-
 export default {
     name: 'ImportPerformanceCheck',
-    components: {
-        ViewPDF,
-    },
     props: {
         oldFile: {
             type: Object,
             default: function() {
                 return {
-                    url: '',
+                    url: [],
                     type: ''
                 }
             }
@@ -80,19 +90,19 @@ export default {
             },
             filePreview: {
                 type: '',
-                url: '',
+                url: [],
             },
         }
     },
     methods: {
-        handleViewPdf() {
+        handleViewPdf(image) {
             if (this.filePreview) {
                 if (this.filePreview.type === 'new') {
-                    return URL.createObjectURL(this.fileImport.url);
+                    return URL.createObjectURL(image);
                 } 
 
                 if (this.filePreview.type === 'old') {
-                    return `${this.domainPDF}${this.filePreview.url}`;
+                    return `${this.domainPDF}${image}`;
                 }
             }
 
@@ -114,16 +124,14 @@ export default {
     .preview-import-file {
         margin-top: 5px;
     }
-
-    .view-pdf {
-        width: 100%;
-        height: 500px;
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
-    }
 }
 
 .zone-import {
     display: none;
+}
+
+.display-image {
+    width: 100%;
+    margin-bottom: 10px;
 }
 </style>

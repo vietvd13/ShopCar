@@ -1,5 +1,5 @@
 import request from '../service';
-import CONSTANTS from '../../constants';
+import CONSTANTS from '@/constants';
 
 export function postImage(IMAGE = null, PARAMS = null) {
   const BODY = new FormData();

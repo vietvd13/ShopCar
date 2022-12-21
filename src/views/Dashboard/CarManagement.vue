@@ -473,7 +473,7 @@
 <script>
 import { setLoading } from '@/utils/setLoading';
 import { postListCar, postCreateCar, postGetDetailCar, postUpdateCar, postDeleteCar, postSetHotsaleCar, postSetPirce, postSetSale, postSetPriceAll, getSaleStatus } from '@/api/modules/Dashboard';
-import { postImages, postFile } from '@/api/modules/Upload';
+import { postImages } from '@/api/modules/Upload';
 import FilterListCarDashboard from './components/FilterListCar.vue';
 import FormCar from './components/CarManagement/Form.vue';
 import { getArrValueOfArr, replaceValueWithIndex, formatPrice } from '@/utils/helper';
@@ -808,7 +808,7 @@ export default {
 
       const PERFORMANCE_CHECK = {
         type: 'old',
-        url: data.performance_check
+        url: Array.isArray(data.performance_check) ? data.performance_check : [],
       }
 
       this.isForm = {
@@ -1025,8 +1025,8 @@ export default {
         color: this.handleInitOther(this.isForm.color, this.isForm.otherColor),
         gearbox: this.handleInitOther(this.isForm.gearbox, this.isForm.otherGearBox),
         category: this.handleInitOther(this.isForm.categories, this.isForm.otherCategories),
-        performance_check: PERFORMANCE_CHECK,
-        primary_image: PRIMARY_IMAGE,
+        performance_check: PERFORMANCE_CHECK || [],
+        primary_image: PRIMARY_IMAGE || [],
         phone_contact: this.isForm.contact,
         images: LIST_NEW_IMAGE,
         car_type: this.handleInitOther(this.isForm.carType, this.isForm.otherCarType),
@@ -1100,19 +1100,31 @@ export default {
       if (this.isForm.performanceCheck) {
         if (this.isForm.performanceCheck.type === 'new') {
           try {
-            const FILE = this.isForm.performanceCheck.url;
+            const len = this.isForm.performanceCheck.url.length;
+            let idx = 0;
 
-            const { status_code, data } = await postFile(FILE);
+            const FILE = [];
 
-            if (status_code === 200) {
-              return data.image;
+            while (idx < len) {
+              FILE.push({
+                type: this.isForm.performanceCheck.type,
+                url: this.isForm.performanceCheck.url[idx]
+              })
+
+              idx++;
             }
 
-            return '';
+            const { status_code, data } = await postImages(FILE);
+
+            if (status_code === 200) {
+              return data;
+            }
+
+            return [];
           } catch (err) {
             console.log(err);
 
-            return '';
+            return [];
           }
         }
 

@@ -1,5 +1,5 @@
 import request from '../service';
-import CONSTANTS from '../../constants';
+import CONSTANTS from '@/constants';
 
 // Api Cộng tác viên
 export function getListCollaborators(BODY = null, PRARAMS = null) {
