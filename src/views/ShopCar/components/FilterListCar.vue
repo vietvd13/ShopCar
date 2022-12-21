@@ -273,6 +273,8 @@ import {
 import { generateSelect, formatPrice, formatNumber } from '@/utils/helper';
 import { validInputNumber } from '@/utils/handleInput';
 
+import CONSTANTS from '@/constants';
+
 export default {
     name: 'FilterListCar',
     props: {
@@ -293,18 +295,18 @@ export default {
                 gear_box: null,
                 apply_distance: false,
                 apply_price: false,
-                distance: [0, 250000],
-                price: [0, 50000]
+                distance: [0, CONSTANTS.VALUE.MAX_DISTANCE],
+                price: [0, CONSTANTS.VALUE.MAX_PRICE]
             },
 
             configSlider: this.$store.getters.configSlider || {
                 distance: {
                     min: 0,
-                    max: 250000,
+                    max: CONSTANTS.VALUE.MAX_DISTANCE,
                 },
                 price: {
                     min: 0,
-                    max: 50000,
+                    max: CONSTANTS.VALUE.MAX_PRICE,
                 }
             },
 
@@ -509,18 +511,18 @@ export default {
                 gear_box: null,
                 apply_distance: false,
                 apply_price: false,
-                distance: [0, 250000],
-                price: [0, 50000]
+                distance: [0, CONSTANTS.VALUE.MAX_DISTANCE],
+                price: [0, CONSTANTS.VALUE.MAX_PRICE]
             }
 
             this.configSlider = {
                 distance: {
                     min: 0,
-                    max: 250000,
+                    max: CONSTANTS.VALUE.MAX_DISTANCE,
                 },
                 price: {
                     min: 0,
-                    max: 50000,
+                    max: CONSTANTS.VALUE.MAX_PRICE,
                 }
             }
 

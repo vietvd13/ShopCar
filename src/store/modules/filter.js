@@ -16,8 +16,8 @@ function getIsFilter() {
         color: null,
         fuel_type: null,
         gear_box: null,
-        distance: [0, 250000],
-        price: [0, 50000]
+        distance: [0, CONSTANTS.VALUE.MAX_DISTANCE],
+        price: [0, CONSTANTS.VALUE.MAX_PRICE]
     }
 }
 
@@ -31,11 +31,11 @@ function getConfigSlider() {
     return {
         distance: {
             min: 0,
-            max: 250000,
+            max: CONSTANTS.VALUE.MAX_DISTANCE,
         },
         price: {
             min: 0,
-            max: 50000,
+            max: CONSTANTS.VALUE.MAX_PRICE,
         }
     }
 }
@@ -57,8 +57,8 @@ function getIsFilterDashboard() {
         gear_box: null,
         is_hotsale: null,
         is_data_crawl: null,
-        distance: [0, 250000],
-        price: [0, 50000]
+        distance: [0, CONSTANTS.VALUE.MAX_DISTANCE],
+        price: [0, CONSTANTS.VALUE.MAX_PRICE]
     }
 }
 
@@ -72,11 +72,11 @@ function getConfigSliderDashboard() {
     return {
         distance: {
             min: 0,
-            max: 250000,
+            max: CONSTANTS.VALUE.MAX_DISTANCE,
         },
         price: {
             min: 0,
-            max: 50000,
+            max: CONSTANTS.VALUE.MAX_PRICE,
         }
     }
 }
@@ -100,7 +100,6 @@ const state = {
 const mutations = {
     SET_FILTER: (state, filter) => {
         state.isFilter = filter;
-        // Cookies.set(CONSTANTS.COOKIES.IS_FILTER, JSON.stringify(filter));
     },
 
     SET_LIMIT: (state, limit) => {
@@ -110,12 +109,10 @@ const mutations = {
 
     SET_CONFIG_SLIDER: (state, config) => {
         state.configSlider = config;
-        // Cookies.set(CONSTANTS.COOKIES.CONFIG_SLIDER, JSON.stringify(config));
     },
 
     SET_FILTER_DASHBOARD: (state, filter) => {
         state.isFilterDashboard = filter;
-        // Cookies.set(CONSTANTS.COOKIES.IS_FILTER_DASHBOARD, JSON.stringify(filter));
     },
 
     SET_LIMIT_DASHBOARD: (state, limit) => {
@@ -124,7 +121,6 @@ const mutations = {
 
     SET_CONFIG_SLIDER_DASHBOARD: (state, config) => {
         state.configSlider = config;
-        // Cookies.set(CONSTANTS.COOKIES.CONFIG_SLIDER_DASHBOARD, JSON.stringify(config));
     }
 };
 
