@@ -14,16 +14,13 @@
                     :drop-placeholder="$t('APP.DROP_FILE')"
                     :browse-text="$t('APP.DROP_FILE')"
                     accept="image/*"
-                    multiple
                 />
             </div>
         </div>
 
         <div class="preview-import-file">
-            <template v-if="filePreview.url.length">
+            <template v-if="filePreview.url">
                 <b-img-lazy
-                    v-for="(image, idx) in filePreview.url"
-                    :key="idx"
                     :src="handleViewPdf(image)"
                     :blank-src="require('@/assets/images/noimage.webp')"
                     fluid
