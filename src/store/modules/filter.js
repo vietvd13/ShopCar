@@ -10,8 +10,8 @@ function getIsFilter() {
 
     return {
         search: '',
-        from_year: '',
-        to_year: '',
+        from_year: null,
+        to_year: null,
         categories: null,
         color: null,
         fuel_type: null,
@@ -49,8 +49,8 @@ function getIsFilterDashboard() {
 
     return {
         search: '',
-        from_year: '',
-        to_year: '',
+        from_year: null,
+        to_year: null,
         categories: null,
         color: null,
         fuel_type: null,

@@ -32,24 +32,47 @@
                                 {{ $t('SHOP_CAR.HOME.FILTER.YEAR') }}
                             </label>
                             <b-input-group class="mb-2">
-                                <b-form-input
+                                <b-form-select 
+                                    v-model="isFilter.from_year" 
                                     id="filter-from-year"
-                                    class="reset-border-right"
-                                    type="number"
-                                    v-model="isFilter.from_year"
-                                    :placeholder="$t('SHOP_CAR.HOME.FILTER.PLACEHOLDER_FROM_YEAR')"
-                                    @keydown.native="validInputNumber"
-                                />
+                                    @change="handleSelectYear"
+                                >
+                                    <template #first>
+                                        <b-form-select-option :value="null">
+                                            {{ $t('APP.PLEASE_SELECT') }}
+                                        </b-form-select-option>
+                                    </template>
+
+                                    <b-form-select-option
+                                        v-for="(year, idxYear) in listOptionYear"
+                                        :value="year.value"
+                                        :key="idxYear"
+                                    >
+                                        {{ year.text }}
+                                    </b-form-select-option>
+                                </b-form-select>
                                 <b-input-group-prepend is-text>
                                     <b> - </b>
                                 </b-input-group-prepend>
-                                <b-form-input
+                                <b-form-select 
+                                    v-model="isFilter.to_year" 
                                     id="filter-to-year"
-                                    type="number"
-                                    v-model="isFilter.to_year"
-                                    :placeholder="$t('SHOP_CAR.HOME.FILTER.PLACEHOLDER_TO_YEAR')"
-                                    @keydown.native="validInputNumber"
-                                />
+                                    @change="handleSelectYear"
+                                >
+                                    <template #first>
+                                        <b-form-select-option :value="null">
+                                            {{ $t('APP.PLEASE_SELECT') }}
+                                        </b-form-select-option>
+                                    </template>
+
+                                    <b-form-select-option
+                                        v-for="(year, idxYear) in listOptionYear"
+                                        :value="year.value"
+                                        :key="idxYear"
+                                    >
+                                        {{ year.text }}
+                                    </b-form-select-option>
+                                </b-form-select>
                             </b-input-group>
                         </div>
                     </b-col>
@@ -262,8 +285,8 @@ export default {
         return {
             isFilter: this.$store.getters.isFilter || {
                 search: '',
-                from_year: '',
-                to_year: '',
+                from_year: null,
+                to_year: null,
                 categories: null,
                 color: null,
                 fuel_type: null,
@@ -285,6 +308,7 @@ export default {
                 }
             },
 
+            listOptionYear: [],
             listCategories: [],
             listColor: [],
             listFuelType: [],
@@ -409,6 +433,7 @@ export default {
             })
         },
         async initData() {
+            this.listOptionYear = this.handleGetListYear();
             this.handleGetListCategories();
             this.handleGetListColor();
             this.handleGetListFuleType();
@@ -476,8 +501,8 @@ export default {
         async onClickResetFilter() {
             this.isFilter = {
                 search: '',
-                from_year: '',
-                to_year: '',
+                from_year: null,
+                to_year: null,
                 categories: null,
                 color: null,
                 fuel_type: null,
@@ -511,6 +536,32 @@ export default {
                 .catch(() => {
                     this.$emit('filter');
                 })
+        },
+        handleGetListYear() {
+            const MIN = 2000;
+            const d = new Date();
+
+            let YEAR = d.getFullYear() + 1;
+
+            const result = [];
+
+            if (YEAR >= MIN) {
+                while (YEAR >= MIN) {
+                    result.push({
+                        value: YEAR,
+                        text: `${YEAR}`
+                    });
+
+                    YEAR = YEAR - 1;
+                }
+            }
+
+            return result;
+        },
+        handleSelectYear() {
+            if (this.isFilter.from_year > this.isFilter.to_year && (this.isFilter.to_year !== null)) {
+                this.isFilter.to_year = this.isFilter.from_year;
+            }
         }
     },
 }
