@@ -86,6 +86,7 @@
                                 id="filter-categories"
                                 v-model="isFilter.categories"
                                 :options="listCategories"
+                                @change="onSelectCategories"
                             >
                                 <template #first>
                                     <b-form-select-option :value="null">
