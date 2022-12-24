@@ -495,6 +495,7 @@ export default {
         async initData() {
             this.listOptionYear = this.handleGetListYear();
             this.handleGetListCategories();
+            this.handleGetAllModelCar();
             this.handleGetListColor();
             this.handleGetListFuleType();
             this.handleGetListGearBox();
