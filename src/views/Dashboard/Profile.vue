@@ -127,7 +127,7 @@
                     <h6>{{ $t('DASHBOARD.PROFILE.COMPANY.ADDRESS') }}</h6>
                   </b-col>
                   <b-col>
-                    <b-input :disabled="!is_edit" v-model="company_address" readonly
+                    <b-input :disabled="!is_edit" v-model="company_address"
                       :placeholder="$t('DASHBOARD.PROFILE.COMPANY.ADDRESS')">
                     </b-input>
                   </b-col>

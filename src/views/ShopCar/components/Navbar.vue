@@ -27,6 +27,38 @@
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
+          <b-nav-item href="#">
+            <b-img
+              @click="goToLink(profile.link_facebook)"
+              :src="require('@/assets/images/facebook.png')"
+              v-bind="{
+                width: 25,
+                height: 25
+              }"
+              class="icon-social"
+            />
+
+            <b-img
+              @click="goToLink(profile.link_messenger)"
+              :src="require('@/assets/images/messager.png')"
+              v-bind="{
+                width: 25,
+                height: 25
+              }"
+              class="icon-social"
+            />
+
+            <b-img
+              @click="goToLink(profile.link_zalo)"
+              :src="require('@/assets/images/zalo.png')"
+              v-bind="{
+                width: 25,
+                height: 25
+              }"
+              class="icon-social"
+            />
+          </b-nav-item>
+
           <b-nav-item-dropdown right>
             <template #button-content>
               <flag :iso="convertFlagLanguage()" class="pulldown-lang" />
@@ -74,6 +106,7 @@
 <script>
 import CONSTANTS from '@/constants';
 import Toast from '@/toast';
+import { getProfilePublic } from '@/api/modules/Home';
 
 export default {
   name: 'NavbarShop',
@@ -103,13 +136,22 @@ export default {
           path: '/shop-car/contact',
         },
       ],
-      keyword: ''
+      keyword: '',
+
+      profile: {
+        link_facebook: '',
+        link_messenger: '',
+        link_zalo: '',
+      }
     }
   },
   computed: {
     lang() {
-        return this.$store.getters.language; 
-    }
+      return this.$store.getters.language; 
+    },
+  },
+  created () {
+    this.initData();
   },
   methods: {
     goToRoute(name) {
@@ -120,6 +162,27 @@ export default {
           this.$router.push({ name });
         }
       }
+    },
+    async initData() {
+      await this.handleGetProfile();
+    },
+    async handleGetProfile() {
+      try {
+        const { status_code, data } = await getProfilePublic();
+
+        if (status_code === 200) {
+          this.profile.phone_number = data.phone_number;
+          this.profile.company_address = data.company_address;
+          this.profile.email = data.email;
+          this.profile.map = data.company_map;
+          this.profile.company_name = data.company_name;
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    goToLink(link) {
+      window.open(link, '_blank');
     },
     convertFlagLanguage() {
       const LANG = this.$store.getters.language;
@@ -155,7 +218,7 @@ export default {
                 Toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
             })
       }
-    }
+    },
   },
 }
 </script>
@@ -228,5 +291,9 @@ export default {
   .item-route {
     text-align: left !important;
   }
+}
+
+.icon-social {
+  margin-left: 10px;
 }
 </style>
