@@ -120,7 +120,7 @@
                                             {{ $t('SHOP_CAR.DETAIL_CAR.CONTACT') }}
                                         </b-td>
                                         <b-td class="td-contact">
-                                            {{ contact }}
+                                            {{ profile.phone_number }}
                                         </b-td>
                                     </b-tr>
                                     <b-tr>
@@ -128,15 +128,7 @@
                                             {{ $t('SHOP_CAR.DETAIL_CAR.NAME') }}
                                         </b-td>
                                         <b-td>
-                                            {{ saller }}
-                                        </b-td>
-                                    </b-tr>
-                                    <b-tr>
-                                        <b-td class="title-car-infor">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.EMPLOYEE_ID') }}
-                                        </b-td>
-                                        <b-td>
-                                            {{ employeeId }}
+                                            {{ profile.name }}
                                         </b-td>
                                     </b-tr>
                                     <b-tr>
@@ -144,7 +136,7 @@
                                             {{ $t('SHOP_CAR.DETAIL_CAR.AFFILIATED_COMPANY') }}
                                         </b-td>
                                         <b-td>
-                                            {{ affiliatedCompany }}
+                                            {{ profile.company_name }}
                                         </b-td>
                                     </b-tr>
                                     <b-tr>
@@ -152,7 +144,7 @@
                                             {{ $t('SHOP_CAR.DETAIL_CAR.BUSINESS_ADDRESS') }}
                                         </b-td>
                                         <b-td>
-                                            {{ businessAddress }}
+                                            {{ profile.company_address }}
                                         </b-td>
                                     </b-tr>
                                     <b-tr>
@@ -258,6 +250,11 @@ export default {
         parkingLocation: {
             type: String,
             default: '',
+        }
+    },
+    computed: {
+        profile() {
+            return this.$store.getters.profile; 
         }
     },
     methods: {

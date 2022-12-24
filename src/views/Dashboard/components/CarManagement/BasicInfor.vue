@@ -254,8 +254,9 @@
                                 </b-td>
                                 <b-td class="td-contact">
                                     <b-form-input 
-                                        v-model="isForm.contact" 
-                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_CONTACT')" 
+                                        :value="profile.phone_number" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_CONTACT')"
+                                        disabled
                                     />
                                 </b-td>
                             </b-tr>
@@ -265,19 +266,9 @@
                                 </b-td>
                                 <b-td>
                                     <b-form-input 
-                                        v-model="isForm.saller" 
-                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_NAME')" 
-                                    />
-                                </b-td>
-                            </b-tr>
-                            <b-tr>
-                                <b-td class="title-car-infor">
-                                    {{ $t('SHOP_CAR.DETAIL_CAR.EMPLOYEE_ID') }}
-                                </b-td>
-                                <b-td>
-                                    <b-form-input 
-                                        v-model="isForm.employeeId" 
-                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_EMPLOYEE_ID')" 
+                                        :value="profile.name" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_NAME')"
+                                        disabled
                                     />
                                 </b-td>
                             </b-tr>
@@ -287,8 +278,9 @@
                                 </b-td>
                                 <b-td>
                                     <b-form-input 
-                                        v-model="isForm.affiliatedCompany" 
-                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_AFFILIATED_COMPANY')" 
+                                        :value="profile.company_name" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_AFFILIATED_COMPANY')"
+                                        disabled
                                     />
                                 </b-td>
                             </b-tr>
@@ -298,8 +290,9 @@
                                 </b-td>
                                 <b-td>
                                     <b-form-input 
-                                        v-model="isForm.businessAddress" 
-                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_BUSINESS_ADDRESS')" 
+                                        :value="profile.company_address" 
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_BUSINESS_ADDRESS')"
+                                        disabled
                                     />
                                 </b-td>
                             </b-tr>
@@ -405,6 +398,11 @@ export default {
             otherColor: '',
             otherGearBox: '',
             otherCarType: '',
+        }
+    },
+    computed: {
+        profile() {
+            return this.$store.getters.profile; 
         }
     },
     watch: {

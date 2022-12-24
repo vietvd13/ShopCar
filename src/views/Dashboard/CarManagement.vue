@@ -1044,10 +1044,6 @@ export default {
         guts: this.isForm.guts,
         safety: this.isForm.safety,
         convenience: this.isForm.convenience,
-        seller_name: this.isForm.saller,
-        employee_number: this.isForm.employeeId,
-        affiliated_company: this.isForm.affiliatedCompany,
-        business_address: this.isForm.businessAddress,
         parking_location: this.isForm.parkingLocation,
       }
 

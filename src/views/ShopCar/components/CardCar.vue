@@ -85,7 +85,7 @@ export default {
     },
     typeScreen() {
       return this.$store.getters.sizeScreen.type;
-    }
+    },
   },
   created () {
     this.mapImageHeight();
