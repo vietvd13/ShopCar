@@ -31,6 +31,7 @@
                                     <b-form-select 
                                         v-model="isForm.categories" 
                                         :options="listCategories"
+                                        @change="onSelectCategories"
                                     >
                                         <template #first>
                                             <b-form-select-option :value="null">
@@ -48,6 +49,35 @@
                                         class="mt-2"
                                         v-model="otherCategories"
                                         :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_CATEGORIES')" 
+                                    />
+                                </b-td>
+                            </b-tr>
+                            <b-tr>
+                                <b-td class="title-car-infor">
+                                    {{ $t('SHOP_CAR.DETAIL_CAR.MODEL') }}
+                                </b-td>
+                                <b-td colspan="3" class="td-car-model">
+                                    <b-form-select 
+                                        v-model="isForm.model" 
+                                        :options="optionModel"
+                                        :disabled="isForm.categories === null"
+                                    >
+                                        <template #first>
+                                            <b-form-select-option :value="null">
+                                                {{ $t('DASHBOARD.CAR.FORM.PLACEHOLDER_MODEL') }}
+                                            </b-form-select-option>
+                                        </template>
+
+                                        <b-form-select-option :value="-1">
+                                            {{ $t('APP.OPTION_OTHER') }}
+                                        </b-form-select-option>
+                                    </b-form-select>
+
+                                    <b-form-input 
+                                        v-show="isForm.model === -1"
+                                        class="mt-2"
+                                        v-model="otherModel"
+                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_MODEL')" 
                                     />
                                 </b-td>
                             </b-tr>
@@ -321,7 +351,8 @@ import {
     getListColor,
     getListFuleType,
     getListGearBox,
-    getListCarType
+    getListCarType,
+    getAllModelCar
 } from '@/api/modules/Home';
 import { generateSelect } from '@/utils/helper';
 
@@ -334,6 +365,7 @@ export default {
                 return {
                     price: null,
                     categories: null,
+                    model: null,
                     licensePlate: null,
                     year: null,
                     distanceDriven: null,
@@ -354,6 +386,7 @@ export default {
                     parkingLocation: null,
 
                     otherCategories: '',
+                    otherModel: '',
                     otherFuelType: '',
                     otherColor: '',
                     otherGearBox: '',
@@ -367,6 +400,7 @@ export default {
             isForm: {
                 price: null,
                 categories: null,
+                model: null,
                 licensePlate: null,
                 year: null,
                 distanceDriven: null,
@@ -394,10 +428,14 @@ export default {
             listCarType: [],
 
             otherCategories: '',
+            otherModel: '',
             otherFuelType: '',
             otherColor: '',
             otherGearBox: '',
             otherCarType: '',
+
+            listModel: {},
+            optionModel: []
         }
     },
     computed: {
@@ -442,6 +480,7 @@ export default {
     methods: {
         async initData() {
             this.handleGetListCategories();
+            this.handleGetAllModelCar();
             this.handleGetListColor();
             this.handleGetListFuleType();
             this.handleGetListGearBox();
@@ -459,6 +498,29 @@ export default {
             } catch (err) {
                 this.listCategories = [];
                 console.log(err);
+            }
+        },
+        onSelectCategories() {
+            if (this.isForm.categories) {
+                this.isForm.model = null;
+                this.optionModel = this.listModel[this.isForm.categories] || [];
+            } else {
+                this.isForm.model = null;
+                this.optionModel = [];
+            }
+        },
+        async handleGetAllModelCar() {
+            try {
+                const { status_code, data } = await getAllModelCar();
+
+                if (status_code === 200) {
+                    this.listModel = data;
+                } else {
+                    this.listModel = {};
+                }
+            } catch (err) {
+                this.listModel = {};
+                console.log();
             }
         },
         async handleGetListColor() {

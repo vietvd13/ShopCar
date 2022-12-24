@@ -253,4 +253,9 @@ export default {
         border: 1px solid $porcelain;
     }
 }
+
+.display-image-preview {
+    display: flex;
+    justify-content: center;
+}
 </style>

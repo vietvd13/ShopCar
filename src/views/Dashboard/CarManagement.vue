@@ -29,11 +29,6 @@
               bordered
             >
               <b-thead>
-                <!-- <b-tr>
-                  <b-th colspan="4">
-                    {{ $t('SALE_INFOR.TITLE') }}
-                  </b-th>
-                </b-tr> -->
                 <b-tr>
                   <b-th>{{ $t('SALE_INFOR.NO') }}</b-th>
                   <b-th>{{ $t('SALE_INFOR.SOURCE') }}</b-th>
@@ -585,6 +580,7 @@ export default {
 
         price: null,
         categories: null,
+        model: null,
         licensePlate: null,
         year: null,
         distanceDriven: null,
@@ -605,6 +601,7 @@ export default {
         parkingLocation: null,
 
         otherCategories: '',
+        otherModel: '',
         otherFuelType: '',
         otherColor: '',
         otherGearBox: '',
@@ -822,6 +819,7 @@ export default {
 
         price: data.price,
         categories: data.category,
+        model: data.car_model,
         licensePlate: data.license_plate,
         year: data.year_manufacture,
         distanceDriven: data.distance_driven,
@@ -905,6 +903,7 @@ export default {
 
         price: null,
         categories: null,
+        model: null,
         licensePlate: null,
         year: null,
         distanceDriven: null,
@@ -925,6 +924,7 @@ export default {
         parkingLocation: null,
 
         otherCategories: '',
+        otherModel: '',
         otherFuelType: '',
         otherColor: '',
         otherGearBox: '',
@@ -1031,6 +1031,7 @@ export default {
         color: this.handleInitOther(this.isForm.color, this.isForm.otherColor),
         gearbox: this.handleInitOther(this.isForm.gearbox, this.isForm.otherGearBox),
         category: this.handleInitOther(this.isForm.categories, this.isForm.otherCategories),
+        car_model: this.handleInitOther(this.isForm.model, this.isForm.otherModel),
         performance_check: PERFORMANCE_CHECK || [],
         primary_image: PRIMARY_IMAGE || [],
         phone_contact: this.isForm.contact,

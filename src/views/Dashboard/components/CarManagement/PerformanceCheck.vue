@@ -5,7 +5,7 @@
         </p>
 
         <div class="import-file">
-            <label for="import-pdf">{{ $t('APP.DROP_FILE') }}</label>
+            <label for="import-pdf" class="label-import-image">{{ $t('APP.DROP_FILE') }}</label>
             <div class="zone-import">
                 <b-form-file
                     id="import-pdf"
@@ -19,6 +19,8 @@
         </div>
 
         <div class="preview-import-file">
+            {{ filePreview }}
+
             <template v-if="filePreview.url">
                 <b-img-lazy
                     v-for="(image, idx) in filePreview.url"
@@ -70,12 +72,12 @@ export default {
         fileImport: {
             handler: function() {
                 this.$emit('file', {
-                    url: this.fileImport.url,
+                    url: [this.fileImport.url],
                     type: 'new',
                 });
                 this.filePreview = {
                     type: 'new',
-                    url: this.fileImport
+                    url: [this.fileImport.url]
                 }
             },
             deep: true,
@@ -132,5 +134,12 @@ export default {
 .display-image {
     width: 100%;
     margin-bottom: 10px;
+}
+
+.label-import-image {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: $international-orange;
+    color: $white;
 }
 </style>
