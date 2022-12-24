@@ -80,3 +80,7 @@ export function getFilePDFInsurance() {
 export function getProfilePublic() {
   return request.postRequest(CONSTANTS.URL_API.USER_INFOR_PUBLIC);
 }
+
+export function getAllModelCar() {
+  return request.getRequest(CONSTANTS.URL_API.GET_ALL_MODEL_CAR);
+}

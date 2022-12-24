@@ -106,6 +106,7 @@ export default {
         SEARCH: "Tìm kiếm",
         YEAR: "Năm sản xuất",
         CATEGORIES: "Hãng xe",
+        MODEL: "Mẫu xe",
         COLOR: "Màu sắc",
         FUEL_TYPE: "Loại nhiên liệu",
         GEAR_BOX: "Động cơ",

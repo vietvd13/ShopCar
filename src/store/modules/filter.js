@@ -13,21 +13,18 @@ function getIsFilter() {
         from_year: null,
         to_year: null,
         categories: null,
+        model: null,
         color: null,
         fuel_type: null,
         gear_box: null,
+        apply_distance: true,
+        apply_price: true,
         distance: [0, CONSTANTS.VALUE.MAX_DISTANCE],
         price: [0, CONSTANTS.VALUE.MAX_PRICE]
     }
 }
 
 function getConfigSlider() {
-    const CONFIG_SLIDER = Cookies.get(CONSTANTS.COOKIES.CONFIG_SLIDER);
-
-    if (CONFIG_SLIDER) {
-        return JSON.parse(CONFIG_SLIDER);
-    }
-
     return {
         distance: {
             min: 0,
@@ -41,34 +38,25 @@ function getConfigSlider() {
 }
 
 function getIsFilterDashboard() {
-    const IS_FILTER = Cookies.get(CONSTANTS.COOKIES.IS_FILTER_DASHBOARD);
-
-    if (IS_FILTER) {
-        return JSON.parse(IS_FILTER);
-    }
-
     return {
         search: '',
         from_year: null,
         to_year: null,
         categories: null,
+        model: null,
         color: null,
         fuel_type: null,
         gear_box: null,
         is_hotsale: null,
         is_data_crawl: null,
+        apply_distance: true,
+        apply_price: true,
         distance: [0, CONSTANTS.VALUE.MAX_DISTANCE],
         price: [0, CONSTANTS.VALUE.MAX_PRICE]
     }
 }
 
 function getConfigSliderDashboard() {
-    const CONFIG_SLIDER = Cookies.get(CONSTANTS.COOKIES.CONFIG_SLIDER_DASHBOARD);
-
-    if (CONFIG_SLIDER) {
-        return JSON.parse(CONFIG_SLIDER);
-    }
-
     return {
         distance: {
             min: 0,

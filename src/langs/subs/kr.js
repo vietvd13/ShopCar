@@ -106,6 +106,7 @@ export default {
         SEARCH: "찾다",
         YEAR: "제조 연도",
         CATEGORIES: "자동차 회사",
+        MODEL: "모델",
         COLOR: "색상",
         FUEL_TYPE: "연료 종류",
         GEAR_BOX: "엔진",

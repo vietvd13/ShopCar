@@ -106,6 +106,7 @@ export default {
         SEARCH: "Search",
         YEAR: "Year of manufacture",
         CATEGORIES: "Car company",
+        MODEL: "Model",
         COLOR: "Color",
         FUEL_TYPE: "Fuel type",
         GEAR_BOX: "Engine",

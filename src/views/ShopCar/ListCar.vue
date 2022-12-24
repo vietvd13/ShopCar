@@ -159,6 +159,10 @@ export default {
           BODY.filter.category = FILTER.categories;
         }
 
+        if (FILTER.model) {
+          BODY.filter.car_model = FILTER.model;
+        }
+
         if (FILTER.fuel_type) {
           BODY.filter.fuel_type = FILTER.fuel_type;
         }

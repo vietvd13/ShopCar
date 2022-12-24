@@ -94,7 +94,26 @@
                                 </template>
                             </b-form-select>
                         </div>
-                    </b-col>  
+                    </b-col>
+                    
+                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
+                        <div class="item-form">
+                            <label for="filter-model">
+                                {{ $t('SHOP_CAR.HOME.FILTER.MODEL') }}
+                            </label>
+                            <b-form-select
+                                id="filter-model"
+                                v-model="isFilter.model"
+                                :options="optionModel"
+                            >
+                                <template #first>
+                                    <b-form-select-option :value="null">
+                                        {{ $t('APP.PLEASE_SELECT') }}
+                                    </b-form-select-option>
+                                </template>
+                            </b-form-select>
+                        </div>
+                    </b-col>
 
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
@@ -178,16 +197,12 @@
                         </div>
                     </b-col>
 
+                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6" />
+
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
                             <label for="filter-distance-dashboard">
-                                <b-form-checkbox
-                                    id="apply-filter-distance"
-                                    v-model="isFilter.apply_distance"
-                                    name="apply-filter-distance"
-                                >
-                                    {{ $t('SHOP_CAR.HOME.FILTER.DISTANCE') }}
-                                </b-form-checkbox>
+                                {{ $t('SHOP_CAR.HOME.FILTER.DISTANCE') }}
                             </label>
 
                             <div class="show-range">
@@ -224,13 +239,7 @@
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
                             <label for="filter-price-dashboard">
-                                <b-form-checkbox
-                                    id="apply-filter-price"
-                                    v-model="isFilter.apply_price"
-                                    name="apply-filter-price"
-                                >
-                                    {{ $t('SHOP_CAR.HOME.FILTER.PRICE') }}
-                                </b-form-checkbox>
+                                {{ $t('SHOP_CAR.HOME.FILTER.PRICE') }}
                             </label>
 
                             <div class="show-range">
@@ -299,7 +308,8 @@ import {
     getListCategories,
     getListColor,
     getListFuleType,
-    getListGearBox
+    getListGearBox,
+    getAllModelCar
 } from '@/api/modules/Home';
 import { generateSelect, formatPrice, formatNumber } from '@/utils/helper';
 import { validInputNumber } from '@/utils/handleInput';
@@ -321,13 +331,14 @@ export default {
                 from_year: null,
                 to_year: null,
                 categories: null,
+                model: null,
                 color: null,
                 fuel_type: null,
                 gear_box: null,
                 is_hotsale: null,
                 is_data_crawl: null,
-                apply_distance: false,
-                apply_price: false,
+                apply_distance: true,
+                apply_price: true,
                 distance: [0, CONSTANTS.VALUE.MAX_DISTANCE],
                 price: [0, CONSTANTS.VALUE.MAX_PRICE]
             },
@@ -344,6 +355,8 @@ export default {
             },
 
             listCategories: [],
+            listModel: {},
+            optionModel: [],
             listColor: [],
             listFuelType: [],
             listGearBox: [],
@@ -499,6 +512,29 @@ export default {
                 console.log(err);
             }
         },
+        async handleGetAllModelCar() {
+            try {
+                const { status_code, data } = await getAllModelCar();
+
+                if (status_code === 200) {
+                    this.listModel = data;
+                } else {
+                    this.listModel = {};
+                }
+            } catch (err) {
+                this.listModel = {};
+                console.log();
+            }
+        },
+        onSelectCategories() {
+            if (this.isFilter.categories) {
+                this.isFilter.model = null;
+                this.optionModel = this.listModel[this.isFilter.categories] || [];
+            } else {
+                this.isFilter.model = null;
+                this.optionModel = [];
+            }
+        },
         async handleGetListColor() {
             try {
                 const { status_code, data } = await getListColor();
@@ -550,16 +586,19 @@ export default {
                 from_year: null,
                 to_year: null,
                 categories: null,
+                model: null,
                 color: null,
                 fuel_type: null,
                 gear_box: null,
                 is_hotsale: null,
                 is_data_crawl: null,
-                apply_distance: false,
-                apply_price: false,
+                apply_distance: true,
+                apply_price: true,
                 distance: [0, CONSTANTS.VALUE.MAX_DISTANCE],
                 price: [0, CONSTANTS.VALUE.MAX_PRICE]
             }
+
+            this.optionModel = [];
 
             this.configSlider = {
                 distance: {
