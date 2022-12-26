@@ -171,11 +171,7 @@ export default {
         const { status_code, data } = await getProfilePublic();
 
         if (status_code === 200) {
-          this.profile.phone_number = data.phone_number;
-          this.profile.company_address = data.company_address;
-          this.profile.email = data.email;
-          this.profile.map = data.company_map;
-          this.profile.company_name = data.company_name;
+          this.profile = data;
         }
       } catch (err) {
         console.log(err);
