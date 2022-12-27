@@ -23,62 +23,6 @@
                             {{ item }}
                         </span>
                     </b-col>
-                    <!-- <b-col
-                        cols="12" xs="12" sm="12" md="6" lg="3"
-                        class="mb-sm-4 mb-lg-0"
-                    >
-                        <p class="title-option">{{ $t('SHOP_CAR.DETAIL_CAR.CAR_OPTION_EXTERIOR') }}</p>
-                        <span
-                            class="item-option"
-                            v-for="(item, idx) in exterior"
-                            :key="idx"
-                        >
-                            <i class="fas fa-check-square" />
-                            {{ item }}
-                        </span>
-                    </b-col>
-                    <b-col
-                        cols="12" xs="12" sm="12" md="6" lg="3"
-                        class="mb-sm-4 mb-lg-0"
-                    >
-                        <p class="title-option">{{ $t('SHOP_CAR.DETAIL_CAR.CAR_OPTION_GUTS') }}</p>
-                        <span
-                            class="item-option"
-                            v-for="(item, idx) in guts"
-                            :key="idx"
-                        >
-                            <i class="fas fa-check-square" />
-                            {{ item }}
-                        </span>
-                    </b-col>
-                    <b-col
-                        cols="12" xs="12" sm="12" md="6" lg="3"
-                        class="mb-sm-4 mb-lg-0"
-                    >
-                        <p class="title-option">{{ $t('SHOP_CAR.DETAIL_CAR.CAR_OPTION_SAFETY') }}</p>
-                        <span
-                            class="item-option"
-                            v-for="(item, idx) in safety"
-                            :key="idx"
-                        >
-                            <i class="fas fa-check-square" />
-                            {{ item }}
-                        </span>
-                    </b-col>
-                    <b-col
-                        cols="12" xs="12" sm="12" md="6" lg="3"
-                        class="mb-sm-4 mb-lg-0"
-                    >
-                        <p class="title-option">{{ $t('SHOP_CAR.DETAIL_CAR.CAR_OPTION_CONVENIENCE') }}</p>
-                        <span
-                            class="item-option"
-                            v-for="(item, idx) in convenience"
-                            :key="idx"
-                        >
-                            <i class="fas fa-check-square" />
-                            {{ item }}
-                        </span>
-                    </b-col> -->
                 </b-row>
             </div>
         </b-card>

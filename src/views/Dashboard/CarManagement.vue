@@ -712,7 +712,7 @@ export default {
           BODY.filter.category = FILTER.categories;
         }
 
-        if (FILTER.model) {
+        if (FILTER.model.length > 0) {
           BODY.filter.car_model = FILTER.model;
         }
 
@@ -1203,7 +1203,7 @@ export default {
             BODY.data_update.filter.category = FILTER.categories;
           }
 
-          if (FILTER.model) {
+          if (FILTER.model.length > 0) {
             BODY.data_update.filter.car_model = FILTER.model;
           }
 
@@ -1303,7 +1303,7 @@ export default {
             BODY.data_update.filter.category = FILTER.categories;
           }
 
-          if (FILTER.model) {
+          if (FILTER.model.length > 0) {
             BODY.data_update.filter.car_model = FILTER.model;
           }
 
@@ -1577,7 +1577,7 @@ export default {
           BODY.data_update.filter.category = FILTER.categories;
         }
 
-        if (FILTER.model) {
+        if (FILTER.model.length > 0) {
           BODY.data_update.filter.car_model = FILTER.model;
         }
 

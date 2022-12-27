@@ -77,7 +77,7 @@
                         </div>
                     </b-col>
 
-                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
+                    <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12">
                         <div class="item-form">
                             <label for="filter-categories">
                                 {{ $t('SHOP_CAR.HOME.FILTER.CATEGORIES') }}
@@ -97,22 +97,36 @@
                         </div>
                     </b-col>
                     
-                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
+                    <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12">
                         <div class="item-form">
                             <label for="filter-model">
                                 {{ $t('SHOP_CAR.HOME.FILTER.MODEL') }}
                             </label>
-                            <b-form-select
-                                id="filter-model"
-                                v-model="isFilter.model"
-                                :options="optionModel"
-                            >
-                                <template #first>
-                                    <b-form-select-option :value="null">
-                                        {{ $t('APP.PLEASE_SELECT') }}
-                                    </b-form-select-option>
-                                </template>
-                            </b-form-select>
+
+                            <div class="zone-multiple-select">
+                                <b-form-checkbox-group
+                                    id="filter-model"
+                                    v-model="isFilter.model"
+                                    stacked
+                                    name="filter-model"
+                                    v-if="optionModel.length"
+                                >
+                                    <b-form-checkbox 
+                                        v-for="(model, idx) in optionModel" 
+                                        :key="idx"
+                                        :value="model"
+                                    >
+                                        {{ model }}
+                                    </b-form-checkbox>
+                                </b-form-checkbox-group>
+
+                                <div 
+                                    v-else
+                                    class="text-center"
+                                >
+                                    {{ $t('APP.TABLE_NO_DATA') }}
+                                </div>
+                            </div>
                         </div>
                     </b-col>
 
@@ -300,7 +314,7 @@ export default {
                 from_year: null,
                 to_year: null,
                 categories: null,
-                model: null,
+                model: [],
                 color: null,
                 fuel_type: null,
                 gear_box: null,
@@ -530,10 +544,10 @@ export default {
         },
         onSelectCategories() {
             if (this.isFilter.categories) {
-                this.isFilter.model = null;
+                this.isFilter.model = [];
                 this.optionModel = this.listModel[this.isFilter.categories] || [];
             } else {
-                this.isFilter.model = null;
+                this.isFilter.model = [];
                 this.optionModel = [];
             }
         },
@@ -543,7 +557,7 @@ export default {
                 from_year: null,
                 to_year: null,
                 categories: null,
-                model: null,
+                model: [],
                 color: null,
                 fuel_type: null,
                 gear_box: null,
