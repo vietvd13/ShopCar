@@ -732,7 +732,9 @@ export default {
           BODY.filter.is_hotsale = FILTER.is_hotsale;
         }
 
-        if ([true, false].includes(FILTER.is_data_crawl)) {
+        console.log(FILTER.is_data_crawl)
+
+        if ([...CONSTANTS.VALUE.LIST_OPTION_CAR].includes(FILTER.is_data_crawl)) {
           BODY.filter.is_data_crawl = FILTER.is_data_crawl;
         }
 
@@ -1223,7 +1225,7 @@ export default {
             BODY.data_update.filter.is_hotsale = FILTER.is_hotsale;
           }
 
-          if ([true, false].includes(FILTER.is_data_crawl)) {
+          if ([...CONSTANTS.VALUE.LIST_OPTION_CAR].includes(FILTER.is_data_crawl)) {
             BODY.data_update.filter.is_data_crawl = FILTER.is_data_crawl;
           }
         } else {
@@ -1323,7 +1325,7 @@ export default {
             BODY.data_update.filter.is_hotsale = FILTER.is_hotsale;
           }
 
-          if ([true, false].includes(FILTER.is_data_crawl)) {
+          if ([...CONSTANTS.VALUE.LIST_OPTION_CAR].includes(FILTER.is_data_crawl)) {
             BODY.data_update.filter.is_data_crawl = FILTER.is_data_crawl;
           }
         } else {
@@ -1597,7 +1599,7 @@ export default {
           BODY.data_update.filter.is_hotsale = FILTER.is_hotsale;
         }
 
-        if ([true, false].includes(FILTER.is_data_crawl)) {
+        if ([...CONSTANTS.VALUE.LIST_OPTION_CAR].includes(FILTER.is_data_crawl)) {
           BODY.data_update.filter.is_data_crawl = FILTER.is_data_crawl;
         }
 

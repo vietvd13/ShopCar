@@ -380,8 +380,9 @@ export default {
                 { value: false, text: this.$t('DASHBOARD.CAR.FILTER.TEXT_NO') }
             ],
             ListDataCrawl: [
-                { value: true, text: this.$t('DASHBOARD.CAR.FILTER.TEXT_YES') },
-                { value: false, text: this.$t('DASHBOARD.CAR.FILTER.TEXT_NO') }
+                { value: 'manual', text: window.origin },
+                { value: 'https://dautomall.com', text: 'https://dautomall.com' },
+                { value: 'https://www.djauto.co.kr', text: 'https://www.djauto.co.kr' },
             ],
 
             filterDistance: null,
