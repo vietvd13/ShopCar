@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 
-import viLocale from './subs/vi';
-import enLocale from './subs/en';
-import krLocale from './subs/kr';
+import viLocale from './subs/vi.json';
+import enLocale from './subs/en.json';
+import krLocale from './subs/kr.json';
 
 import { getLanguage } from '@/utils/getLang';
 

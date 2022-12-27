@@ -7,7 +7,23 @@
             </p>
             <div class="car-options">
                 <b-row>
-                    <b-col
+                    <b-col 
+                        cols="12" 
+                        xs="12" 
+                        sm="12" 
+                        md="6" 
+                        lg="3"
+                        xl="2"
+                        v-for="(item, idx) in joinOption(exterior, guts, safety, convenience)"
+                        :key="idx"
+                        class="mb-sm-2 mb-lg-0"
+                    >
+                        <span class="item-option">
+                            <i class="fas fa-check-square icon-checked" />
+                            {{ item }}
+                        </span>
+                    </b-col>
+                    <!-- <b-col
                         cols="12" xs="12" sm="12" md="6" lg="3"
                         class="mb-sm-4 mb-lg-0"
                     >
@@ -62,7 +78,7 @@
                             <i class="fas fa-check-square" />
                             {{ item }}
                         </span>
-                    </b-col>
+                    </b-col> -->
                 </b-row>
             </div>
         </b-card>
@@ -102,6 +118,11 @@ export default {
                 return [];
             }
         },
+    },
+    methods: {
+        joinOption(exterior = [], guts = [], safety = [], convenience = []) {
+            return [...exterior, ...guts, ...safety, ...convenience];
+        }
     },
 }
 </script>
