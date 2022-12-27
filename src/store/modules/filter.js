@@ -72,15 +72,15 @@ function getConfigSliderDashboard() {
 const state = {
     isFilter: getIsFilter(),
     isLimit: {
-        distance: false,
-        price: false,
+        distance: true,
+        price: true,
     },
     configSlider: getConfigSlider(),
 
     isFilterDashboard: getIsFilterDashboard(),
     isLimitDashboard: {
-        distance: false,
-        price: false,
+        distance: true,
+        price: true,
     },
     configSliderDashboard: getConfigSliderDashboard(),
 };
@@ -93,7 +93,6 @@ const mutations = {
     SET_LIMIT: (state, limit) => {
         state.isLimit = limit;
     },
-
 
     SET_CONFIG_SLIDER: (state, config) => {
         state.configSlider = config;
