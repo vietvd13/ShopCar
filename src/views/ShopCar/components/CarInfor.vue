@@ -109,7 +109,6 @@
                                 </b-tbody>
                             </b-table-simple>
                         </b-col>
-                        {{ profile }}
                         <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="5">
                             <b-table-simple
                                 bordered
