@@ -732,10 +732,8 @@ export default {
           BODY.filter.is_hotsale = FILTER.is_hotsale;
         }
 
-        console.log(FILTER.is_data_crawl)
-
         if ([...CONSTANTS.VALUE.LIST_OPTION_CAR].includes(FILTER.is_data_crawl)) {
-          BODY.filter.is_data_crawl = FILTER.is_data_crawl;
+          BODY.filter.source_crawl = FILTER.is_data_crawl;
         }
 
         const { status_code, data, pagination } = await postListCar(BODY);
@@ -1226,7 +1224,7 @@ export default {
           }
 
           if ([...CONSTANTS.VALUE.LIST_OPTION_CAR].includes(FILTER.is_data_crawl)) {
-            BODY.data_update.filter.is_data_crawl = FILTER.is_data_crawl;
+            BODY.data_update.filter.source_crawl = FILTER.is_data_crawl;
           }
         } else {
           BODY = {
@@ -1326,7 +1324,7 @@ export default {
           }
 
           if ([...CONSTANTS.VALUE.LIST_OPTION_CAR].includes(FILTER.is_data_crawl)) {
-            BODY.data_update.filter.is_data_crawl = FILTER.is_data_crawl;
+            BODY.data_update.filter.source_crawl = FILTER.is_data_crawl;
           }
         } else {
           BODY = {
@@ -1600,7 +1598,7 @@ export default {
         }
 
         if ([...CONSTANTS.VALUE.LIST_OPTION_CAR].includes(FILTER.is_data_crawl)) {
-          BODY.data_update.filter.is_data_crawl = FILTER.is_data_crawl;
+          BODY.data_update.filter.source_crawl = FILTER.is_data_crawl;
         }
 
         const { status_code } = await postSetPriceAll(BODY);
