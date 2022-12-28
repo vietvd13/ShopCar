@@ -173,7 +173,7 @@ export default {
         if (status_code === 200) {
           this.profile = data;
 
-          await this.$store.dispatch('auth/setProfile', data)
+          await this.$store.dispatch('auth/setProfile', data);
         }
       } catch (err) {
         console.log(err);
