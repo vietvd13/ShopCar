@@ -103,6 +103,17 @@
                                 {{ $t('SHOP_CAR.HOME.FILTER.MODEL') }}
                             </label>
 
+                            <div class="show-filter-model">
+                                <span 
+                                    v-for="(itemModel, idxModel) in isFilter.model" 
+                                    :key="idxModel"
+                                    class="item-model"
+                                >
+                                    {{ itemModel }}
+                                    <i class="fas fa-times" @click="onClickRemoveModle(idxModel)" />
+                                </span>
+                            </div>
+
                             <div class="zone-multiple-select">
                                 <b-form-checkbox-group
                                     id="filter-model"
@@ -665,6 +676,11 @@ export default {
         handleSelectYear() {
             if (this.isFilter.from_year > this.isFilter.to_year && (this.isFilter.to_year !== null)) {
                 this.isFilter.to_year = this.isFilter.from_year;
+            }
+        },
+        onClickRemoveModle(idx) {
+            if (idx >= 0 && idx < this.isFilter.model.length) {
+                this.isFilter.model.splice(idx, 1);
             }
         }
     },
