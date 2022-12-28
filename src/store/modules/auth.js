@@ -63,7 +63,7 @@ const mutations = {
   },
   SET_PROFILE: (state, profile) => {
     state.profile = profile;
-    Cookies.set(CONSTANTS.COOKIES.PROFILE, JSON.stringify (profile));
+    Cookies.set(CONSTANTS.COOKIES.PROFILE, JSON.stringify(profile));
   },
   LOGOUT: (state) => {
     Cookies.remove(CONSTANTS.COOKIES.TOKEN);

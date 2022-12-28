@@ -78,13 +78,13 @@ export default {
         const { status_code, access_token, refresh_token, user } = await postLogin(BODY);
 
         if (status_code === 200) {
-          this.$store.dispatch('auth/setToken', access_token)
-          .then(() => {
-            this.$store.dispatch('auth/setRefreshToken', refresh_token)
-              .then(() => {
-                this.$store.dispatch('auth/setAsyncRoutes')
-                  .then(() => {
-                    this.$store.dispatch('auth/setProfile', user)
+          await this.$store.dispatch('auth/setToken', access_token)
+          .then(async() => {
+            await this.$store.dispatch('auth/setRefreshToken', refresh_token)
+              .then(async() => {
+                await this.$store.dispatch('auth/setAsyncRoutes')
+                  .then(async() => {
+                    await this.$store.dispatch('auth/setProfile', user)
                       .then(() => {
                         this.$router.push({ name: 'Dashboard' });
                       })
