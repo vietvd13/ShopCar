@@ -393,7 +393,7 @@ export default {
           this.link_facebook = response.data.link_facebook;
           this.link_zalo = response.data.link_zalo;
 
-          this.$store.dispatch('auth/setProfile', response.data)
+          await this.$store.dispatch('auth/setProfile', response.data)
         } else {
           Toast.warning(this.$t('TOAST_MESSAGE.GET_PROFILE_ERROR'));
         }

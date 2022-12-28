@@ -76,6 +76,8 @@ export default {
 
                 if (status_code === 200) {
                     this.profile = data;
+
+                    await this.$store.dispatch('auth/setProfile', data);
                 }
 
                 setLoading(false);
