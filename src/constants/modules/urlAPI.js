@@ -70,6 +70,7 @@ export default {
   // Api Sale
   POST_SET_SALE: '/sale/settings',
   GET_SALE_STATUS: '/sale/status',
+  GET_ALL_SALE_STATUS: '/sale/status-all',
 
   // Model Car
   GET_ALL_MODEL_CAR: '/filter/model',

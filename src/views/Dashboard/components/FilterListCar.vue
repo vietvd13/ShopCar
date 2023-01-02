@@ -400,8 +400,8 @@ export default {
             filterPrice: null,
 
             isLimit: this.$store.getters.isLimitDashboard || {
-                distance: false,
-                price: false,
+                distance: true,
+                price: true,
             }
         }
     },
@@ -426,6 +426,42 @@ export default {
         },
         isLimit: {
             handler: async function() {
+                if (this.isLimit.distance) {
+                    this.isFilter.distance = [this.isFilter.distance[0], CONSTANTS.VALUE.MAX_DISTANCE];
+                }
+
+                if (this.isLimit.price) {
+                    this.isFilter.price = [this.isFilter.price[0], CONSTANTS.VALUE.MAX_PRICE];
+                }
+
+                const CONFIG = {
+                    distance: {
+                        min: parseInt(this.isFilter.distance[0]) || 0,
+                        max: CONSTANTS.VALUE.MAX_DISTANCE || 0,
+                    },
+                    price: {
+                        min: parseInt(this.isFilter.price[0]) || 0,
+                        max: CONSTANTS.VALUE.MAX_PRICE || 0,
+                    }
+                }
+
+                await this.$store.dispatch('filter/setConfigSliderDashboard', CONFIG)
+                    .then(() => {
+                        this.filterDistance.noUiSlider.updateOptions({
+                            range: {
+                                min: parseInt(this.isFilter.distance[0]) || 0,
+                                max: CONSTANTS.VALUE.MAX_DISTANCE || 0,
+                            }
+                        });
+
+                        this.filterPrice.noUiSlider.updateOptions({
+                            range: {
+                                min: parseInt(this.isFilter.price[0]) || 0,
+                                max: CONSTANTS.VALUE.MAX_PRICE || 0,
+                            }
+                        });
+                    });
+
                 await this.$store.dispatch('filter/setLimitDashboard', this.isLimit);
             },
             deep: true,
@@ -500,6 +536,12 @@ export default {
 
             this.filterDistance.noUiSlider.on('update', (values) => {
                 this.isFilter.distance = values;
+
+                if (this.isFilter.distance[1] >= CONSTANTS.VALUE.MAX_DISTANCE) {
+                    this.isLimit.distance = true;
+                } else {
+                    this.isLimit.distance = false;
+                }
             })
 
             this.filterPrice = document.getElementById('filter-price-dashboard');
@@ -516,6 +558,12 @@ export default {
 
             this.filterPrice.noUiSlider.on('update', (values) => {
                 this.isFilter.price = values;
+
+                if (this.isFilter.price[1] >= CONSTANTS.VALUE.MAX_PRICE) {
+                    this.isLimit.price = true;
+                } else {
+                    this.isLimit.price = false;
+                }
             })
         },
         async initData() {

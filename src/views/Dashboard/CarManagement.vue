@@ -34,19 +34,30 @@
                   <b-th>{{ $t('SALE_INFOR.SOURCE') }}</b-th>
                   <b-th>{{ $t('SALE_INFOR.STATUS') }}</b-th>
                   <b-th>{{ $t('SALE_INFOR.VALUE') }}</b-th>
+                  <b-th>{{ $t('DASHBOARD.CAR.TABLE_ACTIONS') }}</b-th>
                 </b-tr>
               </b-thead>
               <b-tbody>
-                <b-tr>
-                  <b-td>1</b-td>
+                <b-tr v-for="(status, idxStatus) in listSaleStatus" :key="idxStatus">
+                  <b-td>{{ idxStatus + 1 }}</b-td>
                   <b-td>
-                    <a href="https://www.djauto.co.kr/" target="_blank">https://www.djauto.co.kr/</a>
+                    <a :href="status.source_crawl" target="_blank">
+                      {{ status.source_crawl }}
+                    </a>
                   </b-td>
                   <b-td>
-                    {{ saleInfor.status ? $t('SALE_INFOR.ON') : $t('SALE_INFOR.OFF') }}
+                    {{ status.is_sale ? $t('SALE_INFOR.ON') : $t('SALE_INFOR.OFF') }}
                   </b-td>
                   <b-td>
-                    {{ saleInfor.value }}
+                    {{ status.sale_price }}
+                  </b-td>
+                  <b-td>
+                    <b-button
+                      class="btn-app btn-edit"
+                      @click="onClickSale(status.source_crawl)"
+                    >
+                      {{ $t('DASHBOARD.CAR.TABLE_TEXT_EDIT') }}
+                    </b-button>
                   </b-td>
                 </b-tr>
               </b-tbody>
@@ -294,7 +305,7 @@
         </b-row>
       </div>
 
-      <div class="item-action">
+      <!-- <div class="item-action">
         <b-row>
           <b-col>
             <div class="content-action" @click="onClickSale()">
@@ -302,7 +313,7 @@
             </div>
           </b-col>
         </b-row>
-      </div>
+      </div> -->
     </b-modal>
 
     <b-modal
@@ -467,7 +478,19 @@
 
 <script>
 import { setLoading } from '@/utils/setLoading';
-import { postListCar, postCreateCar, postGetDetailCar, postUpdateCar, postDeleteCar, postSetHotsaleCar, postSetPirce, postSetSale, postSetPriceAll, getSaleStatus } from '@/api/modules/Dashboard';
+import { 
+  postListCar, 
+  postCreateCar, 
+  postGetDetailCar, 
+  postUpdateCar, 
+  postDeleteCar, 
+  postSetHotsaleCar, 
+  postSetPirce, 
+  postSetSale, 
+  postSetPriceAll, 
+  getSaleStatus,
+  getAllSaleStatus
+} from '@/api/modules/Dashboard';
 import { postImages } from '@/api/modules/Upload';
 import FilterListCarDashboard from './components/FilterListCar.vue';
 import FormCar from './components/CarManagement/Form.vue';
@@ -556,6 +579,7 @@ export default {
   },
   data() {
     return {
+      listSaleStatus: [],
       isSelectAll: false,
       items: [],
       selectRow: [],
@@ -636,6 +660,7 @@ export default {
       },
       oldFilter: null,
       saleInfor: {
+        source_crawl: '',
         status: false,
         value: null,
       }
@@ -650,9 +675,29 @@ export default {
     handleCalPriceDiff,
     async initData() {
       setLoading(true);
+      await this.handleGetAllSale();
       await this.handleGetSaleInfor();
       await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
       setLoading(false);
+    },
+    async handleGetAllSale() {
+      try {
+        setLoading(true);
+
+        const { status_code, data } = await getAllSaleStatus();
+
+        if (status_code === 200) {
+          this.listSaleStatus = data;
+        } else {
+          this.listSaleStatus = [];
+        }
+
+        setLoading(false);
+      } catch (error) {
+        this.listSaleStatus = [];
+        console.log(error);
+        setLoading(false);
+      }
     },
     async onClickApplyFilter() {
       setLoading(true);
@@ -1409,30 +1454,36 @@ export default {
         console.log(error);
       }
     },
-    async onClickSale() {
+    async onClickSale(source_crawl) {
       setLoading(true);
       this.isModalAction = false;
-      await this.handleGetSaleStatus();
+      await this.handleGetSaleStatus(source_crawl);
       this.isModalSale = true;
       setLoading(false);
     },
-    async handleGetSaleInfor() {
+    async handleGetSaleInfor(source_crawl) {
       try {
-        const { status_code, data } = await getSaleStatus();
+        const BODY = {
+          source_crawl
+        }
+        const { status_code, data } = await getSaleStatus(BODY);
 
         if (status_code === 200) {
           this.saleInfor = {
+            source_crawl: source_crawl,
             status: data.is_sale,
             value: data.sale_price,
           };
         } else {
           this.saleInfor = {
+            source_crawl: '',
             status: false,
             value: null,
           };
         }
       } catch (error) {
         this.saleInfor = {
+          source_crawl: '',
           status: false,
           value: null,
         };
@@ -1441,23 +1492,30 @@ export default {
         console.log(error);
       }
     },
-    async handleGetSaleStatus() {
+    async handleGetSaleStatus(source_crawl) {
       try {
-        const { status_code, data } = await getSaleStatus();
+        const BODY = {
+          source_crawl,
+        }
+
+        const { status_code, data } = await getSaleStatus(BODY);
 
         if (status_code === 200) {
           this.isUpdateSale = {
+            source_crawl: source_crawl,
             status: data.is_sale,
             value: data.sale_price,
           };
         } else {
           this.isUpdateSale = {
+            source_crawl: '',
             status: false,
             value: null,
           };
         }
       } catch (error) {
         this.isUpdateSale = {
+          source_crawl: '',
           status: false,
           value: null,
         };
@@ -1469,6 +1527,7 @@ export default {
     onClickCloseModalSale() {
       this.isModalSale = false;
       this.isUpdateSale = {
+        source_crawl: '',
         status: false,
         value: null,
       };
@@ -1477,6 +1536,7 @@ export default {
       try {
         setLoading(true);
         const BODY = {
+          source: this.isUpdateSale.source_crawl,
           is_sale: this.isUpdateSale.status || false,
           sale_price: parseInt(this.isUpdateSale.value) || 0,
         }
@@ -1484,10 +1544,9 @@ export default {
         const { status_code } = await postSetSale(BODY);
 
         if (status_code === 200) {
-          this.saleInfor = {
-            status: this.isUpdateSale.status,
-            value: parseInt(this.isUpdateSale.value) || 0,
-          };
+          await this.handleGetAllSale();
+          await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
+
           Toast.success(this.$t('TOAST_MESSAGE.SET_SALE_SUCCESS'));
         }
 
@@ -1704,7 +1763,7 @@ export default {
   }
 
   &__table {
-    height: calc(100vh - 450px);
+    height: calc(100vh - 150px);
     overflow: auto;
     
     ::v-deep table {

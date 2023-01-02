@@ -358,8 +358,8 @@ export default {
             filterPrice: null,
 
             isLimit: this.$store.getters.isLimit || {
-                distance: false,
-                price: false,
+                distance: true,
+                price: true,
             }
         }
     },
@@ -380,7 +380,7 @@ export default {
         },
         isLimit: {
             handler: async function() {
-                await this.$store.dispatch('filter/setLimit', this.isLimit);
+                await this.$store.dispatch('filter/setLimitDashboard', this.isLimit);
             },
             deep: true,
         },
