@@ -431,7 +431,6 @@
     >
       <div class="item-form">
         <label for="select-type-update-price">{{ $t('DASHBOARD.CAR.TYPE_UPDATE') }}</label>
-        type: {{ isUpdatePriceAll.type  }}
         <b-form-select id="select-type-update-price" v-model="isUpdatePriceAll.type">
           <b-form-select-option 
             v-for="typeUpdate in optionUpdatePrice"
@@ -1233,8 +1232,8 @@ export default {
             if (FILTER.price) {
               const LIMIT = this.$store.getters.isLimitDashboard;
 
-              BODY.filter.from_price = parseInt(FILTER.price[0]);
-              BODY.filter.to_price = LIMIT.price ? null : parseInt(FILTER.price[1]);
+              BODY.data_update.filter.from_price = parseInt(FILTER.price[0]);
+              BODY.data_update.filter.to_price = LIMIT.price ? null : parseInt(FILTER.price[1]);
             }
           }
 
@@ -1242,8 +1241,8 @@ export default {
             if (FILTER.distance) {
               const LIMIT = this.$store.getters.isLimitDashboard;
 
-              BODY.filter.from_distance = parseInt(FILTER.distance[0]);
-              BODY.filter.to_distance = LIMIT.distance ? null : parseInt(FILTER.distance[1]);
+              BODY.data_update.filter.from_distance = parseInt(FILTER.distance[0]);
+              BODY.data_update.filter.to_distance = LIMIT.distance ? null : parseInt(FILTER.distance[1]);
             }
           }
 
@@ -1335,8 +1334,8 @@ export default {
             if (FILTER.price) {
               const LIMIT = this.$store.getters.isLimitDashboard;
 
-              BODY.filter.from_price = parseInt(FILTER.price[0]);
-              BODY.filter.to_price = LIMIT.price ? null : parseInt(FILTER.price[1]);
+              BODY.data_update.filter.from_price = parseInt(FILTER.price[0]);
+              BODY.data_update.filter.to_price = LIMIT.price ? null : parseInt(FILTER.price[1]);
             }
           }
 
@@ -1344,8 +1343,8 @@ export default {
             if (FILTER.distance) {
               const LIMIT = this.$store.getters.isLimitDashboard;
 
-              BODY.filter.from_distance = parseInt(FILTER.distance[0]);
-              BODY.filter.to_distance = LIMIT.distance ? null : parseInt(FILTER.distance[1]);
+              BODY.data_update.filter.from_distance = parseInt(FILTER.distance[0]);
+              BODY.data_update.filter.to_distance = LIMIT.distance ? null : parseInt(FILTER.distance[1]);
             }
           }
 
@@ -1630,8 +1629,8 @@ export default {
           if (FILTER.price) {
             const LIMIT = this.$store.getters.isLimitDashboard;
 
-            BODY.filter.from_price = parseInt(FILTER.price[0]);
-            BODY.filter.to_price = LIMIT.price ? null : parseInt(FILTER.price[1]);
+            BODY.data_update.filter.from_price = parseInt(FILTER.price[0]);
+            BODY.data_update.filter.to_price = LIMIT.price ? null : parseInt(FILTER.price[1]);
           }
         }
 
@@ -1639,8 +1638,8 @@ export default {
           if (FILTER.distance) {
             const LIMIT = this.$store.getters.isLimitDashboard;
 
-            BODY.filter.from_distance = parseInt(FILTER.distance[0]);
-            BODY.filter.to_distance = LIMIT.distance ? null : parseInt(FILTER.distance[1]);
+            BODY.data_update.filter.from_distance = parseInt(FILTER.distance[0]);
+            BODY.data_update.filter.to_distance = LIMIT.distance ? null : parseInt(FILTER.distance[1]);
           }
         }
 

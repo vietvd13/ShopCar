@@ -424,48 +424,6 @@ export default {
             },
             deep: true,
         },
-        isLimit: {
-            handler: async function() {
-                if (this.isLimit.distance) {
-                    this.isFilter.distance = [this.isFilter.distance[0], CONSTANTS.VALUE.MAX_DISTANCE];
-                }
-
-                if (this.isLimit.price) {
-                    this.isFilter.price = [this.isFilter.price[0], CONSTANTS.VALUE.MAX_PRICE];
-                }
-
-                const CONFIG = {
-                    distance: {
-                        min: parseInt(this.isFilter.distance[0]) || 0,
-                        max: CONSTANTS.VALUE.MAX_DISTANCE || 0,
-                    },
-                    price: {
-                        min: parseInt(this.isFilter.price[0]) || 0,
-                        max: CONSTANTS.VALUE.MAX_PRICE || 0,
-                    }
-                }
-
-                await this.$store.dispatch('filter/setConfigSliderDashboard', CONFIG)
-                    .then(() => {
-                        this.filterDistance.noUiSlider.updateOptions({
-                            range: {
-                                min: parseInt(this.isFilter.distance[0]) || 0,
-                                max: CONSTANTS.VALUE.MAX_DISTANCE || 0,
-                            }
-                        });
-
-                        this.filterPrice.noUiSlider.updateOptions({
-                            range: {
-                                min: parseInt(this.isFilter.price[0]) || 0,
-                                max: CONSTANTS.VALUE.MAX_PRICE || 0,
-                            }
-                        });
-                    });
-
-                await this.$store.dispatch('filter/setLimitDashboard', this.isLimit);
-            },
-            deep: true,
-        },
         async rangeDistanceMaxChange() {
             const CONFIG = {
                 distance: {
