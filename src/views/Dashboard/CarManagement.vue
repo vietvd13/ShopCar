@@ -431,6 +431,7 @@
     >
       <div class="item-form">
         <label for="select-type-update-price">{{ $t('DASHBOARD.CAR.TYPE_UPDATE') }}</label>
+        type: {{ isUpdatePriceAll.type  }}
         <b-form-select id="select-type-update-price" v-model="isUpdatePriceAll.type">
           <b-form-select-option 
             v-for="typeUpdate in optionUpdatePrice"
@@ -757,8 +758,10 @@ export default {
           BODY.filter.category = FILTER.categories;
         }
 
-        if (FILTER.model.length > 0) {
-          BODY.filter.car_model = FILTER.model;
+        if (Array.isArray(FILTER.model)) {
+          if (FILTER.model.length > 0) {
+            BODY.filter.car_model = FILTER.model;
+          }
         }
 
         if (FILTER.fuel_type) {
@@ -1248,8 +1251,10 @@ export default {
             BODY.data_update.filter.category = FILTER.categories;
           }
 
-          if (FILTER.model.length > 0) {
-            BODY.data_update.filter.car_model = FILTER.model;
+          if (Array.isArray(FILTER.model)) {
+            if (FILTER.model.length > 0) {
+              BODY.data_update.filter.car_model = FILTER.model;
+            }
           }
 
           if (FILTER.fuel_type) {
@@ -1348,8 +1353,10 @@ export default {
             BODY.data_update.filter.category = FILTER.categories;
           }
 
-          if (FILTER.model.length > 0) {
-            BODY.data_update.filter.car_model = FILTER.model;
+          if (Array.isArray(FILTER.model)) {
+            if (FILTER.model.length > 0) {
+              BODY.data_update.filter.car_model = FILTER.model;
+            }
           }
 
           if (FILTER.fuel_type) {
@@ -1398,8 +1405,13 @@ export default {
       this.isModalAction = true;
     },
     onClickSetPrice() {
-      this.isModalAction = false;
-      this.isModalPrice = true;
+      if (this.isSelectAll) {
+        this.isModalAction = false;
+        this.isModalSetPriceAll = true;
+      } else {
+        this.isModalAction = false;
+        this.isModalPrice = true;
+      }
     },
     handleResetModalPrice() {
       this.isUpdatePrice = {
@@ -1464,7 +1476,7 @@ export default {
     async handleGetSaleInfor(source_crawl) {
       try {
         const BODY = {
-          source_crawl
+          source: source_crawl
         }
         const { status_code, data } = await getSaleStatus(BODY);
 
@@ -1495,7 +1507,7 @@ export default {
     async handleGetSaleStatus(source_crawl) {
       try {
         const BODY = {
-          source_crawl,
+          source: source_crawl,
         }
 
         const { status_code, data } = await getSaleStatus(BODY);
@@ -1635,9 +1647,11 @@ export default {
         if (FILTER.categories) {
           BODY.data_update.filter.category = FILTER.categories;
         }
-
-        if (FILTER.model.length > 0) {
-          BODY.data_update.filter.car_model = FILTER.model;
+        
+        if (Array.isArray(FILTER.model)) {
+          if (FILTER.model.length > 0) {
+            BODY.data_update.filter.car_model = FILTER.model;
+          }
         }
 
         if (FILTER.fuel_type) {
@@ -1666,10 +1680,11 @@ export default {
           Toast.success(this.$t('TOAST_MESSAGE.SET_PRICE_CAR_SUCCESS'));
         }
 
-        await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
-
         this.onClickCloseModalUpdatePriceAll();
         this.handleResetCheckRow();
+
+        await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
+
         this.isModalPrice = false;
         setLoading(false);
       } catch(error) {
