@@ -23,7 +23,7 @@
 
                     <div class="item-form">
                         <b>{{ $t('SHOP_CAR.HOME.CONTACT.EMAIL') }}:</b> 
-                        {{ profile.email || 'mycompany@gmail.com' }}
+                        {{ profile.email_notification || 'mycompany@gmail.com' }}
                     </div>
 
                     <div class="item-form">
