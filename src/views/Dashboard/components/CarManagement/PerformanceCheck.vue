@@ -19,8 +19,6 @@
         </div>
 
         <div class="preview-import-file">
-            {{ filePreview }}
-
             <template v-if="filePreview.url">
                 <b-img-lazy
                     v-for="(image, idx) in filePreview.url"
