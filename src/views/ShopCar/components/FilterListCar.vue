@@ -10,7 +10,7 @@
             </span>
         </div>
 
-        <b-collapse id="filter-home-car" :visible="true">
+        <b-collapse id="filter-home-car" :visible="false">
             <div class="filter-list-car">
                 <b-row>
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
@@ -77,7 +77,7 @@
                         </div>
                     </b-col>
 
-                    <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12">
+                    <b-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3">
                         <div class="item-form">
                             <label for="filter-categories">
                                 {{ $t('SHOP_CAR.HOME.FILTER.CATEGORIES') }}
@@ -87,6 +87,56 @@
                                 v-model="isFilter.categories"
                                 :options="listCategories"
                                 @change="onSelectCategories"
+                            >
+                                <template #first>
+                                    <b-form-select-option :value="null">
+                                        {{ $t('APP.PLEASE_SELECT') }}
+                                    </b-form-select-option>
+                                </template>
+                            </b-form-select>
+                        </div>
+                    </b-col>
+
+                    <b-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3">
+                        <div class="item-form">
+                            <label for="filter-color">{{ $t('SHOP_CAR.HOME.FILTER.COLOR') }}</label>
+                            <b-form-select
+                                id="filter-color"
+                                v-model="isFilter.color"
+                                :options="listColor"
+                            >
+                                <template #first>
+                                    <b-form-select-option :value="null">
+                                        {{ $t('APP.PLEASE_SELECT') }}
+                                    </b-form-select-option>
+                                </template>
+                            </b-form-select>
+                        </div>
+                    </b-col>
+
+                    <b-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3">
+                        <div class="item-form">
+                            <label for="filter-fuel-type">{{ $t('SHOP_CAR.HOME.FILTER.FUEL_TYPE') }}</label>
+                            <b-form-select
+                                id="filter-fuel-type"
+                                v-model="isFilter.fuel_type"
+                                :options="listFuelType"
+                            >
+                                <template #first>
+                                    <b-form-select-option :value="null">
+                                        {{ $t('APP.PLEASE_SELECT') }}
+                                    </b-form-select-option>
+                                </template>
+                            </b-form-select>
+                        </div>
+                    </b-col>
+
+                    <b-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3">
+                        <div class="item-form">
+                            <label for="">{{ $t('SHOP_CAR.HOME.FILTER.GEAR_BOX') }}</label>
+                            <b-form-select
+                                v-model="isFilter.gear_box"
+                                :options="listGearBox"
                             >
                                 <template #first>
                                     <b-form-select-option :value="null">
@@ -140,58 +190,6 @@
                             </div>
                         </div>
                     </b-col>
-
-                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-                        <div class="item-form">
-                            <label for="filter-color">{{ $t('SHOP_CAR.HOME.FILTER.COLOR') }}</label>
-                            <b-form-select
-                                id="filter-color"
-                                v-model="isFilter.color"
-                                :options="listColor"
-                            >
-                                <template #first>
-                                    <b-form-select-option :value="null">
-                                        {{ $t('APP.PLEASE_SELECT') }}
-                                    </b-form-select-option>
-                                </template>
-                            </b-form-select>
-                        </div>
-                    </b-col>
-
-                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-                        <div class="item-form">
-                            <label for="filter-fuel-type">{{ $t('SHOP_CAR.HOME.FILTER.FUEL_TYPE') }}</label>
-                            <b-form-select
-                                id="filter-fuel-type"
-                                v-model="isFilter.fuel_type"
-                                :options="listFuelType"
-                            >
-                                <template #first>
-                                    <b-form-select-option :value="null">
-                                        {{ $t('APP.PLEASE_SELECT') }}
-                                    </b-form-select-option>
-                                </template>
-                            </b-form-select>
-                        </div>
-                    </b-col>
-
-                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-                        <div class="item-form">
-                            <label for="">{{ $t('SHOP_CAR.HOME.FILTER.GEAR_BOX') }}</label>
-                            <b-form-select
-                                v-model="isFilter.gear_box"
-                                :options="listGearBox"
-                            >
-                                <template #first>
-                                    <b-form-select-option :value="null">
-                                        {{ $t('APP.PLEASE_SELECT') }}
-                                    </b-form-select-option>
-                                </template>
-                            </b-form-select>
-                        </div>
-                    </b-col>
-                    
-                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6" />
 
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
