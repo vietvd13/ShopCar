@@ -284,6 +284,7 @@
         "NAME": "Tên công ty",
         "ADDRESS": "Địa chỉ công ty",
         "MAP": "Bản đồ công ty",
+        "LINK_KAKAO": "Địa chỉ KakaoTalk",
         "LINK_FACEBOOK": "Địa chỉ Facebook",
         "LINK_ZALO": "Địa chỉ Zalo",
         "LINK_MESSENGER": "Địa chỉ Messenger"

@@ -144,6 +144,15 @@
                   </b-col>
                 </b-row>
 
+                <b-row class="mb-3 d-block align-items-center d-sm-flex">
+                  <b-col cols="4" md="2">
+                    <h6>{{ $t('DASHBOARD.PROFILE.COMPANY.LINK_KAKAO') }}</h6>
+                  </b-col>
+                  <b-col>
+                    <b-input :disabled="!is_edit" v-model="link_kakao"
+                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.LINK_KAKAO')"></b-input>
+                  </b-col>
+                </b-row>
 
                 <b-row class="mb-3 d-block align-items-center d-sm-flex">
                   <b-col cols="4" md="2">
@@ -272,6 +281,7 @@ export default {
       company_address: "",
       company_name: "",
       company_map: "",
+      link_kakao: "",
       link_messenger: "",
       link_facebook: "",
       link_zalo: "",
@@ -317,6 +327,7 @@ export default {
           company_name: this.company_name,
           company_address: this.company_address,
           company_map: this.company_map,
+          link_kakao: this.link_kakao,
           link_messenger: this.link_messenger,
           link_facebook: this.link_facebook,
           link_zalo: this.link_zalo,
@@ -389,6 +400,7 @@ export default {
           this.company_name = response.data.company_name;
           this.company_address = response.data.company_address;
           this.company_map = response.data.company_map;
+          this.link_kakao = response.data.link_kakao;
           this.link_messenger = response.data.link_messenger;
           this.link_facebook = response.data.link_facebook;
           this.link_zalo = response.data.link_zalo;

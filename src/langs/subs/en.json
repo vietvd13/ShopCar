@@ -284,6 +284,7 @@
         "NAME": "Company name",
         "ADDRESS": "Company address",
         "MAP": "Company map",
+        "LINK_KAKAO": "KakaoTalk ID",
         "LINK_FACEBOOK": "Facebook ID",
         "LINK_ZALO": "Zalo's address",
         "LINK_MESSENGER": "Messenger Address"

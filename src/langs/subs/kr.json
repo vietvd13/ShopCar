@@ -284,6 +284,7 @@
         "NAME": "회사 이름",
         "ADDRESS": "회사 주소",
         "MAP": "회사 지도",
+        "LINK_KAKAO": "카카오 톡 아이디",
         "LINK_FACEBOOK": "페이스 북 아이디",
         "LINK_ZALO": "잘로의 주소",
         "LINK_MESSENGER": "메신저 주소"
