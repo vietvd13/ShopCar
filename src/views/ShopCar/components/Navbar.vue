@@ -8,6 +8,63 @@
         <i class="fas fa-home-lg-alt" />
       </b-navbar-brand>
 
+      <b-navbar-nav :style="`flex-direction: row;`" v-if="['xs', 'sm', 'md'].includes(sizeScreen.type)">
+        <b-nav-item href="#">
+          <a :href="`tel:+${profile.phone_number}`">
+            <i class="fas fa-phone-alt" />
+            {{ profile.phone_number }}
+          </a>
+        </b-nav-item>
+
+        <b-nav-item href="#">
+          <b-img
+            @click="goToLink(profile.link_kakao)"
+            :src="require('@/assets/images/kakaotalk.png')"
+            v-bind="{
+              width: 25,
+              height: 25
+            }"
+            class="icon-social"
+          />
+        </b-nav-item>
+
+        <b-nav-item href="#">
+          <b-img
+            @click="goToLink(profile.link_facebook)"
+            :src="require('@/assets/images/facebook.png')"
+            v-bind="{
+              width: 25,
+              height: 25
+            }"
+            class="icon-social"
+          />
+        </b-nav-item>
+
+        <b-nav-item href="#">
+          <b-img
+            @click="goToLink(profile.link_messenger)"
+            :src="require('@/assets/images/messager.png')"
+            v-bind="{
+              width: 25,
+              height: 25
+            }"
+            class="icon-social"
+          />
+        </b-nav-item>
+
+        <b-nav-item href="#">
+          <b-img
+            @click="goToLink(profile.link_zalo)"
+            :src="require('@/assets/images/zalo.png')"
+            v-bind="{
+              width: 25,
+              height: 25
+            }"
+            class="icon-social"
+          />
+        </b-nav-item>
+      </b-navbar-nav>
+
       <b-navbar-toggle target="nav-collapse">
         <template #default>
           <i class="custom-icon-toggle fas fa-bars" />
@@ -27,7 +84,26 @@
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
-          <b-nav-item href="#">
+          <b-nav-item href="#" v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)">
+            <a :href="`tel:+${profile.phone_number}`">
+              <i class="fas fa-phone-alt" />
+              {{ profile.phone_number }}
+            </a>
+          </b-nav-item>
+
+          <b-nav-item href="#" v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)">
+            <b-img
+              @click="goToLink(profile.link_kakao)"
+              :src="require('@/assets/images/kakaotalk.png')"
+              v-bind="{
+                width: 25,
+                height: 25
+              }"
+              class="icon-social"
+            />
+          </b-nav-item>
+
+          <b-nav-item href="#" v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)">
             <b-img
               @click="goToLink(profile.link_facebook)"
               :src="require('@/assets/images/facebook.png')"
@@ -37,7 +113,9 @@
               }"
               class="icon-social"
             />
+          </b-nav-item>
 
+          <b-nav-item href="#" v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)">
             <b-img
               @click="goToLink(profile.link_messenger)"
               :src="require('@/assets/images/messager.png')"
@@ -47,7 +125,9 @@
               }"
               class="icon-social"
             />
+          </b-nav-item>
 
+          <b-nav-item href="#" v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)">
             <b-img
               @click="goToLink(profile.link_zalo)"
               :src="require('@/assets/images/zalo.png')"
@@ -148,6 +228,10 @@ export default {
   computed: {
     lang() {
       return this.$store.getters.language; 
+    },
+
+    sizeScreen() {
+      return this.$store.getters.sizeScreen;
     },
   },
   created () {
