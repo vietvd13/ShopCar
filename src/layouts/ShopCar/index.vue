@@ -6,7 +6,10 @@
       <!-- Navbar -->
       <Navbar />
       <!-- Banner -->
-      <Banner />
+      <template v-if="!['ListCar'].includes(routeName)">
+        <Banner />
+      </template>
+      
       <b-container>
         <!-- App View -->
         <AppMain />
@@ -77,6 +80,9 @@ export default {
 		pathURL() {
 			return this.$route.fullPath;
 		},
+    routeName() {
+      return this.$route.name;
+    }
   },
   watch: {
     pathURL() {
