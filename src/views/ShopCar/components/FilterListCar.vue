@@ -10,7 +10,7 @@
             </span>
         </div>
 
-        <b-collapse id="filter-home-car" :visible="false">
+        <b-collapse id="filter-home-car" :visible="initVisible">
             <div class="filter-list-car">
                 <b-row>
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
@@ -311,6 +311,10 @@ import CONSTANTS from '@/constants';
 export default {
     name: 'FilterListCar',
     props: {
+        initVisible: {
+            type: Boolean,
+            default: false,
+        },
         totalCar: {
             type: Number,
             default: 0

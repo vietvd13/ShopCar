@@ -4,6 +4,7 @@
       <div class="content-filter">
         <FilterListCar
           :total-car="pagination.total"
+          :initVisible="true"
           @filter="onClickApplyFilter"    
         />
       </div>
