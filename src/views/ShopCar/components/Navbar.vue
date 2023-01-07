@@ -10,7 +10,7 @@
 
       <b-navbar-nav :style="`flex-direction: row;`" v-if="['xs', 'sm', 'md'].includes(sizeScreen.type)">
         <b-nav-item href="#">
-          <a :href="`tel:+${profile.phone_number}`">
+          <a :href="`tel:${profile.phone_number}`">
             <i class="fas fa-phone-alt" />
             {{ profile.phone_number }}
           </a>
@@ -85,7 +85,7 @@
 
         <b-navbar-nav class="ml-auto">
           <b-nav-item href="#" v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)">
-            <a :href="`tel:+${profile.phone_number}`">
+            <a :href="`tel:${profile.phone_number}`">
               <i class="fas fa-phone-alt" />
               {{ profile.phone_number }}
             </a>
