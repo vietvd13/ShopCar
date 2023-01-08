@@ -18,18 +18,6 @@
 
         <b-nav-item href="#">
           <b-img
-            @click="goToLink(profile.link_kakao)"
-            :src="require('@/assets/images/kakaotalk.png')"
-            v-bind="{
-              width: 25,
-              height: 25
-            }"
-            class="icon-social"
-          />
-        </b-nav-item>
-
-        <b-nav-item href="#">
-          <b-img
             @click="goToLink(profile.link_facebook)"
             :src="require('@/assets/images/facebook.png')"
             v-bind="{
@@ -44,6 +32,18 @@
           <b-img
             @click="goToLink(profile.link_messenger)"
             :src="require('@/assets/images/messager.png')"
+            v-bind="{
+              width: 25,
+              height: 25
+            }"
+            class="icon-social"
+          />
+        </b-nav-item>
+
+        <b-nav-item href="#">
+          <b-img
+            @click="goToLink(profile.link_kakao)"
+            :src="require('@/assets/images/kakaotalk.png')"
             v-bind="{
               width: 25,
               height: 25
@@ -93,18 +93,6 @@
 
           <b-nav-item href="#" v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)">
             <b-img
-              @click="goToLink(profile.link_kakao)"
-              :src="require('@/assets/images/kakaotalk.png')"
-              v-bind="{
-                width: 25,
-                height: 25
-              }"
-              class="icon-social"
-            />
-          </b-nav-item>
-
-          <b-nav-item href="#" v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)">
-            <b-img
               @click="goToLink(profile.link_facebook)"
               :src="require('@/assets/images/facebook.png')"
               v-bind="{
@@ -119,6 +107,18 @@
             <b-img
               @click="goToLink(profile.link_messenger)"
               :src="require('@/assets/images/messager.png')"
+              v-bind="{
+                width: 25,
+                height: 25
+              }"
+              class="icon-social"
+            />
+          </b-nav-item>
+
+          <b-nav-item href="#" v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)">
+            <b-img
+              @click="goToLink(profile.link_kakao)"
+              :src="require('@/assets/images/kakaotalk.png')"
               v-bind="{
                 width: 25,
                 height: 25

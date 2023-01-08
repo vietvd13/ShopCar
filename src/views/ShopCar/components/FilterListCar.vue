@@ -147,7 +147,7 @@
                         </div>
                     </b-col>
                     
-                    <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12">
+                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
                             <label for="filter-model">
                                 {{ $t('SHOP_CAR.HOME.FILTER.MODEL') }}
@@ -193,9 +193,19 @@
 
                     <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
-                            <label for="filter-distance">
-                                {{ $t('SHOP_CAR.HOME.FILTER.DISTANCE') }}
-                            </label>
+                            <b-row>
+                                <b-col cols="6" class="text-left">
+                                    <label for="filter-distance">
+                                        {{ $t('SHOP_CAR.HOME.FILTER.DISTANCE') }}
+                                    </label>
+                                </b-col>
+
+                                <b-col cols="6" class="text-right">
+                                    <b-form-checkbox v-model="isLimit.distance">
+                                        {{ $t('APP.NO_LIMIT') }}
+                                    </b-form-checkbox>
+                                </b-col>
+                            </b-row>
 
                             <div class="show-range">
                                 <b-row>
@@ -215,24 +225,23 @@
                                     class="height-slider"
                                 />
                             </b-col>
-
-                            <div class="input-range">
-                                <b-row align-h="end">
-                                    <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12" class="text-right">
-                                        <b-form-checkbox v-model="isLimit.distance">
-                                            {{ $t('APP.NO_LIMIT') }}
-                                        </b-form-checkbox>
-                                    </b-col>
-                                </b-row>
-                            </div>
                         </div>
-                    </b-col>
 
-                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
                         <div class="item-form">
-                            <label for="filter-price">
-                                {{ $t('SHOP_CAR.HOME.FILTER.PRICE') }}
-                            </label>
+                            <b-row>
+                                <b-col cols="6" class="text-left">
+                                    <label for="filter-price">
+                                    {{ $t('SHOP_CAR.HOME.FILTER.PRICE') }}
+
+                                    </label>
+                                </b-col>
+
+                                <b-col cols="6" class="text-right">
+                                    <b-form-checkbox v-model="isLimit.price">
+                                        {{ $t('APP.NO_LIMIT') }}
+                                    </b-form-checkbox>
+                                </b-col>
+                            </b-row>
 
                             <div class="show-range">
                                 <b-row>
@@ -252,16 +261,6 @@
                                     class="height-slider"
                                 />
                             </b-col>
-
-                            <div class="input-range">
-                                <b-row align-h="end">
-                                    <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12" class="text-right">
-                                        <b-form-checkbox v-model="isLimit.price">
-                                            {{ $t('APP.NO_LIMIT') }}
-                                        </b-form-checkbox>
-                                    </b-col>
-                                </b-row>
-                            </div>
                         </div>
                     </b-col>
                 </b-row>
@@ -270,7 +269,7 @@
                     <b-col class="text-center">
                         <b-button
                             variant="danger"
-                            class="mt-4 btn-default btn-remove-filter"
+                            class="mt-2 btn-default btn-remove-filter"
                             @click="onClickResetFilter()"
                         >
                             {{ $t('APP.BUTTON_RESET_FILTER') }}
@@ -279,7 +278,7 @@
 
                     <b-col class="text-center">
                         <b-button
-                            class="mt-4 btn-app btn-default btn-filter"
+                            class="mt-2 btn-app btn-default btn-filter"
                             @click="onClickFilter()"
                         >
                             {{ $t('APP.BUTTON_FILTER') }}
