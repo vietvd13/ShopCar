@@ -446,7 +446,7 @@ export default {
             noUiSlider.create(this.filterDistance, {
                 start: [this.isFilter.distance[0], this.isFilter.distance[1]],
                 connect: true,
-                step: 1,
+                step: 1000,
                 range: {
                     'min': this.configSlider.distance.min || 0,
                     'max': this.configSlider.distance.max || 0
@@ -462,7 +462,7 @@ export default {
             noUiSlider.create(this.filterPrice, {
                 start: [this.isFilter.price[0], this.isFilter.price[1]],
                 connect: true,
-                step: 1,
+                step: 50,
                 range: {
                     'min': this.configSlider.price.min || 0,
                     'max': this.configSlider.price.max || 0
