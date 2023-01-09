@@ -227,7 +227,7 @@
                             </b-col>
                         </div>
 
-                        <div class="item-form">
+                        <div class="mt-4">
                             <b-row>
                                 <b-col cols="6" class="text-left">
                                     <label for="filter-price">

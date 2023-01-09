@@ -148,16 +148,17 @@ input[type=number] {
   height: 10px !important;
 
   .noUi-handle {
-    height: 21px !important;
+    top: -3px !important;
+    height: 15px !important;
 
     &::before {
-      height: 10px !important;
-      top: 4px !important;
+      height: 8px !important;
+      top: 2px !important;
     }
 
     &::after {
-      height: 10px !important;
-      top: 4px !important;
+      height: 8px !important;
+      top: 2px !important;
     }
   }
 }

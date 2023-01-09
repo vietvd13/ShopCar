@@ -6,7 +6,7 @@
       <!-- Navbar -->
       <Navbar />
       <!-- Banner -->
-      <template v-if="!['ListCar'].includes(routeName)">
+      <template v-if="!['ListCar', 'DetailCar'].includes(routeName)">
         <Banner />
       </template>
       
