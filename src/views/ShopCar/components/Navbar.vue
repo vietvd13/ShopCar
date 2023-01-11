@@ -206,9 +206,14 @@ export default {
           path: '/shop-car/car-buying-policy',
         },
         {
-          value: 'INSURANCE',
-          text: 'SHOP_CAR.HOME.CATEGORIES.INSURANCE',
-          path: '/shop-car/insurance',
+          value: 'HAPPY_MOMENT',
+          text: 'SHOP_CAR.HOME.CATEGORIES.HAPPY_MOMENT',
+          path: '/shop-car/all-happy-moment'
+        },
+        {
+          value: 'COLLABORATORS',
+          text: 'SHOP_CAR.HOME.CATEGORIES.COLLABORATORS',
+          path: '/shop-car/all-collaborators'
         },
         {
           value: 'CONTACT',

@@ -97,9 +97,11 @@
       "SEARCH": "Search",
       "CATEGORIES": {
         "VEHICLE_LIST": "Vehicle List",
-        "CAR_BUYING_POLICY": "Car buying policy",
+        "CAR_BUYING_POLICY": "Policy",
         "INSURANCE": "Insurance",
-        "CONTACT": "Contact"
+        "CONTACT": "Contact",
+        "HAPPY_MOMENT": "Happy moment",
+        "COLLABORATORS": "Collaborators"
       },
       "FILTER": {
         "FILTER_CAR": "Filter car list",

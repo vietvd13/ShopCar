@@ -97,9 +97,11 @@
       "SEARCH": "찾다",
       "CATEGORIES": {
         "VEHICLE_LIST": "차량 목록",
-        "CAR_BUYING_POLICY": "자동차 구매 정책",
+        "CAR_BUYING_POLICY": "정책",
         "INSURANCE": "보험",
-        "CONTACT": "연락하다"
+        "CONTACT": "연락하다",
+        "HAPPY_MOMENT": "행복한 순간",
+        "COLLABORATORS": "협력사"
       },
       "FILTER": {
         "FILTER_CAR": "자동차 목록 필터링",

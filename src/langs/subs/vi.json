@@ -97,9 +97,11 @@
       "SEARCH": "Tìm kiếm",
       "CATEGORIES": {
         "VEHICLE_LIST": "Danh sách xe",
-        "CAR_BUYING_POLICY": "Chính sách mua xe",
+        "CAR_BUYING_POLICY": "Chính sách",
         "INSURANCE": "Bảo hiểm",
-        "CONTACT": "Liên lạc"
+        "CONTACT": "Liên lạc",
+        "HAPPY_MOMENT": "Khoảnh khắc vui vẻ",
+        "COLLABORATORS": "Cộng tác viên"
       },
       "FILTER": {
         "FILTER_CAR": "Lọc danh sách xe",

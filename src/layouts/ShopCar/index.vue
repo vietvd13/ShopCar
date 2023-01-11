@@ -6,7 +6,7 @@
       <!-- Navbar -->
       <Navbar />
       <!-- Banner -->
-      <template v-if="!['ListCar', 'DetailCar'].includes(routeName)">
+      <template v-if="['ListCar'].includes(routeName)">
         <Banner />
       </template>
       
@@ -16,14 +16,14 @@
         <!-- Happy Moment -->
         <div
           class="app-shope__happy-moment"
-          v-if="showHappyMoment"
+          v-if="false"
         >
           <CustomerFeedback :items="listFeedback" />
         </div>
         <!-- Collaborators -->
         <div
           class="app-shop__collaborators"
-          v-if="showCollaborators"
+          v-if="false"
         >
           <ListCollaborators  :items="listCollaborators" />
         </div>
