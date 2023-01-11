@@ -249,7 +249,8 @@
         "TITLE": "Manage fun moments",
         "LABEL_TITLE": "Title",
         "LABEL_CONTENT": "Content",
-        "LABEL_IMAGES": "Picture"
+        "LABEL_IMAGES": "Picture",
+        "LABEL_WRITER": "Creator"
       }
     },
     "CUSTOMER_SUPPORT": {

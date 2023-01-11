@@ -249,7 +249,8 @@
         "TITLE": "Quản lý khoảnh khắc vui vẻ",
         "LABEL_TITLE": "Tiêu đề",
         "LABEL_CONTENT": "Nội dung",
-        "LABEL_IMAGES": "Hình ảnh"
+        "LABEL_IMAGES": "Hình ảnh",
+        "LABEL_WRITER": "Người viết"
       }
     },
     "CUSTOMER_SUPPORT": {

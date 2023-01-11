@@ -158,6 +158,16 @@
         </div>
 
         <div class="item-input">
+          <label for="input-writer">
+            {{ $t('DASHBOARD.HAPPY_MOMENT.MODAL.LABEL_WRITER') }}
+          </label>
+          <b-form-input 
+            id="input-writer"
+            v-model="isModal.writer"
+          />
+        </div>
+
+        <div class="item-input">
           <label for="input-images">
             {{ $t('DASHBOARD.HAPPY_MOMENT.MODAL.LABEL_IMAGES') }}
           </label>
@@ -248,7 +258,7 @@ export default {
         show: false,
         typeModal: null,
         refName: 'importListImage',
-
+        writer: '',
         id: null,
         title: '',
         content: '',
@@ -393,7 +403,7 @@ export default {
         show: false,
         typeModal: null,
         refName: 'importListImage',
-
+        writer: '',
         id: null,
         title: '',
         content: '',
@@ -415,7 +425,8 @@ export default {
             title: this.isModal.title,
             content: this.isModal.content,
             images: IMAGES,
-            primary_image: this.handleGetPrimaryImage(IMAGES)
+            primary_image: this.handleGetPrimaryImage(IMAGES),
+            writer: this.isModal.writer,
           }
 
           const { status_code } = await postCreateHappyMoment(BODY);
@@ -442,7 +453,8 @@ export default {
             title: this.isModal.title,
             images: LIST_NEW_IMAGE,
             content: this.isModal.content,
-            primary_image: this.handleGetPrimaryImage(LIST_NEW_IMAGE)
+            primary_image: this.handleGetPrimaryImage(LIST_NEW_IMAGE),
+            writer: this.isModal.writer,
           };
 
           const { status_code } = await postEditHappyMoment(BODY);
@@ -543,6 +555,7 @@ export default {
           this.isModal.title = data.title;
           this.isModal.content = data.content;
           this.isModal.images = this.handleAddTypeImage(data.images);
+          this.isModal.writer = data.writer;
           this.isModal.show = true;
         }
       } catch (err) {

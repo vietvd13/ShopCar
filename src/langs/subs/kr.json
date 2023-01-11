@@ -249,7 +249,8 @@
         "TITLE": "재미있는 순간 관리",
         "LABEL_TITLE": "제목",
         "LABEL_CONTENT": "콘텐츠",
-        "LABEL_IMAGES": "그림"
+        "LABEL_IMAGES": "그림",
+        "LABEL_WRITER": "창조자"
       }
     },
     "CUSTOMER_SUPPORT": {
