@@ -320,6 +320,10 @@ export default {
   z-index: 99999;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
+  .container {
+    max-width: 1368px !important;
+  }
+
   .navbar-brand {
     margin-right: 0;
     color: $international-orange;
