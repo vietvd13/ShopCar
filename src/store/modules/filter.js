@@ -10,10 +10,11 @@ function getIsFilter() {
 
     return {
         search: '',
+        categories: null,
+        models: null,
+        car_details: [],
         from_year: null,
         to_year: null,
-        categories: null,
-        model: [],
         color: null,
         fuel_type: null,
         gear_box: null,
@@ -108,6 +109,18 @@ const mutations = {
 
     SET_CONFIG_SLIDER_DASHBOARD: (state, config) => {
         state.configSlider = config;
+    },
+
+    RESET_FILTER_CATEGORIES: (state) => {
+        state.isFilter.categories = null;
+    },
+
+    RESET_FILTER_MODELS: (state) => {
+        state.isFilter.models = null;
+    },
+
+    RESET_FILTER_DETAIL_CAR: (state) => {
+        state.isFilter.car_details = [];
     }
 };
 
@@ -134,6 +147,18 @@ const actions = {
 
     setConfigSliderDashboard({ commit }, config) {
         commit('SET_CONFIG_SLIDER_DASHBOARD', config);
+    },
+
+    resetFilterCategories({ commit }) {
+        commit('RESET_FILTER_CATEGORIES');
+    },
+
+    resetFilterModels({ commit }) {
+        commit('RESET_FILTER_MODELS');
+    },
+
+    resetFilterDetailCar({ commit }) {
+        commit('RESET_FILTER_DETAIL_CAR');
     }
 };
 

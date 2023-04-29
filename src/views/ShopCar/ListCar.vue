@@ -156,14 +156,6 @@ export default {
           }
         }
 
-        if (FILTER.categories) {
-          BODY.filter.category = FILTER.categories;
-        }
-
-        if (FILTER.model.length > 0) {
-          BODY.filter.car_model = FILTER.model;
-        }
-
         if (FILTER.fuel_type) {
           BODY.filter.fuel_type = FILTER.fuel_type;
         }

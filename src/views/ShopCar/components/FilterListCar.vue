@@ -1,314 +1,282 @@
 <template>
-    <b-card>
-        <div class="toggle-filter" v-b-toggle="'filter-home-car'">
-            {{ $t('SHOP_CAR.HOME.FILTER.FILTER_CAR') }}<span>: {{ totalCar }} {{ $t('APP.SEARCHES') }}</span>
-            <span class="icon-toggle when-open">
-                <i class="fas fa-chevron-up" />
-            </span>
-            <span class="icon-toggle when-closed">
-                <i class="fas fa-chevron-down" />
-            </span>
-        </div>
-
-        <b-collapse id="filter-home-car" :visible="initVisible">
-            <div class="filter-list-car">
-                <b-row>
-                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-                        <div class="item-form">
-                            <label for="filter-search">
+    <div>
+        <b-row>
+            <b-col cols="12">
+                <div class="item-form">
+                    <b-input-group>
+                        <b-form-input
+                            id="filter-search"
+                            v-model="isFilter.search"
+                            :placeholder="$t('SHOP_CAR.HOME.FILTER.PLACEHOLDER_SEARCH')"
+                            @keyup.enter="onClickFilter()"
+                        />
+                        <b-input-group-append>
+                            <b-button 
+                                class="btn-app"
+                                @click="onClickFilter()"
+                            >
                                 {{ $t('SHOP_CAR.HOME.FILTER.SEARCH') }}
-                            </label>
-                            <b-form-input
-                                id="filter-search"
-                                v-model="isFilter.search"
-                                :placeholder="$t('SHOP_CAR.HOME.FILTER.PLACEHOLDER_SEARCH')"
-                            />
-                        </div>
-                    </b-col>
-
-                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-                        <div class="item-form">
-                            <label for="filter-from-year">
-                                {{ $t('SHOP_CAR.HOME.FILTER.YEAR') }}
-                            </label>
-                            <b-input-group class="mb-2">
-                                <b-form-select 
-                                    v-model="isFilter.from_year" 
-                                    id="filter-from-year"
-                                    @change="handleSelectYear"
-                                >
-                                    <template #first>
-                                        <b-form-select-option :value="null">
-                                            {{ $t('APP.PLEASE_SELECT') }}
-                                        </b-form-select-option>
-                                    </template>
-
-                                    <b-form-select-option
-                                        v-for="(year, idxYear) in listOptionYear"
-                                        :value="year.value"
-                                        :key="idxYear"
-                                    >
-                                        {{ year.text }}
-                                    </b-form-select-option>
-                                </b-form-select>
-                                <b-input-group-prepend is-text>
-                                    <b> - </b>
-                                </b-input-group-prepend>
-                                <b-form-select 
-                                    v-model="isFilter.to_year" 
-                                    id="filter-to-year"
-                                    @change="handleSelectYear"
-                                >
-                                    <template #first>
-                                        <b-form-select-option :value="null">
-                                            {{ $t('APP.PLEASE_SELECT') }}
-                                        </b-form-select-option>
-                                    </template>
-
-                                    <b-form-select-option
-                                        v-for="(year, idxYear) in listOptionYear"
-                                        :value="year.value"
-                                        :key="idxYear"
-                                    >
-                                        {{ year.text }}
-                                    </b-form-select-option>
-                                </b-form-select>
-                            </b-input-group>
-                        </div>
-                    </b-col>
-
-                    <b-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3">
-                        <div class="item-form">
-                            <label for="filter-categories">
-                                {{ $t('SHOP_CAR.HOME.FILTER.CATEGORIES') }}
-                            </label>
-                            <b-form-select
-                                id="filter-categories"
-                                v-model="isFilter.categories"
-                                :options="listCategories"
-                                @change="onSelectCategories"
-                            >
-                                <template #first>
-                                    <b-form-select-option :value="null">
-                                        {{ $t('APP.PLEASE_SELECT') }}
-                                    </b-form-select-option>
-                                </template>
-                            </b-form-select>
-                        </div>
-                    </b-col>
-
-                    <b-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3">
-                        <div class="item-form">
-                            <label for="filter-color">{{ $t('SHOP_CAR.HOME.FILTER.COLOR') }}</label>
-                            <b-form-select
-                                id="filter-color"
-                                v-model="isFilter.color"
-                                :options="listColor"
-                            >
-                                <template #first>
-                                    <b-form-select-option :value="null">
-                                        {{ $t('APP.PLEASE_SELECT') }}
-                                    </b-form-select-option>
-                                </template>
-                            </b-form-select>
-                        </div>
-                    </b-col>
-
-                    <b-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3">
-                        <div class="item-form">
-                            <label for="filter-fuel-type">{{ $t('SHOP_CAR.HOME.FILTER.FUEL_TYPE') }}</label>
-                            <b-form-select
-                                id="filter-fuel-type"
-                                v-model="isFilter.fuel_type"
-                                :options="listFuelType"
-                            >
-                                <template #first>
-                                    <b-form-select-option :value="null">
-                                        {{ $t('APP.PLEASE_SELECT') }}
-                                    </b-form-select-option>
-                                </template>
-                            </b-form-select>
-                        </div>
-                    </b-col>
-
-                    <b-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3">
-                        <div class="item-form">
-                            <label for="">{{ $t('SHOP_CAR.HOME.FILTER.GEAR_BOX') }}</label>
-                            <b-form-select
-                                v-model="isFilter.gear_box"
-                                :options="listGearBox"
-                            >
-                                <template #first>
-                                    <b-form-select-option :value="null">
-                                        {{ $t('APP.PLEASE_SELECT') }}
-                                    </b-form-select-option>
-                                </template>
-                            </b-form-select>
-                        </div>
-                    </b-col>
-                    
-                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-                        <div class="item-form">
-                            <label for="filter-model">
-                                {{ $t('SHOP_CAR.HOME.FILTER.MODEL') }}
-                            </label>
-
-                            <div class="show-filter-model">
-                                <span 
-                                    v-for="(itemModel, idxModel) in isFilter.model" 
-                                    :key="idxModel"
-                                    class="item-model"
-                                >
-                                    {{ itemModel }}
-                                    <i class="fas fa-times" @click="onClickRemoveModle(idxModel)" />
-                                </span>
-                            </div>
-
-                            <div class="zone-multiple-select">
-                                <b-form-checkbox-group
-                                    id="filter-model"
-                                    v-model="isFilter.model"
-                                    stacked
-                                    name="filter-model"
-                                    v-if="optionModel.length"
-                                >
-                                    <b-form-checkbox 
-                                        v-for="(model) in optionModel" 
-                                        :key="model"
-                                        :value="model"
-                                    >
-                                        {{ model }}
-                                    </b-form-checkbox>
-                                </b-form-checkbox-group>
-
-                                <div 
-                                    v-else
-                                    class="text-center"
-                                >
-                                    {{ $t('APP.TABLE_NO_DATA') }}
-                                </div>
-                            </div>
-                        </div>
-                    </b-col>
-
-                    <b-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-                        <div class="item-form">
-                            <b-row>
-                                <b-col cols="6" class="text-left">
-                                    <label for="filter-distance">
-                                        {{ $t('SHOP_CAR.HOME.FILTER.DISTANCE') }}
-                                    </label>
-                                </b-col>
-
-                                <b-col cols="6" class="text-right">
-                                    <b-form-checkbox v-model="isLimit.distance">
-                                        {{ $t('APP.NO_LIMIT') }}
-                                    </b-form-checkbox>
-                                </b-col>
-                            </b-row>
-
-                            <div class="show-range">
-                                <b-row>
-                                    <b-col class="text-left">
-                                        {{ formatNumber(isFilter.distance[0]) }} km
-                                    </b-col>
-
-                                    <b-col class="text-right">
-                                        {{ formatNumber(isFilter.distance[1]) }} km
-                                    </b-col>
-                                </b-row>
-                            </div>
-
-                            <b-col class="text-center">
-                                <div
-                                    id="filter-distance"
-                                    class="height-slider"
-                                />
-                            </b-col>
-                        </div>
-
-                        <div class="mt-4">
-                            <b-row>
-                                <b-col cols="6" class="text-left">
-                                    <label for="filter-price">
-                                    {{ $t('SHOP_CAR.HOME.FILTER.PRICE') }}
-
-                                    </label>
-                                </b-col>
-
-                                <b-col cols="6" class="text-right">
-                                    <b-form-checkbox v-model="isLimit.price">
-                                        {{ $t('APP.NO_LIMIT') }}
-                                    </b-form-checkbox>
-                                </b-col>
-                            </b-row>
-
-                            <div class="show-range">
-                                <b-row>
-                                    <b-col class="text-left">
-                                        {{ formatPrice(isFilter.price[0]) }} 만원
-                                    </b-col>
-
-                                    <b-col class="text-right">
-                                        {{ formatPrice(isFilter.price[1]) }} 만원
-                                    </b-col>
-                                </b-row>
-                            </div>
-
-                            <b-col class="text-center">
-                                <div
-                                    id="filter-price"
-                                    class="height-slider"
-                                />
-                            </b-col>
-                        </div>
-                    </b-col>
-                </b-row>
-
-                <b-row>
-                    <b-col class="text-center">
-                        <b-button
-                            variant="danger"
-                            class="mt-2 btn-default btn-remove-filter"
-                            @click="onClickResetFilter()"
-                        >
-                            {{ $t('APP.BUTTON_RESET_FILTER') }}
-                        </b-button>
-                    </b-col>
-
-                    <b-col class="text-center">
-                        <b-button
-                            class="mt-2 btn-app btn-default btn-filter"
-                            @click="onClickFilter()"
-                        >
-                            {{ $t('APP.BUTTON_FILTER') }}
-                        </b-button>
-                    </b-col>
-                </b-row>
-
+                            </b-button>
+                        </b-input-group-append>
+                    </b-input-group>
+                </div>
+            </b-col>
+        </b-row>
+        <b-card>
+            <div class="toggle-filter" v-b-toggle="'filter-home-car'">
+                {{ $t('SHOP_CAR.HOME.FILTER.FILTER_CAR') }}<span>: {{ totalCar }} {{ $t('APP.SEARCHES') }}</span>
+                <span class="icon-toggle when-open">
+                    <i class="fas fa-chevron-up" />
+                </span>
+                <span class="icon-toggle when-closed">
+                    <i class="fas fa-chevron-down" />
+                </span>
             </div>
-        </b-collapse>
-    </b-card>
+            <b-collapse id="filter-home-car" :visible="initVisible">
+                <div class="filter-list-car">
+                    <b-row>
+                        <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12">
+                            <b-row>
+                                <b-col cols="12" xs="12" sm="12" md="12" lg="4" xl="4">
+                                    <div class="item-form">
+                                        <CardListCategories
+                                            :title="$t('SHOP_CAR.HOME.FILTER.CATEGORIES')"
+                                            :items="filterCategoriesList"
+                                            @onSelect="handleSelectFilterCategories"
+                                        />
+                                    </div>
+                                </b-col>
+                                <b-col cols="12" xs="12" sm="12" md="12" lg="4" xl="4">
+                                    <div class="item-form">
+                                        <CardListModel
+                                            :title="$t('SHOP_CAR.HOME.FILTER.MODEL')"
+                                            :items="filterModel"
+                                            @onSelect="handleSelectFilterModel"
+                                        />
+                                    </div>
+                                </b-col>
+                                <b-col cols="12" xs="12" sm="12" md="12" lg="4" xl="4">
+                                    <div class="item-form">
+                                        <CardListDetailCar
+                                            :title="$t('SHOP_CAR.HOME.FILTER.DETAIL_CAR')"
+                                            :items="filterCarDetail"
+                                            @onSelect="handleSelectFilterCarDetail"
+                                        />
+                                    </div>
+                                </b-col>
+                            </b-row>
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6">
+                            <!-- Filter Năm -->
+                            <div class="item-form">
+                                <label for="filter-from-year">
+                                    {{ $t('SHOP_CAR.HOME.FILTER.YEAR') }}
+                                </label>
+                                <b-input-group class="mb-2">
+                                    <b-form-select
+                                        v-model="isFilter.from_year"
+                                        id="filter-from-year"
+                                        @change="handleSelectYear"
+                                    >
+                                        <template #first>
+                                            <b-form-select-option :value="null">
+                                                {{ $t('APP.PLEASE_SELECT') }}
+                                            </b-form-select-option>
+                                        </template>
+                                        <b-form-select-option
+                                            v-for="(year, idxYear) in listOptionYear"
+                                            :value="year.value"
+                                            :key="idxYear"
+                                        >
+                                            {{ year.text }}
+                                        </b-form-select-option>
+                                    </b-form-select>
+                                    <b-input-group-prepend is-text>
+                                        <b> - </b>
+                                    </b-input-group-prepend>
+                                    <b-form-select
+                                        v-model="isFilter.to_year"
+                                        id="filter-to-year"
+                                        @change="handleSelectYear"
+                                    >
+                                        <template #first>
+                                            <b-form-select-option :value="null">
+                                                {{ $t('APP.PLEASE_SELECT') }}
+                                            </b-form-select-option>
+                                        </template>
+                                        <b-form-select-option
+                                            v-for="(year, idxYear) in listOptionYear"
+                                            :value="year.value"
+                                            :key="idxYear"
+                                        >
+                                            {{ year.text }}
+                                        </b-form-select-option>
+                                    </b-form-select>
+                                </b-input-group>
+                            </div>
+                            <!-- Filter Giá -->
+                            <div class="item-form">
+                                <b-row>
+                                    <b-col cols="6" class="text-left">
+                                        <label for="filter-price">
+                                        {{ $t('SHOP_CAR.HOME.FILTER.PRICE') }}
+                                        </label>
+                                    </b-col>
+                                    <b-col cols="6" class="text-right">
+                                        <b-form-checkbox v-model="isLimit.price">
+                                            {{ $t('APP.NO_LIMIT') }}
+                                        </b-form-checkbox>
+                                    </b-col>
+                                </b-row>
+                                <div class="show-range">
+                                    <b-row>
+                                        <b-col class="text-left">
+                                            {{ formatPrice(isFilter.price[0]) }} 만원
+                                        </b-col>
+                                        <b-col class="text-right">
+                                            {{ formatPrice(isFilter.price[1]) }} 만원
+                                        </b-col>
+                                    </b-row>
+                                </div>
+                                <b-col class="text-center">
+                                    <div
+                                        id="filter-price"
+                                        class="height-slider"
+                                    />
+                                </b-col>
+                            </div>
+                            <!-- Filter Khoảng cách -->
+                            <div class="item-form">
+                                <b-row>
+                                    <b-col cols="6" class="text-left">
+                                        <label for="filter-distance">
+                                            {{ $t('SHOP_CAR.HOME.FILTER.DISTANCE') }}
+                                        </label>
+                                    </b-col>
+                                    <b-col cols="6" class="text-right">
+                                        <b-form-checkbox v-model="isLimit.distance">
+                                            {{ $t('APP.NO_LIMIT') }}
+                                        </b-form-checkbox>
+                                    </b-col>
+                                </b-row>
+                                <div class="show-range">
+                                    <b-row>
+                                        <b-col class="text-left">
+                                            {{ formatNumber(isFilter.distance[0]) }} km
+                                        </b-col>
+                                        <b-col class="text-right">
+                                            {{ formatNumber(isFilter.distance[1]) }} km
+                                        </b-col>
+                                    </b-row>
+                                </div>
+                                <b-col class="text-center">
+                                    <div
+                                        id="filter-distance"
+                                        class="height-slider"
+                                    />
+                                </b-col>
+                            </div>
+                        </b-col>
+                        <b-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6">
+                            <!-- Filter Nhiên liệu -->
+                            <div class="item-form">
+                                <label for="filter-fuel-type">{{ $t('SHOP_CAR.HOME.FILTER.FUEL_TYPE') }}</label>
+                                <b-form-select
+                                    id="filter-fuel-type"
+                                    v-model="isFilter.fuel_type"
+                                    :options="listFuelType"
+                                >
+                                    <template #first>
+                                        <b-form-select-option :value="null">
+                                            {{ $t('APP.PLEASE_SELECT') }}
+                                        </b-form-select-option>
+                                    </template>
+                                </b-form-select>
+                            </div>
+                            <!-- Filter Hộp số -->
+                            <div class="item-form">
+                                <label for="">{{ $t('SHOP_CAR.HOME.FILTER.GEAR_BOX') }}</label>
+                                <b-form-select
+                                    v-model="isFilter.gear_box"
+                                    :options="listGearBox"
+                                >
+                                    <template #first>
+                                        <b-form-select-option :value="null">
+                                            {{ $t('APP.PLEASE_SELECT') }}
+                                        </b-form-select-option>
+                                    </template>
+                                </b-form-select>
+                            </div>
+                            <!-- Filter Màu xe -->
+                            <div class="item-form">
+                                <label for="filter-color">{{ $t('SHOP_CAR.HOME.FILTER.COLOR') }}</label>
+                                <b-form-select
+                                    id="filter-color"
+                                    v-model="isFilter.color"
+                                    :options="listColor"
+                                >
+                                    <template #first>
+                                        <b-form-select-option :value="null">
+                                            {{ $t('APP.PLEASE_SELECT') }}
+                                        </b-form-select-option>
+                                    </template>
+                                </b-form-select>
+                            </div>
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col class="text-center">
+                            <b-button
+                                variant="danger"
+                                class="mt-2 btn-default btn-remove-filter"
+                                @click="onClickResetFilter()"
+                            >
+                                {{ $t('APP.BUTTON_RESET_FILTER') }}
+                            </b-button>
+                        </b-col>
+                        <b-col class="text-center">
+                            <b-button
+                                class="mt-2 btn-app btn-default btn-filter"
+                                @click="onClickFilter()"
+                            >
+                                {{ $t('APP.BUTTON_FILTER') }}
+                            </b-button>
+                        </b-col>
+                    </b-row>
+                </div>
+            </b-collapse>
+        </b-card>
+    </div>
 </template>
 
 <script>
 import * as noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 
-import { 
-    getListCategories,
+import CardListCategories from '@/components/CardListCategories';
+import CardListModel from '@/components/CardListModelCar';
+import CardListDetailCar from '@/components/CardListDetailCar';
+
+import {
+    getFilterCategoriesList, 
     getListColor,
     getListFuleType,
     getListGearBox,
-    getAllModelCar
 } from '@/api/modules/Home';
-import { generateSelect, formatPrice, formatNumber } from '@/utils/helper';
+import { generateSelect, formatPrice, formatNumber, getValueInArrObj } from '@/utils/helper';
 import { validInputNumber } from '@/utils/handleInput';
 
 import CONSTANTS from '@/constants';
 
 export default {
     name: 'FilterListCar',
+    components: {
+        CardListCategories,
+        CardListModel,
+        CardListDetailCar
+    },
     props: {
         initVisible: {
             type: Boolean,
@@ -323,10 +291,11 @@ export default {
         return {
             isFilter: this.$store.getters.isFilter || {
                 search: '',
+                categories: null,
+                models: null,
+                car_details: [],
                 from_year: null,
                 to_year: null,
-                categories: null,
-                model: [],
                 color: null,
                 fuel_type: null,
                 gear_box: null,
@@ -347,10 +316,10 @@ export default {
                 }
             },
 
+            filterCategoriesList: [],
+            filterModel: [],
+            filterCarDetail: [],
             listOptionYear: [],
-            listCategories: [],
-            listModel: {},
-            optionModel: [],
             listColor: [],
             listFuelType: [],
             listGearBox: [],
@@ -475,38 +444,25 @@ export default {
         },
         async initData() {
             this.listOptionYear = this.handleGetListYear();
-            this.handleGetListCategories();
-            this.handleGetAllModelCar();
+            this.handleGetFilterCategoriesList();
             this.handleGetListColor();
             this.handleGetListFuleType();
             this.handleGetListGearBox();
         },
-        async handleGetListCategories() {
+        async handleGetFilterCategoriesList() {
             try {
-                const { status_code, data } = await getListCategories();
+                const { status_code, data } = await getFilterCategoriesList();
 
                 if (status_code === 200) {
-                    this.listCategories = generateSelect(data, true);
+                    this.filterCategoriesList = data;
+
+                    this.handleInitSelectBox();
                 } else {
-                    this.listCategories = [];
+                    this.filterCategoriesList = [];
                 }
             } catch (err) {
-                this.listCategories = [];
+                this.filterCategoriesList = [];
                 console.log(err);
-            }
-        },
-        async handleGetAllModelCar() {
-            try {
-                const { status_code, data } = await getAllModelCar();
-
-                if (status_code === 200) {
-                    this.listModel = data;
-                } else {
-                    this.listModel = {};
-                }
-            } catch (err) {
-                this.listModel = {};
-                console.log();
             }
         },
         async handleGetListColor() {
@@ -553,23 +509,17 @@ export default {
         },
         onClickFilter() {
             this.$emit('filter');
-        },
-        onSelectCategories() {
-            if (this.isFilter.categories) {
-                this.isFilter.model = [];
-                this.optionModel = this.listModel[this.isFilter.categories] || [];
-            } else {
-                this.isFilter.model = [];
-                this.optionModel = [];
-            }
+
+            console.log("FILTER: ", this.$store.getters.isFilter);
         },
         async onClickResetFilter() {
             this.isFilter = {
                 search: '',
+                categories: null,
+                models: null,
+                car_details: [],
                 from_year: null,
                 to_year: null,
-                categories: null,
-                model: [],
                 color: null,
                 fuel_type: null,
                 gear_box: null,
@@ -631,10 +581,74 @@ export default {
                 this.isFilter.to_year = this.isFilter.from_year;
             }
         },
-        onClickRemoveModle(idx) {
-            if (idx >= 0 && idx < this.isFilter.model.length) {
-                this.isFilter.model.splice(idx, 1);
+        handleInitSelectBox() {
+            const categories = this.$store.getters.isFilter.categories;
+            const models = this.$store.getters.isFilter.models;
+            const carDetail = this.$store.getters.isFilter.car_details;
+
+            if (categories) {
+                this.isFilter.categories = categories;
+
+                this.handleSelectFilterCategories(categories);
             }
+
+            if (models) {
+                this.isFilter.models = models;
+
+                this.handleSelectFilterModel(models);
+            }
+
+            if (carDetail) {
+                this.isFilter.car_details = carDetail;
+
+                this.handleSelectFilterCarDetail(carDetail);
+            }
+        },
+        handleSelectFilterCategories(value) {
+            if (value) {
+                this.isFilter.categories = value;
+
+                this.filterModel = getValueInArrObj(this.filterCategoriesList, value._id, "_id", "category_detail");
+                this.isFilter.models = null;
+                this.isFilter.car_details = [];
+                this.$store.dispatch("filter/resetFilterModels"); 
+                this.$store.dispatch("filter/resetFilterDetailCar"); 
+
+                return;
+            }
+
+            this.isFilter.categories = null;
+            this.isFilter.models = null;
+            this.isFilter.car_details = [];
+            this.$store.dispatch("filter/resetFilterCategories"); 
+            this.$store.dispatch("filter/resetFilterModels"); 
+            this.$store.dispatch("filter/resetFilterDetailCar"); 
+        },
+        handleSelectFilterModel(value) {
+            if (value) {
+                this.isFilter.models = value;
+
+                this.filterCarDetail = getValueInArrObj(this.filterModel, value.model_name, "model_name", "model_detail");
+                this.isFilter.car_details = null;
+                this.$store.dispatch("filter/resetFilterDetailCar"); 
+
+                return;
+            }
+
+            this.isFilter.models = null;
+            this.isFilter.car_details = [];
+            this.$store.dispatch("filter/resetFilterModels"); 
+            this.$store.dispatch("filter/resetFilterDetailCar"); 
+        },
+        handleSelectFilterCarDetail(value) {
+            if (value) {
+                this.isFilter.car_details = value;
+
+                return;
+            }
+
+            this.isFilter.car_details = [];
+            this.$store.dispatch("filter/resetFilterDetailCar"); 
         }
     },
 }
@@ -683,6 +697,11 @@ export default {
 
 .collapsed > .when-open,
 .not-collapsed > .when-closed {
-  display: none;
+    display: none;
+}
+
+.row .no-float {
+    display: table-cell;
+    float: none;
 }
 </style>

@@ -23,7 +23,7 @@
       </div>
 
       <div class="date-sale">
-        {{ dateSale }} - {{ category }} - {{ color }}
+        {{ dateSale }} - {{ category }} - {{ color }} - {{ distanceDriven }} km
       </div>
 
       <div class="car-price">
@@ -72,6 +72,11 @@ export default {
       type: String,
       required: true,
       default: '',
+    },
+    distanceDriven: {
+      type: Number,
+      required: true,
+      default: 0,
     },
     carPrice: {
       type: [Number, String],

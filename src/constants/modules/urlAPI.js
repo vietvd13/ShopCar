@@ -39,6 +39,7 @@ export default {
   POST_EDIT_CUSTOMER_SUPPORT: '/support/edit',
 
   // Api Filter
+  GET_FILTER_CATEGORIES_LIST: '/filter/list-category',
   GET_LIST_CATEGORIES: '/filter/category',
   GET_LIST_COLOR: '/filter/color',
   GET_LIST_FUEL_TYPE: '/filter/fuel-type',

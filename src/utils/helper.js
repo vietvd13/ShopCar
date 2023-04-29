@@ -136,6 +136,16 @@ function handleCalPriceDiff(price, price_display) {
     return result;
 }
 
+function getValueInArrObj(arr, id, keyMap, keyGet) {
+    const item = arr.find(item => item[keyMap] === id);
+
+    if (item) {
+        return item[keyGet] ? item[keyGet] : [];
+    }
+
+    return [];
+}
+
 export {
     getArrValueOfArr,
     replaceValueWithIndex,
@@ -145,5 +155,6 @@ export {
     elementInViewport,
     handleSrollTop,
     handleTickRowTable,
-    handleCalPriceDiff
+    handleCalPriceDiff,
+    getValueInArrObj
 }

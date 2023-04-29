@@ -10,7 +10,7 @@ const ShopCar = {
   children: [
     {
       path: 'home',
-      alias: 'home',
+      alias: '',
       name: 'HomeShopCar',
       component: () => import(/* webpackChunkName: "HomeShopCar" */ '@/views/ShopCar/Home.vue'),
     },

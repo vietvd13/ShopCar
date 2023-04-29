@@ -50,8 +50,6 @@ export default {
 @import '@/scss/variables';
 
 .home-shop-car {
-  overflow: hidden;
-
   &__content {
     .content-filter,
     .content-hotsale {

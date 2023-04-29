@@ -19,6 +19,7 @@
           :date-sale="car.year_manufacture"
           :category="car.category"
           :color="car.color"
+          :distance-driven="car.distance_driven"
           :car-price="car.price_display"
         />
       </b-col>
