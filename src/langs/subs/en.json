@@ -56,7 +56,8 @@
     "BANNER_MANAGEMENT": "Manage banners",
     "PROFILE": "Personal information",
     "POLICY_MANAGEMENT": "Policy management",
-    "INSURANCE_MANAGEMENT": "Insurance management"
+    "INSURANCE_MANAGEMENT": "Insurance management",
+    "CATEGORY_MANAGEMENT": "Category management"
   },
   "TOAST_MESSAGE": {
     "CHANGE_LANGUAGE_SUCCESS": "You have successfully changed the language",
@@ -90,7 +91,18 @@
     "DELETE_CAR_SUCCESS": "You have successfully deleted the car",
     "SET_HOTSALE_CAR_SUCCESS": "You have successfully updated the hotsale car",
     "SET_PRICE_CAR_SUCCESS": "You have successfully updated the car price",
-    "SET_SALE_SUCCESS": "You have successfully updated the program"
+    "SET_SALE_SUCCESS": "You have successfully updated the program",
+    "ADD_CATEGORY_SUCCESS": "You have successfully added category",
+    "ADD_CATEGORY_ERROR": "You have failed to add category",
+    "EDIT_CATEGORY_SUCCESS": "You have successfully edited the category",
+    "EDIT_CATEGORY_ERROR": "You have failed to edit the category",
+    "DELETE_CATEGORY_SUCCESS": "You have successfully deleted the category",
+    "DELETE_CATEGORY_ERROR": "You have failed to delete the category",
+    "ERROR_CATEGORY_IS_EMPTY": "You have not entered a category",
+    "ERROR_CATEGORY_NAME_IS_EMPTY": "You have not entered a category name",
+    "ERROR_CATEGORY_IMAGE_IS_EMPTY": "You have not selected a category image",
+    "UPDATE_AUTO_UPDATE_SUCCESS": "You have successfully updated the AUTO UPDATE status",
+    "UPDATE_AUTO_UPDATE_ERROR": "You have failed to update the AUTO UPDATE status"
   },
   "SHOP_CAR": {
     "HOME": {
@@ -108,7 +120,9 @@
         "SEARCH": "Search",
         "YEAR": "Year of manufacture",
         "CATEGORIES": "Car company",
-        "MODEL": "Model",
+        "MODEL": "Car name",
+        "DETAIL_CAR": "Detailed model",
+        "RATING": "Rating",
         "COLOR": "Color",
         "FUEL_TYPE": "Fuel type",
         "GEAR_BOX": "Engine",
@@ -338,6 +352,8 @@
       "TABLE_TEXT_DETAIL": "Detail",
       "TABLE_TEXT_EDIT": "Editing",
       "TABLE_TEXT_DELETE": "Delete",
+      "TABLE_TEXT_AUTO_UPDATE": "Auto update",
+      "TABLE_TEXT_SALE_PROGRAM": "Sale program",
       "ACITON_DELETE": "Delete",
       "ACTION_ADD_HOT_SALE": "Push hotsale",
       "ACTION_REMOVE_HOT_SALE": "Quit hotsale",
@@ -359,6 +375,7 @@
         "CAR_OPTION_GUTS": "Interior",
         "CAR_OPTION_SAFETY": "Safe",
         "CAR_OPTION_CONVENIENCE": "Utilities",
+        "PLACEHOLDER_CAR_DETAIL": "Enter vehicle details",
         "PLACEHOLDER_OPTION": "Enter option",
         "PLACEHOLDER_PRICE": "Please enter the price",
         "PLACEHOLDER_CATEGORIES": "Please select the car company",
@@ -382,6 +399,16 @@
         "PLACEHOLDER_BUSINESS_ADDRESS": "Please enter business address",
         "PLACEHOLDER_PARKING_LOCATION": "Please enter your parking location",
         "PLACEHOLDER_IMPORT_PERFORMANCE_CHECK": "Please enter"
+      },
+      "CATEGORY_MANAGEMENT": {
+        "TITLE": "Car company management",
+        "CATEGORY_DETAIL": "Category details",
+        "TABLE_NO": "No",
+        "TABLE_CATEGORY": "Category",
+        "TABLE_IMAGE": "Image",
+        "TABLE_ACTIONS": "Actions",
+        "TABLE_TEXT_EDIT": "Edit",
+        "TABLE_TEXT_DELETE": "Delete"
       }
     }
   },

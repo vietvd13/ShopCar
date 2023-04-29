@@ -136,6 +136,38 @@ function handleCalPriceDiff(price, price_display) {
     return result;
 }
 
+function getValueInArrObj(arr, id, keyMap, keyGet) {
+    const item = arr.find(item => item[keyMap] === id);
+
+    if (item) {
+        return item[keyGet] ? item[keyGet] : [];
+    }
+
+    return [];
+}
+
+function getObjInArrByValue(arr, value) {
+    if (Array.isArray(arr) && value) {
+        const len = arr.length;
+        let idx = 0;
+
+        while (idx < len) {
+            const item = arr[idx];
+            const { name } = item;
+            const _value = value.toLowerCase();
+            const _name = name.toLowerCase();
+
+            if (_value.includes(_name)) {
+                return item.status === "online" ? true : false;
+            }
+
+            idx++;
+        }
+    }
+
+    return null;
+}
+
 export {
     getArrValueOfArr,
     replaceValueWithIndex,
@@ -145,5 +177,7 @@ export {
     elementInViewport,
     handleSrollTop,
     handleTickRowTable,
-    handleCalPriceDiff
+    handleCalPriceDiff,
+    getValueInArrObj,
+    getObjInArrByValue
 }

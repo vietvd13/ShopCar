@@ -17,6 +17,10 @@ export function postCreateContactSupport(BODY = null, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.POST_CREATE_CUSTOMER_SUPPORT, BODY, PARAMS);
 }
 
+export function getFilterCategoriesList(BODY = null, PARAMS = null) {
+  return request.getRequest(CONSTANTS.URL_API.GET_FILTER_CATEGORIES_LIST, BODY, PARAMS);
+}
+
 export function getListCategories(BODY = null, PARAMS = null) {
   return request.getRequest(CONSTANTS.URL_API.GET_LIST_CATEGORIES, BODY, PARAMS);
 }

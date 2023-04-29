@@ -39,6 +39,7 @@ export default {
   POST_EDIT_CUSTOMER_SUPPORT: '/support/edit',
 
   // Api Filter
+  GET_FILTER_CATEGORIES_LIST: '/filter/list-category',
   GET_LIST_CATEGORIES: '/filter/category',
   GET_LIST_COLOR: '/filter/color',
   GET_LIST_FUEL_TYPE: '/filter/fuel-type',
@@ -74,4 +75,14 @@ export default {
 
   // Model Car
   GET_ALL_MODEL_CAR: '/filter/model',
+
+  // Api Category Management
+  GET_LIST_CATEGORIES_MANAGEMENT: '/category/list',
+  POST_ADD_CATEGORIES_MANAGEMENT: '/category/create',
+  POST_EDIT_CATEGORIES_MANAGEMENT: '/category/edit',
+  POST_DELETE_CATEGORIES_MANAGEMENT: '/category/delete',
+
+  // Api Status Crawl
+  GET_LIST_STATUS_CRAWL: "/process/status",
+  POST_SET_STATUS_CRAWL: "/process/set-status"
 };

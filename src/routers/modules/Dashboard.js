@@ -79,6 +79,15 @@ const Dashboard = {
       },
       hidden: true, 
       component: () => import(/* webpackChunkName: "Profile" */ '@/views/Dashboard/Profile.vue')
+    },
+    {
+      path: 'category',
+      name: 'CategoryManagement',
+      meta: {
+        title: 'ROUTER.CATEGORY_MANAGEMENT',
+        icon: 'fas fa-garage-car'
+      },
+      component: () => import(/* webpackChunkName: "Category" */ '@/views/Dashboard/CategoryManagement.vue')
     }
   ]
 }

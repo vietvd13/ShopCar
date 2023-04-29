@@ -29,8 +29,7 @@
                                 </b-td>
                                 <b-td colspan="3" class="td-categories">
                                     <b-form-select 
-                                        v-model="isForm.categories" 
-                                        :options="listCategories"
+                                        v-model="isForm.categories"
                                         @change="onSelectCategories"
                                     >
                                         <template #first>
@@ -39,17 +38,14 @@
                                             </b-form-select-option>
                                         </template>
 
-                                        <b-form-select-option :value="-1">
-                                            {{ $t('APP.OPTION_OTHER') }}
+                                        <b-form-select-option
+                                            v-for="(category, idxCategory) in listCategories"
+                                            :value="category.category_name"
+                                            :key="`category-${idxCategory + 1}`"
+                                        >
+                                            {{ category.category_name }}
                                         </b-form-select-option>
                                     </b-form-select>
-
-                                    <b-form-input 
-                                        v-show="isForm.categories === -1"
-                                        class="mt-2"
-                                        v-model="otherCategories"
-                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_CATEGORIES')" 
-                                    />
                                 </b-td>
                             </b-tr>
                             <b-tr>
@@ -58,9 +54,9 @@
                                 </b-td>
                                 <b-td colspan="3" class="td-car-model">
                                     <b-form-select 
-                                        v-model="isForm.model" 
-                                        :options="optionModel"
+                                        v-model="isForm.model_name" 
                                         :disabled="isForm.categories === null"
+                                        @change="onSelectModel"
                                     >
                                         <template #first>
                                             <b-form-select-option :value="null">
@@ -68,17 +64,65 @@
                                             </b-form-select-option>
                                         </template>
 
-                                        <b-form-select-option :value="-1">
-                                            {{ $t('APP.OPTION_OTHER') }}
+                                        <b-form-select-option
+                                            v-for="(modelCar, idxModelCar) in listModelCar"
+                                            :value="modelCar.model_name"
+                                            :key="`modelCar-${idxModelCar + 1}`"
+                                        >
+                                            {{ modelCar.model_name }}
                                         </b-form-select-option>
                                     </b-form-select>
+                                </b-td>
+                            </b-tr>
+                            <b-tr>
+                                <b-td class="title-car-infor">
+                                    {{ $t('SHOP_CAR.HOME.FILTER.DETAIL_CAR') }}
+                                </b-td>
+                                <b-td colspan="3" class="td-car-model">
+                                    <b-form-select 
+                                        v-model="isForm.model_detail" 
+                                        :disabled="isForm.model_name === null"
+                                        @change="onSelectModelDetail"
+                                    >
+                                        <template #first>
+                                            <b-form-select-option :value="null">
+                                                {{ $t('DASHBOARD.CAR.FORM.PLACEHOLDER_CAR_DETAIL') }}
+                                            </b-form-select-option>
+                                        </template>
 
-                                    <b-form-input 
-                                        v-show="isForm.model === -1"
-                                        class="mt-2"
-                                        v-model="otherModel"
-                                        :placeholder="$t('DASHBOARD.CAR.FORM.PLACEHOLDER_MODEL')" 
-                                    />
+                                        <b-form-select-option
+                                            v-for="(modelDetail, idxModelDetail) in listModelDetail"
+                                            :value="modelDetail.detail_name"
+                                            :key="`modelDetail-${idxModelDetail + 1}`"
+                                        >
+                                            {{ modelDetail.detail_name }}
+                                        </b-form-select-option>
+                                    </b-form-select>
+                                </b-td>
+                            </b-tr>
+                            <b-tr>
+                                <b-td class="title-car-infor">
+                                    {{ $t("SHOP_CAR.HOME.FILTER.RATING") }}
+                                </b-td>
+                                <b-td colspan="3" class="td-car-model">
+                                    <b-form-select 
+                                        v-model="isForm.rating" 
+                                        :disabled="isForm.model_detail === null"
+                                    >
+                                        <template #first>
+                                            <b-form-select-option :value="null">
+                                                {{ $t('APP.PLEASE_SELECT') }}
+                                            </b-form-select-option>
+                                        </template>
+
+                                        <b-form-select-option
+                                            v-for="(rating, idxRating) in listRating"
+                                            :value="rating"
+                                            :key="`rating-${idxRating + 1}`"
+                                        >
+                                            {{ rating }}
+                                        </b-form-select-option>
+                                    </b-form-select>
                                 </b-td>
                             </b-tr>
                             <b-tr>
@@ -346,14 +390,17 @@
 </template>
 
 <script>
-import { 
-    getListCategories,
+import {
+    getFilterCategoriesList,
     getListColor,
     getListFuleType,
     getListGearBox,
     getListCarType,
     getAllModelCar
 } from '@/api/modules/Home';
+
+import { getValueInArrObj } from '@/utils/helper';
+
 import { generateSelect } from '@/utils/helper';
 
 export default {
@@ -366,6 +413,7 @@ export default {
                     price: null,
                     categories: null,
                     model: null,
+                    model_detail: null,
                     licensePlate: null,
                     year: null,
                     distanceDriven: null,
@@ -401,6 +449,8 @@ export default {
                 price: null,
                 categories: null,
                 model: null,
+                model_detail: null,
+                rating: null,
                 licensePlate: null,
                 year: null,
                 distanceDriven: null,
@@ -422,6 +472,10 @@ export default {
             },
 
             listCategories: [],
+            listModelCar: [],
+            listModelDetail: [],
+            listRating: [],
+
             listColor: [],
             listFuelType: [],
             listGearBox: [],
@@ -447,6 +501,21 @@ export default {
         oldForm: {
             handler: function() {
                 this.isForm = this.oldForm;
+
+                if (this.oldForm.model_name) {
+                    this.listModelCar = getValueInArrObj(this.listCategories, this.oldForm.categories, "category_name", "category_detail");
+                    this.isForm.model_name = this.oldForm.model_name;
+                }
+
+                if (this.oldForm.model_detail) {
+                    this.listModelDetail = getValueInArrObj(this.listModelCar, this.oldForm.model_name, "model_name", "model_detail");
+                    this.isForm.model_detail = this.oldForm.model_detail;
+                }
+
+                if (this.oldForm.rating) {
+                    this.listRating = getValueInArrObj(this.listModelDetail, this.oldForm.model_detail, "detail_name", "rating");
+                    this.isForm.rating = this.oldForm.rating;
+                }
             },
             deep: true,
         },
@@ -488,10 +557,10 @@ export default {
         },
         async handleGetListCategories() {
             try {
-                const { status_code, data } = await getListCategories();
+                const { status_code, data } = await getFilterCategoriesList();
 
                 if (status_code === 200) {
-                    this.listCategories = generateSelect(data, true);
+                    this.listCategories = data;
                 } else {
                     this.listCategories = [];
                 }
@@ -502,11 +571,47 @@ export default {
         },
         onSelectCategories() {
             if (this.isForm.categories) {
-                this.isForm.model = null;
-                this.optionModel = this.listModel[this.isForm.categories] || [];
+                this.isForm.model_name = null;
+                this.listModelCar = getValueInArrObj(this.listCategories, this.isForm.categories, "category_name", "category_detail");
+
+                this.isForm.model_detail = null;
+                this.listModelDetail = [];
+
+                this.isForm.rating = null;
+                this.listRating = [];
             } else {
-                this.isForm.model = null;
-                this.optionModel = [];
+                this.isForm.model_name = null;
+                this.listModelCar = [];
+
+                this.isForm.model_detail = null;
+                this.listModelDetail = [];
+
+                this.isForm.rating = null;
+                this.listRating = [];
+            }
+        },
+        onSelectModel() {
+            if (this.isForm.model_name) {
+                this.isForm.model_detail = null;
+                this.listModelDetail = getValueInArrObj(this.listModelCar, this.isForm.model_name, "model_name", "model_detail");
+
+                this.isForm.rating = null;
+                this.listRating = [];
+            } else {
+                this.isForm.model_detail = null;
+                this.listModelDetail = [];
+
+                this.isForm.rating = null;
+                this.listRating = [];
+            }
+        },
+        onSelectModelDetail() {
+            if (this.isForm.model_detail) {
+                this.isForm.rating = null;
+                this.listRating = getValueInArrObj(this.listModelDetail, this.isForm.model_detail, "detail_name", "rating");
+            } else {
+                this.isForm.rating = null;
+                this.listRating = [];
             }
         },
         async handleGetAllModelCar() {
@@ -520,7 +625,7 @@ export default {
                 }
             } catch (err) {
                 this.listModel = {};
-                console.log();
+                console.log(err);
             }
         },
         async handleGetListColor() {

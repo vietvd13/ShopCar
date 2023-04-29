@@ -10,79 +10,59 @@ function getIsFilter() {
 
     return {
         search: '',
+
+        categories: null,
+        models: null,
+        car_details: null,
+        rating: [],
+
         from_year: null,
         to_year: null,
-        categories: null,
-        model: [],
+
+        from_price: null,
+        to_price: null,
+
+        from_distance: null,
+        to_distance: null,
+
         color: null,
         fuel_type: null,
         gear_box: null,
-        apply_distance: true,
-        apply_price: true,
-        distance: [0, CONSTANTS.VALUE.MAX_DISTANCE],
-        price: [0, CONSTANTS.VALUE.MAX_PRICE]
-    }
-}
-
-function getConfigSlider() {
-    return {
-        distance: {
-            min: 0,
-            max: CONSTANTS.VALUE.MAX_DISTANCE,
-        },
-        price: {
-            min: 0,
-            max: CONSTANTS.VALUE.MAX_PRICE,
-        }
     }
 }
 
 function getIsFilterDashboard() {
     return {
         search: '',
+
+        categories: null,
+        models: null,
+        car_details: null,
+        rating: [],
+
         from_year: null,
         to_year: null,
-        categories: null,
-        model: [],
+
+        from_price: null,
+        to_price: null,
+
+        from_distance: null,
+        to_distance: null,
+
         color: null,
         fuel_type: null,
         gear_box: null,
         is_hotsale: null,
         is_data_crawl: null,
-        apply_distance: true,
-        apply_price: true,
-        distance: [0, CONSTANTS.VALUE.MAX_DISTANCE],
-        price: [0, CONSTANTS.VALUE.MAX_PRICE]
-    }
-}
-
-function getConfigSliderDashboard() {
-    return {
-        distance: {
-            min: 0,
-            max: CONSTANTS.VALUE.MAX_DISTANCE,
-        },
-        price: {
-            min: 0,
-            max: CONSTANTS.VALUE.MAX_PRICE,
-        }
     }
 }
 
 const state = {
+    actionRating: 0,
     isFilter: getIsFilter(),
-    isLimit: {
-        distance: true,
-        price: true,
-    },
-    configSlider: getConfigSlider(),
 
+    actionRatingDashboard: 0,
     isFilterDashboard: getIsFilterDashboard(),
-    isLimitDashboard: {
-        distance: true,
-        price: true,
-    },
-    configSliderDashboard: getConfigSliderDashboard(),
 };
 
 const mutations = {
@@ -90,24 +70,43 @@ const mutations = {
         state.isFilter = filter;
     },
 
-    SET_LIMIT: (state, limit) => {
-        state.isLimit = limit;
+    RESET_FILTER_CATEGORIES: (state) => {
+        state.isFilter.categories = null;
     },
 
-    SET_CONFIG_SLIDER: (state, config) => {
-        state.configSlider = config;
+    RESET_FILTER_MODELS: (state) => {
+        state.isFilter.models = null;
     },
 
+    RESET_FILTER_DETAIL_CAR: (state) => {
+        state.isFilter.car_details = null;
+    },
+
+    RESET_FILTER_RATING: (state) => {
+        state.actionRating += 1;
+        state.isFilter.rating = [];
+    },
+
+    // Dashboard
     SET_FILTER_DASHBOARD: (state, filter) => {
         state.isFilterDashboard = filter;
     },
 
-    SET_LIMIT_DASHBOARD: (state, limit) => {
-        state.isLimitDashboard = limit;
+    RESET_FILTER_CATEGORIES_DASHBOARD: (state) => {
+        state.isFilterDashboard.categories = null;
     },
 
-    SET_CONFIG_SLIDER_DASHBOARD: (state, config) => {
-        state.configSlider = config;
+    RESET_FILTER_MODELS_DASHBOARD: (state) => {
+        state.isFilterDashboard.models = null;
+    },
+
+    RESET_FILTER_DETAIL_CAR_DASHBOARD: (state) => {
+        state.isFilterDashboard.car_details = null;
+    },
+
+    RESET_FILTER_RATING_DASHBOARD: (state) => {
+        state.actionRatingDashboard += 1;
+        state.isFilterDashboard.rating = [];
     }
 };
 
@@ -116,24 +115,41 @@ const actions = {
         commit('SET_FILTER', filter);
     },
 
-    setLimit({ commit }, limit) {
-        commit('SET_LIMIT', limit);
+    resetFilterCategories({ commit }) {
+        commit('RESET_FILTER_CATEGORIES');
     },
 
-    setConfigSlider({ commit }, config) {
-        commit('SET_CONFIG_SLIDER', config);
+    resetFilterModels({ commit }) {
+        commit('RESET_FILTER_MODELS');
     },
 
+    resetFilterDetailCar({ commit }) {
+        commit('RESET_FILTER_DETAIL_CAR');
+    },
+
+    resetFilterRating({ commit }) {
+        commit('RESET_FILTER_RATING');
+    },
+
+    // Dashboard
     setFilterDashboard({ commit }, filter) {
         commit('SET_FILTER_DASHBOARD', filter);
     },
 
-    setLimitDashboard({ commit }, limit) {
-        commit('SET_LIMIT_DASHBOARD', limit);
+    resetFilterCategoriesDashboard({ commit }) {
+        commit('RESET_FILTER_CATEGORIES_DASHBOARD');
     },
 
-    setConfigSliderDashboard({ commit }, config) {
-        commit('SET_CONFIG_SLIDER_DASHBOARD', config);
+    resetFilterModelsDashboard({ commit }) {
+        commit('RESET_FILTER_MODELS_DASHBOARD');
+    },
+
+    resetFilterDetailCarDashboard({ commit }) {
+        commit('RESET_FILTER_DETAIL_CAR_DASHBOARD');
+    },
+
+    resetFilterRatingDashboard({ commit }) {
+        commit('RESET_FILTER_RATING_DASHBOARD');
     }
 };
 

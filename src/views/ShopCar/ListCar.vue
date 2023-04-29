@@ -133,35 +133,35 @@ export default {
           BODY.search = FILTER.search;
         }
 
+        if (FILTER.categories) {
+          BODY.filter.category_name = FILTER.categories.category_name;
+
+          if (FILTER.models) {
+            BODY.filter.model_name = FILTER.models.model_name;
+
+            if (FILTER.car_details) {
+              BODY.filter.car_details = FILTER.car_details.detail_name;
+
+              if (FILTER.rating) {
+                BODY.filter.rating = FILTER.rating;
+              }
+            }
+          }
+        }
+
         if (FILTER.from_year && FILTER.to_year) {
           BODY.filter.from_year = FILTER.from_year;
           BODY.filter.to_year = FILTER.to_year;
         }
 
-        if (FILTER.apply_price) {
-          if (FILTER.price) {
-            const LIMIT = this.$store.getters.isLimit;
-
-            BODY.filter.from_price = parseInt(FILTER.price[0]);
-            BODY.filter.to_price = LIMIT.price ? null : parseInt(FILTER.price[1]);
-          }
+        if (FILTER.from_price && FILTER.to_price) {
+          BODY.filter.from_price = FILTER.from_price;
+          BODY.filter.to_price = FILTER.to_price;
         }
 
-        if (FILTER.apply_distance) {
-          if (FILTER.distance) {
-            const LIMIT = this.$store.getters.isLimit;
-
-            BODY.filter.from_distance = parseInt(FILTER.distance[0]);
-            BODY.filter.to_distance = LIMIT.distance ? null : parseInt(FILTER.distance[1]);
-          }
-        }
-
-        if (FILTER.categories) {
-          BODY.filter.category = FILTER.categories;
-        }
-
-        if (FILTER.model.length > 0) {
-          BODY.filter.car_model = FILTER.model;
+        if (FILTER.from_distance && FILTER.to_distance) {
+          BODY.filter.from_distance = FILTER.from_distance;
+          BODY.filter.to_distance = FILTER.to_distance;
         }
 
         if (FILTER.fuel_type) {

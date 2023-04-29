@@ -16,8 +16,38 @@ const OPTION_UPDATE_PRICE = [
     }
 ]
 
-const MAX_PRICE = 10000;
+const LIST_OPTION_PRICE = [
+    100,
+    200,
+    300,
+    400,
+    500,
+    600,
+    700,
+    800,
+    900,
+    1000,
+    1200,
+    1500,
+    1800,
+    2000,
+    2500,
+    3000,
+    3500,
+    4000,
+    4500,
+    5000,
+    5500,
+    6000,
+    7000,
+    8000,
+    9000,
+    10000,
+];
+
+const MIX_DISTANCE = 0;
 const MAX_DISTANCE = 200000;
+const STEP_DISTANCE = 10000;
 
 const OPTION_CAR_DAUTOMALL = 'https://dautomall.com';
 const OPTION_CAR_DJAUTO = 'https://www.djauto.co.kr';
@@ -39,8 +69,11 @@ export default {
 
     OPTION_UPDATE_PRICE,
 
-    MAX_PRICE,
+    LIST_OPTION_PRICE,
+
+    MIX_DISTANCE,
     MAX_DISTANCE,
+    STEP_DISTANCE,
 
     OPTION_CAR_DAUTOMALL,
     OPTION_CAR_DJAUTO,

@@ -56,7 +56,8 @@
     "BANNER_MANAGEMENT": "Quản lý banner",
     "PROFILE": "Thông tin cá nhân",
     "POLICY_MANAGEMENT": "Quản lý chính sách",
-    "INSURANCE_MANAGEMENT": "Quản lý bảo hiểm"
+    "INSURANCE_MANAGEMENT": "Quản lý bảo hiểm",
+    "CATEGORY_MANAGEMENT": "Quản lý category"
   },
   "TOAST_MESSAGE": {
     "CHANGE_LANGUAGE_SUCCESS": "Bạn đã thay đổi ngôn ngữ thành công",
@@ -90,7 +91,18 @@
     "DELETE_CAR_SUCCESS": "Bạn đã xoá xe thành công",
     "SET_HOTSALE_CAR_SUCCESS": "Bạn đã cập nhật xe hotsale thành công",
     "SET_PRICE_CAR_SUCCESS": "Bạn đã cập nhật giá xe thành công",
-    "SET_SALE_SUCCESS": "Bạn đã cập nhật chương trình thành công"
+    "SET_SALE_SUCCESS": "Bạn đã cập nhật chương trình thành công",
+    "ADD_CATEGORY_SUCCESS": "Bạn đã thêm category thành công",
+    "ADD_CATEGORY_ERROR": "Bạn đã thêm category thất bại",
+    "EDIT_CATEGORY_SUCCESS": "Bạn đã chỉnh sửa category thành công",
+    "EDIT_CATEGORY_ERROR": "Bạn đã chỉnh sửa category thất bại",
+    "DELETE_CATEGORY_SUCCESS": "Bạn đã xoá category thành công",
+    "DELETE_CATEGORY_ERROR": "Bạn đã xoá category thất bại",
+    "ERROR_CATEGORY_IS_EMPTY": "Bạn chưa nhập category",
+    "ERROR_CATEGORY_NAME_IS_EMPTY": "Bạn chưa nhập tên category",
+    "ERROR_CATEGORY_IMAGE_IS_EMPTY": "Bạn chưa chọn ảnh category",
+    "UPDATE_AUTO_UPDATE_SUCCESS": "Cập nhập trạng thái AUTO UPDATE thành công",
+    "UPDATE_AUTO_UPDATE_ERROR": "Cập nhập trạng thái AUTO UPDATE thất bại"
   },
   "SHOP_CAR": {
     "HOME": {
@@ -108,7 +120,9 @@
         "SEARCH": "Tìm kiếm",
         "YEAR": "Năm sản xuất",
         "CATEGORIES": "Hãng xe",
-        "MODEL": "Mẫu xe",
+        "MODEL": "Tên xe",
+        "DETAIL_CAR": "Chi tiết xe",
+        "RATING": "Xếp hạng",
         "COLOR": "Màu sắc",
         "FUEL_TYPE": "Loại nhiên liệu",
         "GEAR_BOX": "Động cơ",
@@ -338,6 +352,8 @@
       "TABLE_TEXT_DETAIL": "Chi tiết",
       "TABLE_TEXT_EDIT": "Chỉnh sửa",
       "TABLE_TEXT_DELETE": "Xoá",
+      "TABLE_TEXT_AUTO_UPDATE": "Auto update",
+      "TABLE_TEXT_SALE_PROGRAM": "Chương trình SALE",
       "ACITON_DELETE": "Xoá",
       "ACTION_ADD_HOT_SALE": "Đẩy hotsale",
       "ACTION_REMOVE_HOT_SALE": "Bỏ hotsale",
@@ -359,6 +375,7 @@
         "CAR_OPTION_GUTS": "Nội thất",
         "CAR_OPTION_SAFETY": "An toàn",
         "CAR_OPTION_CONVENIENCE": "Tiện ích",
+        "PLACEHOLDER_CAR_DETAIL": "Vui lòng lựa chọn chi tiết xe",
         "PLACEHOLDER_OPTION": "Nhập option",
         "PLACEHOLDER_PRICE": "Vui lòng nhập giá tiền",
         "PLACEHOLDER_CATEGORIES": "Vui lòng lựa chọn hãng xe",
@@ -382,6 +399,16 @@
         "PLACEHOLDER_BUSINESS_ADDRESS": "Vui lòng nhập địa chỉ doanh nghiệp",
         "PLACEHOLDER_PARKING_LOCATION": "Vui lòng nhập vị trí đặt xe",
         "PLACEHOLDER_IMPORT_PERFORMANCE_CHECK": "Vui lòng nhập"
+      },
+      "CATEGORY_MANAGEMENT": {
+        "TITLE": "Quản lý category",
+        "CATEGORY_DETAIL": "Chi tiết xe",
+        "TABLE_NO": "STT",
+        "TABLE_CATEGORY": "Category",
+        "TABLE_IMAGE": "Hình ảnh",
+        "TABLE_ACTIONS": "Thao tác",
+        "TABLE_TEXT_EDIT": "Chỉnh sửa",
+        "TABLE_TEXT_DELETE": "Xoá"
       }
     }
   },

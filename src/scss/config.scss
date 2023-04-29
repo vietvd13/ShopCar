@@ -144,25 +144,6 @@ input[type=number] {
   margin-bottom: 10px;
 }
 
-.noUi-horizontal {
-  height: 10px !important;
-
-  .noUi-handle {
-    top: -3px !important;
-    height: 15px !important;
-
-    &::before {
-      height: 8px !important;
-      top: 2px !important;
-    }
-
-    &::after {
-      height: 8px !important;
-      top: 2px !important;
-    }
-  }
-}
-
-.noUi-base {
-  height: 10px !important;
+.border-input-group {
+  border-right-color: transparent !important;
 }

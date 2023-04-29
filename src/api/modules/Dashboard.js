@@ -115,3 +115,33 @@ export function getSaleStatus(BODY) {
 export function getAllSaleStatus() {
   return request.postRequest(CONSTANTS.URL_API.GET_ALL_SALE_STATUS);
 }
+
+// Category Management
+export function getListCategoriesManagement() {
+  return request.getRequest(CONSTANTS.URL_API.GET_LIST_CATEGORIES_MANAGEMENT);
+}
+
+export function postAddCategoriesManagement(BODY = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_ADD_CATEGORIES_MANAGEMENT, BODY);
+}
+
+export function postEditCategoriesManagement(BODY = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_EDIT_CATEGORIES_MANAGEMENT, BODY);
+}
+
+export function postDeleteCategoriesManagement(BODY = null) {
+  return request.postRequest(CONSTANTS.URL_API.POST_DELETE_CATEGORIES_MANAGEMENT, BODY);
+}
+
+// Status Crawl
+export function getListStatusCrawl() {
+  return request.getRequest(CONSTANTS.URL_API.GET_LIST_STATUS_CRAWL);
+}
+
+export function postSetStatusCrawl(STATUS = null) {
+  const BODY = {
+    status: STATUS ? STATUS : false,
+  }
+
+  return request.postRequest(CONSTANTS.URL_API.POST_SET_STATUS_CRAWL, BODY);
+}

@@ -7,12 +7,10 @@ const getters = {
   refresh_token: state => state.auth.refresh_token,
   profile: state => state.auth.profile,
   isRelogin: state => state.auth.isRelogin,
+  actionRating: state => state.filter.actionRating,
   isFilter: state => state.filter.isFilter,
-  isLimit: state => state.filter.isLimit,
-  configSlider: state => state.filter.configSlider,
+  actionRatingDashboard: state => state.filter.actionRatingDashboard,
   isFilterDashboard: state => state.filter.isFilterDashboard,
-  isLimitDashboard: state => state.filter.isLimitDashboard,
-  configSliderDashboard: state => state.filter.configSliderDashboard,
 };
 
 export default getters;

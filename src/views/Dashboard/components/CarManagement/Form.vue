@@ -53,6 +53,7 @@
 <script>
 import ImportImageCar from './ImportImageCar.vue';
 import BasicInfor from './BasicInfor.vue';
+// import ListRatingForm from './ListRatingForm.vue';
 import ListOptionCar from './ListOptionCar.vue';
 import PerformanceCheck from './PerformanceCheck.vue';
 
@@ -94,6 +95,8 @@ export default {
                     businessAddress: null,
                     parkingLocation: null,
 
+                    rating: null,
+
                     otherCategories: '',
                     otherFuelType: '',
                     otherColor: '',
@@ -112,6 +115,12 @@ export default {
                 }
             }
         },
+        listSelectRating: {
+            type: Array,
+            default: () => {
+                return [];
+            }
+        }
     },
     data() {
         return {
@@ -140,6 +149,8 @@ export default {
                 affiliatedCompany: null,
                 businessAddress: null,
                 parkingLocation: null,
+
+                rating: [],
 
                 otherCategories: '',
                 otherFuelType: '',
@@ -228,6 +239,12 @@ export default {
             this.isForm = {
                 ...this.isForm,
                 performanceCheck: file
+            }
+        },
+        handleChangeListRating(items) {
+            this.isForm = {
+                ...this.isForm,
+                rating: items
             }
         }
     },

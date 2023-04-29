@@ -56,7 +56,8 @@
     "BANNER_MANAGEMENT": "배너 관리",
     "PROFILE": "개인 정보",
     "POLICY_MANAGEMENT": "정책 관리",
-    "INSURANCE_MANAGEMENT": "보험 관리"
+    "INSURANCE_MANAGEMENT": "보험 관리",
+    "CATEGORY_MANAGEMENT": "카테고리 관리"
   },
   "TOAST_MESSAGE": {
     "CHANGE_LANGUAGE_SUCCESS": "언어를 성공적으로 변경했습니다.",
@@ -90,7 +91,18 @@
     "DELETE_CAR_SUCCESS": "자동차를 성공적으로 삭제했습니다.",
     "SET_HOTSALE_CAR_SUCCESS": "hotsale 자동차를 성공적으로 업데이트했습니다.",
     "SET_PRICE_CAR_SUCCESS": "자동차 가격을 성공적으로 업데이트했습니다.",
-    "SET_SALE_SUCCESS": "프로그램을 성공적으로 업데이트했습니다."
+    "SET_SALE_SUCCESS": "프로그램을 성공적으로 업데이트했습니다.",
+    "ADD_CATEGORY_SUCCESS": "카테고리를 성공적으로 추가했습니다.",
+    "ADD_CATEGORY_ERROR": "카테고리를 추가하지 못했습니다.",
+    "EDIT_CATEGORY_SUCCESS": "카테고리를 성공적으로 편집했습니다.",
+    "EDIT_CATEGORY_ERROR": "카테고리를 편집하지 못했습니다.",
+    "DELETE_CATEGORY_SUCCESS": "카테고리를 성공적으로 삭제했습니다.",
+    "DELETE_CATEGORY_ERROR": "카테고리를 삭제하지 못했습니다.",
+    "ERROR_CATEGORY_IS_EMPTY": "카테고리를 선택하지 않았습니다.",
+    "ERROR_CATEGORY_NAME_IS_EMPTY": "카테고리 이름을 입력하세요.",
+    "ERROR_CATEGORY_IMAGE_IS_EMPTY": "카테고리 이미지를 선택하세요.",
+    "UPDATE_AUTO_UPDATE_SUCCESS": "자동 업데이트 상태를 성공적으로 업데이트했습니다.",
+    "UPDATE_AUTO_UPDATE_ERROR": "자동 업데이트 상태를 업데이트하지 못했습니다."
   },
   "SHOP_CAR": {
     "HOME": {
@@ -109,6 +121,8 @@
         "YEAR": "제조 연도",
         "CATEGORIES": "자동차 회사",
         "MODEL": "모델",
+        "DETAIL_CAR": "중국어",
+        "RATING": "평가",
         "COLOR": "색상",
         "FUEL_TYPE": "연료 종류",
         "GEAR_BOX": "엔진",
@@ -338,6 +352,8 @@
       "TABLE_TEXT_DETAIL": "세부 사항",
       "TABLE_TEXT_EDIT": "편집",
       "TABLE_TEXT_DELETE": "삭제",
+      "TABLE_TEXT_AUTO_UPDATE": "자동 업데이트",
+      "TABLE_TEXT_SALE_PROGRAM": "판매 프로그램",
       "ACITON_DELETE": "삭제",
       "ACTION_ADD_HOT_SALE": "푸시 핫세일",
       "ACTION_REMOVE_HOT_SALE": "핫 세일 종료",
@@ -359,6 +375,7 @@
         "CAR_OPTION_GUTS": "내부",
         "CAR_OPTION_SAFETY": "안전한",
         "CAR_OPTION_CONVENIENCE": "유용",
+        "PLACEHOLDER_CAR_DETAIL": "자동차 세부 정보 입력",
         "PLACEHOLDER_OPTION": "옵션 입력",
         "PLACEHOLDER_PRICE": "가격을 입력하세요",
         "PLACEHOLDER_CATEGORIES": "자동차 회사를 선택하세요.",
@@ -382,6 +399,16 @@
         "PLACEHOLDER_BUSINESS_ADDRESS": "사업장 주소를 입력하세요.",
         "PLACEHOLDER_PARKING_LOCATION": "주차 위치를 입력하세요.",
         "PLACEHOLDER_IMPORT_PERFORMANCE_CHECK": "들어 오세요"
+      },
+      "CATEGORY_MANAGEMENT": {
+        "TITLE": "카테고리 관리",
+        "CATEGORY_DETAIL": "카테고리 세부 정보",
+        "TABLE_NO": "No",
+        "TABLE_CATEGORY": "카테고리",
+        "TABLE_IMAGE": "그림",
+        "TABLE_ACTIONS": "시장 조작",
+        "TABLE_TEXT_EDIT": "편집",
+        "TABLE_TEXT_DELETE": "삭제"
       }
     }
   },

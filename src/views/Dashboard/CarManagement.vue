@@ -30,8 +30,12 @@
             >
               <b-thead>
                 <b-tr>
-                  <b-th>{{ $t('SALE_INFOR.NO') }}</b-th>
-                  <b-th>{{ $t('SALE_INFOR.SOURCE') }}</b-th>
+                  <b-th rowspan="2">{{ $t('SALE_INFOR.NO') }}</b-th>
+                  <b-th rowspan="2">{{ $t('SALE_INFOR.SOURCE') }}</b-th>
+                  <b-th rowspan="2">{{ $t('DASHBOARD.CAR.TABLE_TEXT_AUTO_UPDATE') }}</b-th>
+                  <b-th rowspan="1" colspan="3">{{ $t('DASHBOARD.CAR.TABLE_TEXT_SALE_PROGRAM') }}</b-th>
+                </b-tr>
+                <b-tr>
                   <b-th>{{ $t('SALE_INFOR.STATUS') }}</b-th>
                   <b-th>{{ $t('SALE_INFOR.VALUE') }}</b-th>
                   <b-th>{{ $t('DASHBOARD.CAR.TABLE_ACTIONS') }}</b-th>
@@ -44,6 +48,14 @@
                     <a :href="status.source_crawl" target="_blank">
                       {{ status.source_crawl }}
                     </a>
+                  </b-td>
+                  <b-td>
+                    <b-form-checkbox
+                      v-if="status.status_crawl !== null"
+                      v-model="status.status_crawl"
+                      switch
+                      @change="handleChangeStatusCrawl(status)"
+                    />
                   </b-td>
                   <b-td>
                     {{ status.is_sale ? $t('SALE_INFOR.ON') : $t('SALE_INFOR.OFF') }}
@@ -228,6 +240,7 @@
     >
       <FormCar
         :oldForm="isForm"
+        :listSelectRating="listSelectRating"
         @form="handleGetForm"      
       />
 
@@ -489,14 +502,19 @@ import {
   postSetSale, 
   postSetPriceAll, 
   getSaleStatus,
-  getAllSaleStatus
+  getAllSaleStatus,
+  getListStatusCrawl,
+  postSetStatusCrawl
 } from '@/api/modules/Dashboard';
+import {
+  getFilterCategoriesList
+} from '@/api/modules/Home';
 import { postImages } from '@/api/modules/Upload';
 import FilterListCarDashboard from './components/FilterListCar.vue';
 import FormCar from './components/CarManagement/Form.vue';
 import { getArrValueOfArr, replaceValueWithIndex, formatPrice } from '@/utils/helper';
 import Toast from '@/toast';
-import { handleTickRowTable, handleCalPriceDiff } from '@/utils/helper';
+import { handleTickRowTable, handleCalPriceDiff, getObjInArrByValue, getValueInArrObj } from '@/utils/helper';
 import CONSTANTS from '@/constants';
 
 export default {
@@ -566,6 +584,9 @@ export default {
     },
     optionUpdatePrice() {
       return CONSTANTS.VALUE.OPTION_UPDATE_PRICE;
+    },
+    onChangeCarDetail() {
+      return this.isForm.model_detail;
     }
   },
   watch: {
@@ -575,6 +596,17 @@ export default {
       await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
 
       setLoading(false);
+    },
+    onChangeCarDetail() {
+      if (this.isForm.model_detail) {
+        const category_detail = getValueInArrObj(this.filterCategoriesList, this.isForm.categories, "category_name", "category_detail");
+        const model_detail = getValueInArrObj(category_detail, this.isForm.model, "model_name", "model_detail");
+        const rating = getValueInArrObj(model_detail, this.isForm.model_detail, "detail_name", "rating");
+
+        this.listSelectRating = rating;
+      } else {
+        this.listSelectRating = [];
+      }
     }
   },
   data() {
@@ -605,6 +637,8 @@ export default {
         price: null,
         categories: null,
         model: null,
+        model_detail: null,
+        rating: null,
         licensePlate: null,
         year: null,
         distanceDriven: null,
@@ -663,7 +697,10 @@ export default {
         source_crawl: '',
         status: false,
         value: null,
-      }
+      },
+      listStatusCrawl: [],
+      listSelectRating: [],
+      filterCategoriesList: [],
     }
   },
   created () {
@@ -675,10 +712,26 @@ export default {
     handleCalPriceDiff,
     async initData() {
       setLoading(true);
+      await this.handleGetFilterCategoriesList();
+      await this.handleGetListStatusCrawl();
       await this.handleGetAllSale();
       await this.handleGetSaleInfor();
       await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
       setLoading(false);
+    },
+    async handleGetFilterCategoriesList() {
+        try {
+            const { status_code, data } = await getFilterCategoriesList();
+
+            if (status_code === 200) {
+                this.filterCategoriesList = data;
+            } else {
+                this.filterCategoriesList = [];
+            }
+        } catch (err) {
+            this.filterCategoriesList = [];
+            console.log(err);
+        }
     },
     async handleGetAllSale() {
       try {
@@ -688,11 +741,20 @@ export default {
 
         if (status_code === 200) {
           this.listSaleStatus = data;
+
+          const len = this.listSaleStatus.length;
+          let idx = 0;
+
+          while (idx < len) {
+            const status = getObjInArrByValue(this.listStatusCrawl, this.listSaleStatus[idx].source_crawl);
+
+            this.listSaleStatus[idx].status_crawl = status;
+
+            idx++;
+          }
         } else {
           this.listSaleStatus = [];
         }
-
-        setLoading(false);
       } catch (error) {
         this.listSaleStatus = [];
         console.log(error);
@@ -729,38 +791,36 @@ export default {
         if (FILTER.search) {
           BODY.search = FILTER.search;
         }
+        
+        if (FILTER.categories) {
+          BODY.filter.category_name = FILTER.categories.category_name;
+
+          if (FILTER.models) {
+            BODY.filter.model_name = FILTER.models.model_name;
+
+            if (FILTER.car_details) {
+              BODY.filter.car_details = FILTER.car_details.detail_name;
+
+              if (FILTER.rating) {
+                BODY.filter.rating = FILTER.rating;
+              }
+            }
+          }
+        }
 
         if (FILTER.from_year && FILTER.to_year) {
           BODY.filter.from_year = FILTER.from_year;
           BODY.filter.to_year = FILTER.to_year;
         }
 
-        if (FILTER.apply_price) {
-          if (FILTER.price) {
-            const LIMIT = this.$store.getters.isLimitDashboard;
-
-            BODY.filter.from_price = parseInt(FILTER.price[0]);
-            BODY.filter.to_price = LIMIT.price ? null : parseInt(FILTER.price[1]);
-          }
+        if (FILTER.from_price && FILTER.to_price) {
+          BODY.filter.from_price = FILTER.from_price;
+          BODY.filter.to_price = FILTER.to_price;
         }
 
-        if (FILTER.apply_distance) {
-          if (FILTER.distance) {
-            const LIMIT = this.$store.getters.isLimitDashboard;
-
-            BODY.filter.from_distance = parseInt(FILTER.distance[0]);
-            BODY.filter.to_distance = LIMIT.distance ? null : parseInt(FILTER.distance[1]);
-          }
-        }
-
-        if (FILTER.categories) {
-          BODY.filter.category = FILTER.categories;
-        }
-
-        if (Array.isArray(FILTER.model)) {
-          if (FILTER.model.length > 0) {
-            BODY.filter.car_model = FILTER.model;
-          }
+        if (FILTER.from_distance && FILTER.to_distance) {
+          BODY.filter.from_distance = FILTER.from_distance;
+          BODY.filter.to_distance = FILTER.to_distance;
         }
 
         if (FILTER.fuel_type) {
@@ -865,7 +925,6 @@ export default {
         images: listImage,
 
         price: data.price,
-        categories: data.category,
         model: data.car_model,
         licensePlate: data.license_plate,
         year: data.year_manufacture,
@@ -885,6 +944,11 @@ export default {
         affiliatedCompany: data.affiliated_company,
         businessAddress: data.business_address,
         parkingLocation: data.parking_location,
+
+        categories: data.category,
+        model_name: data.model_name,
+        model_detail: data.detail_name,
+        rating: data.rating,
 
         otherCategories: '',
         otherFuelType: '',
@@ -951,6 +1015,9 @@ export default {
         price: null,
         categories: null,
         model: null,
+        model_name: null,
+        model_detail: null,
+        rating: null,
         licensePlate: null,
         year: null,
         distanceDriven: null,
@@ -1001,7 +1068,10 @@ export default {
         if (this.isModal.type === 'EDIT') {
           await this.handleUpdateCar();
         }
+
+        window.reload();
       } catch (error) {
+        window.reload();
         setLoading(false);
 
         console.log(error);
@@ -1078,7 +1148,7 @@ export default {
         color: this.handleInitOther(this.isForm.color, this.isForm.otherColor),
         gearbox: this.handleInitOther(this.isForm.gearbox, this.isForm.otherGearBox),
         category: this.handleInitOther(this.isForm.categories, this.isForm.otherCategories),
-        car_model: this.handleInitOther(this.isForm.model, this.isForm.otherModel),
+        car_model: this.isForm.model_name,
         performance_check: PERFORMANCE_CHECK || [],
         primary_image: PRIMARY_IMAGE || [],
         phone_contact: this.isForm.contact,
@@ -1093,6 +1163,10 @@ export default {
         safety: this.isForm.safety,
         convenience: this.isForm.convenience,
         parking_location: this.isForm.parkingLocation,
+        category_name: this.isForm.categories,
+        model_name: this.isForm.model_name,
+        detail_name: this.isForm.model_detail,
+        rating: this.isForm.rating,
       }
 
       return NEW_CAR;
@@ -1207,20 +1281,46 @@ export default {
 
           const FILTER = this.oldFilter ? this.oldFilter : {
             search: '',
-            from_year: '',
-            to_year: '',
+
             categories: null,
+            models: null,
+            car_details: null,
+            rating: [],
+
+            from_year: null,
+            to_year: null,
+
+            from_price: null,
+            to_price: null,
+
+            from_distance: null,
+            to_distance: null,
+
             color: null,
             fuel_type: null,
             gear_box: null,
             is_hotsale: null,
             is_data_crawl: null,
-            distance: [0, 250000],
-            price: [0, 50000]
           };
 
           if (FILTER.search) {
             BODY.data_update.search = FILTER.search;
+          }
+          
+          if (FILTER.categories) {
+            BODY.data_update.filter.category_name = FILTER.categories.category_name;
+
+            if (FILTER.models) {
+              BODY.data_update.filter.model_name = FILTER.models.model_name;
+
+              if (FILTER.car_details) {
+                BODY.data_update.filter.car_details = FILTER.car_details.detail_name;
+
+                if (FILTER.rating) {
+                  BODY.data_update.filter.rating = FILTER.rating;
+                }
+              }
+            }
           }
 
           if (FILTER.from_year && FILTER.to_year) {
@@ -1228,32 +1328,14 @@ export default {
             BODY.data_update.filter.to_year = FILTER.to_year;
           }
 
-          if (FILTER.apply_price) {
-            if (FILTER.price) {
-              const LIMIT = this.$store.getters.isLimitDashboard;
-
-              BODY.data_update.filter.from_price = parseInt(FILTER.price[0]);
-              BODY.data_update.filter.to_price = LIMIT.price ? null : parseInt(FILTER.price[1]);
-            }
+          if (FILTER.from_price && FILTER.to_price) {
+            BODY.data_update.filter.from_price = FILTER.from_price;
+            BODY.data_update.filter.to_price = FILTER.to_price;
           }
 
-          if (FILTER.apply_distance) {
-            if (FILTER.distance) {
-              const LIMIT = this.$store.getters.isLimitDashboard;
-
-              BODY.data_update.filter.from_distance = parseInt(FILTER.distance[0]);
-              BODY.data_update.filter.to_distance = LIMIT.distance ? null : parseInt(FILTER.distance[1]);
-            }
-          }
-
-          if (FILTER.categories) {
-            BODY.data_update.filter.category = FILTER.categories;
-          }
-
-          if (Array.isArray(FILTER.model)) {
-            if (FILTER.model.length > 0) {
-              BODY.data_update.filter.car_model = FILTER.model;
-            }
+          if (FILTER.from_distance && FILTER.to_distance) {
+            BODY.data_update.filter.from_distance = FILTER.from_distance;
+            BODY.data_update.filter.to_distance = FILTER.to_distance;
           }
 
           if (FILTER.fuel_type) {
@@ -1309,20 +1391,46 @@ export default {
 
           const FILTER = this.oldFilter ? this.oldFilter : {
             search: '',
-            from_year: '',
-            to_year: '',
+
             categories: null,
+            models: null,
+            car_details: null,
+            rating: [],
+
+            from_year: null,
+            to_year: null,
+
+            from_price: null,
+            to_price: null,
+
+            from_distance: null,
+            to_distance: null,
+
             color: null,
             fuel_type: null,
             gear_box: null,
             is_hotsale: null,
             is_data_crawl: null,
-            distance: [0, 250000],
-            price: [0, 50000]
           };
 
           if (FILTER.search) {
             BODY.data_update.search = FILTER.search;
+          }
+          
+          if (FILTER.categories) {
+            BODY.data_update.filter.category_name = FILTER.categories.category_name;
+
+            if (FILTER.models) {
+              BODY.data_update.filter.model_name = FILTER.models.model_name;
+
+              if (FILTER.car_details) {
+                BODY.data_update.filter.car_details = FILTER.car_details.detail_name;
+
+                if (FILTER.rating) {
+                  BODY.data_update.filter.rating = FILTER.rating;
+                }
+              }
+            }
           }
 
           if (FILTER.from_year && FILTER.to_year) {
@@ -1330,32 +1438,14 @@ export default {
             BODY.data_update.filter.to_year = FILTER.to_year;
           }
 
-          if (FILTER.apply_price) {
-            if (FILTER.price) {
-              const LIMIT = this.$store.getters.isLimitDashboard;
-
-              BODY.data_update.filter.from_price = parseInt(FILTER.price[0]);
-              BODY.data_update.filter.to_price = LIMIT.price ? null : parseInt(FILTER.price[1]);
-            }
+          if (FILTER.from_price && FILTER.to_price) {
+            BODY.data_update.filter.from_price = FILTER.from_price;
+            BODY.data_update.filter.to_price = FILTER.to_price;
           }
 
-          if (FILTER.apply_distance) {
-            if (FILTER.distance) {
-              const LIMIT = this.$store.getters.isLimitDashboard;
-
-              BODY.data_update.filter.from_distance = parseInt(FILTER.distance[0]);
-              BODY.data_update.filter.to_distance = LIMIT.distance ? null : parseInt(FILTER.distance[1]);
-            }
-          }
-
-          if (FILTER.categories) {
-            BODY.data_update.filter.category = FILTER.categories;
-          }
-
-          if (Array.isArray(FILTER.model)) {
-            if (FILTER.model.length > 0) {
-              BODY.data_update.filter.car_model = FILTER.model;
-            }
+          if (FILTER.from_distance && FILTER.to_distance) {
+            BODY.data_update.filter.from_distance = FILTER.from_distance;
+            BODY.data_update.filter.to_distance = FILTER.to_distance;
           }
 
           if (FILTER.fuel_type) {
@@ -1498,8 +1588,6 @@ export default {
           status: false,
           value: null,
         };
-
-        setLoading(false);
         console.log(error);
       }
     },
@@ -1604,20 +1692,46 @@ export default {
 
         const FILTER = this.oldFilter ? this.oldFilter : {
           search: '',
-          from_year: '',
-          to_year: '',
+
           categories: null,
+          models: null,
+          car_details: null,
+          rating: [],
+
+          from_year: null,
+          to_year: null,
+
+          from_price: null,
+          to_price: null,
+
+          from_distance: null,
+          to_distance: null,
+
           color: null,
           fuel_type: null,
           gear_box: null,
           is_hotsale: null,
           is_data_crawl: null,
-          distance: [0, 250000],
-          price: [0, 50000]
         };
 
         if (FILTER.search) {
           BODY.data_update.search = FILTER.search;
+        }
+        
+        if (FILTER.categories) {
+          BODY.data_update.filter.category_name = FILTER.categories.category_name;
+
+          if (FILTER.models) {
+            BODY.data_update.filter.model_name = FILTER.models.model_name;
+
+            if (FILTER.car_details) {
+              BODY.data_update.filter.car_details = FILTER.car_details.detail_name;
+
+              if (FILTER.rating) {
+                BODY.data_update.filter.rating = FILTER.rating;
+              }
+            }
+          }
         }
 
         if (FILTER.from_year && FILTER.to_year) {
@@ -1625,32 +1739,14 @@ export default {
           BODY.data_update.filter.to_year = FILTER.to_year;
         }
 
-        if (FILTER.apply_price) {
-          if (FILTER.price) {
-            const LIMIT = this.$store.getters.isLimitDashboard;
-
-            BODY.data_update.filter.from_price = parseInt(FILTER.price[0]);
-            BODY.data_update.filter.to_price = LIMIT.price ? null : parseInt(FILTER.price[1]);
-          }
+        if (FILTER.from_price && FILTER.to_price) {
+          BODY.data_update.filter.from_price = FILTER.from_price;
+          BODY.data_update.filter.to_price = FILTER.to_price;
         }
 
-        if (FILTER.apply_distance) {
-          if (FILTER.distance) {
-            const LIMIT = this.$store.getters.isLimitDashboard;
-
-            BODY.data_update.filter.from_distance = parseInt(FILTER.distance[0]);
-            BODY.data_update.filter.to_distance = LIMIT.distance ? null : parseInt(FILTER.distance[1]);
-          }
-        }
-
-        if (FILTER.categories) {
-          BODY.data_update.filter.category = FILTER.categories;
-        }
-        
-        if (Array.isArray(FILTER.model)) {
-          if (FILTER.model.length > 0) {
-            BODY.data_update.filter.car_model = FILTER.model;
-          }
+        if (FILTER.from_distance && FILTER.to_distance) {
+          BODY.data_update.filter.from_distance = FILTER.from_distance;
+          BODY.data_update.filter.to_distance = FILTER.to_distance;
         }
 
         if (FILTER.fuel_type) {
@@ -1722,6 +1818,41 @@ export default {
     handleResetCheckRow() {
       this.isSelectAll = false;
       this.selectRow = [];
+    },
+    async handleGetListStatusCrawl() {
+      try {
+        const json = await getListStatusCrawl();
+
+        const { status_code } = json;
+
+        if (status_code === 200) {
+          const { data } = json;
+          this.listStatusCrawl = data; 
+        } else {
+          this.listStatusCrawl = [];
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async handleChangeStatusCrawl(status) {
+      try {
+        setLoading(true);
+
+        const { status_code } = await postSetStatusCrawl(status.status_crawl);
+
+        setLoading(false);
+
+        if (status_code === 200) {
+          Toast.success(this.$t('TOAST_MESSAGE.UPDATE_AUTO_UPDATE_SUCCESS'));
+        } else {
+          Toast.warning(this.$t('TOAST_MESSAGE.UPDATE_AUTO_UPDATE_ERROR'));
+        }
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+        Toast.warning(this.$t('TOAST_MESSAGE.UPDATE_AUTO_UPDATE_ERROR'));
+      }
     }
   },
 }
@@ -1746,7 +1877,7 @@ export default {
     }
   }
 
-  &__sale-infor {
+  &__sale-infor, &__status-crawl {
     ::v-deep table {
       margin-bottom: 0;
 
