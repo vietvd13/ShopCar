@@ -12,7 +12,7 @@ export function getLanguage() {
 		return chooseLanguage;
 	}
 
-	const LANG_DEFAULT = process.env.VUE_APP_DEFAULT_LANG || 'kr';
+	const LANG_DEFAULT = import.meta.env.VITE_DEFAULT_LANG || 'kr';
 
 	Cookies.set(CONSTANT['COOKIES']['LANGUAGE'], LANG_DEFAULT);
 

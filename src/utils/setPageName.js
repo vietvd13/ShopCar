@@ -13,7 +13,7 @@ function setPageName(name = null, i18n = false) {
     return;
   }
 
-  document.title = process.env.VUE_APP_APP_NAME || 'Shop Car';
+  document.title = import.meta.env.VITE_APP_NAME || 'Shop Car';
 }
 
 export {

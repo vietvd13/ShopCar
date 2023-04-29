@@ -8,7 +8,7 @@ import { getLanguage } from '@/utils/getLang';
 import Toast from '@/toast';
 
 const service = axios.create({
-  baseURL: process.env.VUE_APP_URL_API,
+  baseURL: import.meta.env.VITE_URL_API,
   timeout: 10000,
 });
 

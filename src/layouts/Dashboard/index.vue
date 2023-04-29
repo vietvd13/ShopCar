@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
-import AppMain from './components/AppMain';
+import Navbar from './components/Navbar.vue';
+import Sidebar from './components/Sidebar/Sidebar.vue';
+import AppMain from './components/AppMain.vue';
 export default {
   name: 'LayoutDashboard',
   components: {

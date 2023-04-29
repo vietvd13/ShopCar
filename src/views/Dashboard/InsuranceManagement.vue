@@ -104,7 +104,7 @@ export default {
   },
   computed: {
     domainImage() {
-      return process.env.VUE_APP_URL_IMAGE;
+      return import.meta.env.VITE_URL_IMAGE;
     },
   },
   created() {

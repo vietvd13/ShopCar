@@ -15,7 +15,7 @@ const Dashboard = {
         title: 'ROUTER.CAR_MANAGEMENT',
         icon: 'fas fa-car'
       },
-      component: () => import(/* webpackChunkName: "CarManagement" */ '@/views/Dashboard/CarManagement.vue')
+      component: () => import('@/views/Dashboard/CarManagement.vue')
     },
     {
       path: 'customer-support',
@@ -24,7 +24,7 @@ const Dashboard = {
         title: 'ROUTER.CUSTOMER_SUPPORT',
         icon: 'fas fa-user-headset'
       },
-      component: () => import(/* webpackChunkName: "CustomerSupport" */ '@/views/Dashboard/CustomerSupport.vue')
+      component: () => import('@/views/Dashboard/CustomerSupport.vue')
     },
     {
       path: 'happy-moment',
@@ -33,7 +33,7 @@ const Dashboard = {
         title: 'ROUTER.HAPPY_MOMENT',
         icon: 'fas fa-laugh-squint'
       },
-      component: () => import(/* webpackChunkName: "HappyMoment" */ '@/views/Dashboard/HappyMoment.vue')
+      component: () => import('@/views/Dashboard/HappyMoment.vue')
     },
     {
       path: 'collaborators',
@@ -42,7 +42,7 @@ const Dashboard = {
         title: 'ROUTER.COLLABORATORS_MANAGEMENT',
         icon: 'fas fa-clipboard-user'
       },
-      component: () => import(/* webpackChunkName: "Collaborators" */ '@/views/Dashboard/Collaborators.vue')
+      component: () => import('@/views/Dashboard/Collaborators.vue')
     },
     {
       path: 'banner',
@@ -51,7 +51,7 @@ const Dashboard = {
         title: 'ROUTER.BANNER_MANAGEMENT',
         icon: 'fas fa-scanner-image'
       },
-      component: () => import(/* webpackChunkName: "BannerManagement" */ '@/views/Dashboard/BannerManagement.vue')
+      component: () => import('@/views/Dashboard/BannerManagement.vue')
     },
     {
       path: 'policy',
@@ -60,7 +60,7 @@ const Dashboard = {
         title: 'ROUTER.POLICY_MANAGEMENT',
         icon: 'fas fa-police-box'
       },
-      component: () => import(/* webpackChunkName: "PolicyManagement" */ '@/views/Dashboard/PolicyManagement.vue')
+      component: () => import('@/views/Dashboard/PolicyManagement.vue')
     },
     {
       path: 'insurance',
@@ -69,7 +69,7 @@ const Dashboard = {
         title: 'ROUTER.INSURANCE_MANAGEMENT',
         icon: 'fas fa-car-tilt'
       },
-      component: () => import(/* webpackChunkName: "PolicyManagement" */ '@/views/Dashboard/InsuranceManagement.vue')
+      component: () => import('@/views/Dashboard/InsuranceManagement.vue')
     },
     {
       path: 'profile',
@@ -78,7 +78,7 @@ const Dashboard = {
         title: 'ROUTER.PROFILE'
       },
       hidden: true, 
-      component: () => import(/* webpackChunkName: "Profile" */ '@/views/Dashboard/Profile.vue')
+      component: () => import('@/views/Dashboard/Profile.vue')
     }
   ]
 }

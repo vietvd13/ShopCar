@@ -32,7 +32,7 @@ export default {
     },
     computed: {
         appName() {
-            return process.env.VUE_APP_APP_NAME;
+            return import.meta.env.VITE_APP_NAME;
         },
     },
 };

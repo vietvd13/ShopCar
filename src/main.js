@@ -1,7 +1,3 @@
-import 'core-js'
-import 'regenerator-runtime/runtime'
-import '@babel/polyfill'
-import 'intersection-observer'
 import Vue from 'vue'
 import App from './App.vue'
 

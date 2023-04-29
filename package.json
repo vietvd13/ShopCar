@@ -3,22 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "report": "vue-cli-service build --report",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.12.1",
     "axios": "^1.1.3",
     "bootstrap": "^4.6.1",
     "bootstrap-vue": "^2.23.1",
-    "core-js": "^3.8.3",
-    "intersection-observer": "^0.12.2",
     "js-cookie": "^3.0.1",
     "nouislider": "^15.6.1",
     "nprogress": "^0.2.0",
-    "regenerator-runtime": "^0.13.10",
     "vue": "^2.7.13",
     "vue-flag-icon": "^2.1.0",
     "vue-i18n": "8",
@@ -27,17 +23,14 @@
     "vuex": "3.6.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
-    "@babel/eslint-parser": "^7.12.16",
-    "@vue/cli-plugin-babel": "~5.0.0",
-    "@vue/cli-plugin-eslint": "~5.0.0",
-    "@vue/cli-service": "~5.0.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3",
+    "@vitejs/plugin-vue": "^4.2.1",
+    "eslint": "^8.39.0",
+    "eslint-plugin-vue": "^8.7.1",
     "lint-staged": "^11.1.2",
     "sass": "^1.32.7",
-    "sass-loader": "^12.0.0",
-    "vue-template-compiler": "^2.6.14"
+    "vite": "^4.3.3",
+    "vite-plugin-vue2": "^2.0.3",
+    "vue-template-compiler": "^2.7.14"
   },
   "eslintConfig": {
     "root": true,
