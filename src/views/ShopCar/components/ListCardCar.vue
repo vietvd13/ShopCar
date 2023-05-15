@@ -21,6 +21,7 @@
           :color="car.color"
           :distance-driven="car.distance_driven"
           :car-price="car.price_display"
+          :fuelType="car.fuel_type"
         />
       </b-col>
     </template>
