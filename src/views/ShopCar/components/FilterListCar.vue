@@ -372,7 +372,7 @@ export default {
     props: {
         initVisible: {
             type: Boolean,
-            default: false,
+            default: true,
         },
         totalCar: {
             type: Number,

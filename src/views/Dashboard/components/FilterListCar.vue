@@ -33,7 +33,7 @@
                     <i class="fas fa-chevron-down" />
                 </span>
             </div>
-            <b-collapse id="filter-home-car" :visible="false">
+            <b-collapse id="filter-home-car" :visible="true">
                 <div class="filter-list-car">
                     <b-row>
                         <b-col cols="12" xs="12" sm="12" md="12" lg="3" xl="3">

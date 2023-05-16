@@ -1,7 +1,7 @@
 module.exports = {
     configureWebpack: {
         performance: {
-            hints: false
+            hints: process.env.NODE_ENV === "prod" ? true : false
         },
         optimization: {
             splitChunks: {
