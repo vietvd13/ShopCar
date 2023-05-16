@@ -526,7 +526,6 @@ export default {
                 gear_box: null,
             }
 
-            this.filterCategoriesList = [];
             this.filterModel = [];
             this.filterCarDetail = [];
             this.filterRating = [];

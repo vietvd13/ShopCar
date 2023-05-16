@@ -23,7 +23,7 @@
       </div>
 
       <div class="date-sale">
-        {{ dateSale }} - {{ category }} - {{ color }} - {{ distanceDriven }} km
+        {{ dateSale }} - {{ category }} - {{ fuelType }} - {{ color }} - {{ distanceDriven.toLocaleString() }} km
       </div>
 
       <div class="car-price">
@@ -82,6 +82,11 @@ export default {
       type: [Number, String],
       required: true,
       default: 0,
+    },
+    fuelType: {
+      type: String,
+      required: true,
+      default: '',
     }
   },
   computed: {
