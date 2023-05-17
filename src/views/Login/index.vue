@@ -5,12 +5,12 @@
         <b-row align-h="center">
           <b-col cols="12" xs="12" sm="12" md="8" lg="6" xl="4">
             <div class="title-login">
-              <span>{{ $t('DASHBOARD.LOGIN.TITLE') }}</span>
+              <span>{{ $t("DASHBOARD.LOGIN.TITLE") }}</span>
             </div>
 
             <div class="item-form">
-              <label for="input-email">{{ $t('DASHBOARD.LOGIN.EMAIL') }}</label>
-              <b-form-input 
+              <label for="input-email">{{ $t("DASHBOARD.LOGIN.EMAIL") }}</label>
+              <b-form-input
                 id="input-email"
                 v-model="Account.email"
                 @keyup.enter="handleLogin"
@@ -18,7 +18,9 @@
             </div>
 
             <div class="item-form">
-              <label for="input-password">{{ $t('DASHBOARD.LOGIN.PASSWORD') }}</label>
+              <label for="input-password">{{
+                $t("DASHBOARD.LOGIN.PASSWORD")
+              }}</label>
               <b-form-input
                 id="input-password"
                 type="password"
@@ -28,11 +30,8 @@
             </div>
 
             <div class="submit-login">
-              <b-button 
-                class="btn-app btn-login"
-                @click="handleLogin"
-              >
-                {{ $t('DASHBOARD.LOGIN.LOGIN') }}
+              <b-button class="btn-app btn-login" @click="handleLogin">
+                {{ $t("DASHBOARD.LOGIN.LOGIN") }}
               </b-button>
             </div>
           </b-col>
@@ -43,27 +42,30 @@
 </template>
 
 <script>
-import Toast from '@/toast';
-import { validEmail, validPassword } from '@/utils/validate';
-import { setLoading } from '@/utils/setLoading';
-import { postLogin } from '@/api/modules/Auth';
+import Toast from "@/toast";
+import { validEmail, validPassword } from "@/utils/validate";
+import { setLoading } from "@/utils/setLoading";
+import { postLogin } from "@/api/modules/Auth";
 
 export default {
-  name: 'LoginApp',
+  name: "LoginApp",
   data() {
     return {
       Account: {
-        email: '',
-        password: '',
-      }
-    }
+        email: "",
+        password: "",
+      },
+    };
   },
   methods: {
     handleLogin() {
-      if (validEmail(this.Account.email) && validPassword(this.Account.password)) {
+      if (
+        validEmail(this.Account.email) &&
+        validPassword(this.Account.password)
+      ) {
         this.submitAccout();
       } else {
-        Toast.warning(this.$t('TOAST_MESSAGE.VALIDATE_ACCOUNT_LOGIN'));
+        Toast.warning(this.$t("TOAST_MESSAGE.VALIDATE_ACCOUNT_LOGIN"));
       }
     },
     async submitAccout() {
@@ -72,25 +74,30 @@ export default {
 
         const BODY = {
           email: this.Account.email,
-          password: this.Account.password
+          password: this.Account.password,
         };
 
-        const { status_code, access_token, refresh_token, user } = await postLogin(BODY);
+        const { status_code, access_token, refresh_token, user } =
+          await postLogin(BODY);
 
         if (status_code === 200) {
-          await this.$store.dispatch('auth/setToken', access_token)
-          .then(async() => {
-            await this.$store.dispatch('auth/setRefreshToken', refresh_token)
-              .then(async() => {
-                await this.$store.dispatch('auth/setAsyncRoutes')
-                  .then(async() => {
-                    await this.$store.dispatch('auth/setProfile', user)
-                      .then(() => {
-                        this.$router.push({ name: 'Dashboard' });
-                      })
-                  })
-              })
-          })
+          await this.$store
+            .dispatch("auth/setToken", access_token)
+            .then(async () => {
+              await this.$store
+                .dispatch("auth/setRefreshToken", refresh_token)
+                .then(async () => {
+                  await this.$store
+                    .dispatch("auth/setAsyncRoutes")
+                    .then(async () => {
+                      await this.$store
+                        .dispatch("auth/setProfile", user)
+                        .then(() => {
+                          this.$router.push({ name: "Dashboard" });
+                        });
+                    });
+                });
+            });
         }
 
         setLoading(false);
@@ -100,11 +107,11 @@ export default {
       }
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables.scss';
+@import "@/scss/variables.scss";
 
 .login-page {
   height: 100vh;

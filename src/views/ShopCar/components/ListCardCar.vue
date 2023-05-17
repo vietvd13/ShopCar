@@ -22,7 +22,7 @@
           :distance-driven="car.distance_driven"
           :car-price="car.price_display"
           :fuelType="car.fuel_type"
-          :gearbox="car.gear_box"
+          :gearbox="car.gearbox"
         />
       </b-col>
     </template>
@@ -30,7 +30,7 @@
     <template v-else>
       <b-col class="text-center">
         <b-card>
-          {{ $t('APP.TABLE_NO_DATA') }}
+          {{ $t("APP.TABLE_NO_DATA") }}
         </b-card>
       </b-col>
     </template>
@@ -38,10 +38,10 @@
 </template>
 
 <script>
-import CardCar from './CardCar.vue';
+import CardCar from "./CardCar.vue";
 
 export default {
-  name: 'ListCardCar',
+  name: "ListCardCar",
   components: {
     CardCar,
   },
@@ -51,13 +51,12 @@ export default {
       required: true,
       default: () => {
         return [];
-      }
+      },
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables';
-
+@import "@/scss/variables";
 </style>

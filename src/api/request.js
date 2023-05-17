@@ -1,11 +1,11 @@
-import axios from 'axios';
-import Cookies from 'js-cookie';
-import CONSTANTS from '@/constants';
-import { postRefreshToken } from '@/api/modules/Auth';
-import store from '@/store';
-import router, { resetRouter } from '@/routers';
-import { getLanguage } from '@/utils/getLang';
-import Toast from '@/toast';
+import axios from "axios";
+import Cookies from "js-cookie";
+import CONSTANTS from "@/constants";
+import { postRefreshToken } from "@/api/modules/Auth";
+import store from "@/store";
+import router, { resetRouter } from "@/routers";
+import { getLanguage } from "@/utils/getLang";
+import Toast from "@/toast";
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_URL_API,
@@ -33,41 +33,40 @@ function getRefreshToken() {
 }
 
 function goToShop() {
-  router.push({ name: 'HomeShopCar' });
+  router.push({ name: "HomeShopCar" });
 }
 
 function handleLogout() {
-  store.dispatch('auth/logout')
-    .then(() => {
-      resetRouter();
-      goToShop();
-    });
+  store.dispatch("auth/logout").then(() => {
+    resetRouter();
+    goToShop();
+  });
 }
 
 async function handleSetIsRelogin(status) {
-  await store.dispatch('auth/setIsRelogin', status)
+  await store.dispatch("auth/setIsRelogin", status);
 }
 
 service.interceptors.request.use(
-  config => {
+  (config) => {
     const TOKEN = getToken();
 
     if (TOKEN) {
-      config.headers['Authorization'] = `Bearer ${TOKEN}`;
-      config.headers['Accept-Language'] = getLanguage();
+      config.headers["Authorization"] = `Bearer ${TOKEN}`;
+      config.headers["Accept-Language"] = getLanguage();
     } else {
-      config.headers['Accept-Language'] = getLanguage();
+      config.headers["Accept-Language"] = getLanguage();
     }
 
     return config;
   },
-  error => {
+  (error) => {
     Promise.reject(error);
   }
 );
 
 service.interceptors.response.use(
-  response => {
+  (response) => {
     const { status_code, error_message, message } = response.data;
 
     if (status_code !== 200) {
@@ -81,36 +80,39 @@ service.interceptors.response.use(
 
     const { status_code, message } = error.response.data;
 
-    if (status_code === 500 && message === 'jwt expired') {
+    if (status_code === 500 && message === "jwt expired") {
       if (store.getters.isRelogin === false) {
         try {
           const BODY = {
             refresh_token: getRefreshToken(),
           };
-  
+
           await handleSetIsRelogin(true);
-    
-          const { status_code, access_token, refresh_token } = await postRefreshToken(BODY);
-    
+
+          const { status_code, access_token, refresh_token } =
+            await postRefreshToken(BODY);
+
           if (status_code === 200) {
-            await store.dispatch('auth/setToken', access_token)
-            .then(async() => {
-              await store.dispatch('auth/setRefreshToken', refresh_token)
-                .then(async() => {
-                  await handleSetIsRelogin(false);
-                  console.log('[APP]: Refresh...');
-                })
-            });
+            await store
+              .dispatch("auth/setToken", access_token)
+              .then(async () => {
+                await store
+                  .dispatch("auth/setRefreshToken", refresh_token)
+                  .then(async () => {
+                    await handleSetIsRelogin(false);
+                    console.log("[APP]: Refresh...");
+                  });
+              });
 
             return service({
               method: originalRequest.method,
               url: `${originalRequest.baseURL}${originalRequest.url}`,
               headers: {
-                'Authorization': `Bearer ${getToken()}`,
-                'Accept-Language': getLanguage(),
-                'Content-Type': originalRequest.headers['Content-Type']
+                Authorization: `Bearer ${getToken()}`,
+                "Accept-Language": getLanguage(),
+                "Content-Type": originalRequest.headers["Content-Type"],
               },
-              data: originalRequest.data
+              data: originalRequest.data,
             });
           } else {
             handleLogout();
@@ -130,4 +132,3 @@ service.interceptors.response.use(
 );
 
 export { service };
-

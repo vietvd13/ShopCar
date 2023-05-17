@@ -1,10 +1,7 @@
 <template>
   <div class="import-image">
     <template v-if="!image">
-      <div
-        class="zone-import-image"
-        @click="onClickImport"
-      >
+      <div class="zone-import-image" @click="onClickImport">
         <b-form-file
           type="file"
           name="Import Image"
@@ -17,25 +14,19 @@
           <i class="fas fa-image" />
           <div class="text-empty">
             <span class="text-please-import">
-              {{ $t('APP.PLEASE_IMPORT_IMAGE') }}
+              {{ $t("APP.PLEASE_IMPORT_IMAGE") }}
             </span>
             <span class="text-suggest">
-              ({{ $t('APP.REQUIRED_IMAGE_SIZE_4_6') }})
+              ({{ $t("APP.REQUIRED_IMAGE_SIZE_4_6") }})
             </span>
           </div>
         </div>
-        <b-img
-          v-if="imageImport"
-          :src="previewImage"
-        />
+        <b-img v-if="imageImport" :src="previewImage" />
       </div>
     </template>
 
     <template v-else>
-      <b-img
-        :src="`${domainImage}${image}`"
-        class="image-staff"
-      />
+      <b-img :src="`${domainImage}${image}`" class="image-staff" />
     </template>
 
     <div
@@ -44,24 +35,24 @@
       @click="resetImport"
     >
       <i class="fas fa-trash" />
-      <span>{{ $t('APP.DELETE') }}</span>
+      <span>{{ $t("APP.DELETE") }}</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ImportImage',
+  name: "ImportImage",
   props: {
     refName: {
       type: String,
       required: false,
-      default: 'ImportImage'
+      default: "ImportImage",
     },
     emitName: {
       type: String,
       required: false,
-      default: 'IMPORT_IMAGE_CHANGE',
+      default: "IMPORT_IMAGE_CHANGE",
     },
     resetImage: {
       type: Number,
@@ -71,7 +62,7 @@ export default {
     image: {
       type: String,
       required: false,
-    }
+    },
   },
   computed: {
     domainImage() {
@@ -84,13 +75,13 @@ export default {
     },
     resetImage() {
       this.resetImport();
-    }
+    },
   },
   data() {
     return {
       imageImport: null,
-      previewImage: null
-    }
+      previewImage: null,
+    };
   },
   methods: {
     onClickImport() {
@@ -104,19 +95,19 @@ export default {
     },
     resetImport() {
       if (this.image) {
-        this.$bus.emit('COLLABORATORS_DELETE_IMAGE');
+        this.$bus.emit("COLLABORATORS_DELETE_IMAGE");
       }
 
       if (this.imageImport) {
         this.$refs[this.refName].reset();
       }
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables';
+@import "@/scss/variables";
 
 .import-image {
   display: flex;

@@ -1,6 +1,6 @@
-import Cookies from 'js-cookie';
-import CONSTANTS from '@/constants';
-import router, { asyncRoutes, resetRouter } from '@/routers';
+import Cookies from "js-cookie";
+import CONSTANTS from "@/constants";
+import router, { asyncRoutes, resetRouter } from "@/routers";
 
 function getToken() {
   const TOKEN = Cookies.get(CONSTANTS.COOKIES.TOKEN);
@@ -9,7 +9,7 @@ function getToken() {
     return TOKEN;
   }
 
-  return '';
+  return "";
 }
 
 function getRefreshToken() {
@@ -19,7 +19,7 @@ function getRefreshToken() {
     return REFRESH_TOKEN;
   }
 
-  return '';
+  return "";
 }
 
 function getProfile() {
@@ -30,15 +30,15 @@ function getProfile() {
   }
 
   return {
-    email: '',
-    name: '',
-    dob: '',
-    address: '',
-    phone_number: '',
-    root_user: '',
-    gender: '',
-    email_notification: '',
-  }
+    email: "",
+    name: "",
+    dob: "",
+    address: "",
+    phone_number: "",
+    root_user: "",
+    gender: "",
+    email_notification: "",
+  };
 }
 
 const state = {
@@ -72,35 +72,35 @@ const mutations = {
     Cookies.remove(CONSTANTS.COOKIES.IS_FILTER);
     Cookies.remove(CONSTANTS.COOKIES.CONFIG_SLIDER);
 
-    state.token = '';
-    state.refresh_token = '';
+    state.token = "";
+    state.refresh_token = "";
     state.profile = {
-      email: '',
-      name: '',
-      dob: '',
-      address: '',
-      phone_number: '',
-      root_user: '',
-      gender: '',
-      email_notification: ''
+      email: "",
+      name: "",
+      dob: "",
+      address: "",
+      phone_number: "",
+      root_user: "",
+      gender: "",
+      email_notification: "",
     };
 
     state.isRelogin = false;
   },
   SET_IS_RELOGIN: (state, status) => {
     state.isRelogin = status;
-  }
+  },
 };
 
 const actions = {
   setInitApp({ commit }) {
-    commit('SET_INIT_APP');
+    commit("SET_INIT_APP");
   },
-	setToken({ commit }, token) {
-		commit('SET_TOKEN', token);
+  setToken({ commit }, token) {
+    commit("SET_TOKEN", token);
   },
   setRefreshToken({ commit }, refresh_token) {
-    commit('SET_REFRESH_TOKEN', refresh_token);
+    commit("SET_REFRESH_TOKEN", refresh_token);
   },
   setAsyncRoutes() {
     const len = asyncRoutes.length;
@@ -114,22 +114,22 @@ const actions = {
   },
   removeAsyncRoutes() {
     resetRouter();
-    router.push({ name: 'ShopCar' });
+    router.push({ name: "ShopCar" });
   },
   setProfile({ commit }, profile) {
-    commit('SET_PROFILE', profile);
+    commit("SET_PROFILE", profile);
   },
   logout({ commit }) {
-    commit('LOGOUT');
+    commit("LOGOUT");
   },
   setIsRelogin({ commit }, status) {
-    commit('SET_IS_RELOGIN', status);
-  }
+    commit("SET_IS_RELOGIN", status);
+  },
 };
 
 export default {
-	namespaced: true,
-	state,
-	mutations,
-	actions,
+  namespaced: true,
+  state,
+  mutations,
+  actions,
 };

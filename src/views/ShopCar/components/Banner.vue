@@ -6,29 +6,29 @@
     center
     class="banner-home"
     alt="Banner Home"
-    v-bind="{ 
+    v-bind="{
       height: 370,
-      width: 'auto'
+      width: 'auto',
     }"
   />
 </template>
 
 <script>
-import { getBanner } from '@/api/modules/Home';
+import { getBanner } from "@/api/modules/Home";
 
 export default {
-  name: 'CarouselHome',
+  name: "CarouselHome",
   computed: {
     domainImage() {
-      return process.env.VUE_APP_URL_IMAGE; 
-    }
+      return process.env.VUE_APP_URL_IMAGE;
+    },
   },
   data() {
     return {
-      urlBanner: ''
-    }
+      urlBanner: "",
+    };
   },
-  created () {
+  created() {
     this.initData();
   },
   methods: {
@@ -42,15 +42,15 @@ export default {
         if (status_code === 200) {
           this.urlBanner = data;
         } else {
-          this.urlBanner = '';
+          this.urlBanner = "";
         }
       } catch (err) {
-        this.urlBanner = '';
+        this.urlBanner = "";
         console.log(err);
       }
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

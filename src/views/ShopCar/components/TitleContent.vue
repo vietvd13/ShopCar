@@ -2,21 +2,19 @@
   <div class="shop-car-title">
     <div class="shop-car-title__dot" />
     <div class="shop-car-title__text">
-      <slot>
-        Title
-      </slot>
+      <slot> Title </slot>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TitleConent'
-}
+  name: "TitleConent",
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables';
+@import "@/scss/variables";
 
 .shop-car-title {
   display: flex;

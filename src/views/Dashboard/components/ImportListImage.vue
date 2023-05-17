@@ -1,52 +1,29 @@
 <template>
   <div class="import-list-image">
     <div class="input-import">
-      <b-form-file
-        plain
-        :ref="`${refName}`"
-        v-model="fileImport"
-      />
+      <b-form-file plain :ref="`${refName}`" v-model="fileImport" />
     </div>
 
     <div class="btn-import">
-      <b-button
-        block
-        class="btn-app"
-        @click="onClickImport"
-      >
-        {{ $t('APP.IMPORT_IMAGE') }}
+      <b-button block class="btn-app" @click="onClickImport">
+        {{ $t("APP.IMPORT_IMAGE") }}
       </b-button>
     </div>
 
     <div class="list-image">
-      <draggable
-        :list="items"
-      >
-        <div
-          v-for="(image, idx) in items"
-          :key="idx"
-          class="item-image"
-        >
-          <div
-            v-if="image.type_import === 'old'"
-            class="display-image"
-          >
+      <draggable :list="items">
+        <div v-for="(image, idx) in items" :key="idx" class="item-image">
+          <div v-if="image.type_import === 'old'" class="display-image">
             <b-img :src="`${domainImage}${image.url}`" />
           </div>
 
-          <div
-            v-if="image.type_import === 'new'"
-            class="display-image"
-          >
+          <div v-if="image.type_import === 'new'" class="display-image">
             <b-img :src="convertFile2Image(image.url)" />
           </div>
 
           <div class="btn-remove-image">
-            <b-button
-              variant="danger"
-              @click="onClickRemove(idx)"
-            >
-              {{ $t('APP.DELETE') }}
+            <b-button variant="danger" @click="onClickRemove(idx)">
+              {{ $t("APP.DELETE") }}
             </b-button>
           </div>
         </div>
@@ -59,7 +36,7 @@
 import draggable from "vuedraggable";
 
 export default {
-  name: 'ImportListImage',
+  name: "ImportListImage",
   components: {
     draggable,
   },
@@ -67,38 +44,38 @@ export default {
     refName: {
       type: String,
       required: false,
-      default: 'importListImage'
+      default: "importListImage",
     },
     items: {
       type: Array,
       required: true,
       default: () => {
         return [];
-      }
-    }
+      },
+    },
   },
   data() {
     return {
       fileImport: null,
-    }
+    };
   },
   computed: {
     domainImage() {
       return process.env.VUE_APP_URL_IMAGE;
-    }
+    },
   },
   watch: {
     fileImport() {
       if (this.fileImport) {
         const FILE = {
           url: this.fileImport,
-          type_import: 'new'
-        }
+          type_import: "new",
+        };
 
-        this.$emit('import', FILE);
+        this.$emit("import", FILE);
         this.$refs[this.refName].reset();
       }
-    }
+    },
   },
   methods: {
     convertFile2Image(file) {
@@ -106,20 +83,20 @@ export default {
         return URL.createObjectURL(file);
       }
 
-      return '';
+      return "";
     },
     onClickImport() {
       this.$refs[this.refName].$el.click();
     },
     onClickRemove(idx) {
-      this.$emit('remove', idx);
-    }
+      this.$emit("remove", idx);
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables.scss';
+@import "@/scss/variables.scss";
 
 .import-list-image {
   .input-import {

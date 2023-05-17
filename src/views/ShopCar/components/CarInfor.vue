@@ -1,20 +1,17 @@
 <template>
-    <div id="tab-car-infor" >
-        <MenuDetailCar :tab-active="'tab-car-infor'" />
-        <div class="car-infor">
-            <b-card>
-                <p class="title-content">
-                    {{ $t('SHOP_CAR.DETAIL_CAR.TITLE_BASIC_INFOR') }}
-                </p>
-                <div class="content-infor">
-                    <b-row>
-                        <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="7">
-                            <b-table-simple
-                                bordered
-                                no-border-collapse
-                            >
-                                <b-tbody>
-                                    <b-tr>
+  <div id="tab-car-infor">
+    <MenuDetailCar :tab-active="'tab-car-infor'" />
+    <div class="car-infor">
+      <b-card>
+        <p class="title-content">
+          {{ $t("SHOP_CAR.DETAIL_CAR.TITLE_BASIC_INFOR") }}
+        </p>
+        <div class="content-infor">
+          <b-row>
+            <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="7">
+              <b-table-simple no-border-collapse>
+                <b-tbody>
+                  <!-- <b-tr>
                                         <b-td class="title-car-infor">
                                             {{ $t('SHOP_CAR.DETAIL_CAR.PRICE') }}
                                         </b-td>
@@ -105,203 +102,247 @@
                                         <b-td>
                                             {{ storageLocation }}
                                         </b-td>
-                                    </b-tr>
-                                </b-tbody>
-                            </b-table-simple>
-                        </b-col>
-                        <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="5">
-                            <b-table-simple
-                                bordered
-                                no-border-collapse
-                            >
-                                <b-tbody>
-                                    <b-tr>
-                                        <b-td class="title-car-infor">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.CONTACT') }}
-                                        </b-td>
-                                        <b-td class="td-contact">
-                                            {{ profile.phone_number }}
-                                        </b-td>
-                                    </b-tr>
-                                    <b-tr>
-                                        <b-td class="title-car-infor">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.NAME') }}
-                                        </b-td>
-                                        <b-td>
-                                            {{ profile.name }}
-                                        </b-td>
-                                    </b-tr>
-                                    <b-tr>
-                                        <b-td class="title-car-infor">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.AFFILIATED_COMPANY') }}
-                                        </b-td>
-                                        <b-td>
-                                            {{ profile.company_name }}
-                                        </b-td>
-                                    </b-tr>
-                                    <b-tr>
-                                        <b-td class="title-car-infor">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.BUSINESS_ADDRESS') }}
-                                        </b-td>
-                                        <b-td>
-                                            {{ profile.company_address }}
-                                        </b-td>
-                                    </b-tr>
-                                    <b-tr>
-                                        <b-td class="title-car-infor">
-                                            {{ $t('SHOP_CAR.DETAIL_CAR.PARKING_LOCATION') }}
-                                        </b-td>
-                                        <b-td>
-                                            {{ parkingLocation }}
-                                        </b-td>
-                                    </b-tr>
-                                </b-tbody>
-                            </b-table-simple>
-                        </b-col>
-                    </b-row>
-                </div>
-            </b-card>
+                                    </b-tr> -->
+
+                  <b-tr>
+                    <b-td class="title-car-infor">
+                      {{ $t("SHOP_CAR.DETAIL_CAR.PRICE") }}
+                    </b-td>
+                    <b-td colspan="3" class="td-price">
+                      <span>{{ formatPrice(price) }}</span> 만원
+                    </b-td>
+                  </b-tr>
+
+                  <b-tr>
+                    <b-td class="title-car-infor">
+                      {{ $t("SHOP_CAR.DETAIL_CAR.YEAR") }}
+                    </b-td>
+                    <b-td>
+                      {{ year }}
+                    </b-td>
+                    <b-td class="title-car-infor">
+                      {{ $t("SHOP_CAR.DETAIL_CAR.COLOR") }}
+                    </b-td>
+                    <b-td>
+                      {{ color }}
+                    </b-td>
+                  </b-tr>
+
+                  <b-tr>
+                    <b-td class="title-car-infor">
+                      {{ $t("SHOP_CAR.DETAIL_CAR.FUEL_TYPE") }}
+                    </b-td>
+                    <b-td>
+                      {{ fuelType }}
+                    </b-td>
+                    <b-td class="title-car-infor">
+                      {{ $t("SHOP_CAR.DETAIL_CAR.DISTANCE_DRIVEN") }}
+                    </b-td>
+                    <b-td>
+                      {{ distanceDriven }} {{ distanceDriven ? "km" : "" }}
+                    </b-td>
+                  </b-tr>
+
+                  <b-tr>
+                    <b-td class="title-car-infor">
+                      {{ $t("SHOP_CAR.DETAIL_CAR.LICENSE_PLATE") }}
+                    </b-td>
+                    <b-td>
+                      {{ licensePlate }}
+                    </b-td>
+                    <b-td class="title-car-infor">
+                      {{ $t("SHOP_CAR.DETAIL_CAR.TRANSMISSION") }}
+                    </b-td>
+                    <b-td>
+                      {{ gearbox }}
+                    </b-td>
+                  </b-tr>
+                </b-tbody>
+              </b-table-simple>
+            </b-col>
+            <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="5">
+              <b-table-simple no-border-collapse>
+                <b-tbody>
+                  <b-tr>
+                    <b-td class="title-car-infor">
+                      {{ $t("SHOP_CAR.DETAIL_CAR.CONTACT") }}
+                    </b-td>
+                    <b-td class="td-contact">
+                      {{ profile.phone_number }}
+                    </b-td>
+                  </b-tr>
+                  <b-tr>
+                    <b-td class="title-car-infor">
+                      {{ $t("SHOP_CAR.DETAIL_CAR.NAME") }}
+                    </b-td>
+                    <b-td>
+                      {{ profile.name }}
+                    </b-td>
+                  </b-tr>
+                  <b-tr>
+                    <b-td class="title-car-infor">
+                      {{ $t("SHOP_CAR.DETAIL_CAR.AFFILIATED_COMPANY") }}
+                    </b-td>
+                    <b-td>
+                      {{ profile.company_name }}
+                    </b-td>
+                  </b-tr>
+                  <b-tr>
+                    <b-td class="title-car-infor">
+                      {{ $t("SHOP_CAR.DETAIL_CAR.BUSINESS_ADDRESS") }}
+                    </b-td>
+                    <b-td>
+                      {{ profile.company_address }}
+                    </b-td>
+                  </b-tr>
+                  <b-tr>
+                    <b-td class="title-car-infor">
+                      {{ $t("SHOP_CAR.DETAIL_CAR.PARKING_LOCATION") }}
+                    </b-td>
+                    <b-td>
+                      {{ parkingLocation }}
+                    </b-td>
+                  </b-tr>
+                </b-tbody>
+              </b-table-simple>
+            </b-col>
+          </b-row>
         </div>
+      </b-card>
     </div>
+  </div>
 </template>
 
 <script>
-import { formatPrice } from '@/utils/helper';
-import MenuDetailCar from '@/components/MenuDetailCar.vue';
+import { formatPrice } from "@/utils/helper";
+import MenuDetailCar from "@/components/MenuDetailCar.vue";
 
 export default {
-    name: 'CarInfor',
-    components: {
-        MenuDetailCar,
+  name: "CarInfor",
+  components: {
+    MenuDetailCar,
+  },
+  props: {
+    price: {
+      type: [String, Number],
+      default: 0,
     },
-    props: {
-        price: {
-            type: [String, Number],
-            default: 0,
-        },
-        licensePlate: {
-            type: String,
-            default: ''
-        },
-        year: {
-            type: String,
-            default: '' 
-        },
-        distanceDriven: {
-            type: Number,
-            default: 0, 
-        },
-        fuelType: {
-            type: String,
-            default: ''
-        },
-        gearbox: {
-            type: String,
-            default: ''
-        },
-        cylynder: {
-            type: String,
-            default: ''
-        },
-        color: {
-            type: String,
-            default: ''
-        },
-        carType: {
-            type: String,
-            default: '',
-        },
-        seizure: {
-            type: String,
-            default: '',
-        },
-        mortgage: {
-            type: String,
-            default: '', 
-        },
-        presentationNumber: {
-            type: String,
-            default: '', 
-        },
-        storageLocation: {
-            type: String,
-            default: '',
-        },
-        contact: {
-            type: String,
-            default: '',
-        },
-        saller: {
-            type: String,
-            default: '',
-        },
-        employeeId: {
-            type: String,
-            default: '',
-        },
-        affiliatedCompany: {
-            type: String,
-            default: '',
-        },
-        businessAddress: {
-            type: String,
-            default: '',
-        },
-        parkingLocation: {
-            type: String,
-            default: '',
-        }
+    licensePlate: {
+      type: String,
+      default: "",
     },
-    computed: {
-        profile() {
-            return this.$store.getters.profile; 
-        }
+    year: {
+      type: String,
+      default: "",
     },
-    methods: {
-        formatPrice
+    distanceDriven: {
+      type: Number,
+      default: 0,
     },
-}
+    fuelType: {
+      type: String,
+      default: "",
+    },
+    gearbox: {
+      type: String,
+      default: "",
+    },
+    cylynder: {
+      type: String,
+      default: "",
+    },
+    color: {
+      type: String,
+      default: "",
+    },
+    carType: {
+      type: String,
+      default: "",
+    },
+    seizure: {
+      type: String,
+      default: "",
+    },
+    mortgage: {
+      type: String,
+      default: "",
+    },
+    presentationNumber: {
+      type: String,
+      default: "",
+    },
+    storageLocation: {
+      type: String,
+      default: "",
+    },
+    contact: {
+      type: String,
+      default: "",
+    },
+    saller: {
+      type: String,
+      default: "",
+    },
+    employeeId: {
+      type: String,
+      default: "",
+    },
+    affiliatedCompany: {
+      type: String,
+      default: "",
+    },
+    businessAddress: {
+      type: String,
+      default: "",
+    },
+    parkingLocation: {
+      type: String,
+      default: "",
+    },
+  },
+  computed: {
+    profile() {
+      return this.$store.getters.profile;
+    },
+  },
+  methods: {
+    formatPrice,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables';
+@import "@/scss/variables";
 
 .car-infor {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 
-    .title-content {
-        font-size: 22px;
-        font-weight: 600;
+  .title-content {
+    font-weight: 600;
+    font-size: 22px;
+  }
+
+  .title-car-infor {
+    color: $dusty-gray;
+    text-align: left;
+
+    width: 110px;
+
+    padding: 15px 0;
+    font-weight: bold;
+  }
+
+  td {
+    padding: 15px 0;
+    border: none;
+    color: $black;
+  }
+
+  .td-price {
+    span {
+      font-weight: bold;
+      color: $alizarin-crimson;
     }
-
-    .title-car-infor {
-        font-weight: 600;
-        background-color: $concrete;
-        color: $mine-shaft;
-        text-align: center;
-        vertical-align: middle;
-
-        width: 110px;
-    }
-
-    td {
-        font-weight: 500;
-        vertical-align: middle;
-        padding: 10px;
-        height: 80px;
-    }
-
-    .td-price {
-        span {
-            font-size: 25px;
-            font-weight: bold;
-            color: $alizarin-crimson;
-        }
-    }
-
-    .td-contact {
-        font-size: 25px;
-        font-weight: bold;
-    }
+  }
 }
 </style>

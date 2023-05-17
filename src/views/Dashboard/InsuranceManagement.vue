@@ -39,23 +39,23 @@
     </b-row>
 
     <div class="insurance-page__modal">
-      <b-modal 
-        v-model="isModal.show" 
-        no-close-on-backdrop 
-        no-close-on-esc 
-        hide-header-close 
-        static 
+      <b-modal
+        v-model="isModal.show"
+        no-close-on-backdrop
+        no-close-on-esc
+        hide-header-close
+        static
         scrollable
         :title="$t('ROUTER.INSURANCE_MANAGEMENT')"
       >
         <label for="file">
-          {{ $t('APP.DROP_FILE') }}
+          {{ $t("APP.DROP_FILE") }}
         </label>
 
-        <b-form-file 
-          id="file" 
-          v-model="init_file"  
-          accept="image/*" 
+        <b-form-file
+          id="file"
+          v-model="init_file"
+          accept="image/*"
           :placeholder="$t('APP.DROP_FILE')"
           :drop-placeholder="$t('APP.DROP_FILE')"
           :browse-text="$t('APP.DROP_FILE')"
@@ -66,13 +66,19 @@
         <template #modal-footer>
           <b-row align-v="baseline">
             <b-col cols="6" class="text-center">
-              <b-button class="btn-default btn-cancel" @click="hanldeCloseModal">
+              <b-button
+                class="btn-default btn-cancel"
+                @click="hanldeCloseModal"
+              >
                 {{ $t("APP.CANCEL") }}
               </b-button>
             </b-col>
 
             <b-col cols="6" class="text-center">
-              <b-button class="btn-default btn-app" @click="handleUpdateinsurance">
+              <b-button
+                class="btn-default btn-app"
+                @click="handleUpdateinsurance"
+              >
                 {{ $t("APP.SAVE") }}
               </b-button>
             </b-col>
@@ -160,9 +166,9 @@ export default {
 
         for (let image = 0; image < this.init_file.length; image++) {
           result.push({
-            type_import: 'new',
-            url: this.init_file[image]
-          })
+            type_import: "new",
+            url: this.init_file[image],
+          });
         }
 
         const response = await postImages(result);
@@ -206,7 +212,7 @@ export default {
   }
 
   &__header {
-    button+button {
+    button + button {
       margin-left: 10px;
     }
   }

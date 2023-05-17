@@ -1,14 +1,14 @@
 <template>
   <b-navbar toggleable="lg" sticky>
     <b-container>
-      <b-navbar-brand
-        href="#"
-        @click="goToRoute('HomeShopCar')"
-      >
+      <b-navbar-brand href="#" @click="goToRoute('HomeShopCar')">
         <i class="fas fa-home-lg-alt" />
       </b-navbar-brand>
 
-      <b-navbar-nav :style="`flex-direction: row;`" v-if="['xs', 'sm', 'md'].includes(sizeScreen.type)">
+      <b-navbar-nav
+        :style="`flex-direction: row;`"
+        v-if="['xs', 'sm', 'md'].includes(sizeScreen.type)"
+      >
         <b-nav-item href="#">
           <a @click="callPhoneNumber(profile.phone_number)">
             <i class="fas fa-phone-alt" />
@@ -22,7 +22,7 @@
             :src="require('@/assets/images/facebook.png')"
             v-bind="{
               width: 25,
-              height: 25
+              height: 25,
             }"
             class="icon-social"
           />
@@ -34,7 +34,7 @@
             :src="require('@/assets/images/messager.png')"
             v-bind="{
               width: 25,
-              height: 25
+              height: 25,
             }"
             class="icon-social"
           />
@@ -46,7 +46,7 @@
             :src="require('@/assets/images/kakaotalk.png')"
             v-bind="{
               width: 25,
-              height: 25
+              height: 25,
             }"
             class="icon-social"
           />
@@ -58,7 +58,7 @@
             :src="require('@/assets/images/zalo.png')"
             v-bind="{
               width: 25,
-              height: 25
+              height: 25,
             }"
             class="icon-social"
           />
@@ -74,66 +74,78 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item href="#" v-for="route in listRoute" :key="route.value">
-            <router-link
-            :to="route.path"
-            class="item-route"
-          >
-            {{ $t(route.text) }}
-          </router-link>
+            <router-link :to="route.path" class="item-route">
+              {{ $t(route.text) }}
+            </router-link>
           </b-nav-item>
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
-          <b-nav-item href="#" v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)">
+          <b-nav-item
+            href="#"
+            v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)"
+          >
             <a @click="callPhoneNumber(profile.phone_number)">
               <i class="fas fa-phone-alt" />
               {{ profile.phone_number }}
             </a>
           </b-nav-item>
 
-          <b-nav-item href="#" v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)">
+          <b-nav-item
+            href="#"
+            v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)"
+          >
             <b-img
               @click="goToLink(profile.link_facebook)"
               :src="require('@/assets/images/facebook.png')"
               v-bind="{
                 width: 25,
-                height: 25
+                height: 25,
               }"
               class="icon-social"
             />
           </b-nav-item>
 
-          <b-nav-item href="#" v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)">
+          <b-nav-item
+            href="#"
+            v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)"
+          >
             <b-img
               @click="goToLink(profile.link_messenger)"
               :src="require('@/assets/images/messager.png')"
               v-bind="{
                 width: 25,
-                height: 25
+                height: 25,
               }"
               class="icon-social"
             />
           </b-nav-item>
 
-          <b-nav-item href="#" v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)">
+          <b-nav-item
+            href="#"
+            v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)"
+          >
             <b-img
               @click="goToLink(profile.link_kakao)"
               :src="require('@/assets/images/kakaotalk.png')"
               v-bind="{
                 width: 25,
-                height: 25
+                height: 25,
               }"
               class="icon-social"
             />
           </b-nav-item>
 
-          <b-nav-item href="#" v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)">
+          <b-nav-item
+            href="#"
+            v-if="!['xs', 'sm', 'md'].includes(sizeScreen.type)"
+          >
             <b-img
               @click="goToLink(profile.link_zalo)"
               :src="require('@/assets/images/zalo.png')"
               v-bind="{
                 width: 25,
-                height: 25
+                height: 25,
               }"
               class="icon-social"
             />
@@ -147,33 +159,33 @@
               </span>
             </template>
 
-            <b-dropdown-item 
+            <b-dropdown-item
               href="#"
               @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_VIETNAMESE)"
             >
-              <flag iso="vn" /> 
+              <flag iso="vn" />
               <span class="text-lang">
-                {{ $t('LANGUAGES.VIETNAMESE') }}
+                {{ $t("LANGUAGES.VIETNAMESE") }}
               </span>
             </b-dropdown-item>
 
-            <b-dropdown-item 
+            <b-dropdown-item
               href="#"
               @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_ENGLISH)"
             >
               <flag iso="us" />
               <span class="text-lang">
-                {{ $t('LANGUAGES.ENGLISH') }}
+                {{ $t("LANGUAGES.ENGLISH") }}
               </span>
             </b-dropdown-item>
 
-            <b-dropdown-item 
+            <b-dropdown-item
               href="#"
               @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_KOREAN)"
             >
               <flag iso="kr" />
               <span class="text-lang">
-                {{ $t('LANGUAGES.KOREAN') }}
+                {{ $t("LANGUAGES.KOREAN") }}
               </span>
             </b-dropdown-item>
           </b-nav-item-dropdown>
@@ -184,62 +196,62 @@
 </template>
 
 <script>
-import CONSTANTS from '@/constants';
-import Toast from '@/toast';
-import { getProfilePublic } from '@/api/modules/Home';
+import CONSTANTS from "@/constants";
+import Toast from "@/toast";
+import { getProfilePublic } from "@/api/modules/Home";
 
 export default {
-  name: 'NavbarShop',
+  name: "NavbarShop",
   data() {
     return {
       CONSTANTS,
-      
+
       listRoute: [
         {
-          value: 'VEHICLE_LIST',
-          text: 'SHOP_CAR.HOME.CATEGORIES.VEHICLE_LIST',
-          path: '/shop-car/list',
+          value: "VEHICLE_LIST",
+          text: "SHOP_CAR.HOME.CATEGORIES.VEHICLE_LIST",
+          path: "/shop-car/list",
         },
         {
-          value: 'CAR_BUYING_POLICY',
-          text: 'SHOP_CAR.HOME.CATEGORIES.CAR_BUYING_POLICY',
-          path: '/shop-car/car-buying-policy',
+          value: "CAR_BUYING_POLICY",
+          text: "SHOP_CAR.HOME.CATEGORIES.CAR_BUYING_POLICY",
+          path: "/shop-car/car-buying-policy",
         },
         {
-          value: 'HAPPY_MOMENT',
-          text: 'SHOP_CAR.HOME.CATEGORIES.HAPPY_MOMENT',
-          path: '/shop-car/all-happy-moment'
+          value: "HAPPY_MOMENT",
+          text: "SHOP_CAR.HOME.CATEGORIES.HAPPY_MOMENT",
+          path: "/shop-car/all-happy-moment",
         },
         {
-          value: 'COLLABORATORS',
-          text: 'SHOP_CAR.HOME.CATEGORIES.COLLABORATORS',
-          path: '/shop-car/all-collaborators'
+          value: "COLLABORATORS",
+          text: "SHOP_CAR.HOME.CATEGORIES.COLLABORATORS",
+          path: "/shop-car/all-collaborators",
         },
         {
-          value: 'CONTACT',
-          text: 'SHOP_CAR.HOME.CATEGORIES.CONTACT',
-          path: '/shop-car/contact',
+          value: "CONTACT",
+          text: "SHOP_CAR.HOME.CATEGORIES.CONTACT",
+          path: "/shop-car/contact",
         },
       ],
-      keyword: '',
+      keyword: "",
 
       profile: {
-        link_facebook: '',
-        link_messenger: '',
-        link_zalo: '',
-      }
-    }
+        link_facebook: "",
+        link_messenger: "",
+        link_zalo: "",
+      },
+    };
   },
   computed: {
     lang() {
-      return this.$store.getters.language; 
+      return this.$store.getters.language;
     },
 
     sizeScreen() {
       return this.$store.getters.sizeScreen;
     },
   },
-  created () {
+  created() {
     this.initData();
   },
   methods: {
@@ -262,59 +274,60 @@ export default {
         if (status_code === 200) {
           this.profile = data;
 
-          await this.$store.dispatch('auth/setProfile', data);
+          await this.$store.dispatch("auth/setProfile", data);
         }
       } catch (err) {
         console.log(err);
       }
     },
     goToLink(link) {
-      window.open(link, '_blank');
+      window.open(link, "_blank");
     },
     convertFlagLanguage() {
       const LANG = this.$store.getters.language;
 
       const LIBRARY = {
-        'vi': 'vn',
-        'en': 'us',
-        'kr': 'kr'
-      }
+        vi: "vn",
+        en: "us",
+        kr: "kr",
+      };
 
-      return LIBRARY[LANG] || '';
+      return LIBRARY[LANG] || "";
     },
     convertTextLanguage() {
       const LANG = this.$store.getters.language;
 
       const LIBRARY = {
-        'vi': 'LANGUAGES.VIETNAMESE',
-        'en': 'LANGUAGES.ENGLISH',
-        'kr': 'LANGUAGES.KOREAN'
-      }
+        vi: "LANGUAGES.VIETNAMESE",
+        en: "LANGUAGES.ENGLISH",
+        kr: "LANGUAGES.KOREAN",
+      };
 
-      return LIBRARY[LANG] || '';
+      return LIBRARY[LANG] || "";
     },
     setLanguage(language = CONSTANTS.VALUE.LANGUAGE_KOREAN) {
       if (this.lang !== language) {
-        this.$store.dispatch('app/setLanguage', language)
-            .then(() => {
-                this.$i18n.locale = language;
+        this.$store
+          .dispatch("app/setLanguage", language)
+          .then(() => {
+            this.$i18n.locale = language;
 
-                Toast.success(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_SUCCESS'));
-            })
-            .catch(() => {
-                Toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
-            })
+            Toast.success(this.$t("TOAST_MESSAGE.CHANGE_LANGUAGE_SUCCESS"));
+          })
+          .catch(() => {
+            Toast.warning(this.$t("TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR"));
+          });
       }
     },
     callPhoneNumber(phone_number) {
-      window.open(`tel:${phone_number}`, '_self');
-    }
+      window.open(`tel:${phone_number}`, "_self");
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables';
+@import "@/scss/variables";
 
 .navbar {
   background-color: $white;

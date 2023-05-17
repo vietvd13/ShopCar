@@ -20,132 +20,130 @@
             </span>
           </template>
 
-          <b-dropdown-item 
+          <b-dropdown-item
             href="#"
             @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_VIETNAMESE)"
           >
-            <flag iso="vn" /> 
+            <flag iso="vn" />
             <span class="text-lang">
-              {{ $t('LANGUAGES.VIETNAMESE') }}
+              {{ $t("LANGUAGES.VIETNAMESE") }}
             </span>
           </b-dropdown-item>
 
-          <b-dropdown-item 
+          <b-dropdown-item
             href="#"
             @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_ENGLISH)"
           >
             <flag iso="us" />
             <span class="text-lang">
-              {{ $t('LANGUAGES.ENGLISH') }}
+              {{ $t("LANGUAGES.ENGLISH") }}
             </span>
           </b-dropdown-item>
 
-          <b-dropdown-item 
+          <b-dropdown-item
             href="#"
             @click="setLanguage(CONSTANTS.VALUE.LANGUAGE_KOREAN)"
           >
             <flag iso="kr" />
             <span class="text-lang">
-              {{ $t('LANGUAGES.KOREAN') }}
+              {{ $t("LANGUAGES.KOREAN") }}
             </span>
           </b-dropdown-item>
         </b-nav-item-dropdown>
 
         <b-nav-item-dropdown :text="fullname" right>
-          <b-dropdown-item 
-            @click="onClickProfile()"
-          >
-            {{ $t('SHOP_CAR.HOME.PROFILE.TITLE') }}
+          <b-dropdown-item @click="onClickProfile()">
+            {{ $t("SHOP_CAR.HOME.PROFILE.TITLE") }}
           </b-dropdown-item>
-          <b-dropdown-item 
-            @click="handleLogout"
-          >
-            {{ $t('SHOP_CAR.HOME.LOGOUT.TITLE') }}
+          <b-dropdown-item @click="handleLogout">
+            {{ $t("SHOP_CAR.HOME.LOGOUT.TITLE") }}
           </b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
-    </b-collapse>    
+    </b-collapse>
   </b-navbar>
 </template>
 
 <script>
-import CONSTANTS from '@/constants';
-import { asyncRoutes } from '@/routers';
-import Toast from '@/toast';
+import CONSTANTS from "@/constants";
+import { asyncRoutes } from "@/routers";
+import Toast from "@/toast";
 
 export default {
-  name: 'NavbarDashboard',
+  name: "NavbarDashboard",
   data() {
     return {
       asyncRoutes,
       routes: [],
-      CONSTANTS
-    }
+      CONSTANTS,
+    };
   },
   computed: {
     lang() {
-        return this.$store.getters.language; 
+      return this.$store.getters.language;
     },
     fullname() {
-      return this.$store.getters.profile.name || ''; 
-    }
+      return this.$store.getters.profile.name || "";
+    },
   },
   methods: {
     convertFlagLanguage() {
       const LANG = this.$store.getters.language;
 
       const LIBRARY = {
-        'vi': 'vn',
-        'en': 'us',
-        'kr': 'kr'
-      }
+        vi: "vn",
+        en: "us",
+        kr: "kr",
+      };
 
-      return LIBRARY[LANG] || '';
+      return LIBRARY[LANG] || "";
     },
     convertTextLanguage() {
       const LANG = this.$store.getters.language;
 
       const LIBRARY = {
-        'vi': 'LANGUAGES.VIETNAMESE',
-        'en': 'LANGUAGES.ENGLISH',
-        'kr': 'LANGUAGES.KOREAN'
-      }
+        vi: "LANGUAGES.VIETNAMESE",
+        en: "LANGUAGES.ENGLISH",
+        kr: "LANGUAGES.KOREAN",
+      };
 
-      return LIBRARY[LANG] || '';
+      return LIBRARY[LANG] || "";
     },
     setLanguage(language = CONSTANTS.VALUE.LANGUAGE_KOREAN) {
       if (this.lang !== language) {
-        this.$store.dispatch('app/setLanguage', language)
-            .then(() => {
-                this.$i18n.locale = language;
+        this.$store
+          .dispatch("app/setLanguage", language)
+          .then(() => {
+            this.$i18n.locale = language;
 
-                Toast.success(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_SUCCESS'));
-            })
-            .catch(() => {
-                Toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
-            })
+            Toast.success(this.$t("TOAST_MESSAGE.CHANGE_LANGUAGE_SUCCESS"));
+          })
+          .catch(() => {
+            Toast.warning(this.$t("TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR"));
+          });
       }
     },
     onClickProfile() {
-      if (this.$router.currentRoute.name !== 'ProfilePage') {
-        this.$router.push({ name: 'ProfilePage' });
+      if (this.$router.currentRoute.name !== "ProfilePage") {
+        this.$router.push({ name: "ProfilePage" });
       }
     },
     handleLogout() {
-      this.$store.dispatch('auth/logout')
+      this.$store
+        .dispatch("auth/logout")
         .then(() => {
-          this.$router.push({ name: 'HomeShopCar' });
+          this.$router.push({ name: "HomeShopCar" });
         })
         .catch(() => {
-          Toast.warning(this.$t('TOAST_MESSAGE.LOGOUT_ERROR'))
-        })
-    }
+          Toast.warning(this.$t("TOAST_MESSAGE.LOGOUT_ERROR"));
+        });
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables.scss';
+@import "@/scss/variables.scss";
 
 .navbar-dashboard {
   background-color: $white;

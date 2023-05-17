@@ -1,66 +1,63 @@
 <template>
-  <div 
-    class="card-feedback"
-    @click="goToDetail()"
-  >
-      <div class="card-feedback__img">
-        <b-img-lazy 
-          :src="`${domainImage}${image}`"
-          :blank-src="require('@/assets/images/noimage.webp')" 
-          fluid 
-          alt="Customer Feedback Image"
-          v-bind="{
-            height: mapImageHeight(typeScreen),
-            width: 'auto'
-          }"
-          :style="`height: ${mapImageHeight(typeScreen)}px`"
-        />
+  <div class="card-feedback" @click="goToDetail()">
+    <div class="card-feedback__img">
+      <b-img-lazy
+        :src="`${domainImage}${image}`"
+        :blank-src="require('@/assets/images/noimage.webp')"
+        fluid
+        alt="Customer Feedback Image"
+        v-bind="{
+          height: mapImageHeight(typeScreen),
+          width: 'auto',
+        }"
+        :style="`height: ${mapImageHeight(typeScreen)}px`"
+      />
+    </div>
+
+    <div class="card-feedback__desc">
+      <div class="desc-writer">
+        {{ writer }}
       </div>
 
-      <div class="card-feedback__desc">
-        <div class="desc-writer">
-          {{ writer }}
-        </div>
-
-        <div class="desc-rate">
-          <i class="fas fa-star" />
-          <i class="fas fa-star" />
-          <i class="fas fa-star" />
-          <i class="fas fa-star" />
-          <i class="fas fa-star" />
-        </div>
-
-        <div class="desc-text">
-          {{ feedback }}
-        </div>
+      <div class="desc-rate">
+        <i class="fas fa-star" />
+        <i class="fas fa-star" />
+        <i class="fas fa-star" />
+        <i class="fas fa-star" />
+        <i class="fas fa-star" />
       </div>
+
+      <div class="desc-text">
+        {{ feedback }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CardFeedback',
+  name: "CardFeedback",
   props: {
     id: {
       type: String,
       required: true,
-      default: '',
+      default: "",
     },
     image: {
       type: String,
       required: true,
-      default: '',
+      default: "",
     },
     writer: {
       type: String,
       required: true,
-      default: '',
+      default: "",
     },
     feedback: {
       type: String,
       required: true,
-      default: '',
-    }
+      default: "",
+    },
   },
   computed: {
     domainImage() {
@@ -68,11 +65,11 @@ export default {
     },
     typeScreen() {
       return this.$store.getters.sizeScreen.type;
-    }
+    },
   },
   methods: {
     goToDetail() {
-      this.$router.push({ name: 'DetailHappyMoment', params: { id: this.id }});
+      this.$router.push({ name: "DetailHappyMoment", params: { id: this.id } });
     },
     mapImageHeight(size) {
       const MAP_SIZE = {
@@ -84,13 +81,13 @@ export default {
       };
 
       return MAP_SIZE[size];
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables';
+@import "@/scss/variables";
 
 .card-feedback {
   cursor: pointer;
@@ -100,7 +97,7 @@ export default {
 
   &__img {
     text-align: center;
-    
+
     img {
       width: 100%;
       object-fit: cover;

@@ -1,20 +1,20 @@
 <template>
   <div class="card-car mb-2 mb-md-2" @click="onClickCardCar(carId)">
     <div class="card-car__img">
-      <b-img-lazy 
+      <b-img-lazy
         :src="`${domainImage}${carImage}`"
         :blank-src="require('@/assets/images/noimage.webp')"
-        fluid 
+        fluid
         :alt="carName"
         v-bind="{
           height: mapImageHeight(typeScreen),
-          width: 'auto'
+          width: 'auto',
         }"
         :style="`height: ${mapImageHeight(typeScreen)}px`"
       />
       <span class="card-car__hotsale" v-if="hotsale">
         <i class="fad fa-fire-alt" />
-        {{ $t('APP.HOT_SALE') }}
+        {{ $t("APP.HOT_SALE") }}
       </span>
     </div>
     <div class="card-car__desc">
@@ -23,31 +23,30 @@
       </div>
 
       <div class="date-sale">
-        {{ dateSale }} - {{ gearbox }} - {{ fuelType }} - {{ color }} - {{ distanceDriven.toLocaleString() }} km
+        {{ dateSale }} - {{ gearbox }} - {{ fuelType }} - {{ color }} -
+        {{ distanceDriven.toLocaleString() }} km
       </div>
 
-      <div class="car-price">
-        {{ formatPrice(carPrice) }} <span>만원</span>
-      </div>
+      <div class="car-price">{{ formatPrice(carPrice) }} <span>만원</span></div>
     </div>
   </div>
 </template>
 
 <script>
-import { formatPrice } from '@/utils/helper';
+import { formatPrice } from "@/utils/helper";
 
 export default {
-  name: 'CardCarHome',
+  name: "CardCarHome",
   props: {
     carId: {
       type: String,
       required: true,
-      default: '',
+      default: "",
     },
     carImage: {
       type: String,
       required: true,
-      default: '',
+      default: "",
     },
     hotsale: {
       type: Boolean,
@@ -56,22 +55,22 @@ export default {
     carName: {
       type: String,
       required: true,
-      default: '',
+      default: "",
     },
     dateSale: {
       type: String,
       required: true,
-      default: '',
+      default: "",
     },
     category: {
       type: String,
       required: true,
-      default: '',
+      default: "",
     },
     color: {
       type: String,
       required: true,
-      default: '',
+      default: "",
     },
     distanceDriven: {
       type: Number,
@@ -86,13 +85,13 @@ export default {
     fuelType: {
       type: String,
       required: true,
-      default: '',
+      default: "",
     },
     gearbox: {
       type: String,
       required: true,
-      default: '',
-    }
+      default: "",
+    },
   },
   computed: {
     domainImage() {
@@ -102,14 +101,14 @@ export default {
       return this.$store.getters.sizeScreen.type;
     },
   },
-  created () {
+  created() {
     this.mapImageHeight();
   },
   methods: {
     formatPrice,
     onClickCardCar(id) {
       if (id) {
-        let route = this.$router.resolve({ name: 'DetailCar', params: { id }});
+        let route = this.$router.resolve({ name: "DetailCar", params: { id } });
 
         window.open(route.href);
       }
@@ -124,13 +123,13 @@ export default {
       };
 
       return MAP_SIZE[size];
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables';
+@import "@/scss/variables";
 
 .card-car {
   cursor: pointer;
@@ -187,7 +186,7 @@ export default {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     text-align: left;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: "Noto Sans KR", sans-serif;
 
     .car-name {
       font-weight: 500;

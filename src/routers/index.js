@@ -1,43 +1,44 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Vue from "vue";
+import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
-import Login from './modules/Login';
-import ShopCar from './modules/ShopCar';
-import Dashboard from './modules/Dashboard';
+import Login from "./modules/Login";
+import ShopCar from "./modules/ShopCar";
+import Dashboard from "./modules/Dashboard";
 
 export const constantRoutes = [
   {
-    path: '/',
+    path: "/",
     redirect: {
-      name: 'HomeShopCar'
-    }
+      name: "HomeShopCar",
+    },
   },
   Login,
-  ShopCar
+  ShopCar,
 ];
 
 export const asyncRoutes = [
   Dashboard,
   {
-    path: '*',
-    redirect: { name: 'HomeShopCar' },
+    path: "*",
+    redirect: { name: "HomeShopCar" },
     hidden: true,
   },
 ];
 
-const createRouter = () => new VueRouter({
-  mode: 'history',
-  scrollBehavior: () => ({ x: 0, y: 0 }),
-  routes: constantRoutes,
-});
+const createRouter = () =>
+  new VueRouter({
+    mode: "history",
+    scrollBehavior: () => ({ x: 0, y: 0 }),
+    routes: constantRoutes,
+  });
 
 const router = createRouter();
 
 export function resetRouter() {
-	const newRouter = createRouter();
-	router.matcher = newRouter.matcher;
+  const newRouter = createRouter();
+  router.matcher = newRouter.matcher;
 }
 
 export default router;

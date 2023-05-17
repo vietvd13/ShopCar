@@ -1,42 +1,57 @@
 <template>
   <b-card>
     <div class="preview-image">
-      <BasicInforCar
-        v-if="name"
-        :name="name"
-      />
+      <BasicInforCar v-if="name" :name="name" />
 
       <b-row>
-        <b-col
-          cols="12"
-          xs="12"
-          sm="12"
-          md="12"
-          lg="6"
-        >
+        <b-col cols="12" xs="12" sm="12" md="12" lg="6">
           <div
             class="display-image-preview mb-xs-2 mb-sm-2 mb-lg-0"
             :style="`height: ${handleSizePreview()}px;`"
           >
-            <b-img-lazy
-              :src="`${domainImage}${imagePreview}`"
-              :blank-src="require('@/assets/images/noimage.webp')"
-              fluid
-              :alt="imagePreview"
-              v-bind="{
-                height: 400,
-                width: 'auto'
-              }"
-            />
+            <b-row>
+              <b-col
+                cols="1"
+                xs="1"
+                sm="1"
+                md="1"
+                lg="1"
+                class="center-top-bottom"
+                style="padding-right: 0"
+              >
+                <i
+                  class="fas fa-chevron-left"
+                  @click="onClickControlImage(-1)"
+                />
+              </b-col>
+
+              <b-col cols="10" xs="10" sm="10" md="10" lg="10">
+                <b-img-lazy
+                  :src="`${domainImage}${imagePreview}`"
+                  :blank-src="require('@/assets/images/noimage.webp')"
+                  fluid
+                  :alt="imagePreview"
+                />
+              </b-col>
+
+              <b-col
+                cols="1"
+                xs="1"
+                sm="1"
+                md="1"
+                lg="1"
+                class="center-top-bottom"
+                style="padding-left: 0"
+              >
+                <i
+                  class="fas fa-chevron-right center-top-bottom"
+                  @click="onClickControlImage(1)"
+                />
+              </b-col>
+            </b-row>
           </div>
         </b-col>
-        <b-col
-          cols="12"
-          xs="12"
-          sm="12"
-          md="12"
-          lg="6"
-        >
+        <b-col cols="12" xs="12" sm="12" md="12" lg="6">
           <div class="card-list-image">
             <div class="list-image">
               <div
@@ -49,10 +64,6 @@
                   fluid
                   :src="`${domainImage}${image}`"
                   :blank-src="require('@/assets/images/noimage.webp')"
-                  v-bind="{
-                    height: 120,
-                    width: 'auto'
-                  }"
                 />
               </div>
             </div>
@@ -64,10 +75,10 @@
 </template>
 
 <script>
-import BasicInforCar from './BasicInforCar.vue';
+import BasicInforCar from "./BasicInforCar.vue";
 
 export default {
-  name: 'PreviewImage',
+  name: "PreviewImage",
   components: {
     BasicInforCar,
   },
@@ -75,32 +86,33 @@ export default {
     name: {
       type: String,
       required: false,
-      default: ''
+      default: "",
     },
     images: {
       type: Array,
       required: true,
-      default: function() {
-        return []
+      default: function () {
+        return [];
       },
     },
   },
   computed: {
     domainImage() {
       return process.env.VUE_APP_URL_IMAGE;
-    }
+    },
   },
   data() {
     return {
-      imagePreview: '',
-    }
+      idxImage: 0,
+      imagePreview: "",
+    };
   },
   watch: {
     images() {
       this.handleStartPreview();
-    }
+    },
   },
-  created () {
+  created() {
     this.handleStartPreview();
   },
   methods: {
@@ -114,29 +126,44 @@ export default {
         this.imagePreview = image;
       }
     },
+    onClickControlImage(type = 1) {
+      if ([-1, 1].includes(type)) {
+        if (type === -1 && this.idxImage > 0) {
+          this.idxImage = this.idxImage - 1;
+          this.onClickChangeImage(this.images[this.idxImage]);
+        }
+
+        if (type === 1 && this.idxImage < this.images.length) {
+          this.idxImage = this.idxImage + 1;
+          this.onClickChangeImage(this.images[this.idxImage]);
+        }
+      }
+    },
     handleSizePreview() {
       const SIZE = this.$store.getters.sizeScreen.type;
       const MAP_SIZE = {
-        xl: 400,
-        lg: 400,
-        md: 400,
-        sm: 400,
+        xl: 323,
+        lg: 323,
+        md: 323,
+        sm: 323,
         xs: 280,
       };
 
       return MAP_SIZE[SIZE];
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables';
+@import "@/scss/variables";
 
 .preview-image {
+  overflow: hidden;
+
   .basic-infor-car {
     margin-bottom: 10px;
-  
+
     .car-name {
       font-weight: bold;
       font-size: 25px;
@@ -155,6 +182,7 @@ export default {
   .display-image-preview {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   .card-list-image {
@@ -164,7 +192,7 @@ export default {
       align-items: center;
       flex-wrap: wrap;
       overflow-y: scroll;
-      height: 400px;
+      height: 323px;
       width: 100%;
 
       .item-image {
@@ -178,6 +206,24 @@ export default {
         }
       }
     }
+  }
+}
+
+.img-fluid {
+  width: 100% !important;
+  height: unset !important;
+  max-height: 323px;
+}
+
+.center-top-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    font-size: 30px;
+    color: $international-orange;
+    cursor: pointer;
   }
 }
 </style>

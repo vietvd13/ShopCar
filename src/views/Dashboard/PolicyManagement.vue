@@ -27,41 +27,49 @@
 
     <b-row>
       <b-col class="text-center mt-2 mb-2">
-        <b-button block variant="primary" class="btn-app" @click="handleShowModal">
+        <b-button
+          block
+          variant="primary"
+          class="btn-app"
+          @click="handleShowModal"
+        >
           {{ $t("APP.BUTTON_UPDATE") }}
         </b-button>
       </b-col>
     </b-row>
 
     <div class="policy-page__modal">
-      <b-modal 
-        v-model="isModal.show" 
-        no-close-on-backdrop 
-        no-close-on-esc 
-        hide-header-close 
-        static 
+      <b-modal
+        v-model="isModal.show"
+        no-close-on-backdrop
+        no-close-on-esc
+        hide-header-close
+        static
         scrollable
         :title="$t('ROUTER.POLICY_MANAGEMENT')"
       >
         <label for="file">
-          {{ $t('APP.DROP_FILE') }}
+          {{ $t("APP.DROP_FILE") }}
         </label>
 
-        <b-form-file 
-          id="file" 
-          v-model="init_file" 
+        <b-form-file
+          id="file"
+          v-model="init_file"
           accept="image/*"
           :placeholder="$t('APP.DROP_FILE')"
           :drop-placeholder="$t('APP.DROP_FILE')"
           :browse-text="$t('APP.DROP_FILE')"
-          type="file" 
+          type="file"
           multiple
         />
 
         <template #modal-footer>
           <b-row align-v="baseline">
             <b-col cols="6" class="text-center">
-              <b-button class="btn-default btn-cancel" @click="hanldeCloseModal">
+              <b-button
+                class="btn-default btn-cancel"
+                @click="hanldeCloseModal"
+              >
                 {{ $t("APP.CANCEL") }}
               </b-button>
             </b-col>
@@ -155,9 +163,9 @@ export default {
 
         for (let image = 0; image < this.init_file.length; image++) {
           result.push({
-            type_import: 'new',
-            url: this.init_file[image]
-          })
+            type_import: "new",
+            url: this.init_file[image],
+          });
         }
 
         const response = await postImages(result);
@@ -195,14 +203,13 @@ export default {
 @import "@/scss/variables.scss";
 
 .policy-page {
-
   &__header,
   &__content {
     margin-bottom: 10px;
   }
 
   &__header {
-    button+button {
+    button + button {
       margin-left: 10px;
     }
   }

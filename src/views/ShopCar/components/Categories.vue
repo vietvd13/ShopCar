@@ -1,10 +1,15 @@
 <template>
   <b-card>
     <b-row>
-      <b-col 
-        v-for="(cate, idx) in ListCategories" 
-        :key="idx" 
-        cols="12" xs="12" sm="12" md="6" lg="3" xl="3"
+      <b-col
+        v-for="(cate, idx) in ListCategories"
+        :key="idx"
+        cols="12"
+        xs="12"
+        sm="12"
+        md="6"
+        lg="3"
+        xl="3"
       >
         <div class="card-categories" @click="goToRoute(cate.route)">
           <span>{{ $t(cate.text) }}</span>
@@ -15,34 +20,33 @@
 </template>
 
 <script>
-
 export default {
-  name: 'CategoriesHome',
+  name: "CategoriesHome",
   data() {
     return {
       ListCategories: [
         {
-          value: 'DOMESTIC_CAR',
-          text: 'SHOP_CAR.HOME.CATEGORIES.DOMESTIC_CAR',
-          route: '',
+          value: "DOMESTIC_CAR",
+          text: "SHOP_CAR.HOME.CATEGORIES.DOMESTIC_CAR",
+          route: "",
         },
         {
-          value: 'IMPORTED_CAR',
-          text: 'SHOP_CAR.HOME.CATEGORIES.IMPORTED_CAR',
-          route: '',
+          value: "IMPORTED_CAR",
+          text: "SHOP_CAR.HOME.CATEGORIES.IMPORTED_CAR",
+          route: "",
         },
         {
-          value: 'CUSTOMER_REVIEWS',
-          text: 'SHOP_CAR.HOME.CATEGORIES.CUSTOMER_REVIEWS',
-          route: '',
+          value: "CUSTOMER_REVIEWS",
+          text: "SHOP_CAR.HOME.CATEGORIES.CUSTOMER_REVIEWS",
+          route: "",
         },
         {
-          value: 'VEHICLE_LIST',
-          text: 'SHOP_CAR.HOME.CATEGORIES.VEHICLE_LIST',
-          route: 'ListCar'
-        }
-      ]
-    }
+          value: "VEHICLE_LIST",
+          text: "SHOP_CAR.HOME.CATEGORIES.VEHICLE_LIST",
+          route: "ListCar",
+        },
+      ],
+    };
   },
   methods: {
     goToRoute(name) {
@@ -53,13 +57,13 @@ export default {
           this.$router.push({ name });
         }
       }
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/variables';
+@import "../../../scss/variables";
 
 .card-categories {
   background-color: $international-orange;
