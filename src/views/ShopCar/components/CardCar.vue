@@ -23,7 +23,7 @@
       </div>
 
       <div class="date-sale">
-        {{ dateSale }} - {{ category }} - {{ fuelType }} - {{ color }} - {{ distanceDriven.toLocaleString() }} km
+        {{ dateSale }} - {{ gearbox }} - {{ fuelType }} - {{ color }} - {{ distanceDriven.toLocaleString() }} km
       </div>
 
       <div class="car-price">
@@ -84,6 +84,11 @@ export default {
       default: 0,
     },
     fuelType: {
+      type: String,
+      required: true,
+      default: '',
+    },
+    gearbox: {
       type: String,
       required: true,
       default: '',

@@ -22,6 +22,7 @@
           :distance-driven="car.distance_driven"
           :car-price="car.price_display"
           :fuelType="car.fuel_type"
+          :gearbox="car.gear_box"
         />
       </b-col>
     </template>
