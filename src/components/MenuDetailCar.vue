@@ -17,7 +17,7 @@
             }" 
             @click="onScrollTo('tab-car-options')"
         >
-            {{ $t('SHOP_CAR.DETAIL_CAR.TITLE_VEHICLE_OPTIONS_AND_DETAILS') }}
+            <span v-html="$t('SHOP_CAR.DETAIL_CAR.TITLE_VEHICLE_OPTIONS_AND_DETAILS')" />
         </div>
 
         <div             

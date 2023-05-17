@@ -18,16 +18,24 @@
             class="display-image-preview mb-xs-2 mb-sm-2 mb-lg-0"
             :style="`height: ${handleSizePreview()}px;`"
           >
-            <b-img-lazy
-              :src="`${domainImage}${imagePreview}`"
-              :blank-src="require('@/assets/images/noimage.webp')"
-              fluid
-              :alt="imagePreview"
-              v-bind="{
-                height: 400,
-                width: 'auto'
-              }"
-            />
+            <b-row>
+              <b-col cols="1" xs="1" sm="1" md="1" lg="1" class="center-top-bottom" style="padding-right: 0;">
+                <i class="fas fa-chevron-left" @click="onClickControlImage(-1)" />
+              </b-col>
+
+              <b-col cols="10" xs="10" sm="10" md="10" lg="10">
+                <b-img-lazy
+                  :src="`${domainImage}${imagePreview}`"
+                  :blank-src="require('@/assets/images/noimage.webp')"
+                  fluid
+                  :alt="imagePreview"
+                />
+              </b-col>
+
+              <b-col cols="1" xs="1" sm="1" md="1" lg="1" class="center-top-bottom" style="padding-left: 0;">
+                <i class="fas fa-chevron-right center-top-bottom" @click="onClickControlImage(1)" />
+              </b-col>
+            </b-row>
           </div>
         </b-col>
         <b-col
@@ -49,10 +57,6 @@
                   fluid
                   :src="`${domainImage}${image}`"
                   :blank-src="require('@/assets/images/noimage.webp')"
-                  v-bind="{
-                    height: 120,
-                    width: 'auto'
-                  }"
                 />
               </div>
             </div>
@@ -92,6 +96,7 @@ export default {
   },
   data() {
     return {
+      idxImage: 0,
       imagePreview: '',
     }
   },
@@ -114,13 +119,26 @@ export default {
         this.imagePreview = image;
       }
     },
+    onClickControlImage(type = 1) {
+      if ([-1, 1].includes(type)) {
+        if (type === -1 && this.idxImage > 0) {
+          this.idxImage = this.idxImage - 1;
+          this.onClickChangeImage(this.images[this.idxImage]);
+        }
+
+        if (type === 1 && this.idxImage < this.images.length) {
+          this.idxImage = this.idxImage + 1;
+          this.onClickChangeImage(this.images[this.idxImage]);
+        }
+      }
+    },
     handleSizePreview() {
       const SIZE = this.$store.getters.sizeScreen.type;
       const MAP_SIZE = {
-        xl: 400,
-        lg: 400,
-        md: 400,
-        sm: 400,
+        xl: 323,
+        lg: 323,
+        md: 323,
+        sm: 323,
         xs: 280,
       };
 
@@ -134,6 +152,8 @@ export default {
 @import '@/scss/variables';
 
 .preview-image {
+  overflow: hidden;
+
   .basic-infor-car {
     margin-bottom: 10px;
   
@@ -155,6 +175,7 @@ export default {
   .display-image-preview {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   .card-list-image {
@@ -164,7 +185,7 @@ export default {
       align-items: center;
       flex-wrap: wrap;
       overflow-y: scroll;
-      height: 400px;
+      height: 323px;
       width: 100%;
 
       .item-image {
@@ -178,6 +199,24 @@ export default {
         }
       }
     }
+  }
+}
+
+.img-fluid {
+  width: 100% !important;
+  height: unset !important;
+  max-height: 323px;
+}
+
+.center-top-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    font-size: 30px;
+    color: $international-orange;
+    cursor: pointer;
   }
 }
 </style>

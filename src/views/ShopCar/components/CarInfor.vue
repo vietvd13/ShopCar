@@ -10,11 +10,10 @@
                     <b-row>
                         <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="7">
                             <b-table-simple
-                                bordered
                                 no-border-collapse
                             >
                                 <b-tbody>
-                                    <b-tr>
+                                    <!-- <b-tr>
                                         <b-td class="title-car-infor">
                                             {{ $t('SHOP_CAR.DETAIL_CAR.PRICE') }}
                                         </b-td>
@@ -105,13 +104,66 @@
                                         <b-td>
                                             {{ storageLocation }}
                                         </b-td>
+                                    </b-tr> -->
+
+                                    <b-tr>
+                                        <b-td class="title-car-infor">
+                                            {{ $t('SHOP_CAR.DETAIL_CAR.PRICE') }}
+                                        </b-td>
+                                        <b-td colspan="3" class="td-price">
+                                            <span>{{ formatPrice(price) }}</span> 만원
+                                        </b-td>
+                                    </b-tr>
+
+                                    <b-tr>
+                                        <b-td class="title-car-infor">
+                                            {{ $t('SHOP_CAR.DETAIL_CAR.YEAR') }}
+                                        </b-td>
+                                        <b-td>
+                                            {{ year }}
+                                        </b-td>
+                                        <b-td class="title-car-infor">
+                                            {{ $t('SHOP_CAR.DETAIL_CAR.COLOR') }}
+                                        </b-td>
+                                        <b-td>
+                                            {{ color }}
+                                        </b-td>
+                                    </b-tr>
+
+                                    <b-tr>
+                                        <b-td class="title-car-infor">
+                                            {{ $t('SHOP_CAR.DETAIL_CAR.FUEL_TYPE') }}
+                                        </b-td>
+                                        <b-td>
+                                            {{ fuelType }}
+                                        </b-td>
+                                        <b-td class="title-car-infor">
+                                            {{ $t('SHOP_CAR.DETAIL_CAR.DISTANCE_DRIVEN') }}
+                                        </b-td>
+                                        <b-td>
+                                            {{ distanceDriven }} {{ distanceDriven ? "km" : "" }}
+                                        </b-td>
+                                    </b-tr>
+
+                                    <b-tr>
+                                        <b-td class="title-car-infor">
+                                            {{ $t('SHOP_CAR.DETAIL_CAR.LICENSE_PLATE') }}
+                                        </b-td>
+                                        <b-td>
+                                            {{ licensePlate }}
+                                        </b-td>
+                                        <b-td class="title-car-infor">
+                                            {{ $t('SHOP_CAR.DETAIL_CAR.TRANSMISSION') }}
+                                        </b-td>
+                                        <b-td>
+                                            {{ gearbox }}
+                                        </b-td>
                                     </b-tr>
                                 </b-tbody>
                             </b-table-simple>
                         </b-col>
                         <b-col cols="12" xs="12" sm="12" md="12" lg="12" xl="5">
                             <b-table-simple
-                                bordered
                                 no-border-collapse
                             >
                                 <b-tbody>
@@ -270,38 +322,31 @@ export default {
     margin-bottom: 10px;
 
     .title-content {
-        font-size: 22px;
         font-weight: 600;
+        font-size: 22px;
     }
 
     .title-car-infor {
-        font-weight: 600;
-        background-color: $concrete;
-        color: $mine-shaft;
-        text-align: center;
-        vertical-align: middle;
+        color: $dusty-gray;
+        text-align: left;
 
         width: 110px;
+
+        padding: 15px 0;
+        font-weight: bold;
     }
 
     td {
-        font-weight: 500;
-        vertical-align: middle;
-        padding: 10px;
-        height: 80px;
+        padding: 15px 0;
+        border: none;
+        color: $black;
     }
 
     .td-price {
         span {
-            font-size: 25px;
             font-weight: bold;
             color: $alizarin-crimson;
         }
-    }
-
-    .td-contact {
-        font-size: 25px;
-        font-weight: bold;
     }
 }
 </style>

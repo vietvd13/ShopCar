@@ -149,17 +149,17 @@ export default {
           }
         }
 
-        if (FILTER.from_year && FILTER.to_year) {
+        if (FILTER.from_year || FILTER.to_year) {
           BODY.filter.from_year = FILTER.from_year;
           BODY.filter.to_year = FILTER.to_year;
         }
 
-        if (FILTER.from_price && FILTER.to_price) {
+        if (FILTER.from_price || FILTER.to_price) {
           BODY.filter.from_price = FILTER.from_price;
           BODY.filter.to_price = FILTER.to_price;
         }
 
-        if (FILTER.from_distance && FILTER.to_distance) {
+        if (FILTER.from_distance || FILTER.to_distance) {
           BODY.filter.from_distance = FILTER.from_distance;
           BODY.filter.to_distance = FILTER.to_distance;
         }
