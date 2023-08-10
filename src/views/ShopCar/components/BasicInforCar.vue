@@ -12,19 +12,19 @@
 
 <script>
 export default {
-  name: 'BasicInforCar',
+  name: "BasicInforCar",
   props: {
     name: {
       type: String,
       required: true,
-      default: ''
+      default: "",
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables';
+@import "@/scss/variables";
 
 .basic-infor-car {
   margin-bottom: 10px;

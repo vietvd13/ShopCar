@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
-import AppMain from './components/AppMain';
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import AppMain from "./components/AppMain";
 export default {
-  name: 'LayoutDashboard',
+  name: "LayoutDashboard",
   components: {
     Navbar,
     Sidebar,
@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      toggle: '',
+      toggle: "",
       toggleBool: false,
     };
   },
@@ -31,9 +31,9 @@ export default {
     toggleMenu() {
       this.toggleBool = !this.toggleBool;
       if (this.toggleBool === true) {
-        this.toggle = 'toggled';
+        this.toggle = "toggled";
       } else {
-        this.toggle = '';
+        this.toggle = "";
       }
     },
   },
@@ -41,8 +41,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/scss/variables';
-@import '@/scss/layout';
+@import "@/scss/variables";
+@import "@/scss/layout";
 
 #wrapper {
   #page-content-wrapper {

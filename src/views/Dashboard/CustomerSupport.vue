@@ -3,7 +3,9 @@
     <div class="customer-support-page__filter">
       <b-row>
         <b-col cols="12" xs="12" sm="12" md="6" lg="5" xl="4">
-          <label for="input-search">{{ $t('DASHBOARD.HAPPY_MOMENT.SEARCH') }}</label>
+          <label for="input-search">{{
+            $t("DASHBOARD.HAPPY_MOMENT.SEARCH")
+          }}</label>
           <b-form-input
             id="input-search"
             v-model="searchTable"
@@ -15,7 +17,7 @@
 
     <div class="customer-support-page__content">
       <b-table
-        :items="items" 
+        :items="items"
         :fields="headerTable"
         bordered
         show-empty
@@ -29,12 +31,26 @@
         </template>
 
         <template #cell(is_process)="is_process">
-          <template v-if="is_process.item.is_process === CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_IN_PROGRESS">
-            <b-badge variant="warning">{{ $t('DASHBOARD.CUSTOMER_SUPPORT.TABLE.IN_PROGRESS') }}</b-badge>
+          <template
+            v-if="
+              is_process.item.is_process ===
+              CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_IN_PROGRESS
+            "
+          >
+            <b-badge variant="warning">{{
+              $t("DASHBOARD.CUSTOMER_SUPPORT.TABLE.IN_PROGRESS")
+            }}</b-badge>
           </template>
 
-          <template v-if="is_process.item.is_process === CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_DONE">
-            <b-badge variant="success">{{ $t('DASHBOARD.CUSTOMER_SUPPORT.TABLE.DONE') }}</b-badge>
+          <template
+            v-if="
+              is_process.item.is_process ===
+              CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_DONE
+            "
+          >
+            <b-badge variant="success">{{
+              $t("DASHBOARD.CUSTOMER_SUPPORT.TABLE.DONE")
+            }}</b-badge>
           </template>
         </template>
 
@@ -43,13 +59,13 @@
             variant="warning"
             @click="handleDetailCustomerSupport(action.item)"
           >
-            {{ $t('DASHBOARD.CUSTOMER_SUPPORT.TABLE.DETAIL') }}
+            {{ $t("DASHBOARD.CUSTOMER_SUPPORT.TABLE.DETAIL") }}
           </b-button>
         </template>
 
         <template #empty>
           <div class="text-center">
-            {{ $t('APP.TABLE_NO_DATA') }}
+            {{ $t("APP.TABLE_NO_DATA") }}
           </div>
         </template>
       </b-table>
@@ -58,8 +74,8 @@
     <div class="customer-support-page__pagination">
       <b-row>
         <b-col>
-          <b-form-select 
-            v-model="pagination.per_page" 
+          <b-form-select
+            v-model="pagination.per_page"
             size="sm"
             @change="onChangePerPage"
             class="select-per-page"
@@ -93,57 +109,84 @@
       footer-class="modal-footer-customer-support"
     >
       <div class="item-form">
-        <p class="label-form">{{ $t('DASHBOARD.CUSTOMER_SUPPORT.TABLE.NAME') }}:</p>
+        <p class="label-form">
+          {{ $t("DASHBOARD.CUSTOMER_SUPPORT.TABLE.NAME") }}:
+        </p>
         <p>{{ isModal.name }}</p>
       </div>
 
       <div class="item-form">
-        <p class="label-form">{{ $t('DASHBOARD.CUSTOMER_SUPPORT.TABLE.PHONE') }}:</p>
+        <p class="label-form">
+          {{ $t("DASHBOARD.CUSTOMER_SUPPORT.TABLE.PHONE") }}:
+        </p>
         <p>{{ isModal.phone }}</p>
       </div>
 
       <div class="item-form">
-        <p class="label-form">{{ $t('DASHBOARD.CUSTOMER_SUPPORT.TABLE.STATUS') }}</p>
-        <template v-if="isModal.status === CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_IN_PROGRESS">
-          <b-badge variant="warning">{{ $t('DASHBOARD.CUSTOMER_SUPPORT.TABLE.IN_PROGRESS') }}</b-badge>
+        <p class="label-form">
+          {{ $t("DASHBOARD.CUSTOMER_SUPPORT.TABLE.STATUS") }}
+        </p>
+        <template
+          v-if="
+            isModal.status ===
+            CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_IN_PROGRESS
+          "
+        >
+          <b-badge variant="warning">{{
+            $t("DASHBOARD.CUSTOMER_SUPPORT.TABLE.IN_PROGRESS")
+          }}</b-badge>
         </template>
 
-        <template v-if="isModal.status === CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_DONE">
-          <b-badge variant="success">{{ $t('DASHBOARD.CUSTOMER_SUPPORT.TABLE.DONE') }}</b-badge>
+        <template
+          v-if="isModal.status === CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_DONE"
+        >
+          <b-badge variant="success">{{
+            $t("DASHBOARD.CUSTOMER_SUPPORT.TABLE.DONE")
+          }}</b-badge>
         </template>
       </div>
 
       <div class="item-form">
-        <p class="label-form">{{ $t('DASHBOARD.CUSTOMER_SUPPORT.TABLE.QUESTION') }}:</p>
+        <p class="label-form">
+          {{ $t("DASHBOARD.CUSTOMER_SUPPORT.TABLE.QUESTION") }}:
+        </p>
         <p>{{ isModal.content }}</p>
       </div>
 
       <template #modal-footer>
         <b-row align-v="baseline">
           <b-col cols="6" class="text-center">
-            <b-button 
-              class="btn-default btn-cancel"
-              @click="onClickCloseModal"
-            >
-              {{ $t('APP.CANCEL') }}
+            <b-button class="btn-default btn-cancel" @click="onClickCloseModal">
+              {{ $t("APP.CANCEL") }}
             </b-button>
           </b-col>
 
           <b-col cols="6" class="text-center">
-            <b-button 
+            <b-button
               class="btn-default btn-app"
-              @click="onClickSaveModal(CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_DONE)"
-              v-if="isModal.status === CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_IN_PROGRESS"
+              @click="
+                onClickSaveModal(CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_DONE)
+              "
+              v-if="
+                isModal.status ===
+                CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_IN_PROGRESS
+              "
             >
-              {{ $t('APP.UPDATE_STATUS_DONE') }}
+              {{ $t("APP.UPDATE_STATUS_DONE") }}
             </b-button>
 
-            <b-button 
+            <b-button
               class="btn-default btn-app"
-              @click="onClickSaveModal(CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_IN_PROGRESS)"
-              v-if="isModal.status === CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_DONE"
+              @click="
+                onClickSaveModal(
+                  CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_IN_PROGRESS
+                )
+              "
+              v-if="
+                isModal.status === CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_DONE
+              "
             >
-              {{ $t('APP.UPDATE_STATUS_IN_PROGRESS') }}
+              {{ $t("APP.UPDATE_STATUS_IN_PROGRESS") }}
             </b-button>
           </b-col>
         </b-row>
@@ -153,53 +196,87 @@
 </template>
 
 <script>
-import { setLoading } from '@/utils/setLoading';
-import { 
+import { setLoading } from "@/utils/setLoading";
+import {
   getListCustomerSupport,
-  postEditCustomerSupport 
-} from '@/api/modules/Dashboard';
-import CONSTANTS from '@/constants';
-import Toast from '@/toast';
+  postEditCustomerSupport,
+} from "@/api/modules/Dashboard";
+import CONSTANTS from "@/constants";
+import Toast from "@/toast";
 
 export default {
-  name: 'CustomerSupport',
+  name: "CustomerSupport",
   computed: {
     headerTable() {
       return [
-        { key: 'no', label: this.$t('DASHBOARD.CUSTOMER_SUPPORT.TABLE.NO'), thClass: 'text-center', tdClass: 'text-center' },
-        { key: 'name', label: this.$t('DASHBOARD.CUSTOMER_SUPPORT.TABLE.NAME'), sortable: true, thClass: 'text-center', tdClass: 'text-center' },
-        { key: 'phone', label: this.$t('DASHBOARD.CUSTOMER_SUPPORT.TABLE.PHONE'), sortable: true,thClass: 'text-center', tdClass: 'text-center' },
-        { key: 'content', label: this.$t('DASHBOARD.CUSTOMER_SUPPORT.TABLE.QUESTION'), sortable: true, thClass: 'text-center', tdClass: 'text-center' },
-        { key: 'is_process', label: this.$t('DASHBOARD.CUSTOMER_SUPPORT.TABLE.STATUS'), sortable: true, thClass: 'text-center', tdClass: 'text-center' },
-        { key: 'action', label: this.$t('DASHBOARD.CUSTOMER_SUPPORT.TABLE.ACTION'), thClass: 'text-center', tdClass: 'text-center' },
-      ]
+        {
+          key: "no",
+          label: this.$t("DASHBOARD.CUSTOMER_SUPPORT.TABLE.NO"),
+          thClass: "text-center",
+          tdClass: "text-center",
+        },
+        {
+          key: "name",
+          label: this.$t("DASHBOARD.CUSTOMER_SUPPORT.TABLE.NAME"),
+          sortable: true,
+          thClass: "text-center",
+          tdClass: "text-center",
+        },
+        {
+          key: "phone",
+          label: this.$t("DASHBOARD.CUSTOMER_SUPPORT.TABLE.PHONE"),
+          sortable: true,
+          thClass: "text-center",
+          tdClass: "text-center",
+        },
+        {
+          key: "content",
+          label: this.$t("DASHBOARD.CUSTOMER_SUPPORT.TABLE.QUESTION"),
+          sortable: true,
+          thClass: "text-center",
+          tdClass: "text-center",
+        },
+        {
+          key: "is_process",
+          label: this.$t("DASHBOARD.CUSTOMER_SUPPORT.TABLE.STATUS"),
+          sortable: true,
+          thClass: "text-center",
+          tdClass: "text-center",
+        },
+        {
+          key: "action",
+          label: this.$t("DASHBOARD.CUSTOMER_SUPPORT.TABLE.ACTION"),
+          thClass: "text-center",
+          tdClass: "text-center",
+        },
+      ];
     },
     optionsPerpage() {
       return [
         {
           value: 10,
-          text: 'APP.TEXT_PER_PAGE_10'
+          text: "APP.TEXT_PER_PAGE_10",
         },
         {
           value: 20,
-          text: 'APP.TEXT_PER_PAGE_20'
+          text: "APP.TEXT_PER_PAGE_20",
         },
         {
           value: 40,
-          text: 'APP.TEXT_PER_PAGE_40'
+          text: "APP.TEXT_PER_PAGE_40",
         },
         {
           value: 80,
-          text: 'APP.TEXT_PER_PAGE_80'
+          text: "APP.TEXT_PER_PAGE_80",
         },
         {
           value: 100,
-          text: 'APP.TEXT_PER_PAGE_100'
+          text: "APP.TEXT_PER_PAGE_100",
         },
-      ]
+      ];
     },
     isCurrentPage() {
-      return this.pagination.current_page; 
+      return this.pagination.current_page;
     },
   },
   watch: {
@@ -210,10 +287,10 @@ export default {
   data() {
     return {
       CONSTANTS,
-      searchTable: '',
+      searchTable: "",
       isSort: {
-        field: '',
-        type: '',
+        field: "",
+        type: "",
       },
       items: [],
       pagination: {
@@ -225,14 +302,14 @@ export default {
         show: false,
 
         id: null,
-        name: '',
-        phone: '',
-        status: '',
-        content: '',
-      }
-    }
+        name: "",
+        phone: "",
+        status: "",
+        content: "",
+      },
+    };
   },
-  created () {
+  created() {
     this.initData();
   },
   methods: {
@@ -245,20 +322,20 @@ export default {
 
         const BODY = {
           limit: isReset ? 10 : this.pagination.per_page,
-          page: isReset? 1 : this.pagination.current_page,
+          page: isReset ? 1 : this.pagination.current_page,
           search: this.searchTable,
-          sort: {
-
-          },
-        }
+          sort: {},
+        };
 
         if (this.isSort.field) {
           BODY.sort = {
-            [this.isSort.field]: this.isSort.type
-          }
+            [this.isSort.field]: this.isSort.type,
+          };
         }
 
-        const { status_code, data, pagination } = await getListCustomerSupport(BODY);
+        const { status_code, data, pagination } = await getListCustomerSupport(
+          BODY
+        );
 
         if (status_code === 200) {
           this.items = data;
@@ -302,20 +379,20 @@ export default {
         show: false,
 
         id: null,
-        name: '',
-        phone: '',
-        status: '',
-        content: ''
-      }
+        name: "",
+        phone: "",
+        status: "",
+        content: "",
+      };
     },
     async onClickSaveModal(status) {
       const LIST_STATUS = [
-        CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_DONE, 
-        CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_IN_PROGRESS
+        CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_DONE,
+        CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_IN_PROGRESS,
       ];
 
       if (!LIST_STATUS.includes(status)) {
-        status = CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_IN_PROGRESS
+        status = CONSTANTS.VALUE.CUSTOMER_SUPPORT_STATUS_IN_PROGRESS;
       }
 
       try {
@@ -324,14 +401,14 @@ export default {
         const BODY = {
           support_id: this.isModal.id,
           is_process: status,
-        }
+        };
 
         const { status_code } = await postEditCustomerSupport(BODY);
 
         if (status_code === 200) {
-          Toast.success(this.$t('TOAST_MESSAGE.EDIT_CUSTOMER_SUPPORT_SUCCESS'));
+          Toast.success(this.$t("TOAST_MESSAGE.EDIT_CUSTOMER_SUPPORT_SUCCESS"));
         } else {
-          Toast.warning(this.$t('TOAST_MESSAGE.EDIT_CUSTOMER_SUPPORT_ERROR'));
+          Toast.warning(this.$t("TOAST_MESSAGE.EDIT_CUSTOMER_SUPPORT_ERROR"));
         }
 
         this.onClickCloseModal();
@@ -342,19 +419,22 @@ export default {
       } catch (err) {
         this.onClickCloseModal();
         setLoading(false);
-        Toast.warning(this.$t('TOAST_MESSAGE.EDIT_CUSTOMER_SUPPORT_ERROR'));
+        Toast.warning(this.$t("TOAST_MESSAGE.EDIT_CUSTOMER_SUPPORT_ERROR"));
         console.log(err);
       }
     },
     calNo(item) {
-      return ((this.pagination.current_page - 1) * this.pagination.per_page) + (item.index + 1);
+      return (
+        (this.pagination.current_page - 1) * this.pagination.per_page +
+        (item.index + 1)
+      );
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables.scss';
+@import "@/scss/variables.scss";
 
 .customer-support-page {
   &__filter,
@@ -409,10 +489,10 @@ export default {
 }
 
 ::v-deep .modal-footer-customer-support {
-    justify-content: center;
+  justify-content: center;
 
-    button {
-      min-width: 150px;
-    }
+  button {
+    min-width: 150px;
+  }
 }
 </style>

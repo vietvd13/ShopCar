@@ -3,7 +3,7 @@
     <div class="car-management-page__filter">
       <FilterListCarDashboard
         :total-car="pagination.total"
-        @filter="onClickApplyFilter"  
+        @filter="onClickApplyFilter"
       />
     </div>
 
@@ -11,11 +11,11 @@
       <b-row>
         <b-col class="text-right">
           <b-button class="btn-app btn-add-new" @click="onClickCreate()">
-            {{ $t('DASHBOARD.CAR.BUTTON_ADD_NEW') }}
+            {{ $t("DASHBOARD.CAR.BUTTON_ADD_NEW") }}
           </b-button>
 
           <b-button class="btn-app btn-actions" @click="onClickActions()">
-            {{ $t('DASHBOARD.CAR.BUTTON_ACTIONS') }}
+            {{ $t("DASHBOARD.CAR.BUTTON_ACTIONS") }}
           </b-button>
         </b-col>
       </b-row>
@@ -25,24 +25,29 @@
       <b-card>
         <b-row>
           <b-col>
-            <b-table-simple
-              bordered
-            >
+            <b-table-simple bordered>
               <b-thead>
                 <b-tr>
-                  <b-th rowspan="2">{{ $t('SALE_INFOR.NO') }}</b-th>
-                  <b-th rowspan="2">{{ $t('SALE_INFOR.SOURCE') }}</b-th>
-                  <b-th rowspan="2">{{ $t('DASHBOARD.CAR.TABLE_TEXT_AUTO_UPDATE') }}</b-th>
-                  <b-th rowspan="1" colspan="3">{{ $t('DASHBOARD.CAR.TABLE_TEXT_SALE_PROGRAM') }}</b-th>
+                  <b-th rowspan="2">{{ $t("SALE_INFOR.NO") }}</b-th>
+                  <b-th rowspan="2">{{ $t("SALE_INFOR.SOURCE") }}</b-th>
+                  <b-th rowspan="2">{{
+                    $t("DASHBOARD.CAR.TABLE_TEXT_AUTO_UPDATE")
+                  }}</b-th>
+                  <b-th rowspan="1" colspan="3">{{
+                    $t("DASHBOARD.CAR.TABLE_TEXT_SALE_PROGRAM")
+                  }}</b-th>
                 </b-tr>
                 <b-tr>
-                  <b-th>{{ $t('SALE_INFOR.STATUS') }}</b-th>
-                  <b-th>{{ $t('SALE_INFOR.VALUE') }}</b-th>
-                  <b-th>{{ $t('DASHBOARD.CAR.TABLE_ACTIONS') }}</b-th>
+                  <b-th>{{ $t("SALE_INFOR.STATUS") }}</b-th>
+                  <b-th>{{ $t("SALE_INFOR.VALUE") }}</b-th>
+                  <b-th>{{ $t("DASHBOARD.CAR.TABLE_ACTIONS") }}</b-th>
                 </b-tr>
               </b-thead>
               <b-tbody>
-                <b-tr v-for="(status, idxStatus) in listSaleStatus" :key="idxStatus">
+                <b-tr
+                  v-for="(status, idxStatus) in listSaleStatus"
+                  :key="idxStatus"
+                >
                   <b-td>{{ idxStatus + 1 }}</b-td>
                   <b-td>
                     <a :href="status.source_crawl" target="_blank">
@@ -58,7 +63,11 @@
                     />
                   </b-td>
                   <b-td>
-                    {{ status.is_sale ? $t('SALE_INFOR.ON') : $t('SALE_INFOR.OFF') }}
+                    {{
+                      status.is_sale
+                        ? $t("SALE_INFOR.ON")
+                        : $t("SALE_INFOR.OFF")
+                    }}
                   </b-td>
                   <b-td>
                     {{ status.sale_price }}
@@ -68,7 +77,7 @@
                       class="btn-app btn-edit"
                       @click="onClickSale(status.source_crawl)"
                     >
-                      {{ $t('DASHBOARD.CAR.TABLE_TEXT_EDIT') }}
+                      {{ $t("DASHBOARD.CAR.TABLE_TEXT_EDIT") }}
                     </b-button>
                   </b-td>
                 </b-tr>
@@ -86,7 +95,7 @@
           v-model="isSelectAll"
           name="checkbox-select-all"
         >
-          {{ $t('APP.SELECT_ALL') }}
+          {{ $t("APP.SELECT_ALL") }}
         </b-form-checkbox>
       </b-col>
     </b-row>
@@ -136,61 +145,93 @@
         </template>
 
         <template #cell(price_diff)="price_diff">
-          <div :class="['show-diff-price', handleShowPriceDiff(handleCalPriceDiff(price_diff.item.price, price_diff.item.price_display))]">
+          <div
+            :class="[
+              'show-diff-price',
+              handleShowPriceDiff(
+                handleCalPriceDiff(
+                  price_diff.item.price,
+                  price_diff.item.price_display
+                )
+              ),
+            ]"
+          >
             <span
-              v-show="(handleCalPriceDiff(price_diff.item.price, price_diff.item.price_display)).diff"
+              v-show="
+                handleCalPriceDiff(
+                  price_diff.item.price,
+                  price_diff.item.price_display
+                ).diff
+              "
             >
-              {{ (handleCalPriceDiff(price_diff.item.price, price_diff.item.price_display)).diff }}%
+              {{
+                handleCalPriceDiff(
+                  price_diff.item.price,
+                  price_diff.item.price_display
+                ).diff
+              }}%
             </span>
-            {{ $t(handleShowTextPriceDiff(handleCalPriceDiff(price_diff.item.price, price_diff.item.price_display))) }}
+            {{
+              $t(
+                handleShowTextPriceDiff(
+                  handleCalPriceDiff(
+                    price_diff.item.price,
+                    price_diff.item.price_display
+                  )
+                )
+              )
+            }}
           </div>
         </template>
 
         <template #cell(is_hotsale)="is_hotsale">
-          <b-badge v-if="is_hotsale.item.is_hotsale === false" variant="secondary">
-            {{ $t('DASHBOARD.CAR.TABLE_TEXT_NO_HOT_SALE') }}
+          <b-badge
+            v-if="is_hotsale.item.is_hotsale === false"
+            variant="secondary"
+          >
+            {{ $t("DASHBOARD.CAR.TABLE_TEXT_NO_HOT_SALE") }}
           </b-badge>
           <b-badge v-if="is_hotsale.item.is_hotsale === true" variant="success">
-            {{ $t('DASHBOARD.CAR.TABLE_TEXT_HOT_SALE') }}
+            {{ $t("DASHBOARD.CAR.TABLE_TEXT_HOT_SALE") }}
           </b-badge>
         </template>
 
         <template #cell(actions)="actions">
           <div class="item-action">
-            <b-button 
+            <b-button
               variant="warning"
               class="btn-default"
               @click="onClickDetail(actions.item._id)"
             >
-              {{ $t('DASHBOARD.CAR.TABLE_TEXT_DETAIL') }}
+              {{ $t("DASHBOARD.CAR.TABLE_TEXT_DETAIL") }}
             </b-button>
           </div>
 
           <div class="item-action">
-            <b-button 
+            <b-button
               variant="warning"
               class="btn-default"
               @click="onClickEdit(actions.item._id)"
               v-if="actions.item.is_data_crawl === false"
             >
-              {{ $t('DASHBOARD.CAR.TABLE_TEXT_EDIT') }}
+              {{ $t("DASHBOARD.CAR.TABLE_TEXT_EDIT") }}
             </b-button>
           </div>
 
           <div class="item-action">
-            <b-button 
+            <b-button
               variant="danger"
               class="btn-default"
               @click="onClickDelete(actions.item._id)"
             >
-              {{ $t('DASHBOARD.CAR.TABLE_TEXT_DELETE') }}
+              {{ $t("DASHBOARD.CAR.TABLE_TEXT_DELETE") }}
             </b-button>
           </div>
         </template>
 
         <template #empty>
           <div class="text-center">
-            {{ $t('APP.TABLE_NO_DATA') }}
+            {{ $t("APP.TABLE_NO_DATA") }}
           </div>
         </template>
       </b-table>
@@ -199,8 +240,8 @@
     <div class="car-management-page__pagination">
       <b-row align-h="center">
         <b-col>
-          <b-form-select 
-            v-model="pagination.per_page" 
+          <b-form-select
+            v-model="pagination.per_page"
             size="sm"
             @change="onChangePerPage"
             class="select-per-page"
@@ -227,7 +268,7 @@
       </b-row>
     </div>
 
-    <b-modal 
+    <b-modal
       v-model="isModal.show"
       no-close-on-backdrop
       no-close-on-esc
@@ -241,26 +282,20 @@
       <FormCar
         :oldForm="isForm"
         :listSelectRating="listSelectRating"
-        @form="handleGetForm"      
+        @form="handleGetForm"
       />
 
       <template #modal-footer>
         <b-row align-v="baseline">
           <b-col cols="6" class="text-center">
-            <b-button 
-              class="btn-default btn-cancel"
-              @click="onClickCloseModal"
-            >
-              {{ $t('APP.CANCEL') }}
+            <b-button class="btn-default btn-cancel" @click="onClickCloseModal">
+              {{ $t("APP.CANCEL") }}
             </b-button>
           </b-col>
 
           <b-col cols="6" class="text-center">
-            <b-button 
-              class="btn-default btn-app"
-              @click="onClickSaveModal"
-            >
-              {{ $t('APP.SAVE') }}
+            <b-button class="btn-default btn-app" @click="onClickSaveModal">
+              {{ $t("APP.SAVE") }}
             </b-button>
           </b-col>
         </b-row>
@@ -282,7 +317,7 @@
         <b-row>
           <b-col>
             <div class="content-action" @click="handleDeleteMany()">
-              {{ $t('DASHBOARD.CAR.ACITON_DELETE') }}
+              {{ $t("DASHBOARD.CAR.ACITON_DELETE") }}
             </div>
           </b-col>
         </b-row>
@@ -292,7 +327,7 @@
         <b-row>
           <b-col>
             <div class="content-action" @click="hanldeSetHotsale(true)">
-              {{ $t('DASHBOARD.CAR.ACTION_ADD_HOT_SALE') }}
+              {{ $t("DASHBOARD.CAR.ACTION_ADD_HOT_SALE") }}
             </div>
           </b-col>
         </b-row>
@@ -302,7 +337,7 @@
         <b-row>
           <b-col>
             <div class="content-action" @click="hanldeSetHotsale(false)">
-              {{ $t('DASHBOARD.CAR.ACTION_REMOVE_HOT_SALE') }}
+              {{ $t("DASHBOARD.CAR.ACTION_REMOVE_HOT_SALE") }}
             </div>
           </b-col>
         </b-row>
@@ -312,7 +347,7 @@
         <b-row>
           <b-col>
             <div class="content-action" @click="onClickSetPrice()">
-              {{ $t('DASHBOARD.CAR.ACTION_ADD_PRICE') }}
+              {{ $t("DASHBOARD.CAR.ACTION_ADD_PRICE") }}
             </div>
           </b-col>
         </b-row>
@@ -340,9 +375,14 @@
       :title="$t('DASHBOARD.CAR.ACTION_ADD_PRICE')"
     >
       <div class="item-form">
-        <label for="select-type-update-price">{{ $t('DASHBOARD.CAR.TYPE_UPDATE') }}</label>
-        <b-form-select id="select-type-update-price" v-model="isUpdatePrice.type">
-          <b-form-select-option 
+        <label for="select-type-update-price">{{
+          $t("DASHBOARD.CAR.TYPE_UPDATE")
+        }}</label>
+        <b-form-select
+          id="select-type-update-price"
+          v-model="isUpdatePrice.type"
+        >
+          <b-form-select-option
             v-for="typeUpdate in optionUpdatePrice"
             :key="typeUpdate.value"
             :value="typeUpdate.value"
@@ -353,31 +393,33 @@
       </div>
 
       <div class="item-form">
-        <label for="input-value-update-price">{{ $t('DASHBOARD.CAR.VALUE_UPDATE') }}</label>
+        <label for="input-value-update-price">{{
+          $t("DASHBOARD.CAR.VALUE_UPDATE")
+        }}</label>
         <b-form-input
           id="input-value-update-price"
           type="number"
-          v-model="isUpdatePrice.value" 
+          v-model="isUpdatePrice.value"
         />
       </div>
 
       <template #modal-footer>
         <b-row align-v="baseline">
           <b-col cols="6" class="text-center">
-            <b-button 
+            <b-button
               class="btn-default btn-cancel"
               @click="onClickCloseModalPrice"
             >
-              {{ $t('APP.CANCEL') }}
+              {{ $t("APP.CANCEL") }}
             </b-button>
           </b-col>
 
           <b-col cols="6" class="text-center">
-            <b-button 
+            <b-button
               class="btn-default btn-app"
               @click="onClickSaveModalPrice"
             >
-              {{ $t('APP.SAVE') }}
+              {{ $t("APP.SAVE") }}
             </b-button>
           </b-col>
         </b-row>
@@ -394,38 +436,37 @@
       footer-class="modal-footer-sale"
       :title="$t('DASHBOARD.CAR.ACTION_SALE')"
     >
-      <label for="input-value-update-sale">{{ $t('DASHBOARD.CAR.ACTION_SALE') }}</label>
+      <label for="input-value-update-sale">{{
+        $t("DASHBOARD.CAR.ACTION_SALE")
+      }}</label>
       <b-form-input
         id="input-value-update-sale"
         type="number"
         v-model="isUpdateSale.value"
       />
-      <b-form-checkbox 
-        v-model="isUpdateSale.status" 
+      <b-form-checkbox
+        v-model="isUpdateSale.status"
         name="check-button-status-sale"
         class="mt-2"
         switch
       >
-        {{ isUpdateSale.status ? $t('APP.ON') : $t('APP.OFF') }}
+        {{ isUpdateSale.status ? $t("APP.ON") : $t("APP.OFF") }}
       </b-form-checkbox>
 
       <template #modal-footer>
         <b-row align-v="baseline">
           <b-col cols="6" class="text-center">
-            <b-button 
+            <b-button
               class="btn-default btn-cancel"
               @click="onClickCloseModalSale"
             >
-              {{ $t('APP.CANCEL') }}
+              {{ $t("APP.CANCEL") }}
             </b-button>
           </b-col>
 
           <b-col cols="6" class="text-center">
-            <b-button 
-              class="btn-default btn-app"
-              @click="onClickSaveModalSale"
-            >
-              {{ $t('APP.SAVE') }}
+            <b-button class="btn-default btn-app" @click="onClickSaveModalSale">
+              {{ $t("APP.SAVE") }}
             </b-button>
           </b-col>
         </b-row>
@@ -443,9 +484,14 @@
       :title="$t('DASHBOARD.CAR.ACTION_ADD_PRICE')"
     >
       <div class="item-form">
-        <label for="select-type-update-price">{{ $t('DASHBOARD.CAR.TYPE_UPDATE') }}</label>
-        <b-form-select id="select-type-update-price" v-model="isUpdatePriceAll.type">
-          <b-form-select-option 
+        <label for="select-type-update-price">{{
+          $t("DASHBOARD.CAR.TYPE_UPDATE")
+        }}</label>
+        <b-form-select
+          id="select-type-update-price"
+          v-model="isUpdatePriceAll.type"
+        >
+          <b-form-select-option
             v-for="typeUpdate in optionUpdatePrice"
             :key="typeUpdate.value"
             :value="typeUpdate.value"
@@ -456,31 +502,33 @@
       </div>
 
       <div class="item-form">
-        <label for="input-value-update-price">{{ $t('DASHBOARD.CAR.VALUE_UPDATE') }}</label>
+        <label for="input-value-update-price">{{
+          $t("DASHBOARD.CAR.VALUE_UPDATE")
+        }}</label>
         <b-form-input
           id="input-value-update-price"
           type="number"
-          v-model="isUpdatePriceAll.value" 
+          v-model="isUpdatePriceAll.value"
         />
       </div>
 
       <template #modal-footer>
         <b-row align-v="baseline">
           <b-col cols="6" class="text-center">
-            <b-button 
+            <b-button
               class="btn-default btn-cancel"
               @click="onClickCloseModalUpdatePriceAll"
             >
-              {{ $t('APP.CANCEL') }}
+              {{ $t("APP.CANCEL") }}
             </b-button>
           </b-col>
 
           <b-col cols="6" class="text-center">
-            <b-button 
+            <b-button
               class="btn-default btn-app"
               @click="onClickSaveModalUpdatePriceAll"
             >
-              {{ $t('APP.SAVE') }}
+              {{ $t("APP.SAVE") }}
             </b-button>
           </b-col>
         </b-row>
@@ -490,38 +538,45 @@
 </template>
 
 <script>
-import { setLoading } from '@/utils/setLoading';
-import { 
-  postListCar, 
-  postCreateCar, 
-  postGetDetailCar, 
-  postUpdateCar, 
-  postDeleteCar, 
-  postSetHotsaleCar, 
-  postSetPirce, 
-  postSetSale, 
-  postSetPriceAll, 
+import { setLoading } from "@/utils/setLoading";
+import {
+  postListCar,
+  postCreateCar,
+  postGetDetailCar,
+  postUpdateCar,
+  postDeleteCar,
+  postSetHotsaleCar,
+  postSetPirce,
+  postSetSale,
+  postSetPriceAll,
   getSaleStatus,
   getAllSaleStatus,
   getListStatusCrawl,
-  postSetStatusCrawl
-} from '@/api/modules/Dashboard';
+  postSetStatusCrawl,
+} from "@/api/modules/Dashboard";
+import { getFilterCategoriesList } from "@/api/modules/Home";
+import { postImages } from "@/api/modules/Upload";
+import FilterListCarDashboard from "./components/FilterListCar.vue";
+import FormCar from "./components/CarManagement/Form.vue";
 import {
-  getFilterCategoriesList
-} from '@/api/modules/Home';
-import { postImages } from '@/api/modules/Upload';
-import FilterListCarDashboard from './components/FilterListCar.vue';
-import FormCar from './components/CarManagement/Form.vue';
-import { getArrValueOfArr, replaceValueWithIndex, formatPrice } from '@/utils/helper';
-import Toast from '@/toast';
-import { handleTickRowTable, handleCalPriceDiff, getObjInArrByValue, getValueInArrObj } from '@/utils/helper';
-import CONSTANTS from '@/constants';
+  getArrValueOfArr,
+  replaceValueWithIndex,
+  formatPrice,
+} from "@/utils/helper";
+import Toast from "@/toast";
+import {
+  handleTickRowTable,
+  handleCalPriceDiff,
+  getObjInArrByValue,
+  getValueInArrObj,
+} from "@/utils/helper";
+import CONSTANTS from "@/constants";
 
 export default {
-  name: 'CarManagement',
+  name: "CarManagement",
   components: {
     FilterListCarDashboard,
-    FormCar
+    FormCar,
   },
   computed: {
     domainImage() {
@@ -530,84 +585,211 @@ export default {
     headerTable() {
       if (this.isSelectAll) {
         return [
-          { key: 'created_at', label: this.$t('DASHBOARD.CAR.TABLE_NO'), sortable: true, thClass: 'text-center th-no', tdClass: 'text-center base-td' },
-          { key: 'primary_image', label: this.$t('DASHBOARD.CAR.TABLE_IMAGE'), thClass: 'text-center th-image', tdClass: 'text-center base-td' },
-          { key: 'car_name', label: this.$t('DASHBOARD.CAR.TABLE_CAR_NAME'), sortable: true, thClass: 'text-center th-car-name', tdClass: 'text-center base-td' },
-          { key: 'category', label: this.$t('DASHBOARD.CAR.TABLE_CAR_BRAND'), sortable: true, thClass: 'text-center th-car-brand', tdClass: 'text-center base-td' },
-          { key: 'price', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_ORIGIN'), sortable: true, thClass: 'text-center th-car-price', tdClass: 'text-center base-td' },
-          { key: 'price_display', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_DISPLAY'), sortable: true, thClass: 'text-center th-car-price', tdClass: 'text-center base-td' },
-          { key: 'price_diff', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_DIFF'), sortable: false, thClass: 'text-center th-car-price-diff', tdClass: 'text-center base-td' },
-          { key: 'is_hotsale', label: this.$t('DASHBOARD.CAR.TABLE_HOT_SALE'), sortable: true, thClass: 'text-center th-hot-sale', tdClass: 'text-center base-td' },
-          { key: 'actions', label: this.$t('DASHBOARD.CAR.TABLE_ACTIONS'), thClass: 'text-center th-actions', tdClass: 'text-center base-td' },
-        ]
+          {
+            key: "created_at",
+            label: this.$t("DASHBOARD.CAR.TABLE_NO"),
+            sortable: true,
+            thClass: "text-center th-no",
+            tdClass: "text-center base-td",
+          },
+          {
+            key: "primary_image",
+            label: this.$t("DASHBOARD.CAR.TABLE_IMAGE"),
+            thClass: "text-center th-image",
+            tdClass: "text-center base-td",
+          },
+          {
+            key: "car_name",
+            label: this.$t("DASHBOARD.CAR.TABLE_CAR_NAME"),
+            sortable: true,
+            thClass: "text-center th-car-name",
+            tdClass: "text-center base-td",
+          },
+          {
+            key: "category",
+            label: this.$t("DASHBOARD.CAR.TABLE_CAR_BRAND"),
+            sortable: true,
+            thClass: "text-center th-car-brand",
+            tdClass: "text-center base-td",
+          },
+          {
+            key: "price",
+            label: this.$t("DASHBOARD.CAR.TABLE_CAR_PRICE_ORIGIN"),
+            sortable: true,
+            thClass: "text-center th-car-price",
+            tdClass: "text-center base-td",
+          },
+          {
+            key: "price_display",
+            label: this.$t("DASHBOARD.CAR.TABLE_CAR_PRICE_DISPLAY"),
+            sortable: true,
+            thClass: "text-center th-car-price",
+            tdClass: "text-center base-td",
+          },
+          {
+            key: "price_diff",
+            label: this.$t("DASHBOARD.CAR.TABLE_CAR_PRICE_DIFF"),
+            sortable: false,
+            thClass: "text-center th-car-price-diff",
+            tdClass: "text-center base-td",
+          },
+          {
+            key: "is_hotsale",
+            label: this.$t("DASHBOARD.CAR.TABLE_HOT_SALE"),
+            sortable: true,
+            thClass: "text-center th-hot-sale",
+            tdClass: "text-center base-td",
+          },
+          {
+            key: "actions",
+            label: this.$t("DASHBOARD.CAR.TABLE_ACTIONS"),
+            thClass: "text-center th-actions",
+            tdClass: "text-center base-td",
+          },
+        ];
       }
 
       return [
-        { key: 'delete_multiple', label: '', thClass: 'th-col-check text-center', tdClass: 'td-col-check text-center' },
-        { key: 'created_at', label: this.$t('DASHBOARD.CAR.TABLE_NO'), sortable: true, thClass: 'text-center th-no', tdClass: 'text-center base-td' },
-        { key: 'primary_image', label: this.$t('DASHBOARD.CAR.TABLE_IMAGE'), thClass: 'text-center th-image', tdClass: 'text-center base-td' },
-        { key: 'car_name', label: this.$t('DASHBOARD.CAR.TABLE_CAR_NAME'), sortable: true, thClass: 'text-center th-car-name', tdClass: 'text-center base-td' },
-        { key: 'category', label: this.$t('DASHBOARD.CAR.TABLE_CAR_BRAND'), sortable: true, thClass: 'text-center th-car-brand', tdClass: 'text-center base-td' },
-        { key: 'price', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_ORIGIN'), sortable: true, thClass: 'text-center th-car-price', tdClass: 'text-center base-td' },
-        { key: 'price_display', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_DISPLAY'), sortable: true, thClass: 'text-center th-car-price', tdClass: 'text-center base-td' },
-        { key: 'price_diff', label: this.$t('DASHBOARD.CAR.TABLE_CAR_PRICE_DIFF'), sortable: false, thClass: 'text-center th-car-price-diff', tdClass: 'text-center base-td' },
-        { key: 'is_hotsale', label: this.$t('DASHBOARD.CAR.TABLE_HOT_SALE'), sortable: true, thClass: 'text-center th-hot-sale', tdClass: 'text-center base-td' },
-        { key: 'actions', label: this.$t('DASHBOARD.CAR.TABLE_ACTIONS'), thClass: 'text-center th-actions', tdClass: 'text-center base-td' },
+        {
+          key: "delete_multiple",
+          label: "",
+          thClass: "th-col-check text-center",
+          tdClass: "td-col-check text-center",
+        },
+        {
+          key: "created_at",
+          label: this.$t("DASHBOARD.CAR.TABLE_NO"),
+          sortable: true,
+          thClass: "text-center th-no",
+          tdClass: "text-center base-td",
+        },
+        {
+          key: "primary_image",
+          label: this.$t("DASHBOARD.CAR.TABLE_IMAGE"),
+          thClass: "text-center th-image",
+          tdClass: "text-center base-td",
+        },
+        {
+          key: "car_name",
+          label: this.$t("DASHBOARD.CAR.TABLE_CAR_NAME"),
+          sortable: true,
+          thClass: "text-center th-car-name",
+          tdClass: "text-center base-td",
+        },
+        {
+          key: "category",
+          label: this.$t("DASHBOARD.CAR.TABLE_CAR_BRAND"),
+          sortable: true,
+          thClass: "text-center th-car-brand",
+          tdClass: "text-center base-td",
+        },
+        {
+          key: "price",
+          label: this.$t("DASHBOARD.CAR.TABLE_CAR_PRICE_ORIGIN"),
+          sortable: true,
+          thClass: "text-center th-car-price",
+          tdClass: "text-center base-td",
+        },
+        {
+          key: "price_display",
+          label: this.$t("DASHBOARD.CAR.TABLE_CAR_PRICE_DISPLAY"),
+          sortable: true,
+          thClass: "text-center th-car-price",
+          tdClass: "text-center base-td",
+        },
+        {
+          key: "price_diff",
+          label: this.$t("DASHBOARD.CAR.TABLE_CAR_PRICE_DIFF"),
+          sortable: false,
+          thClass: "text-center th-car-price-diff",
+          tdClass: "text-center base-td",
+        },
+        {
+          key: "is_hotsale",
+          label: this.$t("DASHBOARD.CAR.TABLE_HOT_SALE"),
+          sortable: true,
+          thClass: "text-center th-hot-sale",
+          tdClass: "text-center base-td",
+        },
+        {
+          key: "actions",
+          label: this.$t("DASHBOARD.CAR.TABLE_ACTIONS"),
+          thClass: "text-center th-actions",
+          tdClass: "text-center base-td",
+        },
       ];
     },
     optionsPerpage() {
       return [
         {
           value: 10,
-          text: 'APP.TEXT_PER_PAGE_10'
+          text: "APP.TEXT_PER_PAGE_10",
         },
         {
           value: 20,
-          text: 'APP.TEXT_PER_PAGE_20'
+          text: "APP.TEXT_PER_PAGE_20",
         },
         {
           value: 40,
-          text: 'APP.TEXT_PER_PAGE_40'
+          text: "APP.TEXT_PER_PAGE_40",
         },
         {
           value: 80,
-          text: 'APP.TEXT_PER_PAGE_80'
+          text: "APP.TEXT_PER_PAGE_80",
         },
         {
           value: 100,
-          text: 'APP.TEXT_PER_PAGE_100'
+          text: "APP.TEXT_PER_PAGE_100",
         },
-      ]
+      ];
     },
     isCurrentPage() {
-      return this.pagination.current_page; 
+      return this.pagination.current_page;
     },
     optionUpdatePrice() {
       return CONSTANTS.VALUE.OPTION_UPDATE_PRICE;
     },
     onChangeCarDetail() {
       return this.isForm.model_detail;
-    }
+    },
   },
   watch: {
     async isCurrentPage() {
       setLoading(true);
 
-      await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
+      await this.handleGetListCar(
+        this.pagination.current_page,
+        this.pagination.per_page
+      );
 
       setLoading(false);
     },
     onChangeCarDetail() {
       if (this.isForm.model_detail) {
-        const category_detail = getValueInArrObj(this.filterCategoriesList, this.isForm.categories, "category_name", "category_detail");
-        const model_detail = getValueInArrObj(category_detail, this.isForm.model, "model_name", "model_detail");
-        const rating = getValueInArrObj(model_detail, this.isForm.model_detail, "detail_name", "rating");
+        const category_detail = getValueInArrObj(
+          this.filterCategoriesList,
+          this.isForm.categories,
+          "category_name",
+          "category_detail"
+        );
+        const model_detail = getValueInArrObj(
+          category_detail,
+          this.isForm.model,
+          "model_name",
+          "model_detail"
+        );
+        const rating = getValueInArrObj(
+          model_detail,
+          this.isForm.model_detail,
+          "detail_name",
+          "rating"
+        );
 
         this.listSelectRating = rating;
       } else {
         this.listSelectRating = [];
       }
-    }
+    },
   },
   data() {
     return {
@@ -621,16 +803,16 @@ export default {
         total: 0,
       },
       isSort: {
-        field: '',
-        type: '',
+        field: "",
+        type: "",
       },
       isModal: {
         show: false,
-        type: '',
-        id: null
+        type: "",
+        id: null,
       },
       isForm: {
-        title: '',
+        title: "",
 
         images: [],
 
@@ -658,12 +840,12 @@ export default {
         businessAddress: null,
         parkingLocation: null,
 
-        otherCategories: '',
-        otherModel: '',
-        otherFuelType: '',
-        otherColor: '',
-        otherGearBox: '',
-        otherCarType: '',
+        otherCategories: "",
+        otherModel: "",
+        otherFuelType: "",
+        otherColor: "",
+        otherGearBox: "",
+        otherCarType: "",
 
         exterior: [],
         guts: [],
@@ -671,39 +853,39 @@ export default {
         convenience: [],
 
         performanceCheck: {
-          type: '',
-          url: ''
-        }
+          type: "",
+          url: "",
+        },
       },
       isModalAction: false,
       isModalPrice: false,
       isModalSale: false,
       isModalSetPriceAll: false,
-      
+
       isUpdatePrice: {
-        type: 'PRICE',
+        type: "PRICE",
         value: null,
       },
       isUpdateSale: {
         status: false,
-        value: null
+        value: null,
       },
       isUpdatePriceAll: {
-        type: 'PRICE',
+        type: "PRICE",
         value: null,
       },
       oldFilter: null,
       saleInfor: {
-        source_crawl: '',
+        source_crawl: "",
         status: false,
         value: null,
       },
       listStatusCrawl: [],
       listSelectRating: [],
       filterCategoriesList: [],
-    }
+    };
   },
-  created () {
+  created() {
     this.initData();
   },
   methods: {
@@ -716,22 +898,25 @@ export default {
       await this.handleGetListStatusCrawl();
       await this.handleGetAllSale();
       await this.handleGetSaleInfor();
-      await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
+      await this.handleGetListCar(
+        this.pagination.current_page,
+        this.pagination.per_page
+      );
       setLoading(false);
     },
     async handleGetFilterCategoriesList() {
-        try {
-            const { status_code, data } = await getFilterCategoriesList();
+      try {
+        const { status_code, data } = await getFilterCategoriesList();
 
-            if (status_code === 200) {
-                this.filterCategoriesList = data;
-            } else {
-                this.filterCategoriesList = [];
-            }
-        } catch (err) {
-            this.filterCategoriesList = [];
-            console.log(err);
+        if (status_code === 200) {
+          this.filterCategoriesList = data;
+        } else {
+          this.filterCategoriesList = [];
         }
+      } catch (err) {
+        this.filterCategoriesList = [];
+        console.log(err);
+      }
     },
     async handleGetAllSale() {
       try {
@@ -746,7 +931,10 @@ export default {
           let idx = 0;
 
           while (idx < len) {
-            const status = getObjInArrByValue(this.listStatusCrawl, this.listSaleStatus[idx].source_crawl);
+            const status = getObjInArrByValue(
+              this.listStatusCrawl,
+              this.listSaleStatus[idx].source_crawl
+            );
 
             this.listSaleStatus[idx].status_crawl = status;
 
@@ -763,7 +951,9 @@ export default {
     },
     async onClickApplyFilter() {
       setLoading(true);
-      this.oldFilter = JSON.parse(JSON.stringify(this.$store.getters.isFilterDashboard));
+      this.oldFilter = JSON.parse(
+        JSON.stringify(this.$store.getters.isFilterDashboard)
+      );
       await this.handleGetListCar(1, this.pagination.per_page);
       setLoading(false);
     },
@@ -772,26 +962,24 @@ export default {
         const BODY = {
           page: page,
           limit: limit,
-          sort: {
-
-          },
-          filter: {
-
-          },
-        }
+          sort: {},
+          filter: {},
+        };
 
         if (this.isSort.field) {
           BODY.sort = {
             [this.isSort.field]: this.isSort.type,
-          }
+          };
         }
 
-        const FILTER = this.oldFilter ? this.oldFilter : this.$store.getters.isFilterDashboard;
+        const FILTER = this.oldFilter
+          ? this.oldFilter
+          : this.$store.getters.isFilterDashboard;
 
         if (FILTER.search) {
           BODY.search = FILTER.search;
         }
-        
+
         if (FILTER.categories) {
           BODY.filter.category_name = FILTER.categories.category_name;
 
@@ -839,7 +1027,9 @@ export default {
           BODY.filter.is_hotsale = FILTER.is_hotsale;
         }
 
-        if ([...CONSTANTS.VALUE.LIST_OPTION_CAR].includes(FILTER.is_data_crawl)) {
+        if (
+          [...CONSTANTS.VALUE.LIST_OPTION_CAR].includes(FILTER.is_data_crawl)
+        ) {
           BODY.filter.source_crawl = FILTER.is_data_crawl;
         }
 
@@ -877,14 +1067,14 @@ export default {
     },
     onClickCreate() {
       this.handleResetForm();
-      this.isModal.type = 'CREATE';
+      this.isModal.type = "CREATE";
       this.isModal.show = true;
     },
     async handleGetDetailCar(id) {
       try {
         const BODY = {
-          car_id: id
-        }
+          car_id: id,
+        };
 
         const { status_code, data } = await postGetDetailCar(BODY);
 
@@ -907,17 +1097,19 @@ export default {
 
       while (idxImage < lenImage) {
         listImage.push({
-          type_import: 'old',
-          url: data.images[idxImage]
+          type_import: "old",
+          url: data.images[idxImage],
         });
 
         idxImage++;
       }
 
       const PERFORMANCE_CHECK = {
-        type: 'old',
-        url: Array.isArray(data.performance_check) ? data.performance_check : [],
-      }
+        type: "old",
+        url: Array.isArray(data.performance_check)
+          ? data.performance_check
+          : [],
+      };
 
       this.isForm = {
         title: data.car_name,
@@ -950,23 +1142,23 @@ export default {
         model_detail: data.detail_name,
         rating: data.rating,
 
-        otherCategories: '',
-        otherFuelType: '',
-        otherColor: '',
-        otherGearBox: '',
-        otherCarType: '',
+        otherCategories: "",
+        otherFuelType: "",
+        otherColor: "",
+        otherGearBox: "",
+        otherCarType: "",
 
         exterior: data.exterior,
         guts: data.guts,
         safety: data.safety,
         convenience: data.convenience,
 
-        performanceCheck: PERFORMANCE_CHECK
-      }
+        performanceCheck: PERFORMANCE_CHECK,
+      };
     },
     onClickDetail(id) {
       if (id) {
-        let route = this.$router.resolve({ name: 'DetailCar', params: { id }});
+        let route = this.$router.resolve({ name: "DetailCar", params: { id } });
 
         window.open(route.href);
       }
@@ -978,7 +1170,7 @@ export default {
         const CAR = await this.handleGetDetailCar(id);
 
         if (CAR) {
-          this.isModal.type = 'EDIT';
+          this.isModal.type = "EDIT";
           this.isModal.show = true;
 
           this.handleSetForm(CAR);
@@ -1000,7 +1192,10 @@ export default {
       this.isSort.type = ctx.sortDesc === false ? 1 : -1;
 
       setLoading(true);
-      await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
+      await this.handleGetListCar(
+        this.pagination.current_page,
+        this.pagination.per_page
+      );
       setLoading(false);
     },
     handleGetForm(form) {
@@ -1008,7 +1203,7 @@ export default {
     },
     handleResetForm() {
       this.isForm = {
-        title: '',
+        title: "",
 
         images: [],
 
@@ -1037,12 +1232,12 @@ export default {
         businessAddress: null,
         parkingLocation: null,
 
-        otherCategories: '',
-        otherModel: '',
-        otherFuelType: '',
-        otherColor: '',
-        otherGearBox: '',
-        otherCarType: '',
+        otherCategories: "",
+        otherModel: "",
+        otherFuelType: "",
+        otherColor: "",
+        otherGearBox: "",
+        otherCarType: "",
 
         exterior: [],
         guts: [],
@@ -1050,10 +1245,10 @@ export default {
         convenience: [],
 
         performanceCheck: {
-          type: '',
-          url: ''
-        }
-      }
+          type: "",
+          url: "",
+        },
+      };
     },
     onClickCloseModal() {
       this.isModal.show = false;
@@ -1061,11 +1256,11 @@ export default {
     },
     async onClickSaveModal() {
       try {
-        if (this.isModal.type === 'CREATE') {
+        if (this.isModal.type === "CREATE") {
           await this.handleCreateCar();
         }
 
-        if (this.isModal.type === 'EDIT') {
+        if (this.isModal.type === "EDIT") {
           await this.handleUpdateCar();
         }
 
@@ -1088,8 +1283,11 @@ export default {
         if (status_code === 200) {
           this.onClickCloseModal();
           this.handleResetCheckRow();
-          await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
-          Toast.success(this.$t('TOAST_MESSAGE.CREATE_CAR_SUCCESS'));
+          await this.handleGetListCar(
+            this.pagination.current_page,
+            this.pagination.per_page
+          );
+          Toast.success(this.$t("TOAST_MESSAGE.CREATE_CAR_SUCCESS"));
         }
 
         setLoading(false);
@@ -1111,8 +1309,11 @@ export default {
         if (status_code === 200) {
           this.onClickCloseModal();
           this.handleResetCheckRow();
-          await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
-          Toast.success(this.$t('TOAST_MESSAGE.UPDATE_CAR_SUCCESS'));
+          await this.handleGetListCar(
+            this.pagination.current_page,
+            this.pagination.per_page
+          );
+          Toast.success(this.$t("TOAST_MESSAGE.UPDATE_CAR_SUCCESS"));
         }
 
         setLoading(false);
@@ -1125,12 +1326,18 @@ export default {
     async handleInitObjectCar() {
       const GET_UPDATE_IMAGE = this.handleGetListIdxImport(this.isForm.images);
       let LIST_NEW_IMAGE = [];
-      
+
       if (GET_UPDATE_IMAGE.new_images.length > 0) {
-        const IMAGES = await this.handleUploadImages(GET_UPDATE_IMAGE.new_images);
-        LIST_NEW_IMAGE = replaceValueWithIndex(GET_UPDATE_IMAGE.origin_images, IMAGES, GET_UPDATE_IMAGE.new_idx_images);
+        const IMAGES = await this.handleUploadImages(
+          GET_UPDATE_IMAGE.new_images
+        );
+        LIST_NEW_IMAGE = replaceValueWithIndex(
+          GET_UPDATE_IMAGE.origin_images,
+          IMAGES,
+          GET_UPDATE_IMAGE.new_idx_images
+        );
       } else {
-        LIST_NEW_IMAGE = getArrValueOfArr(this.isForm.images, 'url');
+        LIST_NEW_IMAGE = getArrValueOfArr(this.isForm.images, "url");
       }
 
       const PRIMARY_IMAGE = this.handleGetPrimaryImage(LIST_NEW_IMAGE);
@@ -1143,17 +1350,29 @@ export default {
         license_plate: this.isForm.licensePlate,
         year_manufacture: parseInt(this.isForm.year),
         distance_driven: parseInt(this.isForm.distanceDriven) || null,
-        fuel_type: this.handleInitOther(this.isForm.fuelType, this.isForm.otherFuelType),
+        fuel_type: this.handleInitOther(
+          this.isForm.fuelType,
+          this.isForm.otherFuelType
+        ),
         cylinder_capacity: this.isForm.cylynder,
         color: this.handleInitOther(this.isForm.color, this.isForm.otherColor),
-        gearbox: this.handleInitOther(this.isForm.gearbox, this.isForm.otherGearBox),
-        category: this.handleInitOther(this.isForm.categories, this.isForm.otherCategories),
+        gearbox: this.handleInitOther(
+          this.isForm.gearbox,
+          this.isForm.otherGearBox
+        ),
+        category: this.handleInitOther(
+          this.isForm.categories,
+          this.isForm.otherCategories
+        ),
         car_model: this.isForm.model_name,
         performance_check: PERFORMANCE_CHECK || [],
         primary_image: PRIMARY_IMAGE || [],
         phone_contact: this.isForm.contact,
         images: LIST_NEW_IMAGE,
-        car_type: this.handleInitOther(this.isForm.carType, this.isForm.otherCarType),
+        car_type: this.handleInitOther(
+          this.isForm.carType,
+          this.isForm.otherCarType
+        ),
         seizure: this.isForm.seizure,
         mortgage: this.isForm.mortgage,
         presentation_number: this.isForm.presentationNumber,
@@ -1167,7 +1386,7 @@ export default {
         model_name: this.isForm.model_name,
         detail_name: this.isForm.model_detail,
         rating: this.isForm.rating,
-      }
+      };
 
       return NEW_CAR;
     },
@@ -1182,7 +1401,7 @@ export default {
       const result_idx = [];
 
       while (idx < len) {
-        if (images[idx].type_import === 'new') {
+        if (images[idx].type_import === "new") {
           result.push(images[idx]);
           result_idx.push(idx);
         }
@@ -1193,7 +1412,7 @@ export default {
       return {
         origin_images: images,
         new_images: result,
-        new_idx_images: result_idx
+        new_idx_images: result_idx,
       };
     },
     handleGetPrimaryImage(images) {
@@ -1222,7 +1441,7 @@ export default {
     },
     async handleUploadPerformanceCheck() {
       if (this.isForm.performanceCheck) {
-        if (this.isForm.performanceCheck.type === 'new') {
+        if (this.isForm.performanceCheck.type === "new") {
           try {
             const len = this.isForm.performanceCheck.url.length;
             let idx = 0;
@@ -1232,8 +1451,8 @@ export default {
             while (idx < len) {
               FILE.push({
                 type: this.isForm.performanceCheck.type,
-                url: this.isForm.performanceCheck.url[idx]
-              })
+                url: this.isForm.performanceCheck.url[idx],
+              });
 
               idx++;
             }
@@ -1269,52 +1488,54 @@ export default {
     },
     async handleDeleteCar(items) {
       try {
-        let BODY = {
-
-        };
+        let BODY = {};
 
         if (this.isSelectAll) {
           BODY.data_update = {
             filter: {},
-            search: '',
-          }
-
-          const FILTER = this.oldFilter ? this.oldFilter : {
-            search: '',
-
-            categories: null,
-            models: null,
-            car_details: null,
-            rating: [],
-
-            from_year: null,
-            to_year: null,
-
-            from_price: null,
-            to_price: null,
-
-            from_distance: null,
-            to_distance: null,
-
-            color: null,
-            fuel_type: null,
-            gear_box: null,
-            is_hotsale: null,
-            is_data_crawl: null,
+            search: "",
           };
+
+          const FILTER = this.oldFilter
+            ? this.oldFilter
+            : {
+                search: "",
+
+                categories: null,
+                models: null,
+                car_details: null,
+                rating: [],
+
+                from_year: null,
+                to_year: null,
+
+                from_price: null,
+                to_price: null,
+
+                from_distance: null,
+                to_distance: null,
+
+                color: null,
+                fuel_type: null,
+                gear_box: null,
+                is_hotsale: null,
+                is_data_crawl: null,
+              };
 
           if (FILTER.search) {
             BODY.data_update.search = FILTER.search;
           }
-          
+
           if (FILTER.categories) {
-            BODY.data_update.filter.category_name = FILTER.categories.category_name;
+            BODY.data_update.filter.category_name =
+              FILTER.categories.category_name;
 
             if (FILTER.models) {
               BODY.data_update.filter.model_name = FILTER.models.model_name;
 
               if (FILTER.car_details) {
-                BODY.data_update.filter.car_details = FILTER.car_details.detail_name;
+                BODY.data_update.filter.car_details =
+                  FILTER.car_details.detail_name;
 
                 if (FILTER.rating) {
                   BODY.data_update.filter.rating = FILTER.rating;
@@ -1354,21 +1575,26 @@ export default {
             BODY.data_update.filter.is_hotsale = FILTER.is_hotsale;
           }
 
-          if ([...CONSTANTS.VALUE.LIST_OPTION_CAR].includes(FILTER.is_data_crawl)) {
+          if (
+            [...CONSTANTS.VALUE.LIST_OPTION_CAR].includes(FILTER.is_data_crawl)
+          ) {
             BODY.data_update.filter.source_crawl = FILTER.is_data_crawl;
           }
         } else {
           BODY = {
             ids: items,
-          }
+          };
         }
 
         const { status_code } = await postDeleteCar(BODY);
 
         if (status_code === 200) {
           this.handleResetCheckRow();
-          await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
-          Toast.success(this.$t('TOAST_MESSAGE.DELETE_CAR_SUCCESS'));
+          await this.handleGetListCar(
+            this.pagination.current_page,
+            this.pagination.per_page
+          );
+          Toast.success(this.$t("TOAST_MESSAGE.DELETE_CAR_SUCCESS"));
         }
       } catch (error) {
         console.log(error);
@@ -1380,51 +1606,55 @@ export default {
         this.isModalAction = false;
 
         let BODY = {
-          is_hotsale: status
+          is_hotsale: status,
         };
 
         if (this.isSelectAll) {
           BODY.data_update = {
             filter: {},
-            search: '',
-          }
-
-          const FILTER = this.oldFilter ? this.oldFilter : {
-            search: '',
-
-            categories: null,
-            models: null,
-            car_details: null,
-            rating: [],
-
-            from_year: null,
-            to_year: null,
-
-            from_price: null,
-            to_price: null,
-
-            from_distance: null,
-            to_distance: null,
-
-            color: null,
-            fuel_type: null,
-            gear_box: null,
-            is_hotsale: null,
-            is_data_crawl: null,
+            search: "",
           };
+
+          const FILTER = this.oldFilter
+            ? this.oldFilter
+            : {
+                search: "",
+
+                categories: null,
+                models: null,
+                car_details: null,
+                rating: [],
+
+                from_year: null,
+                to_year: null,
+
+                from_price: null,
+                to_price: null,
+
+                from_distance: null,
+                to_distance: null,
+
+                color: null,
+                fuel_type: null,
+                gear_box: null,
+                is_hotsale: null,
+                is_data_crawl: null,
+              };
 
           if (FILTER.search) {
             BODY.data_update.search = FILTER.search;
           }
-          
+
           if (FILTER.categories) {
-            BODY.data_update.filter.category_name = FILTER.categories.category_name;
+            BODY.data_update.filter.category_name =
+              FILTER.categories.category_name;
 
             if (FILTER.models) {
               BODY.data_update.filter.model_name = FILTER.models.model_name;
 
               if (FILTER.car_details) {
-                BODY.data_update.filter.car_details = FILTER.car_details.detail_name;
+                BODY.data_update.filter.car_details =
+                  FILTER.car_details.detail_name;
 
                 if (FILTER.rating) {
                   BODY.data_update.filter.rating = FILTER.rating;
@@ -1464,22 +1694,27 @@ export default {
             BODY.data_update.filter.is_hotsale = FILTER.is_hotsale;
           }
 
-          if ([...CONSTANTS.VALUE.LIST_OPTION_CAR].includes(FILTER.is_data_crawl)) {
+          if (
+            [...CONSTANTS.VALUE.LIST_OPTION_CAR].includes(FILTER.is_data_crawl)
+          ) {
             BODY.data_update.filter.source_crawl = FILTER.is_data_crawl;
           }
         } else {
           BODY = {
             ids: this.selectRow,
-            is_hotsale: status
-          }
+            is_hotsale: status,
+          };
         }
 
         const { status_code } = await postSetHotsaleCar(BODY);
 
         if (status_code === 200) {
           this.handleResetCheckRow();
-          await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
-          Toast.success(this.$t('TOAST_MESSAGE.SET_HOTSALE_CAR_SUCCESS'));
+          await this.handleGetListCar(
+            this.pagination.current_page,
+            this.pagination.per_page
+          );
+          Toast.success(this.$t("TOAST_MESSAGE.SET_HOTSALE_CAR_SUCCESS"));
         }
 
         this.selectRow = [];
@@ -1504,9 +1739,9 @@ export default {
     },
     handleResetModalPrice() {
       this.isUpdatePrice = {
-        type: 'PRICE',
+        type: "PRICE",
         value: null,
-      }
+      };
     },
     onClickCloseModalPrice() {
       this.isModalPrice = false;
@@ -1522,19 +1757,21 @@ export default {
     async handleUpdatePrice() {
       try {
         setLoading(true);
-        
+
         let key;
         const LIBRAY = {
-          PRICE: 'price',
-          PERCENTAGE: 'percentage'
-        }
+          PRICE: "price",
+          PERCENTAGE: "percentage",
+        };
 
         key = LIBRAY[this.isUpdatePrice.type];
 
         const BODY = {
           ids: this.selectRow,
           type: this.isUpdatePrice.type,
-          [key]: this.isUpdatePrice.value ? parseInt(this.isUpdatePrice.value) : 0,
+          [key]: this.isUpdatePrice.value
+            ? parseInt(this.isUpdatePrice.value)
+            : 0,
         };
 
         const { status_code } = await postSetPirce(BODY);
@@ -1543,11 +1780,14 @@ export default {
         this.handleResetModalPrice();
 
         if (status_code === 200) {
-          Toast.success(this.$t('TOAST_MESSAGE.SET_PRICE_CAR_SUCCESS'));
+          Toast.success(this.$t("TOAST_MESSAGE.SET_PRICE_CAR_SUCCESS"));
         }
 
         this.handleResetCheckRow();
-        await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
+        await this.handleGetListCar(
+          this.pagination.current_page,
+          this.pagination.per_page
+        );
 
         setLoading(false);
       } catch (error) {
@@ -1565,8 +1805,8 @@ export default {
     async handleGetSaleInfor(source_crawl) {
       try {
         const BODY = {
-          source: source_crawl
-        }
+          source: source_crawl,
+        };
         const { status_code, data } = await getSaleStatus(BODY);
 
         if (status_code === 200) {
@@ -1577,14 +1817,14 @@ export default {
           };
         } else {
           this.saleInfor = {
-            source_crawl: '',
+            source_crawl: "",
             status: false,
             value: null,
           };
         }
       } catch (error) {
         this.saleInfor = {
-          source_crawl: '',
+          source_crawl: "",
           status: false,
           value: null,
         };
@@ -1595,7 +1835,7 @@ export default {
       try {
         const BODY = {
           source: source_crawl,
-        }
+        };
 
         const { status_code, data } = await getSaleStatus(BODY);
 
@@ -1607,14 +1847,14 @@ export default {
           };
         } else {
           this.isUpdateSale = {
-            source_crawl: '',
+            source_crawl: "",
             status: false,
             value: null,
           };
         }
       } catch (error) {
         this.isUpdateSale = {
-          source_crawl: '',
+          source_crawl: "",
           status: false,
           value: null,
         };
@@ -1626,7 +1866,7 @@ export default {
     onClickCloseModalSale() {
       this.isModalSale = false;
       this.isUpdateSale = {
-        source_crawl: '',
+        source_crawl: "",
         status: false,
         value: null,
       };
@@ -1638,23 +1878,29 @@ export default {
           source: this.isUpdateSale.source_crawl,
           is_sale: this.isUpdateSale.status || false,
           sale_price: parseInt(this.isUpdateSale.value) || 0,
-        }
+        };
 
         const { status_code } = await postSetSale(BODY);
 
         if (status_code === 200) {
           await this.handleGetAllSale();
-          await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
+          await this.handleGetListCar(
+            this.pagination.current_page,
+            this.pagination.per_page
+          );
 
-          Toast.success(this.$t('TOAST_MESSAGE.SET_SALE_SUCCESS'));
+          Toast.success(this.$t("TOAST_MESSAGE.SET_SALE_SUCCESS"));
         }
 
-        await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
+        await this.handleGetListCar(
+          this.pagination.current_page,
+          this.pagination.per_page
+        );
 
         this.onClickCloseModalSale();
         this.handleResetCheckRow();
         setLoading(false);
-      } catch(error) {
+      } catch (error) {
         console.log(error);
       }
     },
@@ -1665,67 +1911,73 @@ export default {
     onClickCloseModalUpdatePriceAll() {
       this.isModalSetPriceAll = false;
       this.isUpdatePriceAll = {
-        type: 'PRICE',
+        type: "PRICE",
         value: null,
       };
     },
     async onClickSaveModalUpdatePriceAll() {
       try {
         setLoading(true);
-        
+
         let key;
         const LIBRAY = {
-          PRICE: 'price',
-          PERCENTAGE: 'percentage'
-        }
+          PRICE: "price",
+          PERCENTAGE: "percentage",
+        };
 
         key = LIBRAY[this.isUpdatePriceAll.type];
 
         const BODY = {
           type: this.isUpdatePriceAll.type,
-          [key]: this.isUpdatePriceAll.value ? parseInt(this.isUpdatePriceAll.value) : 0,
+          [key]: this.isUpdatePriceAll.value
+            ? parseInt(this.isUpdatePriceAll.value)
+            : 0,
           data_update: {
             filter: {},
-            search: '',
-          }
+            search: "",
+          },
         };
 
-        const FILTER = this.oldFilter ? this.oldFilter : {
-          search: '',
+        const FILTER = this.oldFilter
+          ? this.oldFilter
+          : {
+              search: "",
 
-          categories: null,
-          models: null,
-          car_details: null,
-          rating: [],
+              categories: null,
+              models: null,
+              car_details: null,
+              rating: [],
 
-          from_year: null,
-          to_year: null,
+              from_year: null,
+              to_year: null,
 
-          from_price: null,
-          to_price: null,
+              from_price: null,
+              to_price: null,
 
-          from_distance: null,
-          to_distance: null,
+              from_distance: null,
+              to_distance: null,
 
-          color: null,
-          fuel_type: null,
-          gear_box: null,
-          is_hotsale: null,
-          is_data_crawl: null,
-        };
+              color: null,
+              fuel_type: null,
+              gear_box: null,
+              is_hotsale: null,
+              is_data_crawl: null,
+            };
 
         if (FILTER.search) {
           BODY.data_update.search = FILTER.search;
         }
-        
+
         if (FILTER.categories) {
-          BODY.data_update.filter.category_name = FILTER.categories.category_name;
+          BODY.data_update.filter.category_name =
+            FILTER.categories.category_name;
 
           if (FILTER.models) {
             BODY.data_update.filter.model_name = FILTER.models.model_name;
 
             if (FILTER.car_details) {
-              BODY.data_update.filter.car_details = FILTER.car_details.detail_name;
+              BODY.data_update.filter.car_details =
+                FILTER.car_details.detail_name;
 
               if (FILTER.rating) {
                 BODY.data_update.filter.rating = FILTER.rating;
@@ -1765,55 +2017,63 @@ export default {
           BODY.data_update.filter.is_hotsale = FILTER.is_hotsale;
         }
 
-        if ([...CONSTANTS.VALUE.LIST_OPTION_CAR].includes(FILTER.is_data_crawl)) {
+        if (
+          [...CONSTANTS.VALUE.LIST_OPTION_CAR].includes(FILTER.is_data_crawl)
+        ) {
           BODY.data_update.filter.source_crawl = FILTER.is_data_crawl;
         }
 
         const { status_code } = await postSetPriceAll(BODY);
 
         if (status_code === 200) {
-          Toast.success(this.$t('TOAST_MESSAGE.SET_PRICE_CAR_SUCCESS'));
+          Toast.success(this.$t("TOAST_MESSAGE.SET_PRICE_CAR_SUCCESS"));
         }
 
         this.onClickCloseModalUpdatePriceAll();
         this.handleResetCheckRow();
 
-        await this.handleGetListCar(this.pagination.current_page, this.pagination.per_page);
+        await this.handleGetListCar(
+          this.pagination.current_page,
+          this.pagination.per_page
+        );
 
         this.isModalPrice = false;
         setLoading(false);
-      } catch(error) {
+      } catch (error) {
         console.log(error);
       }
     },
     calNo(item) {
-      return ((this.pagination.current_page - 1) * this.pagination.per_page) + (item.index + 1);
+      return (
+        (this.pagination.current_page - 1) * this.pagination.per_page +
+        (item.index + 1)
+      );
     },
     handleAddTypeImage(images) {
       return images.map((image) => {
         return {
           url: image,
-          type_import: 'old'
-        }
+          type_import: "old",
+        };
       });
     },
     handleShowPriceDiff(diffCal) {
       const LIBRAY_CLASS = {
-        'NO_CHANGE': 'type-no-change',
-        'UP': 'type-up-change',
-        'DOWN': 'type-down-change'
-      }
+        NO_CHANGE: "type-no-change",
+        UP: "type-up-change",
+        DOWN: "type-down-change",
+      };
 
-      return LIBRAY_CLASS[diffCal['type']];
+      return LIBRAY_CLASS[diffCal["type"]];
     },
     handleShowTextPriceDiff(diffCal) {
       const LIBRAY_TEXT = {
-        'NO_CHANGE': 'DASHBOARD.CAR.TYPE_NO_CHANGE',
-        'UP': 'DASHBOARD.CAR.TYPE_UP',
-        'DOWN': 'DASHBOARD.CAR.TYPE_DOWN'
-      }
+        NO_CHANGE: "DASHBOARD.CAR.TYPE_NO_CHANGE",
+        UP: "DASHBOARD.CAR.TYPE_UP",
+        DOWN: "DASHBOARD.CAR.TYPE_DOWN",
+      };
 
-      return LIBRAY_TEXT[diffCal['type']];
+      return LIBRAY_TEXT[diffCal["type"]];
     },
     handleResetCheckRow() {
       this.isSelectAll = false;
@@ -1827,7 +2087,7 @@ export default {
 
         if (status_code === 200) {
           const { data } = json;
-          this.listStatusCrawl = data; 
+          this.listStatusCrawl = data;
         } else {
           this.listStatusCrawl = [];
         }
@@ -1844,22 +2104,22 @@ export default {
         setLoading(false);
 
         if (status_code === 200) {
-          Toast.success(this.$t('TOAST_MESSAGE.UPDATE_AUTO_UPDATE_SUCCESS'));
+          Toast.success(this.$t("TOAST_MESSAGE.UPDATE_AUTO_UPDATE_SUCCESS"));
         } else {
-          Toast.warning(this.$t('TOAST_MESSAGE.UPDATE_AUTO_UPDATE_ERROR'));
+          Toast.warning(this.$t("TOAST_MESSAGE.UPDATE_AUTO_UPDATE_ERROR"));
         }
       } catch (error) {
         console.log(error);
         setLoading(false);
-        Toast.warning(this.$t('TOAST_MESSAGE.UPDATE_AUTO_UPDATE_ERROR'));
+        Toast.warning(this.$t("TOAST_MESSAGE.UPDATE_AUTO_UPDATE_ERROR"));
       }
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables.scss';
+@import "@/scss/variables.scss";
 
 .car-management-page {
   &__filter,
@@ -1877,13 +2137,13 @@ export default {
     }
   }
 
-  &__sale-infor, &__status-crawl {
+  &__sale-infor,
+  &__status-crawl {
     ::v-deep table {
       margin-bottom: 0;
 
       thead {
         tr {
-
           th {
             text-align: center;
             vertical-align: middle;
@@ -1910,7 +2170,7 @@ export default {
   &__table {
     height: calc(100vh - 150px);
     overflow: auto;
-    
+
     ::v-deep table {
       thead {
         tr {

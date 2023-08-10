@@ -1,4 +1,4 @@
-import lang from '../langs';
+import lang from "../langs";
 
 function setPageName(name = null, i18n = false) {
   if (name) {
@@ -13,9 +13,7 @@ function setPageName(name = null, i18n = false) {
     return;
   }
 
-  document.title = process.env.VUE_APP_APP_NAME || 'Shop Car';
+  document.title = process.env.VUE_APP_APP_NAME || "Shop Car";
 }
 
-export {
-  setPageName
-}
+export { setPageName };

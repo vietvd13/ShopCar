@@ -1,17 +1,15 @@
 <template>
   <div class="dashboard-breadcrumb">
     <span class="text-dashboard-breadcrumb">
-      <slot>
-        Breadcrumb
-      </slot>
+      <slot> Breadcrumb </slot>
     </span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'DashboardBreadcrumb'
-}
+  name: "DashboardBreadcrumb",
+};
 </script>
 
 <style lang="scss" scoped>

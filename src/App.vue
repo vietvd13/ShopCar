@@ -9,10 +9,10 @@
   >
     <template #overlay>
       <div class="text-center">
-          <i class="fad fa-spinner-third fa-spin icon-loading" />
-          <p class="text-loading">
-            {{ $t('APP.LOADING') }}
-          </p>
+        <i class="fad fa-spinner-third fa-spin icon-loading" />
+        <p class="text-loading">
+          {{ $t("APP.LOADING") }}
+        </p>
       </div>
     </template>
     <router-view />
@@ -20,26 +20,25 @@
 </template>
 
 <script>
-import { setPageName } from './utils/setPageName';
+import { setPageName } from "./utils/setPageName";
 
 export default {
-  name: 'App',
+  name: "App",
   computed: {
     loading() {
       return this.$store.getters.loading;
     },
   },
   created() {
-    this.$store.dispatch('auth/setInitApp')
-      .then(() => {
-        setPageName();
-      })
+    this.$store.dispatch("auth/setInitApp").then(() => {
+      setPageName();
+    });
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables';
+@import "@/scss/variables";
 
 .icon-loading {
   color: $international-orange;

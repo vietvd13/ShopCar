@@ -1,5 +1,5 @@
-import request from '../service';
-import CONSTANTS from '@/constants';
+import request from "../service";
+import CONSTANTS from "@/constants";
 
 export function getListCar(BODY = null, PARAMS = null) {
   return request.postRequest(CONSTANTS.URL_API.GET_LIST_CAR, BODY, PARAMS);
@@ -10,19 +10,35 @@ export function getDetailCar(BODY = null, PARAMS = null) {
 }
 
 export function getListCollaborators(BODY = null, PARAMS = null) {
-  return request.postRequest(CONSTANTS.URL_API.GET_ALL_COLLABORATORS, BODY, PARAMS);
+  return request.postRequest(
+    CONSTANTS.URL_API.GET_ALL_COLLABORATORS,
+    BODY,
+    PARAMS
+  );
 }
 
 export function postCreateContactSupport(BODY = null, PARAMS = null) {
-  return request.postRequest(CONSTANTS.URL_API.POST_CREATE_CUSTOMER_SUPPORT, BODY, PARAMS);
+  return request.postRequest(
+    CONSTANTS.URL_API.POST_CREATE_CUSTOMER_SUPPORT,
+    BODY,
+    PARAMS
+  );
 }
 
 export function getFilterCategoriesList(BODY = null, PARAMS = null) {
-  return request.getRequest(CONSTANTS.URL_API.GET_FILTER_CATEGORIES_LIST, BODY, PARAMS);
+  return request.getRequest(
+    CONSTANTS.URL_API.GET_FILTER_CATEGORIES_LIST,
+    BODY,
+    PARAMS
+  );
 }
 
 export function getListCategories(BODY = null, PARAMS = null) {
-  return request.getRequest(CONSTANTS.URL_API.GET_LIST_CATEGORIES, BODY, PARAMS);
+  return request.getRequest(
+    CONSTANTS.URL_API.GET_LIST_CATEGORIES,
+    BODY,
+    PARAMS
+  );
 }
 
 export function getListColor(BODY = null, PARAMS = null) {
@@ -41,12 +57,23 @@ export function getListCarType(BODY = null, PARAMS = null) {
   return request.getRequest(CONSTANTS.URL_API.GET_LIST_CAR_TYPE, BODY, PARAMS);
 }
 
-export function getListHappyMoment(BODY = { limit: 8, page: 1 }, PARAMS = null) {
-  return request.postRequest(CONSTANTS.URL_API.GET_LIST_HAPPY_MOMENT, BODY, PARAMS);
+export function getListHappyMoment(
+  BODY = { limit: 8, page: 1 },
+  PARAMS = null
+) {
+  return request.postRequest(
+    CONSTANTS.URL_API.GET_LIST_HAPPY_MOMENT,
+    BODY,
+    PARAMS
+  );
 }
 
 export function postCreateSupport(BODY = null, PARAMS = null) {
-  return request.postRequest(CONSTANTS.URL_API.POST_CREATE_CUSTOMER_SUPPORT, BODY, PARAMS);
+  return request.postRequest(
+    CONSTANTS.URL_API.POST_CREATE_CUSTOMER_SUPPORT,
+    BODY,
+    PARAMS
+  );
 }
 
 export function getBanner(BODY = null, PARAMS = null) {
@@ -54,11 +81,19 @@ export function getBanner(BODY = null, PARAMS = null) {
 }
 
 export function getAllCollaborators(BODY = null, PARAMS = null) {
-  return request.getRequest(CONSTANTS.URL_API.GET_LIST_COLLABORATORS_PUBLIC, BODY, PARAMS);
+  return request.getRequest(
+    CONSTANTS.URL_API.GET_LIST_COLLABORATORS_PUBLIC,
+    BODY,
+    PARAMS
+  );
 }
 
 export function getDetailHappyMoment(BODY = null, PARAMS = null) {
-  return request.postRequest(CONSTANTS.URL_API.GET_DETAIL_HAPPY_MOMENT, BODY, PARAMS);
+  return request.postRequest(
+    CONSTANTS.URL_API.GET_DETAIL_HAPPY_MOMENT,
+    BODY,
+    PARAMS
+  );
 }
 
 export function getListHotSale(BODY = null, PARAMS = null) {
@@ -67,8 +102,8 @@ export function getListHotSale(BODY = null, PARAMS = null) {
     limit: 20,
     sort: {
       is_hotsale: -1,
-    }
-  }
+    },
+  };
 
   return request.postRequest(CONSTANTS.URL_API.GET_LIST_CAR, BODY, PARAMS);
 }

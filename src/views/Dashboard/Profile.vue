@@ -8,191 +8,270 @@
               <div>
                 <b-row class="mb-3 d-block align-items-center d-sm-flex">
                   <b-col cols="4" md="2">
-                    <h6>{{ $t('DASHBOARD.PROFILE.FULLNAME') }}</h6>
+                    <h6>{{ $t("DASHBOARD.PROFILE.FULLNAME") }}</h6>
                   </b-col>
                   <b-col>
-                    <b-input :disabled="!is_edit" v-model="fullname" :placeholder="$t('DASHBOARD.PROFILE.FULLNAME')">
+                    <b-input
+                      :disabled="!is_edit"
+                      v-model="fullname"
+                      :placeholder="$t('DASHBOARD.PROFILE.FULLNAME')"
+                    >
                     </b-input>
                   </b-col>
                 </b-row>
 
                 <b-row class="mb-3 d-block align-items-center d-sm-flex">
                   <b-col cols="4" md="2">
-                    <h6>{{ $t('DASHBOARD.PROFILE.DOB') }}</h6>
+                    <h6>{{ $t("DASHBOARD.PROFILE.DOB") }}</h6>
                   </b-col>
                   <b-col>
-                    <b-form-datepicker :disabled="!is_edit" v-model="dob" :value="dob"></b-form-datepicker>
+                    <b-form-datepicker
+                      :disabled="!is_edit"
+                      v-model="dob"
+                      :value="dob"
+                    ></b-form-datepicker>
                   </b-col>
                 </b-row>
 
-
                 <b-row class="mb-3 d-block align-items-center d-sm-flex">
                   <b-col cols="4" md="2">
-                    <h6>{{ $t('DASHBOARD.PROFILE.EMAIL') }}</h6>
+                    <h6>{{ $t("DASHBOARD.PROFILE.EMAIL") }}</h6>
                   </b-col>
                   <b-col>
-                    <b-input :disabled="!is_edit" v-model="email" readonly :placeholder="$t('DASHBOARD.PROFILE.EMAIL')">
+                    <b-input
+                      :disabled="!is_edit"
+                      v-model="email"
+                      readonly
+                      :placeholder="$t('DASHBOARD.PROFILE.EMAIL')"
+                    >
                     </b-input>
                   </b-col>
                 </b-row>
 
                 <b-row class="mb-3 d-block align-items-center d-sm-flex">
                   <b-col cols="4" md="2">
-                    <h6>{{ $t('DASHBOARD.PROFILE.PHONE') }}</h6>
+                    <h6>{{ $t("DASHBOARD.PROFILE.PHONE") }}</h6>
                   </b-col>
                   <b-col>
-                    <b-input :disabled="!is_edit" v-model="phone" :placeholder="$t('DASHBOARD.PROFILE.PHONE')">
+                    <b-input
+                      :disabled="!is_edit"
+                      v-model="phone"
+                      :placeholder="$t('DASHBOARD.PROFILE.PHONE')"
+                    >
                     </b-input>
                   </b-col>
                 </b-row>
 
                 <b-row class="mb-3 d-block align-items-center d-sm-flex">
                   <b-col cols="4" md="2">
-                    <h6>{{ $t('DASHBOARD.PROFILE.GENDER.LABEL') }}</h6>
+                    <h6>{{ $t("DASHBOARD.PROFILE.GENDER.LABEL") }}</h6>
                   </b-col>
                   <b-col>
-                    <b-form-select :disabled="!is_edit" value="male" v-model="gender">
-                      <option value="male">{{ $t('DASHBOARD.PROFILE.GENDER.MALE') }}</option>
-                      <option value="female">{{ $t('DASHBOARD.PROFILE.GENDER.FEMALE') }}</option>
+                    <b-form-select
+                      :disabled="!is_edit"
+                      value="male"
+                      v-model="gender"
+                    >
+                      <option value="male">
+                        {{ $t("DASHBOARD.PROFILE.GENDER.MALE") }}
+                      </option>
+                      <option value="female">
+                        {{ $t("DASHBOARD.PROFILE.GENDER.FEMALE") }}
+                      </option>
                     </b-form-select>
                   </b-col>
                 </b-row>
 
                 <b-row class="mb-3 d-block align-items-center d-sm-flex">
                   <b-col cols="4" md="2">
-                    <h6>{{ $t('DASHBOARD.PROFILE.ADDRESS_MAIL_NOTI') }}</h6>
+                    <h6>{{ $t("DASHBOARD.PROFILE.ADDRESS_MAIL_NOTI") }}</h6>
                   </b-col>
                   <b-col>
-                    <b-input :disabled="!is_edit" v-model="email_noti"
-                      :placeholder="$t('DASHBOARD.PROFILE.ADDRESS_MAIL_NOTI')"></b-input>
+                    <b-input
+                      :disabled="!is_edit"
+                      v-model="email_noti"
+                      :placeholder="$t('DASHBOARD.PROFILE.ADDRESS_MAIL_NOTI')"
+                    ></b-input>
                   </b-col>
                 </b-row>
-
               </div>
             </div>
 
             <div class="card-header header-elements-sm-inline">
-              <h6 class="card-title font-normal font-superBold m-0">{{ $t('DASHBOARD.PROFILE.SETTINGS.OTHER') }}</h6>
+              <h6 class="card-title font-normal font-superBold m-0">
+                {{ $t("DASHBOARD.PROFILE.SETTINGS.OTHER") }}
+              </h6>
             </div>
             <div class="card-body font-normal">
               <div>
                 <div>
                   <div class="row d-block align-items-center d-sm-flex mb-2">
                     <div class="col-4 col-md-2 py-2">
-                      <h6>{{ $t('LANGUAGES.LANGUAGES') }}</h6>
+                      <h6>{{ $t("LANGUAGES.LANGUAGES") }}</h6>
                     </div>
                     <b-col>
                       <b-form-select :disabled="!is_edit" v-model="language">
-                        <option value="vi">{{ $t('LANGUAGES.VIETNAMESE') }}</option>
-                        <option value="en">{{ $t('LANGUAGES.ENGLISH') }}</option>
-                        <option value="kr">{{ $t('LANGUAGES.KOREAN') }}</option>
+                        <option value="vi">
+                          {{ $t("LANGUAGES.VIETNAMESE") }}
+                        </option>
+                        <option value="en">
+                          {{ $t("LANGUAGES.ENGLISH") }}
+                        </option>
+                        <option value="kr">{{ $t("LANGUAGES.KOREAN") }}</option>
                       </b-form-select>
                     </b-col>
                   </div>
                 </div>
                 <div class="d-flex justify-content-end mt-4">
-                  <b-button variant="outlined" class=" mr-2 border" id="btn-cancel" @click="handleCancelChange">
-                    {{ $t('DASHBOARD.PROFILE.SETTINGS.CANCEL') }}
+                  <b-button
+                    variant="outlined"
+                    class="mr-2 border"
+                    id="btn-cancel"
+                    @click="handleCancelChange"
+                  >
+                    {{ $t("DASHBOARD.PROFILE.SETTINGS.CANCEL") }}
                   </b-button>
-                  <b-button v-if="is_edit" :disabled="is_process" class="btn-app" @click="handleSave">
-                    {{ $t('DASHBOARD.PROFILE.SETTINGS.SAVE') }}
+                  <b-button
+                    v-if="is_edit"
+                    :disabled="is_process"
+                    class="btn-app"
+                    @click="handleSave"
+                  >
+                    {{ $t("DASHBOARD.PROFILE.SETTINGS.SAVE") }}
                   </b-button>
                   <b-button v-else class="btn-app" @click="handleChange">
-                    {{ $t('DASHBOARD.PROFILE.SETTINGS.CHANGE') }}
+                    {{ $t("DASHBOARD.PROFILE.SETTINGS.CHANGE") }}
                   </b-button>
                 </div>
               </div>
             </div>
-
           </div>
         </b-tab>
 
-        <b-tab :title=" $t('DASHBOARD.PROFILE.COMPANY_INFOR') ">
+        <b-tab :title="$t('DASHBOARD.PROFILE.COMPANY_INFOR')">
           <div class="profile card">
             <div class="card-body font-normal">
               <div>
                 <b-row class="mb-3 d-block align-items-center d-sm-flex">
                   <b-col cols="4" md="2">
-                    <h6>{{ $t('DASHBOARD.PROFILE.COMPANY.NAME') }}</h6>
+                    <h6>{{ $t("DASHBOARD.PROFILE.COMPANY.NAME") }}</h6>
                   </b-col>
                   <b-col>
-                    <b-input :disabled="!is_edit" v-model="company_name"
-                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.NAME')">
+                    <b-input
+                      :disabled="!is_edit"
+                      v-model="company_name"
+                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.NAME')"
+                    >
                     </b-input>
                   </b-col>
                 </b-row>
 
                 <b-row class="mb-3 d-block align-items-center d-sm-flex">
                   <b-col cols="4" md="2">
-                    <h6>{{ $t('DASHBOARD.PROFILE.COMPANY.ADDRESS') }}</h6>
+                    <h6>{{ $t("DASHBOARD.PROFILE.COMPANY.ADDRESS") }}</h6>
                   </b-col>
                   <b-col>
-                    <b-input :disabled="!is_edit" v-model="company_address"
-                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.ADDRESS')">
+                    <b-input
+                      :disabled="!is_edit"
+                      v-model="company_address"
+                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.ADDRESS')"
+                    >
                     </b-input>
                   </b-col>
                 </b-row>
 
                 <b-row class="mb-3 d-block align-items-center d-sm-flex">
                   <b-col cols="4" md="2">
-                    <h6>{{ $t('DASHBOARD.PROFILE.COMPANY.MAP') }}</h6>
+                    <h6>{{ $t("DASHBOARD.PROFILE.COMPANY.MAP") }}</h6>
                   </b-col>
                   <b-col>
-                    <b-input :disabled="!is_edit" v-model="company_map"
-                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.MAP')">
+                    <b-input
+                      :disabled="!is_edit"
+                      v-model="company_map"
+                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.MAP')"
+                    >
                     </b-input>
                   </b-col>
                 </b-row>
 
                 <b-row class="mb-3 d-block align-items-center d-sm-flex">
                   <b-col cols="4" md="2">
-                    <h6>{{ $t('DASHBOARD.PROFILE.COMPANY.LINK_KAKAO') }}</h6>
+                    <h6>{{ $t("DASHBOARD.PROFILE.COMPANY.LINK_KAKAO") }}</h6>
                   </b-col>
                   <b-col>
-                    <b-input :disabled="!is_edit" v-model="link_kakao"
-                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.LINK_KAKAO')"></b-input>
+                    <b-input
+                      :disabled="!is_edit"
+                      v-model="link_kakao"
+                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.LINK_KAKAO')"
+                    ></b-input>
                   </b-col>
                 </b-row>
 
                 <b-row class="mb-3 d-block align-items-center d-sm-flex">
                   <b-col cols="4" md="2">
-                    <h6>{{ $t('DASHBOARD.PROFILE.COMPANY.LINK_FACEBOOK') }}</h6>
+                    <h6>{{ $t("DASHBOARD.PROFILE.COMPANY.LINK_FACEBOOK") }}</h6>
                   </b-col>
                   <b-col>
-                    <b-input :disabled="!is_edit" v-model="link_facebook"
-                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.LINK_FACEBOOK')"></b-input>
+                    <b-input
+                      :disabled="!is_edit"
+                      v-model="link_facebook"
+                      :placeholder="
+                        $t('DASHBOARD.PROFILE.COMPANY.LINK_FACEBOOK')
+                      "
+                    ></b-input>
                   </b-col>
                 </b-row>
 
                 <b-row class="mb-3 d-block align-items-center d-sm-flex">
                   <b-col cols="4" md="2">
-                    <h6>{{ $t('DASHBOARD.PROFILE.COMPANY.LINK_ZALO') }}</h6>
+                    <h6>{{ $t("DASHBOARD.PROFILE.COMPANY.LINK_ZALO") }}</h6>
                   </b-col>
                   <b-col>
-                    <b-input :disabled="!is_edit" v-model="link_zalo" :placeholder="$t('DASHBOARD.PROFILE.COMPANY.LINK_ZALO')">
+                    <b-input
+                      :disabled="!is_edit"
+                      v-model="link_zalo"
+                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.LINK_ZALO')"
+                    >
                     </b-input>
                   </b-col>
                 </b-row>
 
                 <b-row class="mb-3 d-block align-items-center d-sm-flex">
                   <b-col cols="4" md="2">
-                    <h6>{{ $t('DASHBOARD.PROFILE.COMPANY.LINK_MESSENGER') }}</h6>
+                    <h6>
+                      {{ $t("DASHBOARD.PROFILE.COMPANY.LINK_MESSENGER") }}
+                    </h6>
                   </b-col>
                   <b-col>
-                    <b-input :disabled="!is_edit" v-model="link_messenger"
-                      :placeholder="$t('DASHBOARD.PROFILE.COMPANY.LINK_MESSENGER')"></b-input>
+                    <b-input
+                      :disabled="!is_edit"
+                      v-model="link_messenger"
+                      :placeholder="
+                        $t('DASHBOARD.PROFILE.COMPANY.LINK_MESSENGER')
+                      "
+                    ></b-input>
                   </b-col>
                 </b-row>
 
                 <div class="d-flex justify-content-end mt-4">
-                  <b-button variant="outlined" class=" mr-2 border" id="btn-cancel" @click="handleCancelChange">
-                    {{ $t('DASHBOARD.PROFILE.SETTINGS.CANCEL') }}
+                  <b-button
+                    variant="outlined"
+                    class="mr-2 border"
+                    id="btn-cancel"
+                    @click="handleCancelChange"
+                  >
+                    {{ $t("DASHBOARD.PROFILE.SETTINGS.CANCEL") }}
                   </b-button>
-                  <b-button v-if="is_edit" :disabled="is_process" class="btn-app" @click="handleSave">
-                    {{ $t('DASHBOARD.PROFILE.SETTINGS.SAVE') }}
+                  <b-button
+                    v-if="is_edit"
+                    :disabled="is_process"
+                    class="btn-app"
+                    @click="handleSave"
+                  >
+                    {{ $t("DASHBOARD.PROFILE.SETTINGS.SAVE") }}
                   </b-button>
                   <b-button v-else class="btn-app" @click="handleChange">
-                    {{ $t('DASHBOARD.PROFILE.SETTINGS.CHANGE') }}
+                    {{ $t("DASHBOARD.PROFILE.SETTINGS.CHANGE") }}
                   </b-button>
                 </div>
               </div>
@@ -203,18 +282,24 @@
         <b-tab :title="$t('DASHBOARD.PROFILE.CHANGEPASSWORD')">
           <b-row class="mb-3 d-block align-items-center d-sm-flex">
             <b-col cols="4" md="2">
-              <h6>{{ $t('DASHBOARD.PROFILE.OLDPASSWORDS') }}</h6>
+              <h6>{{ $t("DASHBOARD.PROFILE.OLDPASSWORDS") }}</h6>
             </b-col>
             <b-col>
               <b-input-group class="mt-3">
                 <template #append>
-                  <b-input-group-text @click="handleShowOldPassword" class="password-handle">
-                    <i v-if="is_show_old" class="fal fa-eye "></i>
-                    <i v-else class="far fa-eye-slash "></i>
+                  <b-input-group-text
+                    @click="handleShowOldPassword"
+                    class="password-handle"
+                  >
+                    <i v-if="is_show_old" class="fal fa-eye"></i>
+                    <i v-else class="far fa-eye-slash"></i>
                   </b-input-group-text>
                 </template>
-                <b-input v-model="old_password" :type="is_show_old ? 'text' : 'password'"
-                  :placeholder="$t('DASHBOARD.PROFILE.OLDPASSWORDS')">
+                <b-input
+                  v-model="old_password"
+                  :type="is_show_old ? 'text' : 'password'"
+                  :placeholder="$t('DASHBOARD.PROFILE.OLDPASSWORDS')"
+                >
                 </b-input>
               </b-input-group>
             </b-col>
@@ -222,46 +307,55 @@
 
           <b-row class="mb-3 d-block align-items-center d-sm-flex">
             <b-col cols="4" md="2">
-              <h6>{{ $t('DASHBOARD.PROFILE.NEWPASSWORDS') }}</h6>
+              <h6>{{ $t("DASHBOARD.PROFILE.NEWPASSWORDS") }}</h6>
             </b-col>
             <b-col>
               <b-input-group class="mt-3">
                 <template #append>
-                  <b-input-group-text @click="handleShowNewPassword" class="password-handle">
-                    <i v-if="is_show_new" class="fal fa-eye "></i>
-                    <i v-else class="far fa-eye-slash "></i>
+                  <b-input-group-text
+                    @click="handleShowNewPassword"
+                    class="password-handle"
+                  >
+                    <i v-if="is_show_new" class="fal fa-eye"></i>
+                    <i v-else class="far fa-eye-slash"></i>
                   </b-input-group-text>
                 </template>
-                <b-input v-model="new_password" :type="is_show_new ? 'text' : 'password'"
-                  :placeholder="$t('DASHBOARD.PROFILE.NEWPASSWORDS')">
+                <b-input
+                  v-model="new_password"
+                  :type="is_show_new ? 'text' : 'password'"
+                  :placeholder="$t('DASHBOARD.PROFILE.NEWPASSWORDS')"
+                >
                 </b-input>
               </b-input-group>
             </b-col>
           </b-row>
 
-          <b-row class="mb-3  justify-content-end mt-4">
-            <b-button variant="outlined" class=" mr-2 border" id="btn-cancel">
-              {{ $t('DASHBOARD.PROFILE.SETTINGS.CANCEL') }}
+          <b-row class="mb-3 justify-content-end mt-4">
+            <b-button variant="outlined" class="mr-2 border" id="btn-cancel">
+              {{ $t("DASHBOARD.PROFILE.SETTINGS.CANCEL") }}
             </b-button>
-            <b-button :disabled="is_process" class="btn-app" @click="handleChangePassword">
-              {{ $t('DASHBOARD.PROFILE.SETTINGS.SAVE') }}
+            <b-button
+              :disabled="is_process"
+              class="btn-app"
+              @click="handleChangePassword"
+            >
+              {{ $t("DASHBOARD.PROFILE.SETTINGS.SAVE") }}
             </b-button>
           </b-row>
         </b-tab>
-
-
       </b-tabs>
-
     </div>
-
-
   </div>
 </template>
 
 <script>
-import Toast from '@/toast';
-import CONSTANTS from '@/constants';
-import { postChangePassword, postChangeUserInfor, postUserInfor } from '@/api/modules/Auth';
+import Toast from "@/toast";
+import CONSTANTS from "@/constants";
+import {
+  postChangePassword,
+  postChangeUserInfor,
+  postUserInfor,
+} from "@/api/modules/Auth";
 
 export default {
   name: "ProfilePage",
@@ -272,8 +366,8 @@ export default {
       language: this.$store.getters.language,
       is_show_old: false,
       is_show_new: false,
-      old_password: '',
-      new_password: '',
+      old_password: "",
+      new_password: "",
       fullname: "",
       email: "",
       email_noti: "",
@@ -288,7 +382,6 @@ export default {
       gender: "male",
       is_process: false,
       is_edit: false,
-
     };
   },
 
@@ -299,15 +392,16 @@ export default {
   methods: {
     setLanguage(language = language) {
       if (this.lang !== language) {
-        this.$store.dispatch('app/setLanguage', language)
+        this.$store
+          .dispatch("app/setLanguage", language)
           .then(() => {
             this.$i18n.locale = language;
 
-            Toast.success(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_SUCCESS'));
+            Toast.success(this.$t("TOAST_MESSAGE.CHANGE_LANGUAGE_SUCCESS"));
           })
           .catch(() => {
-            Toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
-          })
+            Toast.warning(this.$t("TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR"));
+          });
       }
     },
 
@@ -331,17 +425,16 @@ export default {
           link_messenger: this.link_messenger,
           link_facebook: this.link_facebook,
           link_zalo: this.link_zalo,
-
-        }
+        };
         const response = await postChangeUserInfor(BODY);
         if (response.status) {
-          Toast.success(this.$t('TOAST_MESSAGE.CHANGE_PROFILE_SUCCESS'));
+          Toast.success(this.$t("TOAST_MESSAGE.CHANGE_PROFILE_SUCCESS"));
         } else {
           Toast.warning(response.message);
         }
         this.getProfile();
       } catch (error) {
-        Toast.warning(this.$t('TOAST_MESSAGE.CHANGE_PROFILE_ERROR'));
+        Toast.warning(this.$t("TOAST_MESSAGE.CHANGE_PROFILE_ERROR"));
       }
       this.is_process = false;
       this.is_edit = false;
@@ -375,14 +468,14 @@ export default {
         };
         const response = await postChangePassword(BODY);
         if (response.status) {
-          Toast.success(this.$t('TOAST_MESSAGE.CHANGE_PASSWORD_SUCCESS'));
+          Toast.success(this.$t("TOAST_MESSAGE.CHANGE_PASSWORD_SUCCESS"));
 
-          this.$router.push({ name: 'HomeShopCar' });
+          this.$router.push({ name: "HomeShopCar" });
         } else {
           Toast.warning(response.message);
         }
       } catch (error) {
-        Toast.warning(this.$t('TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR'))
+        Toast.warning(this.$t("TOAST_MESSAGE.CHANGE_LANGUAGE_ERROR"));
       }
       this.is_process = false;
     },
@@ -405,18 +498,17 @@ export default {
           this.link_facebook = response.data.link_facebook;
           this.link_zalo = response.data.link_zalo;
 
-          await this.$store.dispatch('auth/setProfile', response.data)
+          await this.$store.dispatch("auth/setProfile", response.data);
         } else {
-          Toast.warning(this.$t('TOAST_MESSAGE.GET_PROFILE_ERROR'));
+          Toast.warning(this.$t("TOAST_MESSAGE.GET_PROFILE_ERROR"));
         }
       } catch (error) {
-        Toast.warning(this.$t('TOAST_MESSAGE.GET_PROFILE_ERROR'));
+        Toast.warning(this.$t("TOAST_MESSAGE.GET_PROFILE_ERROR"));
       }
     },
   },
-}
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>>
+<style lang="scss" scoped></style>
+>

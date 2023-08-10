@@ -1,18 +1,19 @@
 <template>
   <b-card>
     <b-row>
-      <b-col 
-        v-for="(branch, idx) in ListBranch" 
-        :key="idx" 
-        cols="6" xs="3" sm="3" md="3" lg="3" xl="2"
+      <b-col
+        v-for="(branch, idx) in ListBranch"
+        :key="idx"
+        cols="6"
+        xs="3"
+        sm="3"
+        md="3"
+        lg="3"
+        xl="2"
       >
         <div class="card-branch">
           <div class="card-branch__logo">
-            <b-img
-              :src="branch.image"
-              fluid
-              alt="Logo"
-            />
+            <b-img :src="branch.image" fluid alt="Logo" />
           </div>
           <div class="card-branch__branch-name">
             <span>{{ branch.text }}</span>
@@ -25,48 +26,54 @@
 
 <script>
 export default {
-  name: 'BranchsHome',
+  name: "BranchsHome",
   data() {
     return {
       ListBranch: [
         {
-          value: 'MEC',
-          image: 'https://mercedes-showroom.com/wp-content/uploads/2019/08/mec-logo-300x300.png',
-          text: 'Mercedes',
+          value: "MEC",
+          image:
+            "https://mercedes-showroom.com/wp-content/uploads/2019/08/mec-logo-300x300.png",
+          text: "Mercedes",
         },
         {
-          value: 'MEC',
-          image: 'https://mercedes-showroom.com/wp-content/uploads/2019/08/mec-logo-300x300.png',
-          text: 'Mercedes',
+          value: "MEC",
+          image:
+            "https://mercedes-showroom.com/wp-content/uploads/2019/08/mec-logo-300x300.png",
+          text: "Mercedes",
         },
         {
-          value: 'MEC',
-          image: 'https://mercedes-showroom.com/wp-content/uploads/2019/08/mec-logo-300x300.png',
-          text: 'Mercedes',
+          value: "MEC",
+          image:
+            "https://mercedes-showroom.com/wp-content/uploads/2019/08/mec-logo-300x300.png",
+          text: "Mercedes",
         },
         {
-          value: 'MEC',
-          image: 'https://mercedes-showroom.com/wp-content/uploads/2019/08/mec-logo-300x300.png',
-          text: 'Mercedes',
+          value: "MEC",
+          image:
+            "https://mercedes-showroom.com/wp-content/uploads/2019/08/mec-logo-300x300.png",
+          text: "Mercedes",
         },
         {
-          value: 'MEC',
-          image: 'https://mercedes-showroom.com/wp-content/uploads/2019/08/mec-logo-300x300.png',
-          text: 'Mercedes',
+          value: "MEC",
+          image:
+            "https://mercedes-showroom.com/wp-content/uploads/2019/08/mec-logo-300x300.png",
+          text: "Mercedes",
         },
         {
-          value: 'MEC',
-          image: 'https://mercedes-showroom.com/wp-content/uploads/2019/08/mec-logo-300x300.png',
-          text: 'Mercedes',
+          value: "MEC",
+          image:
+            "https://mercedes-showroom.com/wp-content/uploads/2019/08/mec-logo-300x300.png",
+          text: "Mercedes",
         },
-      ]
-    }
+      ],
+    };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/variables';
+@import "../../../scss/variables";
 
 .card-branch {
   text-align: center;

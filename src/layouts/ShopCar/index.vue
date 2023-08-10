@@ -1,7 +1,7 @@
 <template>
   <div class="app-body">
     <BalloonsContact />
-    
+
     <div class="app-shop" :style="handleOverflow">
       <!-- Navbar -->
       <Navbar />
@@ -9,23 +9,17 @@
       <template v-if="['HomeShopCar'].includes(routeName)">
         <Banner />
       </template>
-      
+
       <b-container>
         <!-- App View -->
         <AppMain />
         <!-- Happy Moment -->
-        <div
-          class="app-shope__happy-moment"
-          v-if="false"
-        >
+        <div class="app-shope__happy-moment" v-if="false">
           <CustomerFeedback :items="listFeedback" />
         </div>
         <!-- Collaborators -->
-        <div
-          class="app-shop__collaborators"
-          v-if="false"
-        >
-          <ListCollaborators  :items="listCollaborators" />
+        <div class="app-shop__collaborators" v-if="false">
+          <ListCollaborators :items="listCollaborators" />
         </div>
         <!-- Contact Support -->
         <div class="app-shop__contact-support">
@@ -39,22 +33,19 @@
 </template>
 
 <script>
-import { 
-  getListCollaborators,
-  getListHappyMoment
-} from '@/api/modules/Home';
+import { getListCollaborators, getListHappyMoment } from "@/api/modules/Home";
 
-import Banner from '@/views/ShopCar/components/Banner.vue';
-import Navbar from '@/views/ShopCar/components/Navbar.vue';
-import AppMain from './components/AppMain.vue';
-import CustomerFeedback from '@/views/ShopCar/components/CustomerFeedback.vue';
-import ListCollaborators from '@/views/ShopCar/components/ListCollaborators.vue';
-import ContactSupport from '@/views/ShopCar/components/ContactSupport.vue'
-import FooterHome from '@/views/ShopCar/components/FooterHome.vue';
-import BalloonsContact from '@/components/BalloonsContact.vue';
+import Banner from "@/views/ShopCar/components/Banner.vue";
+import Navbar from "@/views/ShopCar/components/Navbar.vue";
+import AppMain from "./components/AppMain.vue";
+import CustomerFeedback from "@/views/ShopCar/components/CustomerFeedback.vue";
+import ListCollaborators from "@/views/ShopCar/components/ListCollaborators.vue";
+import ContactSupport from "@/views/ShopCar/components/ContactSupport.vue";
+import FooterHome from "@/views/ShopCar/components/FooterHome.vue";
+import BalloonsContact from "@/components/BalloonsContact.vue";
 
 export default {
-  name: 'LayoutShopCar',
+  name: "LayoutShopCar",
   components: {
     Banner,
     Navbar,
@@ -63,7 +54,7 @@ export default {
     ListCollaborators,
     ContactSupport,
     FooterHome,
-    BalloonsContact
+    BalloonsContact,
   },
   data() {
     return {
@@ -71,23 +62,25 @@ export default {
       listCollaborators: [],
       showHappyMoment: false,
       showCollaborators: false,
-    }
+    };
   },
   computed: {
     handleOverflow() {
-      return `overflow: ${this.$store.getters.loading.show ? 'hidden' : 'auto' } !important;`;
+      return `overflow: ${
+        this.$store.getters.loading.show ? "hidden" : "auto"
+      } !important;`;
     },
-		pathURL() {
-			return this.$route.fullPath;
-		},
+    pathURL() {
+      return this.$route.fullPath;
+    },
     routeName() {
       return this.$route.name;
-    }
+    },
   },
   watch: {
     pathURL() {
       this.handleHiddenContent();
-    }
+    },
   },
   created() {
     this.handleInit();
@@ -134,17 +127,19 @@ export default {
     handleHiddenContent() {
       const ROUTER_NAME = this.$router.currentRoute.name;
 
-      this.showHappyMoment = !(['AllHappyMoment', 'DetailHappyMoment'].includes(ROUTER_NAME));
-      this.showCollaborators = (ROUTER_NAME !== 'AllCollaborators');
-    }
+      this.showHappyMoment = !["AllHappyMoment", "DetailHappyMoment"].includes(
+        ROUTER_NAME
+      );
+      this.showCollaborators = ROUTER_NAME !== "AllCollaborators";
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables';
+@import "@/scss/variables";
 
-.app-body  {
+.app-body {
   position: relative;
 }
 

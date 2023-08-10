@@ -5,25 +5,25 @@
 </template>
 
 <script>
-import ListCardCar from './ListCardCar.vue';
-import { getListHotSale } from '@/api/modules/Home';
+import ListCardCar from "./ListCardCar.vue";
+import { getListHotSale } from "@/api/modules/Home";
 
 export default {
-  name: 'HotSaleHome',
+  name: "HotSaleHome",
   components: {
-    ListCardCar
+    ListCardCar,
   },
   computed: {
     typeScreen() {
       return this.$store.getters.sizeScreen.type;
-    }
+    },
   },
   data() {
     return {
-      items: []
-    }
+      items: [],
+    };
   },
-  created () {
+  created() {
     this.initData();
   },
   methods: {
@@ -36,17 +36,16 @@ export default {
 
         if (status_code === 200) {
           this.items = data;
-          this.$bus.emit('HOT_SALE_TOTAL_CAR', pagination.total);
+          this.$bus.emit("HOT_SALE_TOTAL_CAR", pagination.total);
         } else {
           this.items = [];
         }
-
       } catch (err) {
         this.items = [];
 
         console.log(err);
       }
-    }
+    },
   },
-}
+};
 </script>

@@ -2,16 +2,10 @@
   <div class="item-sort">
     <span>{{ $t(sortName) }}</span>
     <div class="option-sort">
-      <div 
-        class="base-btn-sort sort-up" 
-        @click="handleClickSort(1)"
-      >
+      <div class="base-btn-sort sort-up" @click="handleClickSort(1)">
         <i class="far fa-arrow-up" />
       </div>
-      <div 
-        class="base-btn-sort sort-down" 
-        @click="handleClickSort(-1)"
-      >
+      <div class="base-btn-sort sort-down" @click="handleClickSort(-1)">
         <i class="far fa-arrow-down" />
       </div>
     </div>
@@ -20,34 +14,34 @@
 
 <script>
 export default {
-  name: 'ItemSort',
+  name: "ItemSort",
   props: {
     sortName: {
       type: String,
       required: true,
-      default: 'Sort Name'
+      default: "Sort Name",
     },
     keySort: {
       type: String,
       required: true,
-      default: ''
-    }
+      default: "",
+    },
   },
   methods: {
     handleClickSort(type) {
       const SORT = {
         sort: this.keySort,
-        type
+        type,
       };
 
-      this.$bus.emit('LIST_CAR_SORT_CLICK', SORT);
-    }
+      this.$bus.emit("LIST_CAR_SORT_CLICK", SORT);
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables';
+@import "@/scss/variables";
 
 .item-sort {
   display: flex;

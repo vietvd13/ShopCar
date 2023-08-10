@@ -1,27 +1,27 @@
-import { getLanguage } from '@/utils/getLang';
-import Cookies from 'js-cookie';
-import CONSTANTS from '@/constants';
+import { getLanguage } from "@/utils/getLang";
+import Cookies from "js-cookie";
+import CONSTANTS from "@/constants";
 
 const state = {
-    language: getLanguage(),
+  language: getLanguage(),
 };
 
 const mutations = {
-	SET_LANGUAGE: (state, lang) => {
-		state.language = lang;
-        Cookies.set(CONSTANTS.COOKIES.LANGUAGE, lang);
-	}
+  SET_LANGUAGE: (state, lang) => {
+    state.language = lang;
+    Cookies.set(CONSTANTS.COOKIES.LANGUAGE, lang);
+  },
 };
 
 const actions = {
-	setLanguage({ commit }, lang = 'kr') {
-		commit('SET_LANGUAGE', lang);
-	}
+  setLanguage({ commit }, lang = "kr") {
+    commit("SET_LANGUAGE", lang);
+  },
 };
 
 export default {
-	namespaced: true,
-	state,
-	mutations,
-	actions,
+  namespaced: true,
+  state,
+  mutations,
+  actions,
 };

@@ -1,26 +1,28 @@
 <template>
   <b-card>
     <div class="preview-image">
-      <BasicInforCar
-        v-if="name"
-        :name="name"
-      />
+      <BasicInforCar v-if="name" :name="name" />
 
       <b-row>
-        <b-col
-          cols="12"
-          xs="12"
-          sm="12"
-          md="12"
-          lg="6"
-        >
+        <b-col cols="12" xs="12" sm="12" md="12" lg="6">
           <div
             class="display-image-preview mb-xs-2 mb-sm-2 mb-lg-0"
             :style="`height: ${handleSizePreview()}px;`"
           >
             <b-row>
-              <b-col cols="1" xs="1" sm="1" md="1" lg="1" class="center-top-bottom" style="padding-right: 0;">
-                <i class="fas fa-chevron-left" @click="onClickControlImage(-1)" />
+              <b-col
+                cols="1"
+                xs="1"
+                sm="1"
+                md="1"
+                lg="1"
+                class="center-top-bottom"
+                style="padding-right: 0"
+              >
+                <i
+                  class="fas fa-chevron-left"
+                  @click="onClickControlImage(-1)"
+                />
               </b-col>
 
               <b-col cols="10" xs="10" sm="10" md="10" lg="10">
@@ -32,19 +34,24 @@
                 />
               </b-col>
 
-              <b-col cols="1" xs="1" sm="1" md="1" lg="1" class="center-top-bottom" style="padding-left: 0;">
-                <i class="fas fa-chevron-right center-top-bottom" @click="onClickControlImage(1)" />
+              <b-col
+                cols="1"
+                xs="1"
+                sm="1"
+                md="1"
+                lg="1"
+                class="center-top-bottom"
+                style="padding-left: 0"
+              >
+                <i
+                  class="fas fa-chevron-right center-top-bottom"
+                  @click="onClickControlImage(1)"
+                />
               </b-col>
             </b-row>
           </div>
         </b-col>
-        <b-col
-          cols="12"
-          xs="12"
-          sm="12"
-          md="12"
-          lg="6"
-        >
+        <b-col cols="12" xs="12" sm="12" md="12" lg="6">
           <div class="card-list-image">
             <div class="list-image">
               <div
@@ -68,10 +75,10 @@
 </template>
 
 <script>
-import BasicInforCar from './BasicInforCar.vue';
+import BasicInforCar from "./BasicInforCar.vue";
 
 export default {
-  name: 'PreviewImage',
+  name: "PreviewImage",
   components: {
     BasicInforCar,
   },
@@ -79,33 +86,33 @@ export default {
     name: {
       type: String,
       required: false,
-      default: ''
+      default: "",
     },
     images: {
       type: Array,
       required: true,
-      default: function() {
-        return []
+      default: function () {
+        return [];
       },
     },
   },
   computed: {
     domainImage() {
       return process.env.VUE_APP_URL_IMAGE;
-    }
+    },
   },
   data() {
     return {
       idxImage: 0,
-      imagePreview: '',
-    }
+      imagePreview: "",
+    };
   },
   watch: {
     images() {
       this.handleStartPreview();
-    }
+    },
   },
-  created () {
+  created() {
     this.handleStartPreview();
   },
   methods: {
@@ -143,20 +150,20 @@ export default {
       };
 
       return MAP_SIZE[SIZE];
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables';
+@import "@/scss/variables";
 
 .preview-image {
   overflow: hidden;
 
   .basic-infor-car {
     margin-bottom: 10px;
-  
+
     .car-name {
       font-weight: bold;
       font-size: 25px;

@@ -1,14 +1,14 @@
-import store from '../store';
+import store from "../store";
 
-function handleStoreSize(width, height, type) {  
+function handleStoreSize(width, height, type) {
   const SIZE = {
     width,
     height,
-    type
+    type,
   };
 
-  store.dispatch('sizeScreen/setSize', SIZE);
-} 
+  store.dispatch("sizeScreen/setSize", SIZE);
+}
 
 function handleResize() {
   const WIDTH = window.innerWidth;
@@ -16,23 +16,23 @@ function handleResize() {
   let TYPE = null;
 
   if (WIDTH >= 0 && WIDTH < 576) {
-    TYPE = 'xs';
+    TYPE = "xs";
   }
 
   if (WIDTH >= 576 && WIDTH < 768) {
-    TYPE = 'sm';
+    TYPE = "sm";
   }
 
   if (WIDTH >= 768 && WIDTH < 992) {
-    TYPE = 'md';
+    TYPE = "md";
   }
 
   if (WIDTH >= 992 && WIDTH < 1200) {
-    TYPE = 'lg';
+    TYPE = "lg";
   }
 
   if (WIDTH >= 1200) {
-    TYPE = 'xl';
+    TYPE = "xl";
   }
 
   handleStoreSize(WIDTH, HEIGHT, TYPE);
@@ -40,7 +40,6 @@ function handleResize() {
 
 handleResize();
 
-
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   handleResize();
 });

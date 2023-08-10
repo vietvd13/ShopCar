@@ -4,17 +4,17 @@
 
 <script>
 export default {
-  name: 'AppMainShopCar',
-	computed: {
-		key() {
-			return this.$route.fullPath;
-		},
-	},
-}
+  name: "AppMainShopCar",
+  computed: {
+    key() {
+      return this.$route.fullPath;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 .view-app-main {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 </style>

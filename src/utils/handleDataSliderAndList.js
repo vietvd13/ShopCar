@@ -7,24 +7,24 @@ function paginateList(arr, size) {
     page.push(val);
 
     return acc;
-  }, [])
+  }, []);
 }
 
-function handleDataSliderAndList(items, type = 'list') {
+function handleDataSliderAndList(items, type = "list") {
   if (items.length) {
-    if (type === 'list') {
+    if (type === "list") {
       return items;
     }
-  
-    if (type === 'slider') {
+
+    if (type === "slider") {
       const result = paginateList(items, 4);
-  
+
       if (result[result.length - 1].length < 4) {
-        for (let i = 0; i < (4 - result[result.length - 1].length); i++) {
-          (result[result.length - 1]).push(null);
+        for (let i = 0; i < 4 - result[result.length - 1].length; i++) {
+          result[result.length - 1].push(null);
         }
       }
-  
+
       return result;
     }
   }
@@ -32,6 +32,4 @@ function handleDataSliderAndList(items, type = 'list') {
   return items;
 }
 
-export {
-  handleDataSliderAndList
-}
+export { handleDataSliderAndList };

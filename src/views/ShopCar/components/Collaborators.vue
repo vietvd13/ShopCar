@@ -1,9 +1,7 @@
 <template>
   <div class="zone-right-home">
     <div class="zone-collaborators">
-      <template
-        v-for="(collaborator, idx) in items"
-      >
+      <template v-for="(collaborator, idx) in items">
         <CardCollaborators
           :key="idx"
           :avatar="collaborator.image"
@@ -20,32 +18,26 @@
     <div class="zone-support">
       <div class="contact-support">
         <div class="contact-support__title">
-          {{ $t('SHOP_CAR.HOME.CONTACT_SUPPORT.TITLE') }}
+          {{ $t("SHOP_CAR.HOME.CONTACT_SUPPORT.TITLE") }}
         </div>
         <div class="contact-support__form">
           <div class="item-form">
             <label for="input-name">
-              {{ $t('SHOP_CAR.HOME.CONTACT_SUPPORT.NAME') }}
+              {{ $t("SHOP_CAR.HOME.CONTACT_SUPPORT.NAME") }}
             </label>
-            <b-form-input 
-              id="input-name"
-              v-model="formSupport.name"
-            />
+            <b-form-input id="input-name" v-model="formSupport.name" />
           </div>
 
           <div class="item-form">
             <label for="input-phone">
-              {{ $t('SHOP_CAR.HOME.CONTACT_SUPPORT.PHONE') }}
+              {{ $t("SHOP_CAR.HOME.CONTACT_SUPPORT.PHONE") }}
             </label>
-            <b-form-input 
-              id="input-phone"
-              v-model="formSupport.phone"
-            />
+            <b-form-input id="input-phone" v-model="formSupport.phone" />
           </div>
 
           <div class="item-form">
             <label for="input-content">
-              {{ $t('SHOP_CAR.HOME.CONTACT_SUPPORT.CONTENT') }}
+              {{ $t("SHOP_CAR.HOME.CONTACT_SUPPORT.CONTENT") }}
             </label>
             <b-form-textarea
               v-model="formSupport.content"
@@ -56,12 +48,8 @@
           </div>
 
           <div class="item-form">
-            <b-button 
-              block 
-              class="btn-app"
-              @click="handleSendContactSupport()"
-            >
-              {{ $t('SHOP_CAR.HOME.CONTACT_SUPPORT.SEND') }}
+            <b-button block class="btn-app" @click="handleSendContactSupport()">
+              {{ $t("SHOP_CAR.HOME.CONTACT_SUPPORT.SEND") }}
             </b-button>
           </div>
         </div>
@@ -71,33 +59,33 @@
 </template>
 
 <script>
-import { setLoading } from '@/utils/setLoading';
-import { postCreateContactSupport } from '@/api/modules/Home';
-import Toast from '@/toast';
-import CardCollaborators from './CardCollaborators.vue';
+import { setLoading } from "@/utils/setLoading";
+import { postCreateContactSupport } from "@/api/modules/Home";
+import Toast from "@/toast";
+import CardCollaborators from "./CardCollaborators.vue";
 
 export default {
-  name: 'CollaboratorsHome',
+  name: "CollaboratorsHome",
   components: {
     CardCollaborators,
   },
   props: {
     items: {
       type: [],
-      required: true, 
-      default: function() {
+      required: true,
+      default: function () {
         return [];
-      }
+      },
     },
   },
   data() {
     return {
       formSupport: {
-        name: '',
-        phone: '',
-        content: '',
-      }
-    }
+        name: "",
+        phone: "",
+        content: "",
+      },
+    };
   },
   methods: {
     async handleSendContactSupport() {
@@ -107,19 +95,21 @@ export default {
         const BODY = {
           name: this.formSupport.name,
           phone: this.formSupport.phone,
-          content: this.formSupport.content
-        }
+          content: this.formSupport.content,
+        };
 
         const { status_code } = await postCreateContactSupport(BODY);
-        
+
         if (status_code === 200) {
           this.formSupport = {
-            name: '',
-            phone: '',
-            content: '',
-          }
+            name: "",
+            phone: "",
+            content: "",
+          };
 
-          Toast.success(this.$t('TOAST_MESSAGE.CREATE_CUSTOMER_SUPPORT_SUCCESS'));
+          Toast.success(
+            this.$t("TOAST_MESSAGE.CREATE_CUSTOMER_SUPPORT_SUCCESS")
+          );
         }
 
         setLoading(false);
@@ -127,13 +117,13 @@ export default {
         setLoading(false);
         console.log(err);
       }
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables';
+@import "@/scss/variables";
 
 .zone-right-home {
   position: fixed;
@@ -149,7 +139,6 @@ export default {
     overflow-y: scroll;
     overflow-x: hidden;
 
-    
     margin-bottom: 10px;
   }
 
@@ -167,9 +156,8 @@ export default {
         margin-bottom: 5px;
       }
 
-      border: 1px  solid $silver-chalice;
+      border: 1px solid $silver-chalice;
     }
   }
 }
-
 </style>

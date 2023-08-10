@@ -1,13 +1,13 @@
 <template>
   <div class="card-collaborators">
     <div class="card-collaborators__img">
-      <b-img-lazy 
+      <b-img-lazy
         :src="`${domainImage}${avatar}`"
         :blank-src="require('@/assets/images/noimage.webp')"
         alt="Image Collaborators"
         v-bind="{
           width: 155,
-          height: 189
+          height: 189,
         }"
       />
     </div>
@@ -28,19 +28,19 @@
           :src="require('@/assets/images/kakaotalk.png')"
           v-bind="{
             width: 25,
-            height: 25
-          }" 
+            height: 25,
+          }"
         />
       </div>
 
       <div class="item-social">
         <b-img
           @click="goToLink(zalo)"
-          :src="require('@/assets/images/zalo.png')" 
+          :src="require('@/assets/images/zalo.png')"
           v-bind="{
             width: 25,
-            height: 25
-          }" 
+            height: 25,
+          }"
         />
       </div>
 
@@ -50,8 +50,8 @@
           :src="require('@/assets/images/messager.png')"
           v-bind="{
             width: 25,
-            height: 25
-          }" 
+            height: 25,
+          }"
         />
       </div>
     </div>
@@ -60,54 +60,54 @@
 
 <script>
 export default {
-  name: 'CardCollaborators',
+  name: "CardCollaborators",
   props: {
     avatar: {
       type: [String],
-      default: '',
+      default: "",
       required: false,
     },
     fullname: {
       type: String,
-      default: '',
+      default: "",
       required: true,
     },
     phone: {
       type: String,
-      default: '',
+      default: "",
       required: true,
     },
     kakaotalk: {
       type: String,
-      default: '',
+      default: "",
       required: true,
     },
     zalo: {
       type: String,
-      default: '',
+      default: "",
       required: true,
     },
     messager: {
       type: String,
-      default: '',
+      default: "",
       required: true,
-    }
+    },
   },
   computed: {
     domainImage() {
       return process.env.VUE_APP_URL_IMAGE;
-    }
+    },
   },
   methods: {
     goToLink(link) {
-      window.open(link, '_blank');
-    }
+      window.open(link, "_blank");
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/variables';
+@import "@/scss/variables";
 
 .card-collaborators {
   width: 100%;
@@ -173,7 +173,6 @@ export default {
         border-radius: 5px;
       }
     }
-    
   }
 }
 </style>

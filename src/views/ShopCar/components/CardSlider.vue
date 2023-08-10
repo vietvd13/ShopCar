@@ -4,10 +4,7 @@
       <!-- Button Back -->
       <b-col cols="1">
         <div class="icon-card-slider">
-          <i
-            class="fas fa-chevron-left"
-            @click="backSlider()"
-          />
+          <i class="fas fa-chevron-left" @click="backSlider()" />
         </div>
       </b-col>
       <!-- Slider -->
@@ -18,7 +15,15 @@
               <b-row>
                 <template v-for="car in slide">
                   <template v-if="car">
-                    <b-col cols="12" xs="12" sm="3" md="3" lg="3" xl="3" :key="car._id">
+                    <b-col
+                      cols="12"
+                      xs="12"
+                      sm="3"
+                      md="3"
+                      lg="3"
+                      xl="3"
+                      :key="car._id"
+                    >
                       <CardCar
                         :car-id="car._id"
                         :car-image="car.primary_image"
@@ -29,7 +34,15 @@
                     </b-col>
                   </template>
                   <template v-else>
-                    <b-col cols="12" xs="12" sm="3" md="3" lg="3" xl="3" :key="car._id" />
+                    <b-col
+                      cols="12"
+                      xs="12"
+                      sm="3"
+                      md="3"
+                      lg="3"
+                      xl="3"
+                      :key="car._id"
+                    />
                   </template>
                 </template>
               </b-row>
@@ -40,10 +53,7 @@
       <!-- Button Next -->
       <b-col cols="1">
         <div class="icon-card-slider">
-          <i
-            class="fas fa-chevron-right"
-            @click="nextSlider()"
-          />
+          <i class="fas fa-chevron-right" @click="nextSlider()" />
         </div>
       </b-col>
     </b-row>
@@ -51,10 +61,10 @@
 </template>
 
 <script>
-import CardCar from './CardCar.vue';
+import CardCar from "./CardCar.vue";
 
 export default {
-  name: 'CardSlider',
+  name: "CardSlider",
   components: {
     CardCar,
   },
@@ -62,14 +72,14 @@ export default {
     refName: {
       type: String,
       required: false,
-      default: 'CardSlider',
+      default: "CardSlider",
     },
     items: {
       type: Array,
       required: true,
       default: () => {
         return [];
-      }
+      },
     },
   },
   methods: {
@@ -78,13 +88,13 @@ export default {
     },
     nextSlider() {
       this.$refs[this.refName].next();
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '../../../scss/variables';
+@import "../../../scss/variables";
 
 .icon-card-slider {
   display: flex;

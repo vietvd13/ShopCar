@@ -1,88 +1,88 @@
 export default {
   // Api Auth
-  LOGIN: '/auth/login',
-  REFRESH_TOKEN: '/auth/relogin',
-  CHANGE_PASSWORD: '/auth/change-password',
-  USER_INFOR: '/auth/infor',
-  USER_INFOR_PUBLIC: '/auth/infor-public',
+  LOGIN: "/auth/login",
+  REFRESH_TOKEN: "/auth/relogin",
+  CHANGE_PASSWORD: "/auth/change-password",
+  USER_INFOR: "/auth/infor",
+  USER_INFOR_PUBLIC: "/auth/infor-public",
   CHANGE_USER_INFOR: "/auth/change-infor",
 
   // Api Upload
-  UPLOAD_IMAGE: '/upload/image',
-  UPLOAD_IMAGES: '/upload/image-multiple',
-  UPLOAD_FILE: '/upload/file',
+  UPLOAD_IMAGE: "/upload/image",
+  UPLOAD_IMAGES: "/upload/image-multiple",
+  UPLOAD_FILE: "/upload/file",
 
   // Api Home
-  GET_LIST_CAR: '/cars/list',
-  GET_DETAIL_CAR: '/cars/detail',
-  GET_ALL_COLLABORATORS: '/staff/list',
+  GET_LIST_CAR: "/cars/list",
+  GET_DETAIL_CAR: "/cars/detail",
+  GET_ALL_COLLABORATORS: "/staff/list",
 
   // Api Cộng tác viên
-  GET_LIST_COLLABORATORS: '/staff/list',
-  POST_CREATE_COLLABORATORS: '/staff/create',
-  GET_DETAIL_COLLABORATORS: '/staff',
-  POST_EDIT_COLLABORATORS: '/staff/edit',
-  POST_DELETE_COLLABORATORS: '/staff/remove',
-  GET_LIST_COLLABORATORS_PUBLIC: '/staff/list-public',
+  GET_LIST_COLLABORATORS: "/staff/list",
+  POST_CREATE_COLLABORATORS: "/staff/create",
+  GET_DETAIL_COLLABORATORS: "/staff",
+  POST_EDIT_COLLABORATORS: "/staff/edit",
+  POST_DELETE_COLLABORATORS: "/staff/remove",
+  GET_LIST_COLLABORATORS_PUBLIC: "/staff/list-public",
 
   // Api Khoảnh khắc vui vẻ
-  GET_LIST_HAPPY_MOMENT: '/review/list',
-  POST_CREATE_HAPPY_MOMENT: '/review/create',
-  GET_DETAIL_HAPPY_MOMENT: '/review/detail',
-  POST_EDIT_HAPPY_MOMENT: '/review/edit',
-  POST_DELETE_HAPPY_MOMENT: '/review/remove',
+  GET_LIST_HAPPY_MOMENT: "/review/list",
+  POST_CREATE_HAPPY_MOMENT: "/review/create",
+  GET_DETAIL_HAPPY_MOMENT: "/review/detail",
+  POST_EDIT_HAPPY_MOMENT: "/review/edit",
+  POST_DELETE_HAPPY_MOMENT: "/review/remove",
 
   // Api Hỗ trợ khác hàng
-  GET_LIST_CUSTOMER_SUPPORT: '/support/get',
-  POST_CREATE_CUSTOMER_SUPPORT: '/support/create',
-  POST_DETAIL_CUSTOMER_SUPPORT: '/support/detail',
-  POST_EDIT_CUSTOMER_SUPPORT: '/support/edit',
+  GET_LIST_CUSTOMER_SUPPORT: "/support/get",
+  POST_CREATE_CUSTOMER_SUPPORT: "/support/create",
+  POST_DETAIL_CUSTOMER_SUPPORT: "/support/detail",
+  POST_EDIT_CUSTOMER_SUPPORT: "/support/edit",
 
   // Api Filter
-  GET_FILTER_CATEGORIES_LIST: '/filter/list-category',
-  GET_LIST_CATEGORIES: '/filter/category',
-  GET_LIST_COLOR: '/filter/color',
-  GET_LIST_FUEL_TYPE: '/filter/fuel-type',
-  GET_LIST_GEAR_BOX: '/filter/gearbox',
-  GET_LIST_CAR_TYPE: '/filter/cartype',
+  GET_FILTER_CATEGORIES_LIST: "/filter/list-category",
+  GET_LIST_CATEGORIES: "/filter/category",
+  GET_LIST_COLOR: "/filter/color",
+  GET_LIST_FUEL_TYPE: "/filter/fuel-type",
+  GET_LIST_GEAR_BOX: "/filter/gearbox",
+  GET_LIST_CAR_TYPE: "/filter/cartype",
 
   // Api Banner
-  GET_BANNER: '/home/banner/get',
-  POST_EDIT_BANNER: '/home/banner/update',
+  GET_BANNER: "/home/banner/get",
+  POST_EDIT_BANNER: "/home/banner/update",
 
   // Api Hotsale
-  GET_LIST_HOT_SALE: '/cars/list/hotsale',
+  GET_LIST_HOT_SALE: "/cars/list/hotsale",
 
   // Api PDF
-  GET_FILE_PDF_POLICY: '/policy/detail',
-  GET_FILE_PDF_INSURANCE: '/insurance/detail',
-  EDIT_FILE_PDF_POLICY: '/policy/edit',
-  EDIT_FILE_PDF_INSURANCE: '/insurance/edit',
+  GET_FILE_PDF_POLICY: "/policy/detail",
+  GET_FILE_PDF_INSURANCE: "/insurance/detail",
+  EDIT_FILE_PDF_POLICY: "/policy/edit",
+  EDIT_FILE_PDF_INSURANCE: "/insurance/edit",
 
   // Api Car
-  GET_LIST_CAR_DASHBOARD: '/cars/list',
-  POST_CREATE_CAR_DASHBOARD: '/cars/create',
-  GET_DETAIL_CAR_DASHBOARD: '/cars/detail',
-  POST_UPDATE_CAR_DASHBOARD: '/cars/edit',
-  POST_DELETE_CAR_DASHBOARD: '/cars/remove',
-  POST_SET_HOTSALE_CAR_DASHBOARD: '/cars/update-hotsale',
-  POST_SET_PRICE_CAR_DASHBOARD: '/cars/update-price',
+  GET_LIST_CAR_DASHBOARD: "/cars/list",
+  POST_CREATE_CAR_DASHBOARD: "/cars/create",
+  GET_DETAIL_CAR_DASHBOARD: "/cars/detail",
+  POST_UPDATE_CAR_DASHBOARD: "/cars/edit",
+  POST_DELETE_CAR_DASHBOARD: "/cars/remove",
+  POST_SET_HOTSALE_CAR_DASHBOARD: "/cars/update-hotsale",
+  POST_SET_PRICE_CAR_DASHBOARD: "/cars/update-price",
 
   // Api Sale
-  POST_SET_SALE: '/sale/settings',
-  GET_SALE_STATUS: '/sale/status',
-  GET_ALL_SALE_STATUS: '/sale/status-all',
+  POST_SET_SALE: "/sale/settings",
+  GET_SALE_STATUS: "/sale/status",
+  GET_ALL_SALE_STATUS: "/sale/status-all",
 
   // Model Car
-  GET_ALL_MODEL_CAR: '/filter/model',
+  GET_ALL_MODEL_CAR: "/filter/model",
 
   // Api Category Management
-  GET_LIST_CATEGORIES_MANAGEMENT: '/category/list',
-  POST_ADD_CATEGORIES_MANAGEMENT: '/category/create',
-  POST_EDIT_CATEGORIES_MANAGEMENT: '/category/edit',
-  POST_DELETE_CATEGORIES_MANAGEMENT: '/category/delete',
+  GET_LIST_CATEGORIES_MANAGEMENT: "/category/list",
+  POST_ADD_CATEGORIES_MANAGEMENT: "/category/create",
+  POST_EDIT_CATEGORIES_MANAGEMENT: "/category/edit",
+  POST_DELETE_CATEGORIES_MANAGEMENT: "/category/delete",
 
   // Api Status Crawl
   GET_LIST_STATUS_CRAWL: "/process/status",
-  POST_SET_STATUS_CRAWL: "/process/set-status"
+  POST_SET_STATUS_CRAWL: "/process/set-status",
 };

@@ -1,44 +1,44 @@
 <template>
-<div>
+  <div>
     <ul class="display-menu">
-        <div class="zone-app-name">
-            <h4>{{ appName }}</h4>
-        </div>
-        <router-link
-            v-for="(itemRouter, indexRouter) in routes"
-            :key="indexRouter"
-            :to="itemRouter.path"
-        >
-            <li :class="'item ' + 'router-item-' + indexRouter">
-            <i :class="itemRouter.meta.icon" />
-            <span>{{ $t(itemRouter.meta.title) }}</span>
+      <div class="zone-app-name">
+        <h4>{{ appName }}</h4>
+      </div>
+      <router-link
+        v-for="(itemRouter, indexRouter) in routes"
+        :key="indexRouter"
+        :to="itemRouter.path"
+      >
+        <li :class="'item ' + 'router-item-' + indexRouter">
+          <i :class="itemRouter.meta.icon" />
+          <span>{{ $t(itemRouter.meta.title) }}</span>
         </li>
-        </router-link>
+      </router-link>
     </ul>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'MenuSidebar',
-    props: {
-        routes: {
-            type: Array,
-            require: true,
-            default: function() {
-                return [];
-            },
-        },
+  name: "MenuSidebar",
+  props: {
+    routes: {
+      type: Array,
+      require: true,
+      default: function () {
+        return [];
+      },
     },
-    computed: {
-        appName() {
-            return process.env.VUE_APP_APP_NAME;
-        },
+  },
+  computed: {
+    appName() {
+      return process.env.VUE_APP_APP_NAME;
     },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-    @import '@/scss/variables';
-    @import '@/scss/layout';
+@import "@/scss/variables";
+@import "@/scss/layout";
 </style>
