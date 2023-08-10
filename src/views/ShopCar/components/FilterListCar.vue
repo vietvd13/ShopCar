@@ -679,7 +679,7 @@ export default {
         this.$store.dispatch("filter/resetFilterModels");
         this.$store.dispatch("filter/resetFilterDetailCar");
         this.$store.dispatch("filter/resetFilterRating");
-
+        this.$emit("filter");
         return;
       }
     },
@@ -698,7 +698,7 @@ export default {
         this.isFilter.rating = [];
         this.$store.dispatch("filter/resetFilterDetailCar");
         this.$store.dispatch("filter/resetFilterRating");
-
+        this.$emit("filter");
         return;
       }
     },
@@ -714,6 +714,7 @@ export default {
         );
         this.isFilter.rating = [];
         this.$store.dispatch("filter/resetFilterRating");
+        this.$emit("filter");
 
         return;
       }
@@ -721,6 +722,7 @@ export default {
     handleSelectFilterRating(value) {
       if (value) {
         this.isFilter.rating = value;
+        this.$emit("filter");
       }
     },
   },
