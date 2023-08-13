@@ -7,6 +7,28 @@ import Cookies from "js-cookie";
 import CONSTANTS from "@/constants";
 import { handleSrollTop } from "@/utils/helper";
 
+const DEFAULT_FILTER_PARAMS = {
+  search: "",
+
+  categories: null,
+  models: null,
+  car_details: null,
+  rating: [],
+
+  from_year: null,
+  to_year: null,
+
+  from_price: null,
+  to_price: null,
+
+  from_distance: null,
+  to_distance: null,
+
+  color: null,
+  fuel_type: null,
+  gear_box: null,
+};
+
 function isExitToken() {
   const TOKEN = Cookies.get(CONSTANTS.COOKIES.TOKEN);
 
@@ -26,10 +48,24 @@ const whiteList = [
   "/shop-car/detail",
 ];
 
+const checkFilter = [
+  "CarBuyingPolicy",
+  "Insurance",
+  "Contact",
+  "AllCollaborators",
+  "AllHappyMoment",
+  "DetailHappyMoment",
+  "HomeShopCar",
+];
+
 router.beforeEach((to, from, next) => {
   NProgress.start();
-
   setPageName();
+
+  // reset filter when go to page need to reset filter
+  if (checkFilter.includes(to.name)) {
+    store.dispatch("filter/setFilter", DEFAULT_FILTER_PARAMS);
+  }
 
   if (isExitToken()) {
     if (store.getters.initApp === 0) {
