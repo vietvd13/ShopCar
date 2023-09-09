@@ -64,7 +64,9 @@ router.beforeEach((to, from, next) => {
 
   // reset filter when go to page need to reset filter
   if (checkFilter.includes(to.name)) {
-    store.dispatch("filter/setFilter", DEFAULT_FILTER_PARAMS);
+    store.dispatch("filter/setFilter", DEFAULT_FILTER_PARAMS).then(() => {
+      next();
+    });
   }
 
   if (isExitToken()) {

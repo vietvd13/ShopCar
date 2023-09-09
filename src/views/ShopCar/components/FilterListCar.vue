@@ -655,9 +655,8 @@ export default {
         this.handleSelectFilterCarDetail(carDetail);
       }
 
-      if (rating) {
+      if (rating && rating.length > 0) {
         this.isFilter.rating = rating;
-
         this.handleSelectFilterRating(rating);
       }
     },
