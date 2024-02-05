@@ -214,7 +214,7 @@ export default {
     handleGetOtherColor(otherColor) {
       this.isForm = {
         ...this.isForm,
-        other_color: otherColor,
+        otherColor,
       };
     },
     handleGetOtherGearBox(otherGearBox) {

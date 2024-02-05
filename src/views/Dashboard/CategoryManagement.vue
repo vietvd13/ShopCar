@@ -258,7 +258,7 @@ export default {
 
         const BODY = {
           category_name: this.isForm.category_name,
-          images: _images,
+          image: _images,
           category_detail: this.isForm.category_detail,
         };
 
@@ -306,7 +306,7 @@ export default {
 
         const BODY = {
           category_name: this.isForm.category_name,
-          images: _images,
+          image: _images,
           category_detail: this.isForm.category_detail,
         };
 
@@ -354,7 +354,7 @@ export default {
         };
       }
 
-      if (!category.images) {
+      if (!category.image) {
         return {
           status: false,
           message: "ERROR_CATEGORY_IMAGE_IS_EMPTY",
